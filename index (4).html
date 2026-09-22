@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDNAP: Protocolo de Anamnese Dimensional | Neuropsicologia</title>
+<meta name="description" content="IDNAP: protocolo autoral de anamnese neurodesenvolvimental que integra sete domínios sob HiTOP e RDoC, com sistema de pontuação e nove índices de discrepância.">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/idnap/">
+<meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo">
+<meta property="og:title" content="IDNAP: Protocolo de Anamnese Dimensional | Neuropsicologia">
+<meta property="og:description" content="IDNAP: protocolo autoral de anamnese neurodesenvolvimental que integra sete domínios sob HiTOP e RDoC, com sistema de pontuação e nove índices de discrepância.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/idnap/">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo, CRP 04/63435, Belo Horizonte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IDNAP: Protocolo de Anamnese Dimensional | Neuropsicologia">
+<meta name="twitter:description" content="IDNAP: protocolo autoral de anamnese neurodesenvolvimental que integra sete domínios sob HiTOP e RDoC, com sistema de pontuação e nove índices de discrepância.">
+<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/assets/og.png">
+<link rel="stylesheet" href="/assets/estilo.css">
+<style>
+#pg-idnap{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
+#pg-idnap h1,#pg-idnap h2,#pg-idnap h3,#pg-idnap h4,#pg-idnap .serif{font-family:Georgia,"Times New Roman",serif}
+#pg-idnap a{color:inherit;text-decoration:none}
+#pg-idnap .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+#pg-idnap .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
+#pg-idnap section{padding:4rem 0}
+#pg-idnap .alt{background:#fff}
+#pg-idnap .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+#pg-idnap h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
+#pg-idnap .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
+#pg-idnap .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
+#pg-idnap p.body{color:var(--sub);font-size:.98rem;margin-bottom:1.1rem}
+#pg-idnap p.body strong,#pg-idnap p.body b{color:var(--vinho)}
+#pg-idnap .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
+#pg-idnap .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
+#pg-idnap .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-idnap .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
+#pg-idnap .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
+#pg-idnap .back:hover{color:var(--vermelho)}
+@media(max-width:680px){#pg-idnap .hero h1{font-size:1.85rem}}
+#pg-idnap .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
+#pg-idnap .btn-primary{background:var(--vermelho);color:#fff}
+#pg-idnap .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
+#pg-idnap .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--borda)}
+#pg-idnap .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-idnap /* etapas numeradas */
+  .etapas{display:grid;gap:.9rem}
+#pg-idnap .etapa{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
+#pg-idnap .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;font-family:Georgia,serif}
+#pg-idnap .etapa h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
+#pg-idnap .etapa p{font-size:.89rem;color:var(--sub)}
+#pg-idnap /* blocos genéricos */
+  .bloco{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem}
+#pg-idnap .bloco h4{font-size:1.05rem;color:var(--vinho);margin-bottom:.5rem}
+#pg-idnap .bloco p{font-size:.9rem;color:var(--sub)}
+#pg-idnap ul.plain{list-style:none}
+#pg-idnap ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:.93rem;color:var(--sub)}
+#pg-idnap ul.plain li::before{content:"—";position:absolute;left:0;color:var(--vermelho)}
+#pg-idnap ul.plain li b{color:var(--vinho)}
+#pg-idnap .dois{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:700px){#pg-idnap .dois{grid-template-columns:1fr}}
+#pg-idnap .col{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem}
+#pg-idnap .col.neg{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
+#pg-idnap .col h4{font-size:1.02rem;color:var(--vinho);margin-bottom:.6rem}
+#pg-idnap .col.neg h4{color:var(--creme)}
+#pg-idnap .col p,#pg-idnap .col li{font-size:.89rem;color:var(--sub)}
+#pg-idnap .col.neg p,#pg-idnap .col.neg li{color:rgba(255,248,231,.8)}
+#pg-idnap .col.neg li::before{color:var(--vermelho)}
+#pg-idnap .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.3rem;line-height:1.6}
+#pg-idnap .nota b{color:#4d3b00}
+#pg-idnap .quem{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
+#pg-idnap .quem div{background:var(--creme);border:1px solid var(--borda);border-left:3px solid var(--vermelho);border-radius:0 10px 10px 0;padding:1rem 1.2rem;font-size:.9rem;color:var(--sub)}
+#pg-idnap .quem div b{display:block;color:var(--vinho);font-family:Georgia,serif;margin-bottom:.2rem}
+@media(max-width:700px){#pg-idnap .quem{grid-template-columns:1fr}}
+#pg-idnap .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
+#pg-idnap .contact h2{font-size:1.8rem;margin-bottom:.6rem}
+#pg-idnap .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
+#pg-idnap .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-idnap .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
+#pg-idnap .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
+#pg-idnap .cta-op .ic{font-size:1.05rem;line-height:1}
+#pg-idnap .cta-wa{background:#1FA855;color:#fff}
+#pg-idnap .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
+#pg-idnap .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
+#pg-idnap .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
+#pg-idnap .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
+#pg-idnap .cta-mail:hover{border-color:var(--vermelho);color:#fff}
+#pg-idnap .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+@media(max-width:520px){#pg-idnap .cta-opcoes{flex-direction:column}
+#pg-idnap .cta-op{justify-content:center}}
+#pg-idnap .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
+#pg-idnap .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
+#pg-idnap .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-idnap .semanas{display:grid;gap:.9rem}
+#pg-idnap .semana{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.2rem 1.3rem;display:flex;gap:1.1rem}
+#pg-idnap .semana .sn{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;font-family:Georgia,serif;flex-direction:column;line-height:1}
+#pg-idnap .semana .sn small{font-size:.52rem;letter-spacing:1px;opacity:.6}
+#pg-idnap .semana h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
+#pg-idnap .semana p{font-size:.89rem;color:var(--sub)}
+#pg-idnap .traco{background:#fff;border:1px solid var(--borda);border-left:4px solid var(--vermelho);border-radius:0 14px 14px 0;padding:1.5rem;margin-bottom:1.1rem}
+#pg-idnap .traco h4{font-size:1.1rem;color:var(--vinho);margin-bottom:.5rem}
+#pg-idnap .traco .polos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
+#pg-idnap .traco .polo{background:var(--creme);border-radius:10px;padding:.9rem 1rem}
+#pg-idnap .traco .polo b{display:block;font-size:.7rem;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:.3rem}
+#pg-idnap .traco .polo.bom b{color:#1d7a4a}
+#pg-idnap .traco .polo.ruim b{color:var(--bordo)}
+#pg-idnap .traco .polo p{font-size:.86rem;color:var(--sub)}
+@media(max-width:640px){#pg-idnap .traco .polos{grid-template-columns:1fr}}
+#pg-idnap .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin:1.4rem 0}
+#pg-idnap .ficha div{background:var(--creme);border:1px solid var(--borda);border-radius:12px;padding:1rem}
+#pg-idnap .ficha b{display:block;font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+#pg-idnap .ficha span{font-size:.92rem;color:var(--vinho);font-family:Georgia,serif}
+#pg-idnap .destaque{background:var(--vinho);color:var(--creme);border-radius:16px;padding:1.8rem;margin:1.6rem 0}
+#pg-idnap .destaque h4{color:var(--creme);font-size:1.1rem;margin-bottom:.6rem}
+#pg-idnap .destaque p{color:rgba(255,248,231,.82);font-size:.93rem}
+#pg-idnap .destaque p+p{margin-top:.7rem}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "IDNAP: Protocolo de Anamnese Dimensional",
+ "description": "IDNAP: protocolo autoral de anamnese neurodesenvolvimental que integra sete domínios sob HiTOP e RDoC, com sistema de pontuação e nove índices de discrepância.",
+ "url": "https://pedrorugerr-droid.github.io/idnap/",
+ "mainEntityOfPage": {
+  "@type": "WebPage",
+  "@id": "https://pedrorugerr-droid.github.io/idnap/"
+ },
+ "inLanguage": "pt-BR",
+ "datePublished": "2026-09-18",
+ "dateModified": "2026-09-18",
+ "image": "https://pedrorugerr-droid.github.io/assets/og.png",
+ "author": {
+  "@type": "Person",
+  "name": "Pedro Andrade Rüger",
+  "jobTitle": "Psicólogo e Neuropsicólogo",
+  "url": "https://pedrorugerr-droid.github.io/",
+  "identifier": "CRP 04/63435",
+  "sameAs": [
+   "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
+   "https://www.youtube.com/@pedroandraderuger",
+   "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+  ]
+ },
+ "publisher": {
+  "@type": "Psychologist",
+  "@id": "https://pedrorugerr-droid.github.io/#psicologo",
+  "name": "Pedro Andrade Rüger",
+  "url": "https://pedrorugerr-droid.github.io/"
+ }
+}
+</script>
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
+    <div class="menu">
+      <a href="/#home--sobre">Sobre</a>
+      <a href="/o-que-eu-faco/">Serviços</a>
+      <a href="/avaliacao-neuropsicologica/">Avaliação</a>
+      <a href="/psicoterapia/">Psicoterapia</a>
+      <a href="/#home--conteudo" data-op>Conteúdo</a>
+      <a href="/grupo-de-estudos/" data-op>Grupo de estudos</a>
+      <a href="/#home--contato" class="nav-cta">Falar comigo</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <nav id="gaveta">
+    <a href="/">Início</a>
+    <a href="/#home--sobre">Sobre</a>
+    <a href="/#home--instrumentos">Instrumentos</a>
+    <div class="grupo">Serviços</div>
+    <a href="/o-que-eu-faco/">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica/">Avaliação neuropsicológica</a>
+    <a href="/psicoterapia/">Psicoterapia</a>
+    <a href="/psicodiagnostico/">Psicodiagnóstico</a>
+    <a href="/orientacao-profissional/">Orientação de carreira</a>
+    <div class="grupo">Conteúdo para todos</div>
+    <a href="/mindfulness-8-semanas/">Mindfulness em 8 semanas</a>
+    <a href="/autismo-e-alimentacao/">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos/">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five/">Os cinco traços</a>
+    <div class="grupo">Conteúdo técnico</div>
+    <a href="/modelo-4-camadas/">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop/">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios/">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico/">Projeto terapêutico</a>
+    <a href="/idnap/" class="on">IDNAP</a>
+    <a href="/demencias/">Demências</a>
+    <a href="/neurobiologia-da-linguagem/">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro/">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah/">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores/">Neurofarmacologia</a>
+    <div class="grupo">Protocolos integrais</div>
+    <a href="/mindfulness-protocolo/">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes/">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes/">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao/">Big Five, faceta a faceta</a>
+    <div class="grupo">Mais</div>
+    <a href="/neuro-age/">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos/">Grupo de estudos</a>
+    <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    <a href="/#home--contato">Falar comigo</a>
+  </nav>
+</header>
+
+<main class="pagina" id="pg-idnap">
+
+
+
+<section class="hero" id="idnap--topo">
+  <div class="wrap">
+    <a class="back" href="/#home--conteudo">← Voltar ao conteúdo</a>
+    <div class="badge tec">Protocolo autoral · submetido para publicação</div>
+    <h1>IDNAP: Anamnese Neurodesenvolvimental Dimensional Integrada</h1>
+    <div class="divider"></div>
+    <p class="lead">A entrevista inicial deixa de ser coleta de história e passa a ser a primeira medida do perfil: sete domínios operacionalizados, com pontuação e índices de discrepância.</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="narrow">
+    <p class="sec-label">O problema</p>
+    <h2 class="sec-title">A anamnese é a etapa menos padronizada da avaliação</h2>
+    <p class="body">Investe-se muito na padronização dos testes e quase nada na da entrevista que os antecede. O resultado é que a etapa que mais influencia as hipóteses, e portanto a escolha dos instrumentos, é também a mais dependente do estilo de quem aplica. Dois profissionais competentes saem da mesma primeira sessão com mapas diferentes.</p>
+    <p class="body">O IDNAP foi construído para corrigir isso: transformar a anamnese em um instrumento com estrutura, pontuação e saída interpretável, sem perder a abertura clínica que uma entrevista precisa ter.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="narrow">
+    <p class="sec-label">A estrutura</p>
+    <h2 class="sec-title">O que o protocolo operacionaliza</h2>
+    <ul class="plain">
+      <li><b>Sete domínios sob HiTOP e RDoC.</b> A entrevista é organizada pelos eixos dimensionais, não pelas categorias diagnósticas, o que evita que a coleta já venha enviesada pela hipótese.</li>
+      <li><b>Trajetória do neurodesenvolvimento.</b> Marcos, ordem de aparecimento e, sobretudo, o ponto em que a trajetória divergiu. A idade em que algo aparece diz mais que a presença do sinal.</li>
+      <li><b>Assimetria entre domínios.</b> Não o nível absoluto de cada área, mas a distância entre elas. É a assimetria que identifica perfis que o nível médio esconde.</li>
+      <li><b>Variabilidade intraindividual.</b> Quanto o desempenho da pessoa oscila entre contextos e ao longo do tempo. Marcador que separa déficit estável de disfunção dependente de estado.</li>
+      <li><b>Sensibilidade à carga.</b> O ponto em que o funcionamento desmonta quando a demanda aumenta. Muita gente parece bem até uma carga específica, e o protocolo procura onde fica esse limite.</li>
+      <li><b>Estratégias compensatórias.</b> O que a pessoa já construiu para contornar a dificuldade. Frequentemente é isso que mascara o quadro, e é isso que se perde quando a carga sobe.</li>
+      <li><b>Articulação com traço e patologia de traço.</b> A entrevista já é desenhada para conversar com os inventários de personalidade normal e maladaptativa aplicados depois.</li>
+    </ul>
+
+    <div class="destaque">
+      <h4>Nove índices de discrepância</h4>
+      <p>O diferencial técnico do protocolo está aqui. Em vez de gerar apenas escores por domínio, o IDNAP calcula discrepâncias: entre relato e observação, entre domínios, entre contextos, entre trajetória esperada e observada. É a discrepância, e não o escore, que aponta onde investigar.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="sec-label">Onde entra</p>
+    <h2 class="sec-title">Primeira etapa, não etapa isolada</h2>
+    <p class="body">O IDNAP é a primeira etapa da avaliação neuropsicológica completa. A saída dele, o perfil preliminar por domínios e as discrepâncias sinalizadas, é o que define quais instrumentos serão aplicados nas etapas seguintes. Uma avaliação que aplica a mesma bateria para todo mundo não precisa de uma anamnese estruturada; uma avaliação que escolhe os testes pela hipótese, precisa.</p>
+    <div class="ficha">
+      <div><b>Versão</b><span>2.0</span></div>
+      <div><b>Domínios</b><span>Sete, sob HiTOP e RDoC</span></div>
+      <div><b>Índices</b><span>Nove de discrepância</span></div>
+      <div><b>Situação</b><span>Submetido para publicação</span></div>
+    </div>
+    <div class="nota"><b>Sobre o texto completo.</b> O artigo que apresenta o protocolo, com a operacionalização de cada domínio e o sistema de pontuação, está submetido para publicação. Esta página descreve a estrutura e a lógica; o manuscrito integral e o formulário de aplicação serão disponibilizados após o aceite.</div>
+  </div>
+</section>
+
+
+<section class="alt" id="idnap--contato">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Interesse no protocolo?</h2>
+      <p>Para colegas que queiram discutir aplicação, adaptação ou colaboração em validação.</p>
+      <div class="cta-opcoes">
+        <a class="cta-op cta-wa" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener"><span class="ic">💬</span> WhatsApp: (31) 99984-6282</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+      </div>
+      <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
+      <div class="info">Adolescentes e adultos · presencial em Belo Horizonte e online · português e inglês</div>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+<footer class="site">
+  <div class="nap">
+    <p><b class="nome">Pedro Andrade Rüger</b> · Psicólogo e Neuropsicólogo · CRP 04/63435</p>
+    <address>
+      R. Paracatu, 1163 – Sala 904 – Santo Agostinho<br>
+      Belo Horizonte – MG · CEP 30180-098<br>
+      <a href="tel:+5531999846282">(31) 99984-6282</a> ·
+      <a href="https://wa.me/message/TOXTR5MSFUHSE1" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:pedro.rugerr@gmail.com">pedro.rugerr@gmail.com</a>
+    </address>
+    <p style="margin-top:.6rem">
+      <a href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Doctoralia</a> ·
+      <a href="https://www.google.com/search?q=Psic%C3%B3logo+Pedro+Andrade+R%C3%BCger+Neuropsicologia+Belo+Horizonte" target="_blank" rel="noopener">Perfil no Google</a> ·
+      <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    </p>
+    <p style="margin-top:.6rem">Atendimento presencial em Belo Horizonte e online · português e inglês</p>
+    <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
