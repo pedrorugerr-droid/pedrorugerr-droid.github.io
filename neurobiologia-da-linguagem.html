@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurobiologia da Linguagem: Dupla Via e Afasias</title>
+<meta name="description" content="Neurobiologia da linguagem: modelo de dupla via de Hickok e Poeppel, critérios linguísticos, semiologia das afasias, TDL versus dislexia e envelhecimento.">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/neurobiologia-da-linguagem.html">
+<meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo">
+<meta property="og:title" content="Neurobiologia da Linguagem: Dupla Via e Afasias">
+<meta property="og:description" content="Neurobiologia da linguagem: modelo de dupla via de Hickok e Poeppel, critérios linguísticos, semiologia das afasias, TDL versus dislexia e envelhecimento.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/neurobiologia-da-linguagem.html">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo, CRP 04/63435, Belo Horizonte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Neurobiologia da Linguagem: Dupla Via e Afasias">
+<meta name="twitter:description" content="Neurobiologia da linguagem: modelo de dupla via de Hickok e Poeppel, critérios linguísticos, semiologia das afasias, TDL versus dislexia e envelhecimento.">
+<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/og.png">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+#pg-linguagem{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
+#pg-linguagem a{color:inherit;text-decoration:none}
+#pg-linguagem /* barra de progresso de leitura */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--vermelho);z-index:70;transition:width .08s linear}
+#pg-linguagem /* capa do artigo */
+  .capa{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:3.5rem 0 3rem}
+#pg-linguagem .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+#pg-linguagem .back{display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:rgba(255,248,231,.6)}
+#pg-linguagem .back:hover{color:var(--vermelho)}
+#pg-linguagem .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
+#pg-linguagem .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
+#pg-linguagem .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-linguagem .capa h1{font-family:Georgia,serif;font-size:2.3rem;line-height:1.2;max-width:22ch;margin-bottom:.9rem}
+#pg-linguagem .capa .dek{font-size:1.02rem;color:rgba(255,248,231,.8);max-width:62ch}
+#pg-linguagem .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(255,248,231,.15);font-size:.8rem;color:rgba(255,248,231,.6);line-height:1.9}
+#pg-linguagem .creditos b{color:var(--creme);font-weight:600}
+@media(max-width:680px){#pg-linguagem .capa h1{font-size:1.7rem}}
+#pg-linguagem /* layout leitura */
+  .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
+#pg-linguagem .layout>*{min-width:0}
+@media(max-width:980px){#pg-linguagem .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
+#pg-linguagem /* sumário */
+  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:.82rem;padding-right:.5rem}
+#pg-linguagem .toc h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-family:"Segoe UI",sans-serif}
+#pg-linguagem .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--sub);line-height:1.4;transition:.15s}
+#pg-linguagem .toc a:hover{border-left-color:var(--vermelho);color:var(--vinho)}
+#pg-linguagem .toc a.lv3{padding-left:1.4rem;font-size:.78rem;color:var(--muted)}
+#pg-linguagem .toc a.on{border-left-color:var(--vermelho);color:var(--vinho);font-weight:600}
+@media(max-width:980px){#pg-linguagem .toc{position:static;max-height:none;background:var(--papel);border:1px solid var(--borda);border-radius:14px;padding:1.2rem}
+#pg-linguagem .toc details summary{cursor:pointer;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);font-weight:700}
+#pg-linguagem .toc .lista{margin-top:.9rem;max-height:45vh;overflow-y:auto}}
+@media(min-width:981px){#pg-linguagem .toc details summary{display:none}
+#pg-linguagem .toc .lista{display:block!important}}
+#pg-linguagem /* corpo do artigo */
+  article{background:var(--papel);border:1px solid var(--borda);border-radius:18px;padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
+@media(max-width:680px){#pg-linguagem article{padding:1.6rem;border-radius:12px}}
+#pg-linguagem article p{font-family:Georgia,"Times New Roman",serif;font-size:1.045rem;line-height:1.78;color:var(--texto);margin-bottom:1.15rem}
+#pg-linguagem article p.subtitulo{font-family:"Segoe UI",sans-serif;font-size:.95rem;color:var(--bordo);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
+#pg-linguagem article h2{font-family:Georgia,serif;font-size:1.6rem;color:var(--vinho);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--vermelho);letter-spacing:.5px}
+#pg-linguagem article h2:first-child{margin-top:0;padding-top:0;border-top:none}
+#pg-linguagem article h3{font-family:Georgia,serif;font-size:1.18rem;color:var(--vinho);margin:2rem 0 .7rem}
+#pg-linguagem article h4{font-family:"Segoe UI",sans-serif;font-size:.96rem;color:var(--bordo);margin:1.5rem 0 .5rem;letter-spacing:.2px}
+#pg-linguagem article ul{list-style:none;margin:0 0 1.2rem}
+#pg-linguagem article li{font-family:Georgia,serif;font-size:1.005rem;line-height:1.7;color:var(--sub);padding:.32rem 0 .32rem 1.25rem;position:relative}
+#pg-linguagem article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--vermelho)}
+#pg-linguagem article strong{color:var(--vinho)}
+#pg-linguagem article em{font-style:italic}
+#pg-linguagem .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:10px}
+#pg-linguagem article table{border-collapse:collapse;width:100%;font-family:"Segoe UI",sans-serif;font-size:.84rem;min-width:560px}
+#pg-linguagem article th,#pg-linguagem article td{min-width:118px;word-break:normal;overflow-wrap:break-word;hyphens:none}
+#pg-linguagem article th{background:var(--vinho);color:var(--creme);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px}
+#pg-linguagem article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--sub);vertical-align:top}
+#pg-linguagem article tbody tr:nth-child(even){background:rgba(232,192,192,.13)}
+#pg-linguagem .aviso-topo{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.88rem;padding:1.1rem 1.3rem;border-radius:10px;margin-bottom:2rem;line-height:1.65}
+#pg-linguagem .aviso-topo b{color:#4d3b00}
+#pg-linguagem .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:.85rem;color:var(--muted);line-height:1.8}
+#pg-linguagem .fim a{color:var(--bordo);font-weight:600}
+#pg-linguagem .btn{display:inline-block;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.88rem;background:var(--vermelho);color:#fff;margin-top:1rem}
+#pg-linguagem .btn:hover{background:#c0240f}
+#pg-linguagem .fim .btn-alt{background:transparent;color:var(--bordo);border:1.5px solid var(--borda);margin-left:.5rem}
+#pg-linguagem .fim .btn-alt:hover{border-color:var(--vermelho);background:transparent}
+@media print{#pg-linguagem .toc,#pg-linguagem .btn,#pg-linguagem .back{display:none!important}
+#pg-linguagem{background:#fff}
+#pg-linguagem .capa{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+#pg-linguagem .capa h1,#pg-linguagem .capa .dek,#pg-linguagem .creditos,#pg-linguagem .creditos b{color:#000}
+#pg-linguagem .layout{display:block;padding:0}
+#pg-linguagem article{border:none;padding:0;max-width:none;background:#fff}
+#pg-linguagem article h2{break-after:avoid}
+#pg-linguagem article table{font-size:.7rem}}
+#pg-linguagem article p.ref{font-size:.88rem;line-height:1.6;color:var(--muted);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:"Segoe UI",sans-serif;overflow-wrap:break-word}
+#pg-linguagem article p.ref a{color:var(--bordo)}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Neurobiologia da Linguagem: Dupla Via e Afasias",
+ "description": "Neurobiologia da linguagem: modelo de dupla via de Hickok e Poeppel, critérios linguísticos, semiologia das afasias, TDL versus dislexia e envelhecimento.",
+ "url": "https://pedrorugerr-droid.github.io/neurobiologia-da-linguagem.html",
+ "mainEntityOfPage": {
+  "@type": "WebPage",
+  "@id": "https://pedrorugerr-droid.github.io/neurobiologia-da-linguagem.html"
+ },
+ "inLanguage": "pt-BR",
+ "datePublished": "2026-09-18",
+ "dateModified": "2026-09-18",
+ "image": "https://pedrorugerr-droid.github.io/og.png",
+ "author": {
+  "@type": "Person",
+  "name": "Pedro Andrade Rüger",
+  "jobTitle": "Psicólogo e Neuropsicólogo",
+  "url": "https://pedrorugerr-droid.github.io/",
+  "identifier": "CRP 04/63435",
+  "sameAs": [
+   "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
+   "https://www.youtube.com/@pedroandraderuger",
+   "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+  ]
+ },
+ "publisher": {
+  "@type": "Psychologist",
+  "@id": "https://pedrorugerr-droid.github.io/#psicologo",
+  "name": "Pedro Andrade Rüger",
+  "url": "https://pedrorugerr-droid.github.io/"
+ }
+}
+</script>
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
+    <div class="menu">
+      <a href="/#home--sobre">Sobre</a>
+      <a href="/o-que-eu-faco.html">Serviços</a>
+      <a href="/avaliacao-neuropsicologica.html">Avaliação</a>
+      <a href="/psicoterapia.html">Psicoterapia</a>
+      <a href="/#home--conteudo" data-op>Conteúdo</a>
+      <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
+      <a href="/#home--contato" class="nav-cta">Falar comigo</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <nav id="gaveta">
+    <a href="/">Início</a>
+    <a href="/#home--sobre">Sobre</a>
+    <a href="/#home--instrumentos">Instrumentos</a>
+    <div class="grupo">Serviços</div>
+    <a href="/o-que-eu-faco.html">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica</a>
+    <a href="/psicoterapia.html">Psicoterapia</a>
+    <a href="/psicodiagnostico.html">Psicodiagnóstico</a>
+    <a href="/orientacao-profissional.html">Orientação de carreira</a>
+    <div class="grupo">Conteúdo para todos</div>
+    <a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>
+    <a href="/autismo-e-alimentacao.html">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos.html">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five.html">Os cinco traços</a>
+    <div class="grupo">Conteúdo técnico</div>
+    <a href="/modelo-4-camadas.html">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop.html">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios.html">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico.html">Projeto terapêutico</a>
+    <a href="/idnap.html">IDNAP</a>
+    <a href="/demencias.html">Demências</a>
+    <a href="/neurobiologia-da-linguagem.html">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro.html">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah.html">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores.html">Neurofarmacologia</a>
+    <div class="grupo">Protocolos integrais</div>
+    <a href="/mindfulness-protocolo.html">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes.html">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes.html">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao.html">Big Five, faceta a faceta</a>
+    <div class="grupo">Mais</div>
+    <a href="/neuro-age.html">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos.html">Grupo de estudos</a>
+    <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    <a href="/#home--contato">Falar comigo</a>
+  </nav>
+</header>
+
+<main class="pagina" id="pg-linguagem">
+
+
+<section class="capa">
+  <div class="in">
+    <a class="back" href="/#home--conteudo">← Voltar ao conteúdo</a>
+    <div class="badge tec">Camada técnica · texto integral</div>
+    <h1>Neurobiologia da linguagem</h1>
+    <p class="dek">Da arquitetura neural de dupla via à semiologia clínica e às trajetórias do desenvolvimento: como o cérebro processa a linguagem, o que acontece quando falha, e como diferenciar TDL de dislexia.</p>
+    <div class="creditos"><b>Pedro Andrade Rüger</b>: Psicólogo, CRP 04/63435 · Neuropsicólogo · Discente de Medicina (PUC Minas)<br>Artigo acadêmico · texto integral</div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="toc">
+    <details open>
+      <summary>Sumário: 33 seções</summary>
+      <h5>Neste documento</h5>
+      <div class="lista">
+        <a class="lv2" href="#linguagem--introducao">Introdução</a>
+        <a class="lv2" href="#linguagem--1-a-circuitaria-da-linguagem-do-localizacionismo-ao-modelo-d">1 A circuitaria da linguagem: do localizacionismo ao modelo de dupla via</a>
+        <a class="lv3" href="#linguagem--1-1-a-ascensao-e-as-limitacoes-do-modelo-classico">1.1 A ascensão e as limitações do modelo clássico</a>
+        <a class="lv3" href="#linguagem--1-2-o-modelo-de-dupla-via">1.2 O modelo de dupla via</a>
+        <a class="lv3" href="#linguagem--1-3-integracao-hemisferica-e-estruturas-subcorticais">1.3 Integração hemisférica e estruturas subcorticais</a>
+        <a class="lv2" href="#linguagem--2-os-criterios-da-linguagem">2 Os critérios da linguagem</a>
+        <a class="lv3" href="#linguagem--2-1-fonologia-o-universo-dos-sons-distintivos">2.1 Fonologia: o universo dos sons distintivos</a>
+        <a class="lv3" href="#linguagem--2-2-morfologia-a-engenharia-das-palavras">2.2 Morfologia: a engenharia das palavras</a>
+        <a class="lv3" href="#linguagem--2-3-sintaxe-a-arquitetura-combinatoria">2.3 Sintaxe: a arquitetura combinatória</a>
+        <a class="lv3" href="#linguagem--2-4-semantica-o-tecido-do-significado">2.4 Semântica: o tecido do significado</a>
+        <a class="lv3" href="#linguagem--2-5-pragmatica-a-linguagem-em-acao">2.5 Pragmática: a linguagem em ação</a>
+        <a class="lv2" href="#linguagem--3-semiologia-da-linguagem-sinais-e-sintomas">3 Semiologia da linguagem: sinais e sintomas</a>
+        <a class="lv3" href="#linguagem--3-1-mutismo">3.1 Mutismo</a>
+        <a class="lv3" href="#linguagem--3-2-reducao-e-aspontaneidade">3.2 Redução e aspontaneidade</a>
+        <a class="lv3" href="#linguagem--3-3-estereotipia-verbal">3.3 Estereotipia verbal</a>
+        <a class="lv3" href="#linguagem--3-4-perseveracao">3.4 Perseveração</a>
+        <a class="lv3" href="#linguagem--3-5-ecolalia">3.5 Ecolalia</a>
+        <a class="lv3" href="#linguagem--3-6-neologismo-e-jargao">3.6 Neologismo e jargão</a>
+        <a class="lv3" href="#linguagem--3-7-anomia">3.7 Anomia</a>
+        <a class="lv3" href="#linguagem--3-8-circunloquio">3.8 Circunlóquio</a>
+        <a class="lv3" href="#linguagem--3-9-parafasias">3.9 Parafasias</a>
+        <a class="lv3" href="#linguagem--3-10-agramatismo">3.10 Agramatismo</a>
+        <a class="lv3" href="#linguagem--3-11-disturbios-da-linguagem-escrita">3.11 Distúrbios da linguagem escrita</a>
+        <a class="lv3" href="#linguagem--3-12-sindrome-do-encarceramento-e-a-linguagem-interna">3.12 Síndrome do encarceramento e a linguagem interna</a>
+        <a class="lv2" href="#linguagem--4-ontogenese-e-patologia-desenvolvimento-tdl-e-dislexia">4 Ontogênese e patologia: desenvolvimento, TDL e dislexia</a>
+        <a class="lv3" href="#linguagem--4-1-marcos-do-desenvolvimento">4.1 Marcos do desenvolvimento</a>
+        <a class="lv3" href="#linguagem--4-2-falantes-tardios-e-a-rejeicao-do-esperar-para-ver">4.2 Falantes tardios e a rejeição do &quot;esperar para ver&quot;</a>
+        <a class="lv3" href="#linguagem--4-3-diagnostico-diferencial-tdl-ou-dislexia">4.3 Diagnóstico diferencial: TDL ou dislexia</a>
+        <a class="lv3" href="#linguagem--4-4-instrumentos-de-avaliacao-no-contexto-brasileiro">4.4 Instrumentos de avaliação no contexto brasileiro</a>
+        <a class="lv2" href="#linguagem--5-o-cerebro-que-envelhece-senescencia-e-patologia">5 O cérebro que envelhece: senescência e patologia</a>
+        <a class="lv3" href="#linguagem--5-1-alteracoes-sensoriais-e-impacto-na-comunicacao">5.1 Alterações sensoriais e impacto na comunicação</a>
+        <a class="lv3" href="#linguagem--5-2-reserva-cognitiva-e-afasias-progressivas">5.2 Reserva cognitiva e afasias progressivas</a>
+        <a class="lv2" href="#linguagem--conclusao">Conclusão</a>
+      </div>
+    </details>
+  </aside>
+
+  <article id="linguagem--texto">
+
+<h2 id="linguagem--introducao">Introdução</h2>
+<p>A linguagem humana constitui, indiscutivelmente, a faculdade cognitiva mais distintiva da nossa espécie, servindo como o alicerce sobre o qual se erguem a cultura, a transmissão de conhecimento transgeracional e a complexidade das interações sociais. Durante mais de um século, a compreensão científica sobre como o cérebro processa, armazena e produz a linguagem foi regida por paradigmas localizacionistas estritos, que buscavam mapear funções complexas em áreas corticais circunscritas. No entanto, a revolução trazida pelas neurociências cognitivas e pelas técnicas avançadas de neuroimagem funcional nas últimas décadas precipitou uma mudança tectônica neste entendimento. O campo transitou de uma frenologia moderna de centros isolados para uma concepção dinâmica de redes neurais distribuídas, interconectadas e plasticamente moduláveis.</p>
+<p>Este relatório aborda a superação do modelo clássico de Wernicke-Geschwind pelo contemporâneo Modelo de Dupla Via de Hickok e Poeppel. Subsequentemente, disseca-se a estrutura da linguagem através de seus critérios fundamentais (fonologia, morfologia, sintaxe, semântica e pragmática), estabelecendo as bases para uma revisão semiológica detalhada. A semiologia é explorada em profundidade, definindo e diferenciando fenômenos como anomia, parafasias, agramatismo e as complexas disfunções de leitura e escrita. Por fim, examina-se a ontogênese da linguagem, desde os marcos do desenvolvimento infantil e os desafios do diagnóstico diferencial entre Transtorno do Desenvolvimento da Linguagem e Dislexia, até as alterações neurofuncionais impostas pelo envelhecimento.</p>
+<h2 id="linguagem--1-a-circuitaria-da-linguagem-do-localizacionismo-ao-modelo-d">1 A circuitaria da linguagem: do localizacionismo ao modelo de dupla via</h2>
+<p>A história da neurolinguística é marcada pela tensão entre a localização precisa e a integração funcional. O modelo clássico, que dominou o século XX, oferecia uma explicação elegante, porém simplista, para o processamento da linguagem. A sua substituição pelo Modelo de Dupla Via representa não apenas um refinamento anatômico, mas uma reinterpretação fundamental da natureza computacional do cérebro.</p>
+<h3 id="linguagem--1-1-a-ascensao-e-as-limitacoes-do-modelo-classico">1.1 A ascensão e as limitações do modelo clássico</h3>
+<p>O modelo clássico, consolidado por Norman Geschwind na década de 1960 a partir dos trabalhos pioneiros de Paul Broca e Carl Wernicke, postulava uma organização serial e unidirecional. Neste esquema, a compreensão auditiva ocorria na área de Wernicke, no giro temporal superior posterior, onde as imagens acústicas das palavras eram armazenadas. Para a produção da fala, essa informação era transmitida através do fascículo arqueado para a área de Broca, no giro frontal inferior, responsável pelo planejamento motor e articulação.</p>
+<p>Apesar de seu valor didático, este modelo falhou em explicar uma série de observações clínicas e experimentais:</p>
+<p>Déficits de compreensão na afasia de Broca: pacientes com lesões anteriores frequentemente apresentavam dificuldades na compreensão de sentenças sintaticamente complexas, contradizendo a ideia de que a compreensão seria exclusiva da região posterior.</p>
+<p>Dissociação semântico-fonológica: o modelo não explicava como pacientes podiam repetir palavras sem compreendê-las, como na afasia transcortical sensorial, ou compreendê-las sem conseguir repeti-las, sugerindo rotas independentes para o significado e para a forma sonora.</p>
+<p>Bilateralidade da compreensão: estudos de neuroimagem funcional e testes de Wada demonstraram que a compreensão da fala ativa regiões temporais em ambos os hemisférios, e não apenas no esquerdo.</p>
+<h3 id="linguagem--1-2-o-modelo-de-dupla-via">1.2 O modelo de dupla via</h3>
+<p>Proposto por Gregory Hickok e David Poeppel, o Modelo de Dupla Via resolve essas inconsistências ao propor que o processamento da fala se bifurca em dois fluxos distintos após a análise cortical inicial, análogos às vias visuais &quot;o quê&quot; ventral e &quot;onde/como&quot; dorsal. O processamento inicial ocorre no Giro de Heschl, córtex auditivo primário, e no Sulco Temporal Superior, onde é realizada a análise espectro-temporal e fonológica do som. A partir daí, a informação segue dois caminhos divergentes.</p>
+<h4>A via ventral: interface auditivo-conceitual</h4>
+<p>A via ventral é o substrato neural para a compreensão da linguagem. Ela é responsável por mapear as representações sonoras em representações de significado.</p>
+<p>Anatomia e conectividade: a via projeta-se do sulco temporal superior em direção às porções média e inferior do lobo temporal, estendendo-se anteriormente para o polo temporal e conectando-se ao giro frontal inferior através da cápsula extrema e do fascículo uncinado.</p>
+<p>Bilateralidade: uma característica crítica é que a via ventral é bilateralmente organizada. Isso explica a resiliência da compreensão auditiva em lesões unilaterais; o hemisfério direito possui capacidade de processamento semântico e fonológico suficiente para sustentar a compreensão básica, embora o hemisfério esquerdo tenha especialização para a integração sintática fina.</p>
+<p>Função: reconhecimento de palavras, acesso ao léxico mental e extração de significado.</p>
+<h4>A via dorsal: interface auditivo-motora</h4>
+<p>A via dorsal medeia a transformação da informação acústica em representações motoras articulatórias. Sua função primária não é a compreensão, mas a integração sensório-motora necessária para a produção da fala e o desenvolvimento da linguagem.</p>
+<p>Anatomia e conectividade: origina-se na junção temporoparietal, especificamente na Área Spt, localizada dentro da Fissura Silviana. A área Spt atua como um hub de tradução, conectando os sistemas sensoriais posteriores às redes motoras anteriores através do Fascículo Arqueado e do Fascículo Longitudinal Superior.</p>
+<p>Lateralização: diferentemente da via ventral, a via dorsal é fortemente lateralizada à esquerda na vasta maioria dos indivíduos destros. É esta assimetria que torna as lesões dorsais esquerdas tão devastadoras para a produção da fala.</p>
+<p>Função: suporta a repetição da fala, o monitoramento da própria voz e a aprendizagem de novas palavras.</p>
+<div class="tabela-wrap"><table><thead><tr><th>Característica</th><th>Modelo clássico (Wernicke-Geschwind)</th><th>Modelo de dupla via (Hickok e Poeppel)</th></tr></thead><tbody><tr><td>Arquitetura</td><td>Serial: Wernicke para Broca</td><td>Paralela: ventral (significado) e dorsal (ação)</td></tr><tr><td>Compreensão</td><td>Localizada na área de Wernicke, hemisfério esquerdo</td><td>Distribuída na via ventral, bilateral</td></tr><tr><td>Produção e repetição</td><td>Dependente do fascículo arqueado como única ponte</td><td>Dependente da rede de integração sensório-motora dorsal</td></tr><tr><td>Fascículos envolvidos</td><td>Primariamente o fascículo arqueado</td><td>Arqueado, longitudinal superior, cápsula extrema, uncinado</td></tr><tr><td>Papel de Wernicke</td><td>Centro de imagens auditivas das palavras</td><td>Interface de recrutamento fonológico e acesso à rede distribuída</td></tr></tbody></table></div>
+<h3 id="linguagem--1-3-integracao-hemisferica-e-estruturas-subcorticais">1.3 Integração hemisférica e estruturas subcorticais</h3>
+<p>Enquanto o hemisfério esquerdo domina os aspectos estruturais (sintaxe, morfologia, fonologia segmentar) em cerca de 80 a 90 por cento da população, o hemisfério direito é fundamental para a prosódia, isto é, entonação, ritmo e emoção na fala, e para a pragmática, isto é, interpretação de contexto, metáforas e discurso não-literal.</p>
+<p>Além disso, a execução motora da fala exige um loop de controle que envolve os núcleos da base, na seleção e iniciação de programas motores, o cerebelo, no sequenciamento temporal e ajuste fino, e a ínsula, na coordenação da articulação, demonstrando que a circuitaria da linguagem se estende profundamente para além do córtex cerebral.</p>
+<h2 id="linguagem--2-os-criterios-da-linguagem">2 Os critérios da linguagem</h2>
+<p>A linguagem, longe de ser um bloco monolítico, é um sistema composto por subsistemas hierárquicos e interdependentes. A avaliação neuropsicológica e fonoaudiológica depende da capacidade de isolar e analisar cada um destes componentes.</p>
+<h3 id="linguagem--2-1-fonologia-o-universo-dos-sons-distintivos">2.1 Fonologia: o universo dos sons distintivos</h3>
+<p>A fonologia é o ramo da linguística que estuda o sistema sonoro de uma língua do ponto de vista funcional. Diferente da fonética, que analisa as propriedades físicas e acústicas dos sons, a fonologia ocupa-se dos fonemas, as menores unidades sonoras capazes de distinguir significado.</p>
+<p>Processamento neural: envolve a decodificação de traços distintivos, como sonoridade e ponto de articulação, no giro temporal superior.</p>
+<p>Consciência fonológica: é a habilidade metalinguística de manipular conscientemente esses sons, em rimas, aliterações e segmentação silábica. É o preditor mais robusto para a alfabetização; falhas neste nível são o núcleo da dislexia.</p>
+<h3 id="linguagem--2-2-morfologia-a-engenharia-das-palavras">2.2 Morfologia: a engenharia das palavras</h3>
+<p>A morfologia estuda a estrutura interna das palavras e as regras de formação vocabular através dos morfemas, as menores unidades portadoras de significado. Divide-se em dois sistemas principais.</p>
+<p>Morfologia flexional: trata das variações que expressam categorias gramaticais (gênero, número, tempo, modo) sem alterar a classe da palavra ou seu sentido central. É adquirida precocemente e seu déficit é característico do agramatismo na afasia de Broca.</p>
+<p>Morfologia derivacional: envolve a criação de novas palavras através de afixos que podem alterar a classe gramatical ou o significado. É importante para a aquisição da linguagem escrita e a expansão lexical, pois facilita a memória fonológica ao agrupar palavras em redes morfológicas.</p>
+<h3 id="linguagem--2-3-sintaxe-a-arquitetura-combinatoria">2.3 Sintaxe: a arquitetura combinatória</h3>
+<p>A sintaxe define as regras que governam a combinação de palavras para formar sentenças gramaticalmente válidas, estabelecendo as relações de dependência entre os elementos.</p>
+<p>Hierarquia e recursividade: a sintaxe permite a geração infinita de sentenças a partir de um número finito de elementos.</p>
+<p>Base neural: o processamento sintático complexo depende crucialmente da porção opercular do giro frontal inferior esquerdo e de suas conexões dorsais com o lobo temporal. Lesões nesta rede resultam em agramatismo, no qual a fala se torna telegráfica e a compreensão de frases passivas ou complexas é prejudicada.</p>
+<h3 id="linguagem--2-4-semantica-o-tecido-do-significado">2.4 Semântica: o tecido do significado</h3>
+<p>A semântica dedica-se ao estudo do significado, tanto no nível das palavras quanto no das sentenças.</p>
+<p>Organização: o conhecimento semântico é organizado em redes de conceitos interligados. A polissemia, a palavra &quot;manga&quot; como fruta ou como parte da roupa, ilustra como o sistema semântico precisa interagir com o contexto para selecionar o significado apropriado.</p>
+<p>Neurobiologia: o processamento semântico é amplamente distribuído pela via ventral bilateral, com hubs críticos no polo temporal anterior e no giro angular. A degeneração destas áreas, como na variante semântica da afasia primária progressiva, leva à dissolução do conhecimento conceitual.</p>
+<h3 id="linguagem--2-5-pragmatica-a-linguagem-em-acao">2.5 Pragmática: a linguagem em ação</h3>
+<p>A pragmática estuda o uso da linguagem em contextos comunicativos reais, abrangendo as regras sociais, a interpretação de intenções e o significado não-literal.</p>
+<p>Componentes: inclui a habilidade de realizar inferências, compreender ironia, metáforas e sarcasmo, manter a troca de turnos na conversação e ajustar o registro de fala ao interlocutor.</p>
+<p>Hemisfério direito: enquanto o esquerdo domina a estrutura, o direito é dominante para a pragmática e a prosódia. Pacientes com lesões à direita podem apresentar discurso estruturalmente perfeito, mas socialmente inadequado, sem entonação e com interpretação excessivamente literal.</p>
+<h2 id="linguagem--3-semiologia-da-linguagem-sinais-e-sintomas">3 Semiologia da linguagem: sinais e sintomas</h2>
+<p>A semiologia neurolinguística fornece o vocabulário técnico necessário para descrever as manifestações patológicas da linguagem. A distinção precisa entre estes fenômenos é crucial para o diagnóstico topográfico e sindrômico.</p>
+<h3 id="linguagem--3-1-mutismo">3.1 Mutismo</h3>
+<p>Ausência total de produção vocal. Pode ter origem orgânica, como no mutismo acinético, decorrente de lesões bilaterais do lobo frontal medial ou do giro do cíngulo anterior, ou psicogênica. Em fases agudas de AVC, o mutismo pode preceder a instalação de uma afasia severa ou de uma apraxia de fala grave.</p>
+<h3 id="linguagem--3-2-reducao-e-aspontaneidade">3.2 Redução e aspontaneidade</h3>
+<p>Diminuição quantitativa do discurso. O paciente fala pouco, inicia a conversa raramente e utiliza frases curtas. É traço distintivo das afasias não-fluentes. A redução pode evoluir para um estilo telegráfico, no qual apenas palavras de alto conteúdo informativo são produzidas.</p>
+<h3 id="linguagem--3-3-estereotipia-verbal">3.3 Estereotipia verbal</h3>
+<p>Repetição involuntária, fixa e recorrente de um segmento linguístico sempre que o paciente tenta se comunicar. Diferente da perseveração, a estereotipia é rígida e independe do estímulo. É comum em afasias graves, nas quais o paciente pode ficar restrito a um único enunciado.</p>
+<h3 id="linguagem--3-4-perseveracao">3.4 Perseveração</h3>
+<p>Recorrência inapropriada de uma resposta previamente emitida diante de um novo estímulo. Por exemplo, após nomear corretamente &quot;relógio&quot;, o paciente continua dizendo &quot;relógio&quot; ao ver uma caneta. Indica falha na flexibilidade cognitiva e no controle inibitório, impedindo o desengajamento da resposta anterior. É frequente em lesões frontais e demências.</p>
+<h3 id="linguagem--3-5-ecolalia">3.5 Ecolalia</h3>
+<p>Repetição automática, como um eco, da fala do interlocutor. Indica que o loop auditivo-motor da via dorsal está preservado, mas o controle inibitório ou o processamento semântico falham. É sintoma cardinal das afasias transcorticais e do estágio final da doença de Alzheimer.</p>
+<h3 id="linguagem--3-6-neologismo-e-jargao">3.6 Neologismo e jargão</h3>
+<p>Neologismo é a produção de uma palavra não existente na língua. Quando o discurso é fluente mas permeado por neologismos e parafasias a ponto de se tornar ininteligível, denomina-se jargonofasia. Ocorre tipicamente na afasia de Wernicke, na qual o paciente, devido à anosognosia, fala copiosamente sem perceber que não está fazendo sentido.</p>
+<h3 id="linguagem--3-7-anomia">3.7 Anomia</h3>
+<p>Dificuldade em evocar a palavra correta. É o sintoma mais ubíquo das afasias, presente em quase todas as formas e frequentemente o último a regredir. O paciente sabe o que quer dizer, demonstra conhecimento semântico do objeto, mas não consegue recuperar o rótulo fonológico. Pode ocorrer por falha no armazenamento semântico ou na recuperação da forma sonora.</p>
+<h3 id="linguagem--3-8-circunloquio">3.8 Circunlóquio</h3>
+<p>Estratégia compensatória para contornar a anomia. O paciente descreve a função, a aparência ou o contexto do objeto que não consegue nomear. A presença de circunlóquios indica que o sistema semântico está relativamente preservado, apesar da falha no acesso lexical.</p>
+<h3 id="linguagem--3-9-parafasias">3.9 Parafasias</h3>
+<p>São erros de substituição na produção da fala.</p>
+<p>Parafasia fonêmica ou literal: substituição, omissão ou transposição de fonemas dentro da palavra, como &quot;faca&quot; virando &quot;vaca&quot;. Reflete falha no planejamento fonológico da via dorsal.</p>
+<p>Parafasia semântica ou verbal: substituição de uma palavra por outra semanticamente relacionada, como &quot;mesa&quot; virando &quot;cadeira&quot;. Reflete falha na seleção lexical ou na rede semântica da via ventral.</p>
+<p>Parafasia formal: substituição por uma palavra fonologicamente semelhante, mas sem relação semântica, como &quot;pato&quot; virando &quot;prato&quot;.</p>
+<h3 id="linguagem--3-10-agramatismo">3.10 Agramatismo</h3>
+<p>Distúrbio da estrutura sintática caracterizado pela omissão de morfemas gramaticais livres (artigos, preposições, conjunções) e ligados, como flexões verbais e nominais. O discurso torna-se simplificado, consistindo principalmente em substantivos e verbos no infinitivo. É a marca registrada da disfunção da área de Broca.</p>
+<h3 id="linguagem--3-11-disturbios-da-linguagem-escrita">3.11 Distúrbios da linguagem escrita</h3>
+<p>A terminologia exige precisão para diferenciar transtornos do desenvolvimento de sintomas adquiridos.</p>
+<p>Dislexia e disgrafia: termos gerais para os transtornos de leitura e escrita. Podem ser do desenvolvimento, isto é, dificuldade na aquisição em crianças, ou adquiridas, isto é, perda da habilidade após lesão cerebral.</p>
+<p>Paralexia: erro específico produzido durante a leitura em voz alta, análogo à parafasia na fala. A paralexia fonêmica é ler &quot;gato&quot; como &quot;bato&quot;. A paralexia semântica é ler &quot;carro&quot; ao ver a palavra escrita &quot;automóvel&quot;. Fenômeno patognomônico da dislexia profunda, indicando que a leitura ocorre via rota semântica, sem acesso à conversão grafema-fonema.</p>
+<p>Paragrafia: erro na escrita. Pode ser literal, com troca de letras, ou verbal, com troca de palavras inteiras. A análise dos tipos de paragrafia ajuda a identificar se a lesão afetou a rota lexical ou a fonológica da escrita.</p>
+<h3 id="linguagem--3-12-sindrome-do-encarceramento-e-a-linguagem-interna">3.12 Síndrome do encarceramento e a linguagem interna</h3>
+<p>Um caso limite na semiologia é a síndrome do encarceramento, geralmente causada por infartos ventrais na ponte. O paciente apresenta tetraplegia e anartria, isto é, incapacidade total de articular a fala, mas preserva a consciência, a audição e, crucialmente, a linguagem interna.</p>
+<p>Este quadro comprova a dissociação neuroanatômica entre a linguagem, função cortical, e a fala, ato motor. O paciente mantém diálogos internos complexos e comunicação intencional, geralmente via movimento vertical dos olhos. Pesquisas atuais com interfaces cérebro-computador têm conseguido decodificar essa fala interna diretamente da atividade cortical, permitindo que pacientes falem através de sintetizadores apenas imaginando a produção linguística.</p>
+<h2 id="linguagem--4-ontogenese-e-patologia-desenvolvimento-tdl-e-dislexia">4 Ontogênese e patologia: desenvolvimento, TDL e dislexia</h2>
+<p>O desenvolvimento da linguagem é um processo robusto, biologicamente programado, mas dependente de interação ambiental. O reconhecimento dos marcos típicos e atípicos é a chave para a intervenção precoce.</p>
+<h3 id="linguagem--4-1-marcos-do-desenvolvimento">4.1 Marcos do desenvolvimento</h3>
+<p>De zero a doze meses temos a fase pré-linguística. O choro diferenciado, marcador de prosódia, o balbucio e a atenção compartilhada são precursores essenciais. Aos doze meses espera-se a emergência das primeiras palavras com significado referencial.</p>
+<p>Aos dois anos temos o marco da explosão do vocabulário e o início da gramática. A criança começa a combinar dois elementos.</p>
+<p>Aos cinco anos temos a consolidação da rede de linguagem. Espera-se que a criança tenha dominado o sistema de regras fonológicas e morfossintáticas básicas, possua um discurso narrativo coerente e esteja pronta para o desafio da alfabetização.</p>
+<h3 id="linguagem--4-2-falantes-tardios-e-a-rejeicao-do-esperar-para-ver">4.2 Falantes tardios e a rejeição do &quot;esperar para ver&quot;</h3>
+<p>Uma questão crítica na clínica pediátrica é o manejo dos falantes tardios, crianças com menos de cinquenta palavras ou ausência de combinações de palavras aos vinte e quatro meses. A literatura atual condena a abordagem passiva de esperar para ver.</p>
+<p>O atraso inicial é um fator de risco significativo. Estudos longitudinais mostram que falantes tardios têm maior probabilidade de desenvolver Transtorno do Desenvolvimento da Linguagem e dificuldades de leitura aos dezessete anos. Mesmo aqueles que recuperam a fala frequentemente mantêm déficits sutis em memória operacional fonológica e processamento sintático complexo. A intervenção precoce é mandatória.</p>
+<h3 id="linguagem--4-3-diagnostico-diferencial-tdl-ou-dislexia">4.3 Diagnóstico diferencial: TDL ou dislexia</h3>
+<p>Embora ambos impactem o aprendizado escolar, TDL e dislexia possuem núcleos cognitivos distintos, ainda que comórbidos.</p>
+<div class="tabela-wrap"><table><thead><tr><th>Característica</th><th>Dislexia do desenvolvimento</th><th>Transtorno do desenvolvimento da linguagem</th></tr></thead><tbody><tr><td>Déficit primário</td><td>Processamento fonológico: consciência fonológica, nomeação rápida</td><td>Linguagem oral global: morfossintaxe, semântica, vocabulário</td></tr><tr><td>Compreensão oral</td><td>Geralmente preservada, se o vocabulário for conhecido</td><td>Prejudicada, com dificuldade em frases complexas e discurso</td></tr><tr><td>Leitura</td><td>Dificuldade na decodificação, fluência e precisão</td><td>Dificuldade na compreensão de leitura, por falta de base linguística</td></tr><tr><td>Mecanismo</td><td>Falha na automatização da conversão grafema-fonema</td><td>Falha na estruturação gramatical e no armazenamento lexical</td></tr><tr><td>Impacto</td><td>O problema é acessar o texto</td><td>O problema é entender a mensagem, oral ou escrita</td></tr></tbody></table></div>
+<p>A coocorrência é comum, mas a distinção é vital para a terapia: o disléxico precisa de treino intensivo de consciência fonológica e correspondência grafema-fonema; a criança com TDL precisa de enriquecimento vocabular, estruturação de frases e treino de narrativa.</p>
+<h3 id="linguagem--4-4-instrumentos-de-avaliacao-no-contexto-brasileiro">4.4 Instrumentos de avaliação no contexto brasileiro</h3>
+<p>IDADI, Inventário Dimensional do Desenvolvimento Infantil: instrumento de relato parental que avalia múltiplos domínios em crianças de zero a setenta e dois meses. Fundamental para o rastreio precoce e o monitoramento longitudinal.</p>
+<p>Coleção Seabra, Avaliação Neuropsicológica Cognitiva: bateria focada em funções executivas, atenção e linguagem, permitindo dissecar os componentes cognitivos subjacentes ao fracasso escolar.</p>
+<p>PROLEC, Provas de Avaliação dos Processos de Leitura: teste padrão-ouro para investigar as rotas de leitura. Avalia identificação de letras, processos léxicos, sintáticos e semânticos, diferenciando dislexias fonológicas de superficiais.</p>
+<p>Avaliação da Compreensão Leitora de Textos Expositivos: diferente de testes narrativos, foca em textos informativos, essenciais para o sucesso acadêmico nos anos finais do ensino fundamental.</p>
+<p>PCS, Prova de Consciência Sintática: avalia especificamente a habilidade metassintática, competência distinta da consciência fonológica e crucial para a compreensão leitora avançada.</p>
+<h2 id="linguagem--5-o-cerebro-que-envelhece-senescencia-e-patologia">5 O cérebro que envelhece: senescência e patologia</h2>
+<p>O envelhecimento traz consigo desafios sensoriais e neurais que impactam a linguagem, exigindo a distinção entre processos naturais e demenciais.</p>
+<h3 id="linguagem--5-1-alteracoes-sensoriais-e-impacto-na-comunicacao">5.1 Alterações sensoriais e impacto na comunicação</h3>
+<p>Presbiacusia: a perda auditiva neurossensorial associada à idade afeta as frequências altas, cruciais para a discriminação de consoantes. Isso obriga o idoso a recrutar recursos cognitivos extras para preencher as lacunas do sinal auditivo, gerando fadiga e mimetizando déficits de compreensão.</p>
+<p>Presbifonia: o envelhecimento da laringe resulta em voz fraca, soprosa ou trêmula. A dificuldade em ser ouvido e compreendido pode levar ao retraimento comunicativo e ao isolamento social, fatores de risco para depressão e declínio cognitivo.</p>
+<h3 id="linguagem--5-2-reserva-cognitiva-e-afasias-progressivas">5.2 Reserva cognitiva e afasias progressivas</h3>
+<p>Enquanto a velocidade de processamento diminui, o conhecimento semântico tende a se manter ou até expandir no envelhecimento saudável. A reserva cognitiva, construída por escolaridade, bilinguismo e leitura, protege funcionalmente o cérebro contra a patologia inicial.</p>
+<p>Quando a neurodegeneração atinge redes específicas de linguagem, surgem as afasias progressivas primárias, síndromes demenciais nas quais a linguagem é a única função prejudicada nos primeiros anos.</p>
+<p>Variante semântica: atrofia temporal anterior, com perda progressiva do significado das palavras e do reconhecimento de objetos, mas com fluência e gramática preservadas.</p>
+<p>Variante agramática ou não-fluente: atrofia frontal inferior posterior, com fala trabalhosa, agramatismo e apraxia de fala, semelhante a uma afasia de Broca progressiva.</p>
+<p>Variante logopênica: atrofia perissilviana posterior e parietal, com dificuldade marcante em encontrar palavras e repetição de frases prejudicada, por falhas na memória operacional fonológica da via dorsal.</p>
+<p>Além das afasias progressivas, o envelhecimento pode trazer quadros vasculares atípicos como a afasia talâmica, com fluência preservada mas anomia, perseverações e hipofonia, e a rara afasia cruzada, isto é, afasia após lesão no hemisfério direito em destros, que desafia as regras clássicas de lateralização.</p>
+<h2 id="linguagem--conclusao">Conclusão</h2>
+<p>A transição do modelo clássico de Wernicke-Geschwind para a arquitetura de dupla via de Hickok e Poeppel redefine nossa compreensão da neurobiologia da linguagem, substituindo centros isolados por fluxos de processamento paralelos e interativos. Esta nova cartografia, aliada a uma semiologia refinada que distingue nuances entre anomias, parafasias e disfunções de leitura, instrumentaliza o clínico para diagnósticos mais precisos e intervenções mais eficazes. Da detecção precoce de sinais de risco em bebês à diferenciação complexa entre dislexia e TDL, e chegando ao manejo das alterações comunicativas no envelhecimento, a ciência da linguagem consolida-se como um campo vital para a promoção da saúde cognitiva e da qualidade de vida humana ao longo de toda a sua trajetória.</p>
+    <div class="fim">
+      <p>Este texto compõe, com a <a href="/demencias.html">revisão sobre demências</a> e o <a href="/modelo-12-dominios.html">modelo de 12 domínios</a>, a base de linguagem da avaliação neuropsicológica.</p>
+      <a class="btn" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">Falar comigo pelo WhatsApp</a>
+      <a class="btn btn-alt" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Agendar pelo Doctoralia</a>
+    </div>
+  </article>
+</div>
+
+
+
+</main>
+
+<footer class="site">
+  <div class="nap">
+    <p><b class="nome">Pedro Andrade Rüger</b> · Psicólogo e Neuropsicólogo · CRP 04/63435</p>
+    <address>
+      R. Paracatu, 1163 – Sala 904 – Santo Agostinho<br>
+      Belo Horizonte – MG · CEP 30180-098<br>
+      <a href="tel:+5531999846282">(31) 99984-6282</a> ·
+      <a href="https://wa.me/message/TOXTR5MSFUHSE1" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:pedro.rugerr@gmail.com">pedro.rugerr@gmail.com</a>
+    </address>
+    <p style="margin-top:.6rem">
+      <a href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Doctoralia</a> ·
+      <a href="https://www.google.com/search?q=Psic%C3%B3logo+Pedro+Andrade+R%C3%BCger+Neuropsicologia+Belo+Horizonte" target="_blank" rel="noopener">Perfil no Google</a> ·
+      <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    </p>
+    <p style="margin-top:.6rem">Atendimento presencial em Belo Horizonte e online · português e inglês</p>
+    <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>

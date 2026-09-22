@@ -3,132 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biotipos de Circuito na Depressão e na Ansiedade</title>
-<meta name="description" content="Revisão sobre biotipos de circuito na depressão e na ansiedade: rede tripla, taxonomia de Williams, os seis circuitos macroscópicos e a crise de replicação.">
-<link rel="canonical" href="https://pedrorugerr-droid.github.io/biotipos-circuitos/">
+<title>Psicólogo e Neuropsicólogo em BH | Pedro Andrade Rüger</title>
+<meta name="description" content="Avaliação neuropsicológica, psicodiagnóstico, psicoterapia e orientação de carreira em Belo Horizonte e online. Psicólogo CRP 04/63435. Perfil, não rótulo.">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/">
 <meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
 <meta name="author" content="Pedro Andrade Rüger">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo">
-<meta property="og:title" content="Biotipos de Circuito na Depressão e na Ansiedade">
-<meta property="og:description" content="Revisão sobre biotipos de circuito na depressão e na ansiedade: rede tripla, taxonomia de Williams, os seis circuitos macroscópicos e a crise de replicação.">
-<meta property="og:url" content="https://pedrorugerr-droid.github.io/biotipos-circuitos/">
-<meta property="og:image" content="https://pedrorugerr-droid.github.io/assets/og.png">
+<meta property="og:title" content="Psicólogo e Neuropsicólogo em BH | Pedro Andrade Rüger">
+<meta property="og:description" content="Avaliação neuropsicológica, psicodiagnóstico, psicoterapia e orientação de carreira em Belo Horizonte e online. Psicólogo CRP 04/63435. Perfil, não rótulo.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo, CRP 04/63435, Belo Horizonte">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Biotipos de Circuito na Depressão e na Ansiedade">
-<meta name="twitter:description" content="Revisão sobre biotipos de circuito na depressão e na ansiedade: rede tripla, taxonomia de Williams, os seis circuitos macroscópicos e a crise de replicação.">
-<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/assets/og.png">
-<link rel="stylesheet" href="/assets/estilo.css">
+<meta name="twitter:title" content="Psicólogo e Neuropsicólogo em BH | Pedro Andrade Rüger">
+<meta name="twitter:description" content="Avaliação neuropsicológica, psicodiagnóstico, psicoterapia e orientação de carreira em Belo Horizonte e online. Psicólogo CRP 04/63435. Perfil, não rótulo.">
+<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/og.png">
+<link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-biotipos-circuitos{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-biotipos-circuitos a{color:inherit;text-decoration:none}
-#pg-biotipos-circuitos /* barra de progresso de leitura */
-  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--vermelho);z-index:70;transition:width .08s linear}
-#pg-biotipos-circuitos /* capa do artigo */
-  .capa{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:3.5rem 0 3rem}
-#pg-biotipos-circuitos .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
-#pg-biotipos-circuitos .back{display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-biotipos-circuitos .back:hover{color:var(--vermelho)}
-#pg-biotipos-circuitos .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
-#pg-biotipos-circuitos .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
-#pg-biotipos-circuitos .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
-#pg-biotipos-circuitos .capa h1{font-family:Georgia,serif;font-size:2.3rem;line-height:1.2;max-width:22ch;margin-bottom:.9rem}
-#pg-biotipos-circuitos .capa .dek{font-size:1.02rem;color:rgba(255,248,231,.8);max-width:62ch}
-#pg-biotipos-circuitos .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(255,248,231,.15);font-size:.8rem;color:rgba(255,248,231,.6);line-height:1.9}
-#pg-biotipos-circuitos .creditos b{color:var(--creme);font-weight:600}
-@media(max-width:680px){#pg-biotipos-circuitos .capa h1{font-size:1.7rem}}
-#pg-biotipos-circuitos /* layout leitura */
-  .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
-#pg-biotipos-circuitos .layout>*{min-width:0}
-@media(max-width:980px){#pg-biotipos-circuitos .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
-#pg-biotipos-circuitos /* sumário */
-  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:.82rem;padding-right:.5rem}
-#pg-biotipos-circuitos .toc h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-family:"Segoe UI",sans-serif}
-#pg-biotipos-circuitos .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--sub);line-height:1.4;transition:.15s}
-#pg-biotipos-circuitos .toc a:hover{border-left-color:var(--vermelho);color:var(--vinho)}
-#pg-biotipos-circuitos .toc a.lv3{padding-left:1.4rem;font-size:.78rem;color:var(--muted)}
-#pg-biotipos-circuitos .toc a.on{border-left-color:var(--vermelho);color:var(--vinho);font-weight:600}
-@media(max-width:980px){#pg-biotipos-circuitos .toc{position:static;max-height:none;background:var(--papel);border:1px solid var(--borda);border-radius:14px;padding:1.2rem}
-#pg-biotipos-circuitos .toc details summary{cursor:pointer;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);font-weight:700}
-#pg-biotipos-circuitos .toc .lista{margin-top:.9rem;max-height:45vh;overflow-y:auto}}
-@media(min-width:981px){#pg-biotipos-circuitos .toc details summary{display:none}
-#pg-biotipos-circuitos .toc .lista{display:block!important}}
-#pg-biotipos-circuitos /* corpo do artigo */
-  article{background:var(--papel);border:1px solid var(--borda);border-radius:18px;padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
-@media(max-width:680px){#pg-biotipos-circuitos article{padding:1.6rem;border-radius:12px}}
-#pg-biotipos-circuitos article p{font-family:Georgia,"Times New Roman",serif;font-size:1.045rem;line-height:1.78;color:var(--texto);margin-bottom:1.15rem}
-#pg-biotipos-circuitos article p.subtitulo{font-family:"Segoe UI",sans-serif;font-size:.95rem;color:var(--bordo);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
-#pg-biotipos-circuitos article h2{font-family:Georgia,serif;font-size:1.6rem;color:var(--vinho);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--vermelho);letter-spacing:.5px}
-#pg-biotipos-circuitos article h2:first-child{margin-top:0;padding-top:0;border-top:none}
-#pg-biotipos-circuitos article h3{font-family:Georgia,serif;font-size:1.18rem;color:var(--vinho);margin:2rem 0 .7rem}
-#pg-biotipos-circuitos article h4{font-family:"Segoe UI",sans-serif;font-size:.96rem;color:var(--bordo);margin:1.5rem 0 .5rem;letter-spacing:.2px}
-#pg-biotipos-circuitos article ul{list-style:none;margin:0 0 1.2rem}
-#pg-biotipos-circuitos article li{font-family:Georgia,serif;font-size:1.005rem;line-height:1.7;color:var(--sub);padding:.32rem 0 .32rem 1.25rem;position:relative}
-#pg-biotipos-circuitos article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--vermelho)}
-#pg-biotipos-circuitos article strong{color:var(--vinho)}
-#pg-biotipos-circuitos article em{font-style:italic}
-#pg-biotipos-circuitos .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:10px}
-#pg-biotipos-circuitos article table{border-collapse:collapse;width:100%;font-family:"Segoe UI",sans-serif;font-size:.84rem;min-width:560px}
-#pg-biotipos-circuitos article th,#pg-biotipos-circuitos article td{min-width:118px;word-break:normal;overflow-wrap:break-word;hyphens:none}
-#pg-biotipos-circuitos article th{background:var(--vinho);color:var(--creme);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px}
-#pg-biotipos-circuitos article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--sub);vertical-align:top}
-#pg-biotipos-circuitos article tbody tr:nth-child(even){background:rgba(232,192,192,.13)}
-#pg-biotipos-circuitos .aviso-topo{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.88rem;padding:1.1rem 1.3rem;border-radius:10px;margin-bottom:2rem;line-height:1.65}
-#pg-biotipos-circuitos .aviso-topo b{color:#4d3b00}
-#pg-biotipos-circuitos .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:.85rem;color:var(--muted);line-height:1.8}
-#pg-biotipos-circuitos .fim a{color:var(--bordo);font-weight:600}
-#pg-biotipos-circuitos .btn{display:inline-block;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.88rem;background:var(--vermelho);color:#fff;margin-top:1rem}
-#pg-biotipos-circuitos .btn:hover{background:#c0240f}
-#pg-biotipos-circuitos .fim .btn-alt{background:transparent;color:var(--bordo);border:1.5px solid var(--borda);margin-left:.5rem}
-#pg-biotipos-circuitos .fim .btn-alt:hover{border-color:var(--vermelho);background:transparent}
-@media print{#pg-biotipos-circuitos .toc,#pg-biotipos-circuitos .btn,#pg-biotipos-circuitos .back{display:none!important}
-#pg-biotipos-circuitos{background:#fff}
-#pg-biotipos-circuitos .capa{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
-#pg-biotipos-circuitos .capa h1,#pg-biotipos-circuitos .capa .dek,#pg-biotipos-circuitos .creditos,#pg-biotipos-circuitos .creditos b{color:#000}
-#pg-biotipos-circuitos .layout{display:block;padding:0}
-#pg-biotipos-circuitos article{border:none;padding:0;max-width:none;background:#fff}
-#pg-biotipos-circuitos article h2{break-after:avoid}
-#pg-biotipos-circuitos article table{font-size:.7rem}}
-#pg-biotipos-circuitos article p.ref{font-size:.88rem;line-height:1.6;color:var(--muted);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:"Segoe UI",sans-serif;overflow-wrap:break-word}
-#pg-biotipos-circuitos article p.ref a{color:var(--bordo)}
+#pg-home{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
+#pg-home h1,#pg-home h2,#pg-home h3,#pg-home h4,#pg-home .serif{font-family:Georgia,"Times New Roman",serif}
+#pg-home a{color:inherit;text-decoration:none}
+#pg-home .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+#pg-home section{padding:4rem 0}
+#pg-home .alt{background:#fff}
+#pg-home .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+#pg-home h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
+#pg-home .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
+#pg-home .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
+#pg-home .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4.5rem 0 4rem}
+#pg-home .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
+#pg-home .hero h1{font-size:2.6rem;line-height:1.18;max-width:17ch;margin-bottom:1rem}
+#pg-home .hero p.lead{font-size:1.1rem;color:rgba(255,248,231,.82);max-width:62ch;margin-bottom:2rem}
+#pg-home .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
+#pg-home .btn-primary{background:var(--vermelho);color:#fff}
+#pg-home .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
+#pg-home .btn-ghost{background:transparent;color:var(--creme);border:1.5px solid rgba(255,248,231,.35)}
+#pg-home .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-home .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+#pg-home .cred{background:var(--vinho2);color:rgba(255,248,231,.75);font-size:.8rem;text-align:center;padding:.8rem 1rem;border-top:1px solid rgba(255,248,231,.08)}
+#pg-home .cred b{color:var(--creme)}
+#pg-home .paths{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+#pg-home .path{background:#fff;border:1.5px solid var(--borda);border-radius:18px;padding:2rem;position:relative;overflow:hidden;transition:.2s}
+#pg-home .path::before{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+#pg-home .path.p1::before{background:var(--vermelho)}
+#pg-home .path.p2::before{background:var(--bordo)}
+#pg-home .path:hover{transform:translateY(-4px);border-color:var(--vermelho)}
+#pg-home .path .ic{font-size:1.9rem;margin-bottom:.7rem}
+#pg-home .path h3{font-size:1.2rem;color:var(--vinho);margin-bottom:.5rem}
+#pg-home .path p{color:var(--sub);font-size:.92rem;margin-bottom:1.1rem}
+#pg-home .go{color:var(--bordo);font-weight:700;font-size:.88rem}
+@media(max-width:680px){#pg-home .paths{grid-template-columns:1fr}
+#pg-home .hero h1{font-size:2rem}}
+#pg-home .servicos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+#pg-home .svc{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;display:flex;flex-direction:column;transition:.2s}
+#pg-home .svc:hover{border-color:var(--vermelho);transform:translateY(-3px)}
+#pg-home .svc .n{font-family:Georgia,serif;font-size:.78rem;letter-spacing:2px;color:var(--vermelho);font-weight:700}
+#pg-home .svc h4{font-size:1.08rem;color:var(--vinho);margin:.35rem 0 .5rem;line-height:1.35}
+#pg-home .svc p{font-size:.88rem;color:var(--sub);flex:1}
+#pg-home .svc .q{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--borda);font-size:.74rem;color:var(--muted);letter-spacing:.3px}
+@media(max-width:900px){#pg-home .servicos{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){#pg-home .servicos{grid-template-columns:1fr}}
+#pg-home .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+#pg-home .pillar{padding:1.6rem;border-radius:14px;background:var(--creme);border:1px solid var(--borda)}
+#pg-home .pillar .n{font-family:Georgia,serif;font-size:1.5rem;color:var(--vermelho);font-weight:700}
+#pg-home .pillar h4{font-size:1.05rem;color:var(--vinho);margin:.4rem 0 .5rem}
+#pg-home .pillar p{font-size:.9rem;color:var(--sub)}
+@media(max-width:680px){#pg-home .pillars{grid-template-columns:1fr}}
+#pg-home .carga{margin-top:1.8rem;background:#fff;border-left:3px solid var(--vermelho);padding:1rem 1.2rem;border-radius:0 10px 10px 0;font-size:.9rem;color:var(--sub)}
+#pg-home /* camadas do modelo dimensional */
+  .camadas{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.8rem}
+#pg-home .camada{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.4rem 1.5rem;position:relative}
+#pg-home .camada .cn{font-family:Georgia,serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--vermelho);font-weight:700}
+#pg-home .camada h4{font-size:1.02rem;color:var(--vinho);margin:.35rem 0 .5rem}
+#pg-home .camada p{font-size:.89rem;color:var(--sub);line-height:1.7}
+@media(max-width:680px){#pg-home .camadas{grid-template-columns:1fr}}
+#pg-home /* abas público/técnico */
+  .tabs{display:flex;gap:.5rem;margin-bottom:1.8rem;flex-wrap:wrap}
+#pg-home .tab{padding:.6rem 1.2rem;border-radius:999px;border:1.5px solid var(--borda);background:#fff;color:var(--sub);font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+#pg-home .tab.active{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
+#pg-home .panel{display:none}
+#pg-home .panel.active{display:block}
+#pg-home .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+#pg-home .card{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem;transition:.2s;display:flex;flex-direction:column}
+#pg-home .card:hover{border-color:var(--vermelho);transform:translateY(-3px)}
+#pg-home .card .tag{display:inline-block;font-size:.64rem;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:var(--vermelho);margin-bottom:.5rem}
+#pg-home .card.tec .tag{color:var(--bordo)}
+#pg-home .card h4{font-size:1.06rem;color:var(--vinho);margin-bottom:.45rem;line-height:1.35}
+#pg-home .card p{font-size:.88rem;color:var(--sub);flex:1}
+#pg-home .card .meta{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--borda);font-size:.75rem;color:var(--muted)}
+#pg-home a.card{cursor:pointer}
+#pg-home a.card .meta{color:var(--bordo);font-weight:700}
+#pg-home a.card:hover .meta{color:var(--vermelho)}
+#pg-home .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+#pg-home .tool{background:var(--vinho);color:var(--creme);border-radius:16px;padding:1.6rem}
+#pg-home .tool .tag{font-size:.64rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--vermelho);font-weight:700}
+#pg-home .tool h4{font-size:1.1rem;margin:.5rem 0}
+#pg-home .tool p{font-size:.85rem;color:rgba(255,248,231,.72)}
+#pg-home .tool .st{margin-top:.8rem;font-size:.72rem;color:rgba(255,248,231,.5)}
+#pg-home .aviso{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.82rem;padding:.9rem 1.1rem;border-radius:10px;margin-top:1.6rem}
+#pg-home .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
+#pg-home .contact h2{font-size:1.8rem;margin-bottom:.6rem}
+#pg-home .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
+#pg-home .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-home .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
+#pg-home .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
+#pg-home .cta-op .ic{font-size:1.05rem;line-height:1}
+#pg-home .cta-wa{background:#1FA855;color:#fff}
+#pg-home .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
+#pg-home .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
+#pg-home .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
+#pg-home .cta-yt{background:#CE1312;color:#fff}
+#pg-home .cta-yt:hover{background:#a80f0e;transform:translateY(-2px)}
+#pg-home .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
+#pg-home .cta-mail:hover{border-color:var(--vermelho);color:#fff}
+#pg-home .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+@media(max-width:520px){#pg-home .cta-opcoes{flex-direction:column}
+#pg-home .cta-op{justify-content:center}}
+#pg-home .card .integra{margin-top:.55rem;font-size:.75rem;color:var(--muted)}
+#pg-home .card .integra a{color:var(--bordo);font-weight:700;border-bottom:1px solid var(--borda)}
+#pg-home .card .integra a:hover{color:var(--vermelho);border-bottom-color:var(--vermelho)}
+#pg-home .integra-link{display:inline}
+#pg-home .card h4 a{color:inherit}
+#pg-home .card:hover h4 a{color:var(--vinho)}
+#pg-home .card .meta a{color:var(--bordo);font-weight:700}
+#pg-home .card:hover .meta a{color:var(--vermelho)}
+#pg-home .card .meta{color:var(--bordo);font-weight:700}
 </style>
 <script type="application/ld+json">
 {
+ "@type": "Psychologist",
+ "@id": "https://pedrorugerr-droid.github.io/#psicologo",
+ "name": "Pedro Andrade Rüger — Psicólogo e Neuropsicólogo",
+ "alternateName": "Psicólogo Pedro Andrade Rüger – Neuropsicologia e Terapia Cognitivo-Comportamental",
+ "description": "Psicólogo e neuropsicólogo em Belo Horizonte. Avaliação neuropsicológica, psicodiagnóstico, psicoterapia (TCC, Terapia do Esquema, ACT) e orientação profissional, presencial e online.",
+ "url": "https://pedrorugerr-droid.github.io/",
+ "telephone": "+55-31-99984-6282",
+ "email": "pedro.rugerr@gmail.com",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "R. Paracatu, 1163 – Sala 904 – Santo Agostinho",
+  "addressLocality": "Belo Horizonte",
+  "addressRegion": "MG",
+  "postalCode": "30180-098",
+  "addressCountry": "BR"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": -19.9280392,
+  "longitude": -43.9532336
+ },
+ "priceRange": "R$ 250 – R$ 2.700",
+ "availableLanguage": [
+  "pt-BR",
+  "en"
+ ],
+ "areaServed": [
+  {
+   "@type": "City",
+   "name": "Belo Horizonte"
+  },
+  {
+   "@type": "AdministrativeArea",
+   "name": "Minas Gerais"
+  },
+  {
+   "@type": "Country",
+   "name": "Brasil"
+  }
+ ],
+ "knowsLanguage": [
+  "pt-BR",
+  "en"
+ ],
+ "sameAs": [
+  "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
+  "https://www.youtube.com/@pedroandraderuger",
+  "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+ ],
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Biotipos de Circuito na Depressão e na Ansiedade",
- "description": "Revisão sobre biotipos de circuito na depressão e na ansiedade: rede tripla, taxonomia de Williams, os seis circuitos macroscópicos e a crise de replicação.",
- "url": "https://pedrorugerr-droid.github.io/biotipos-circuitos/",
- "mainEntityOfPage": {
-  "@type": "WebPage",
-  "@id": "https://pedrorugerr-droid.github.io/biotipos-circuitos/"
- },
- "inLanguage": "pt-BR",
- "datePublished": "2026-09-18",
- "dateModified": "2026-09-18",
- "image": "https://pedrorugerr-droid.github.io/assets/og.png",
- "author": {
-  "@type": "Person",
-  "name": "Pedro Andrade Rüger",
-  "jobTitle": "Psicólogo e Neuropsicólogo",
-  "url": "https://pedrorugerr-droid.github.io/",
-  "identifier": "CRP 04/63435",
-  "sameAs": [
-   "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
-   "https://www.youtube.com/@pedroandraderuger",
-   "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+ "hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Serviços",
+  "itemListElement": [
+   {
+    "@type": "Offer",
+    "priceCurrency": "BRL",
+    "price": "2700",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Avaliação neuropsicológica",
+     "url": "https://pedrorugerr-droid.github.io/avaliacao-neuropsicologica.html"
+    }
+   },
+   {
+    "@type": "Offer",
+    "priceCurrency": "BRL",
+    "price": "250",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Psicoterapia",
+     "url": "https://pedrorugerr-droid.github.io/psicoterapia.html"
+    }
+   },
+   {
+    "@type": "Offer",
+    "priceCurrency": "BRL",
+    "price": "800",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Avaliação psicológica e psicodiagnóstico",
+     "url": "https://pedrorugerr-droid.github.io/psicodiagnostico.html"
+    }
+   },
+   {
+    "@type": "Offer",
+    "priceCurrency": "BRL",
+    "price": "500",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "Orientação profissional e de carreira",
+     "url": "https://pedrorugerr-droid.github.io/orientacao-profissional.html"
+    }
+   }
   ]
- },
- "publisher": {
-  "@type": "Psychologist",
-  "@id": "https://pedrorugerr-droid.github.io/#psicologo",
-  "name": "Pedro Andrade Rüger",
-  "url": "https://pedrorugerr-droid.github.io/"
  }
 }
 </script>
@@ -140,170 +242,272 @@
     <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
     <div class="menu">
       <a href="/#home--sobre">Sobre</a>
-      <a href="/o-que-eu-faco/">Serviços</a>
-      <a href="/avaliacao-neuropsicologica/">Avaliação</a>
-      <a href="/psicoterapia/">Psicoterapia</a>
+      <a href="/o-que-eu-faco.html">Serviços</a>
+      <a href="/avaliacao-neuropsicologica.html">Avaliação</a>
+      <a href="/psicoterapia.html">Psicoterapia</a>
       <a href="/#home--conteudo" data-op>Conteúdo</a>
-      <a href="/grupo-de-estudos/" data-op>Grupo de estudos</a>
+      <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/#home--contato" class="nav-cta">Falar comigo</a>
       <button class="burger" id="burger" aria-label="Menu">☰</button>
     </div>
   </div>
   <nav id="gaveta">
-    <a href="/">Início</a>
+    <a href="/" class="on">Início</a>
     <a href="/#home--sobre">Sobre</a>
     <a href="/#home--instrumentos">Instrumentos</a>
     <div class="grupo">Serviços</div>
-    <a href="/o-que-eu-faco/">Seis formas de trabalho</a>
-    <a href="/avaliacao-neuropsicologica/">Avaliação neuropsicológica</a>
-    <a href="/psicoterapia/">Psicoterapia</a>
-    <a href="/psicodiagnostico/">Psicodiagnóstico</a>
-    <a href="/orientacao-profissional/">Orientação de carreira</a>
+    <a href="/o-que-eu-faco.html">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica</a>
+    <a href="/psicoterapia.html">Psicoterapia</a>
+    <a href="/psicodiagnostico.html">Psicodiagnóstico</a>
+    <a href="/orientacao-profissional.html">Orientação de carreira</a>
     <div class="grupo">Conteúdo para todos</div>
-    <a href="/mindfulness-8-semanas/">Mindfulness em 8 semanas</a>
-    <a href="/autismo-e-alimentacao/">Autismo, intestino e alimentação</a>
-    <a href="/biotipos-circuitos/" class="on">Seis cérebros, um diagnóstico</a>
-    <a href="/big-five/">Os cinco traços</a>
+    <a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>
+    <a href="/autismo-e-alimentacao.html">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos.html">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five.html">Os cinco traços</a>
     <div class="grupo">Conteúdo técnico</div>
-    <a href="/modelo-4-camadas/">Modelo de 4 camadas</a>
-    <a href="/tratado-hitop/">Tratado HiTOP</a>
-    <a href="/modelo-12-dominios/">Modelo de 12 domínios</a>
-    <a href="/projeto-terapeutico/">Projeto terapêutico</a>
-    <a href="/idnap/">IDNAP</a>
-    <a href="/demencias/">Demências</a>
-    <a href="/neurobiologia-da-linguagem/">Neurobiologia da linguagem</a>
-    <a href="/bilinguismo-e-cerebro/">O cérebro bilíngue</a>
-    <a href="/intervencoes-tea-tdah/">Intervenções no TEA e TDAH</a>
-    <a href="/farmacologia-neurotransmissores/">Neurofarmacologia</a>
+    <a href="/modelo-4-camadas.html">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop.html">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios.html">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico.html">Projeto terapêutico</a>
+    <a href="/idnap.html">IDNAP</a>
+    <a href="/demencias.html">Demências</a>
+    <a href="/neurobiologia-da-linguagem.html">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro.html">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah.html">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores.html">Neurofarmacologia</a>
     <div class="grupo">Protocolos integrais</div>
-    <a href="/mindfulness-protocolo/">Mindfulness: adultos</a>
-    <a href="/mindfulness-adolescentes/">Mindfulness: 13 a 17 anos</a>
-    <a href="/mindfulness-pre-adolescentes/">Mindfulness: 9 a 12 anos</a>
-    <a href="/big-five-integracao/">Big Five, faceta a faceta</a>
+    <a href="/mindfulness-protocolo.html">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes.html">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes.html">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao.html">Big Five, faceta a faceta</a>
     <div class="grupo">Mais</div>
-    <a href="/neuro-age/">Neuro-Age Master</a>
-    <a href="/grupo-de-estudos/">Grupo de estudos</a>
+    <a href="/neuro-age.html">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos.html">Grupo de estudos</a>
     <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
     <a href="/#home--contato">Falar comigo</a>
   </nav>
 </header>
 
-<main class="pagina" id="pg-biotipos-circuitos">
+<main class="pagina" id="pg-home">
 
 
-<section class="capa">
-  <div class="in">
-    <a class="back" href="/#home--conteudo">← Voltar ao conteúdo</a>
-    <div class="badge tec">Revisão narrativa · texto integral</div>
-    <h1>Da heterogeneidade aos circuitos: biotipos na depressão e na ansiedade</h1>
-    <p class="dek">Do modelo de rede tripla de Menon e da taxonomia de circuitos de Williams aos seis biotipos de Tozzi et al. (Nature Medicine, 2024): com a crise de replicação incluída.</p>
-    <div class="creditos"><b>Pedro Andrade Rüger</b>: Psicólogo, CRP 04/63435 · Neuropsicólogo · Discente de Medicina (PUC Minas)<br>Revisão narrativa em ABNT · texto integral, com 24 referências</div>
+
+<section class="hero" id="home--topo">
+  <div class="wrap">
+    <p class="kicker">Psicologia · Neuropsicologia · Ciência do cérebro</p>
+    <h1>Entender você por inteiro, não por um rótulo.</h1>
+    <div class="divider"></div>
+    <p class="lead">Avaliação neuropsicológica aprofundada e psicoterapia baseada em evidências, unindo cognição, personalidade, história de vida e os padrões de funcionamento cerebral descritos pela ciência mais atual. Atendimento presencial e online, em Belo Horizonte.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="/o-que-eu-faco.html">Conheça brevemente meu trabalho</a>
+      <a class="btn btn-ghost" href="/modelo-4-camadas.html">O modelo por trás das avaliações</a>
+    </div>
+  </div>
+</section>
+<div class="cred">
+  <b>CRP 04/63435</b> &nbsp;·&nbsp; Pós em Neuropsicologia (Instituto Sapiens) &nbsp;·&nbsp; Pós em TCC (PUC Minas) &nbsp;·&nbsp; Discente de Medicina &nbsp;·&nbsp; Português e Inglês
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="sec-label">Por onde começar</p>
+    <h2 class="sec-title">Dois caminhos</h2>
+    <p class="sec-intro">Este espaço serve tanto quem busca cuidado quanto colegas e pesquisadores interessados no método.</p>
+    <div class="paths">
+      <div class="path p1">
+        <div class="ic">🧭</div>
+        <h3>Busco avaliação ou terapia</h3>
+        <p>Avaliação neuropsicológica completa, psicoterapia (TCC e Terapia do Esquema) e um plano de ação concreto para sua vida.</p>
+        <a class="go" href="#home--avaliacao">Ver como funciona →</a>
+      </div>
+      <div class="path p2">
+        <div class="ic">🔬</div>
+        <h3>Sou profissional ou pesquisador</h3>
+        <p>Método integrativo, modelos dimensionais (HiTOP, RDoC, Big Five), produção científica e instrumentos autorais.</p>
+        <a class="go" href="#home--conteudo">Ver produção e instrumentos →</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="layout">
-  <aside class="toc">
-    <details open>
-      <summary>Sumário: 19 seções</summary>
-      <h5>Neste documento</h5>
-      <div class="lista">
-        <a class="lv2" href="#biotipos-circuitos--resumo">Resumo</a>
-        <a class="lv2" href="#biotipos-circuitos--1-introducao">1 Introdução</a>
-        <a class="lv3" href="#biotipos-circuitos--1-1-aspectos-metodologicos">1.1 Aspectos metodológicos</a>
-        <a class="lv2" href="#biotipos-circuitos--2-arcaboucos-integradores-rede-tripla-e-taxonomia-de-circuit">2 Arcabouços integradores: rede tripla e taxonomia de circuitos</a>
-        <a class="lv3" href="#biotipos-circuitos--2-2-a-taxonomia-de-circuitos-de-williams">2.2 A taxonomia de circuitos de Williams</a>
-        <a class="lv2" href="#biotipos-circuitos--3-os-circuitos-suas-manifestacoes-sintomaticas-e-terapeutica">3 Os circuitos, suas manifestações sintomáticas e terapêuticas</a>
-        <a class="lv3" href="#biotipos-circuitos--3-2-saliencia-interocepcao-e-arousal-ansioso">3.2 Saliência, interocepção e arousal ansioso</a>
-        <a class="lv3" href="#biotipos-circuitos--3-3-atencao-e-executivo-central-o-descontrole-cognitivo">3.3 Atenção e executivo central: o descontrole cognitivo</a>
-        <a class="lv3" href="#biotipos-circuitos--3-4-afeto-negativo-amigdala-vies-e-disregulacao">3.4 Afeto negativo: amígdala, viés e disregulação</a>
-        <a class="lv3" href="#biotipos-circuitos--3-5-afeto-positivo-e-a-anedonia">3.5 Afeto positivo e a anedonia</a>
-        <a class="lv3" href="#biotipos-circuitos--3-6-controle-cognitivo-e-o-biotipo-cognitivo">3.6 Controle cognitivo e o biotipo cognitivo</a>
-        <a class="lv2" href="#biotipos-circuitos--4-a-integracao-empirica-o-estudo-de-tozzi-et-al-2024">4 A integração empírica: o estudo de Tozzi et al. (2024)</a>
-        <a class="lv3" href="#biotipos-circuitos--4-2-os-seis-biotipos-e-a-predicao-de-resposta">4.2 Os seis biotipos e a predição de resposta</a>
-        <a class="lv2" href="#biotipos-circuitos--5-contexto-historico-e-crise-de-replicacao">5 Contexto histórico e crise de replicação</a>
-        <a class="lv2" href="#biotipos-circuitos--6-desenvolvimentos-recentes-2024-a-2026">6 Desenvolvimentos recentes (2024 a 2026)</a>
-        <a class="lv2" href="#biotipos-circuitos--7-terapeuticas-dirigidas-a-circuitos-sintese">7 Terapêuticas dirigidas a circuitos: síntese</a>
-        <a class="lv2" href="#biotipos-circuitos--8-limitacoes-e-direcoes-futuras">8 Limitações e direções futuras</a>
-        <a class="lv2" href="#biotipos-circuitos--9-consideracoes-finais">9 Considerações finais</a>
-        <a class="lv2" href="#biotipos-circuitos--referencias">Referências</a>
-      </div>
-    </details>
-  </aside>
+<section id="home--servicos">
+  <div class="wrap">
+    <p class="sec-label">O que eu faço</p>
+    <h2 class="sec-title">Seis formas de trabalho</h2>
+    <p class="sec-intro">Da avaliação completa à orientação de carreira, da psicoterapia à assessoria a colegas: todas ancoradas na mesma leitura: perfil, não rótulo.</p>
+    <div class="servicos">
 
-  <article id="biotipos-circuitos--texto">
+      <a class="svc" href="/o-que-eu-faco.html#o-que-eu-faco--topo">
+        <div class="n">01</div>
+        <h4>Avaliação neuropsicológica</h4>
+        <p>Mapeamento completo de cognição, personalidade e história de vida em doze etapas, com laudo integrado e devolutiva em vídeo. Para quando a pergunta é ampla: como esta pessoa funciona, e por quê.</p>
+        <div class="q">10 a 14 horas · 2 a 3 meses</div>
+      </a>
 
-<h2 id="biotipos-circuitos--resumo">Resumo</h2>
-<p>A depressão e os transtornos de ansiedade têm sido reconceitualizados como disfunções de circuitos cerebrais de larga escala, superando a visão de entidades homogêneas definidas apenas por sintomas. Esta revisão narrativa integra dois planos complementares: a descrição, circuito a circuito, dos padrões de disfunção, das manifestações sintomáticas e das terapêuticas correspondentes; e a síntese empírica alcançada pelo estudo de Tozzi, Williams e colaboradores (2024), que derivou seis biotipos de circuito em depressão e ansiedade. São discutidos os arcabouços integradores, o modelo de rede tripla (MENON, 2011) e a taxonomia de circuitos (WILLIAMS, 2016); os seis circuitos macroscópicos e suas terapêuticas, da normalização amigdaliana por inibidores seletivos da recaptação de serotonina (GODLEWSKA et al., 2012) à neuromodulação guiada por conectividade (FOX et al., 2012; COLE et al., 2022), às intervenções sobre a recompensa e a anedonia (KRYSTAL et al., 2020) e à guanfacina no biotipo cognitivo (HACK et al., 2025); o contexto histórico e a crise de replicação (DRYSDALE et al., 2017; DINGA et al., 2019); e os desenvolvimentos recentes até 2026. Conclui-se que a abordagem por circuitos oferece um caminho promissor para a psiquiatria de precisão, ainda que persistam desafios de reprodutibilidade, custo e acesso.</p>
-<p>Palavras-chave: Circuitos cerebrais. Depressão. Ansiedade. Biotipos. Neuroimagem funcional. Psiquiatria de precisão.</p>
-<h2 id="biotipos-circuitos--1-introducao">1 Introdução</h2>
-<p>Por grande parte de sua história, a psiquiatria classificou o sofrimento mental a partir da escuta clínica, cotejando queixas com critérios diagnósticos até chegar a um nome. Esse sistema convive com uma limitação profunda: rótulos como &quot;depressão&quot; e &quot;ansiedade&quot; abrigam populações biologicamente heterogêneas, de modo que pacientes com o mesmo diagnóstico podem exibir disfunções neurais distintas e responder de maneira diferente ao mesmo tratamento. A consequência prática é a terapêutica de tentativa e erro, com 30% a 40% dos pacientes sem remissão após o primeiro antidepressivo.</p>
-<p>Uma resposta a esse impasse consiste em reconceitualizar os transtornos do humor e da ansiedade como disfunções de circuitos cerebrais de larga escala. Redes distribuídas que atuam de forma coordenada. Alinhada ao arcabouço Research Domain Criteria (RDoC), essa perspectiva descreve a psicopatologia por sistemas neurobiológicos e não apenas por listas de sintomas. Esta revisão articula três planos frequentemente tratados isoladamente (disfunção de circuito, manifestação sintomática e terapêutica) e culmina no estudo de Tozzi, Williams e colaboradores (2024), tomado como ponto de convergência empírico.</p>
-<h3 id="biotipos-circuitos--1-1-aspectos-metodologicos">1.1 Aspectos metodológicos</h3>
-<p>Trata-se de uma revisão narrativa da literatura, modalidade apropriada para descrever e discutir o estado da arte de um tema sob perspectiva teórica e contextual (ROTHER, 2007). Diferentemente da revisão sistemática, a revisão narrativa não adota protocolo rígido de busca e seleção nem avaliação quantitativa das evidências, privilegiando a liberdade interpretativa e a integração de fontes diversas: artigos originais, ensaios clínicos, revisões e documentos de consenso. Para esta síntese foram consultadas publicações indexadas em bases como a PubMed e periódicos de alto impacto em psiquiatria e neurociência, selecionadas por relevância temática e pertinência ao arcabouço dos circuitos cerebrais, com ênfase nos marcos conceituais e nos desenvolvimentos recentes do período de 2004 a 2026. Reconhecem-se, como limitações inerentes ao método, a ausência de protocolo replicável e a possibilidade de viés de seleção, o que recomenda cautela na generalização das conclusões.</p>
-<h2 id="biotipos-circuitos--2-arcaboucos-integradores-rede-tripla-e-taxonomia-de-circuit">2 Arcabouços integradores: rede tripla e taxonomia de circuitos</h2>
-<p class="subtitulo">2.1 O modelo de rede tripla</p>
-<p>Menon (2011) propôs o modelo de rede tripla, segundo o qual boa parte da psicopatologia decorre da interação anômala entre três redes centrais: a rede de modo padrão (DMN), do pensamento autorreferente; a rede executiva central (CEN), do controle cognitivo, ancorada no córtex pré-frontal dorsolateral; e a rede de saliência (SN), da ínsula anterior e do cingulado anterior dorsal, que detecta estímulos relevantes e alterna entre a DMN e a CEN. Na depressão observam-se conectividade aumentada na DMN, redução da conectividade DMN–CEN e falha do chaveamento da saliência.</p>
-<h3 id="biotipos-circuitos--2-2-a-taxonomia-de-circuitos-de-williams">2.2 A taxonomia de circuitos de Williams</h3>
-<p>Williams (2016) estendeu essa lógica à depressão e à ansiedade, propondo que ao menos seis circuitos macroscópicos (modo padrão, saliência, afeto negativo, afeto positivo (recompensa), atenção e controle cognitivo) organizariam a disfunção de modo transdiagnóstico, cada perfil correspondendo a dimensões sintomáticas nomeáveis: ruminação, evitação ansiosa, disregulação de ameaça, viés negativo, anedonia e descontrole cognitivo. Estudos subsequentes confirmaram, de forma transdiagnóstica, a associação entre agrupamentos sintomáticos e padrões de cérebro, comportamento e função diária (GRISANZIO et al., 2018).</p>
-<h2 id="biotipos-circuitos--3-os-circuitos-suas-manifestacoes-sintomaticas-e-terapeutica">3 Os circuitos, suas manifestações sintomáticas e terapêuticas</h2>
-<p class="subtitulo">3.1 Modo padrão e a ruminação</p>
-<p>A DMN reúne o córtex pré-frontal medial, o cingulado posterior e o giro angular, sendo ativada quando a mente se volta para si mesma. Na depressão tende à hiperconectividade, sobretudo entre pré-frontal medial e cingulado posterior, o que se correlaciona com a ruminação (SHELINE et al., 2009; HAMILTON et al., 2015). Achado central é o acoplamento anômalo da DMN ao cingulado anterior subgenual (sgACC), que confere ao motor narrativo do eu um filtro emocional negativo persistente (GREICIUS et al., 2007). Terapeuticamente, intervenções eficazes reduzem o acoplamento DMN–sgACC e restauram a alternância entre foco interno e externo.</p>
-<h3 id="biotipos-circuitos--3-2-saliencia-interocepcao-e-arousal-ansioso">3.2 Saliência, interocepção e arousal ansioso</h3>
-<p>A rede de saliência, na ínsula anterior e no cingulado anterior dorsal, integra estímulos salientes e sinais interoceptivos para orientar o comportamento (SEELEY et al., 2007). Sua disfunção associa-se ao arousal ansioso e à tensão, com superinterpretação de sinais corporais benignos como ameaça. A atividade do cingulado anterior rostral antes do tratamento é um dos preditores mais replicados de resposta a antidepressivos (PIZZAGALLI, 2011).</p>
-<h3 id="biotipos-circuitos--3-3-atencao-e-executivo-central-o-descontrole-cognitivo">3.3 Atenção e executivo central: o descontrole cognitivo</h3>
-<p>A rede frontoparietal, ancorada no córtex pré-frontal dorsolateral, sustenta a atenção dirigida a metas. A hipoatividade do DLPFC esquerdo é um dos achados mais replicados da neuroimagem da depressão e correlaciona-se com lentificação e descontrole cognitivo, sendo o alvo primário da estimulação magnética transcraniana, com resposta de 50% a 60% em depressão resistente.</p>
-<h3 id="biotipos-circuitos--3-4-afeto-negativo-amigdala-vies-e-disregulacao">3.4 Afeto negativo: amígdala, viés e disregulação</h3>
-<p>O circuito de afeto negativo articula a amígdala a regiões pré-frontais reguladoras. Na depressão e na ansiedade há hiperatividade amigdaliana à ameaça com recrutamento pré-frontal insuficiente, substrato do viés negativo e da disregulação de ameaça (HARMER et al., 2006). Os inibidores seletivos da recaptação de serotonina reduzem essa hiperatividade em poucos dias, antes da melhora do humor (GODLEWSKA et al., 2012), e a reavaliação cognitiva, treinada em psicoterapia, atua sobre o mesmo eixo pré-frontal–amígdala.</p>
-<h3 id="biotipos-circuitos--3-5-afeto-positivo-e-a-anedonia">3.5 Afeto positivo e a anedonia</h3>
-<p>O circuito de recompensa, no estriado ventral e no pré-frontal ventromedial, alimentado por dopamina mesolímbica, sustenta antecipação, motivação e aprendizado do prazer. Sua disfunção, ativação estriatal ventral embotada, é o substrato da anedonia, que envolve o querer, o gostar e o aprender (TREADWAY; ZALD, 2011). Como responde mal aos ISRS, desenvolveram-se estratégias dirigidas ao circuito: a cetamina, antagonista NMDA, produz efeito anti-anedônico rápido por sinaptogênese e remodelação glutamatérgica (ZARATE et al., 2006; DUMAN; AGHAJANIAN, 2012); o antagonismo kappa-opioide alivia a anedonia normalizando a dopamina estriatal (KRYSTAL et al., 2020).</p>
-<h3 id="biotipos-circuitos--3-6-controle-cognitivo-e-o-biotipo-cognitivo">3.6 Controle cognitivo e o biotipo cognitivo</h3>
-<p>O controle cognitivo, sondado por tarefas de inibição como o Go/No-Go e sustentado por DLPFC e cingulado anterior dorsal, define, quando disfuncional, o biotipo cognitivo, marcado por prejuízo executivo e refratariedade aos serotoninérgicos. A guanfacina, agonista alfa-2A-adrenérgico que fortalece a função pré-frontal, alcançou resposta clínica de aproximadamente 76,5% nesse subgrupo prospectivamente identificado (HACK et al., 2025).</p>
-<h2 id="biotipos-circuitos--4-a-integracao-empirica-o-estudo-de-tozzi-et-al-2024">4 A integração empírica: o estudo de Tozzi et al. (2024)</h2>
-<p class="subtitulo">4.1 Dados e medição</p>
-<p>O estudo reuniu ressonância magnética funcional em repouso e evocada por tarefa de 801 pacientes sem tratamento e de 250 randomizados a farmacoterapia ou terapia comportamental, cruzando as fronteiras diagnósticas de depressão, ansiedade generalizada, pânico, ansiedade social, transtorno obsessivo-compulsivo e estresse pós-traumático (TOZZI et al., 2024). Cada função de circuito foi expressa em desvios-padrão em relação a uma amostra saudável, garantindo interpretabilidade e reduzindo o risco de sobreajuste.</p>
-<h3 id="biotipos-circuitos--4-2-os-seis-biotipos-e-a-predicao-de-resposta">4.2 Os seis biotipos e a predição de resposta</h3>
-<p>A clusterização produziu seis biotipos, definidos por hiperconectividade de modo padrão, saliência e atenção; hipoconectividade de atenção; hiperatividade de afeto negativo e positivo, com anedonia e ruminação; hiperatividade de controle cognitivo; perda de conectividade a ameaças com hipoatividade de controle cognitivo; e ausência de disfunção proeminente. De forma decisiva, três biotipos apresentaram resposta diferencial: hiperconectividade de modo padrão respondeu melhor à terapia comportamental; hipoconectividade de atenção, pior a essa terapia; e os perfis de afeto e de controle cognitivo, melhor à venlafaxina (TOZZI et al., 2024).</p>
-<h2 id="biotipos-circuitos--5-contexto-historico-e-crise-de-replicacao">5 Contexto histórico e crise de replicação</h2>
-<p>O estudo pioneiro de Drysdale et al. (2017) propusera quatro biotipos com resposta diferencial à estimulação magnética transcraniana, mas Dinga et al. (2019) não conseguiram replicá-los, encontrando uma distribuição contínua em vez de agrupamentos discretos, episódio que expôs os riscos de sobreajuste e a fragilidade da reprodutibilidade em neuroimagem. O desenho de 2024, com poucas características escolhidas por teoria, pontuações interpretáveis e replicação em dados retidos, foi concebido para resistir a essa crítica.</p>
-<h2 id="biotipos-circuitos--6-desenvolvimentos-recentes-2024-a-2026">6 Desenvolvimentos recentes (2024 a 2026)</h2>
-<p>O biotipo cognitivo tornou-se alvo farmacológico com o ensaio da guanfacina (HACK et al., 2025), prova de conceito de que se pode selecionar o paciente pelo circuito e combiná-lo a um mecanismo. Em 2026, Williams, Foland-Ross e Wintermark lançaram, com a Nature Mental Health, uma Comissão internacional de Saúde Mental de Precisão voltada a redefinir o diagnóstico e o tratamento com base na função de circuito. O campo converge, ademais, na padronização multicêntrica da neuroimagem, na neuromodulação individualizada e em abordagens computacionais como a modelagem normativa.</p>
-<h2 id="biotipos-circuitos--7-terapeuticas-dirigidas-a-circuitos-sintese">7 Terapêuticas dirigidas a circuitos: síntese</h2>
-<p>A eficácia da estimulação magnética transcraniana relaciona-se ao grau de anticorrelação entre o alvo no DLPFC e o cingulado subgenual (FOX et al., 2012), princípio sobre o qual a Stanford Neuromodulation Therapy individualiza o alvo e emprega protocolo acelerado, com elevadas taxas de remissão (COLE et al., 2022). A farmacoterapia organiza-se pela correspondência mecanismo–circuito: ISRS sobre a ameaça (GODLEWSKA et al., 2012); venlafaxina em biotipos específicos (TOZZI et al., 2024); cetamina e antagonistas kappa sobre a recompensa (KRYSTAL et al., 2020); guanfacina sobre o controle cognitivo (HACK et al., 2025). A psicoterapia, por sua vez, modula vias córtico-límbicas, com efeitos sobre pré-frontal, cingulado e amígdala (GOLDAPPLE et al., 2004).</p>
-<h2 id="biotipos-circuitos--8-limitacoes-e-direcoes-futuras">8 Limitações e direções futuras</h2>
-<p>Persistem desafios: a reprodutibilidade dos biomarcadores é limitada por efeitos modestos e falhas de replicação, exigindo validação prospectiva multicêntrica; a sobreposição entre circuitos dificulta atribuições causais; e há barreiras de custo e acesso, dado que a ressonância padronizada se concentra em centros acadêmicos. Direções promissoras incluem a padronização entre serviços, os sistemas adaptativos em malha fechada e a integração de dados multiômicos e inflamatórios aos marcadores de circuito.</p>
-<h2 id="biotipos-circuitos--9-consideracoes-finais">9 Considerações finais</h2>
-<p>A leitura da depressão e da ansiedade como disfunções de circuitos oferece uma gramática comum que articula neurobiologia, sintoma e tratamento. Cada circuito corresponde a manifestações reconhecíveis e a alvos terapêuticos identificáveis, da estimulação guiada por conectividade à farmacologia dirigida ao mecanismo e à psicoterapia que remodela vias fronto-límbicas. O estudo de Tozzi, Williams e colaboradores (2024) e seus desdobramentos materializam esse programa, transformando a proposição de que a biologia de cada depressão deveria orientar seu tratamento em hipótese testável e crescentemente testada. Se essa promessa alcançará a clínica cotidiana é a questão que a próxima década deverá responder.</p>
-<h2 id="biotipos-circuitos--referencias">Referências</h2>
-<p class="ref">COLE, E. J. et al. Stanford Neuromodulation Therapy (SNT): a double-blind randomized controlled trial. American Journal of Psychiatry, v. 179, n. 2, p. 132-141, 2022.</p>
-<p class="ref">DINGA, R. et al. Evaluating the evidence for biotypes of depression: methodological replication and extension of Drysdale et al. (2017). NeuroImage: Clinical, v. 22, e101796, 2019.</p>
-<p class="ref">DRYSDALE, A. T. et al. Resting-state connectivity biomarkers define neurophysiological subtypes of depression. Nature Medicine, v. 23, n. 1, p. 28-38, 2017.</p>
-<p class="ref">DUMAN, R. S.; AGHAJANIAN, G. K. Synaptic dysfunction in depression: potential therapeutic targets. Science, v. 338, n. 6103, p. 68-72, 2012.</p>
-<p class="ref">FOX, M. D. et al. Efficacy of transcranial magnetic stimulation targets for depression is related to intrinsic functional connectivity with the subgenual cingulate. Biological Psychiatry, v. 72, n. 7, p. 595-603, 2012.</p>
-<p class="ref">GODLEWSKA, B. R. et al. Short-term SSRI treatment normalises amygdala hyperactivity in depressed patients. Psychological Medicine, v. 42, n. 12, p. 2609-2617, 2012.</p>
-<p class="ref">GOLDAPPLE, K. et al. Modulation of cortical-limbic pathways in major depression: treatment-specific effects of cognitive behavior therapy. Archives of General Psychiatry, v. 61, n. 1, p. 34-41, 2004.</p>
-<p class="ref">GREICIUS, M. D. et al. Resting-state functional connectivity in major depression. Biological Psychiatry, v. 62, n. 5, p. 429-437, 2007.</p>
-<p class="ref">GRISANZIO, K. A. et al. Transdiagnostic symptom clusters and associations with brain, behavior, and daily function in mood, anxiety, and trauma disorders. JAMA Psychiatry, v. 75, n. 2, p. 201-209, 2018.</p>
-<p class="ref">HACK, L. M. et al. A stratified precision medicine trial targeting alpha-2A-adrenergic receptor agonism as a treatment for the cognitive biotype of depression. Nature Mental Health, v. 3, p. 1363-1373, 2025.</p>
-<p class="ref">HAMILTON, J. P. et al. Depressive rumination, the default-mode network, and the dark matter of clinical neuroscience. Biological Psychiatry, v. 78, n. 4, p. 224-230, 2015.</p>
-<p class="ref">HARMER, C. J. et al. Antidepressant drug treatment modifies the neural processing of nonconscious threat cues. Biological Psychiatry, v. 59, n. 9, p. 816-820, 2006.</p>
-<p class="ref">KRYSTAL, A. D. et al. A randomized proof-of-mechanism trial applying the fast-fail approach to evaluating kappa-opioid antagonism as a treatment for anhedonia. Nature Medicine, v. 26, n. 5, p. 760-768, 2020.</p>
-<p class="ref">MENON, V. Large-scale brain networks and psychopathology: a unifying triple network model. Trends in Cognitive Sciences, v. 15, n. 10, p. 483-506, 2011.</p>
-<p class="ref">PIZZAGALLI, D. A. Frontocingulate dysfunction in depression: toward biomarkers of treatment response. Neuropsychopharmacology, v. 36, n. 1, p. 183-206, 2011.</p>
-<p class="ref">ROTHER, E. T. Revisão sistemática versus revisão narrativa. Acta Paulista de Enfermagem, v. 20, n. 2, p. v-vi, 2007.</p>
-<p class="ref">SEELEY, W. W. et al. Dissociable intrinsic connectivity networks for salience processing and executive control. Journal of Neuroscience, v. 27, n. 9, p. 2349-2356, 2007.</p>
-<p class="ref">SHELINE, Y. I. et al. The default mode network and self-referential processes in depression. PNAS, v. 106, n. 6, p. 1942-1947, 2009.</p>
-<p class="ref">TOZZI, L. et al. Personalized brain circuit scores identify clinically distinct biotypes in depression and anxiety. Nature Medicine, v. 30, p. 2076-2087, 2024.</p>
-<p class="ref">TREADWAY, M. T.; ZALD, D. H. Reconsidering anhedonia in depression: lessons from translational neuroscience. Neuroscience and Biobehavioral Reviews, v. 35, n. 3, p. 537-555, 2011.</p>
-<p class="ref">WILLIAMS, L. M. Precision psychiatry: a neural circuit taxonomy for depression and anxiety. The Lancet Psychiatry, v. 3, n. 5, p. 472-480, 2016.</p>
-<p class="ref">WILLIAMS, L. M.; FOLAND-ROSS, L.; WINTERMARK, M. The Precision Mental Health Commission: transforming mental health through brain circuit science. Nature Mental Health, 2026.</p>
-<p class="ref">ZARATE, C. A. et al. A randomized trial of an N-methyl-D-aspartate antagonist in treatment-resistant major depression. Archives of General Psychiatry, v. 63, n. 8, p. 856-864, 2006.</p>
-    <div class="fim">
-      <p>A versão em linguagem acessível deste mesmo conteúdo, por que "depressão" não é uma doença só, está sendo preparada. A leitura por neurotransmissores está em <a href="/farmacologia-neurotransmissores/">Neurofarmacologia dos quatro grandes sistemas</a>.</p>
-      <a class="btn" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">Falar comigo pelo WhatsApp</a>
-      <a class="btn btn-alt" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Agendar pelo Doctoralia</a>
+      <a class="svc" href="/psicodiagnostico.html">
+        <div class="n">02</div>
+        <h4>Psicodiagnóstico</h4>
+        <p>Investigação diagnóstica focada, com entrevista estruturada e instrumentos escolhidos pela hipótese. Para quando a pergunta já tem recorte: é TDAH ou é outra coisa? é TEA? é burnout?</p>
+        <div class="q">Inclui parecer para escola, equipe médica ou uso jurídico</div>
+      </a>
+
+      <a class="svc" href="/o-que-eu-faco.html#o-que-eu-faco--topo">
+        <div class="n">03</div>
+        <h4>Psicoterapia</h4>
+        <p>TCC orientada por processos, Terapia do Esquema, ACT e mindfulness, e uma escuta que não se reduz a técnica. A técnica é escolhida pelo processo que sustenta o problema, não pela abordagem de formação.</p>
+        <div class="q">Adolescentes e adultos · presencial e online · PT e EN</div>
+      </a>
+
+      <a class="svc" href="/orientacao-profissional.html">
+        <div class="n">04</div>
+        <h4>Orientação profissional e de carreira</h4>
+        <p>Escolha e transição lidas por três camadas: o perfil cognitivo real, os traços de personalidade e a hierarquia de valores eliciada por confronto par a par. Inclui preparação para entrevistas e currículo.</p>
+        <div class="q">Para quem está escolhendo, migrando ou travado</div>
+      </a>
+
+      <a class="svc" href="/o-que-eu-faco.html#o-que-eu-faco--topo">
+        <div class="n">05</div>
+        <h4>Reabilitação e intervenção estruturada</h4>
+        <p>Programas com meta definida e critério de mudança estabelecido antes de começar: reabilitação cognitiva, planos de atividades de vida diária, mindfulness em 8 semanas, monitoramento por escalas.</p>
+        <div class="q">Individual ou como continuidade da avaliação</div>
+      </a>
+
+      <a class="svc" href="/o-que-eu-faco.html#o-que-eu-faco--topo">
+        <div class="n">06</div>
+        <h4>Assessoria a profissionais e pesquisadores</h4>
+        <p>Revisão metodológica e de referências de artigos, desenvolvimento de instrumentos digitais sob demanda para a prática clínica, consultoria em avaliação dimensional e supervisão de casos.</p>
+        <div class="q">Para colegas, pesquisadores e equipes</div>
+      </a>
+
     </div>
-  </article>
-</div>
+    <div style="margin-top:1.6rem">
+      <a class="btn btn-primary" href="/o-que-eu-faco.html">Ver cada frente em detalhe →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="home--sobre">
+  <div class="wrap">
+    <p class="sec-label">Abordagem</p>
+    <h2 class="sec-title">Perfis, não rótulos</h2>
+    <p class="sec-intro">Sou psicólogo (CRP 04/63435), neuropsicólogo e estudante de Medicina. Minha prática integra psicologia, medicina e tecnologia para oferecer um cuidado ancorado em evidência, e traduzido em ações reais. Pesquiso a progressão das alterações neuropsicológicas nas demências e desenvolvo protocolos de avaliação dimensional.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="n">01</div><h4>Leitura de padrão</h4><p>O diagnóstico não nasce de um número isolado, mas do padrão entre domínios cognitivos, emocionais e de personalidade.</p></div>
+      <div class="pillar"><div class="n">02</div><h4>Base científica dimensional</h4><p>HiTOP, RDoC, Big Five e os biotipos cerebrais da neurociência atual, com instrumentos validados e normas brasileiras.</p></div>
+      <div class="pillar"><div class="n">03</div><h4>Plano de ação real</h4><p>Cada recomendação (para estudo, trabalho, sono e emoção) vem apoiada em referência científica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="home--avaliacao">
+  <div class="wrap">
+    <p class="sec-label">Avaliação neuropsicológica</p>
+    <h2 class="sec-title">Como os resultados são lidos: o modelo dimensional de quatro camadas</h2>
+    <p class="sec-intro">Duas pessoas obtêm o mesmo desempenho rebaixado numa prova de memória de trabalho. Uma tem capacidade reduzida: o sistema comporta menos informação. A outra tem capacidade preservada e desorganização alta: o sistema comporta, mas perde o conteúdo por interferência. O número é o mesmo, o problema é outro e o tratamento também. Essa distinção não aparece num laudo que se limita a reportar percentis. Ela aparece quando o mesmo dado é lido por camadas.</p>
+
+    <div class="camadas">
+      <div class="camada"><div class="cn">Camada 1</div><h4>Cognição: capacidade e desorganização</h4><p>Separa duas coisas que os testes costumam somar: quanto o sistema cognitivo comporta e quanto ruído há dentro dele. A desorganização opera como um fator geral restrito ao domínio cognitivo, rebaixando o desempenho de forma transversal sem que a capacidade esteja reduzida.</p></div>
+      <div class="camada"><div class="cn">Camada 2</div><h4>Personalidade normal como modulação</h4><p>Os cinco grandes traços não causam o desempenho, modulam como ele se expressa. Alta conscienciosidade compensa déficit executivo até certo ponto e a um custo de esforço. Alto neuroticismo amplifica a queda sob avaliação.</p></div>
+      <div class="camada"><div class="cn">Camada 3</div><h4>Personalidade patológica como interferência</h4><p>Traços maladaptativos e esquemas precoces entram como fonte de interferência: consomem recurso cognitivo, distorcem a leitura da tarefa e explicam parte da variância que a camada 1 não explica. É aqui que o desempenho não bate com a queixa.</p></div>
+      <div class="camada"><div class="cn">Camada 4</div><h4>HiTOP como contexto</h4><p>Situa o perfil no espaço dimensional da psicopatologia: internalização, externalização, desprendimento, pensamento e somatoforme. Não substitui o diagnóstico categórico onde ele é necessário, dá a ele coordenadas e intensidade.</p></div>
+    </div>
+
+    <a class="card tec" href="/modelo-4-camadas.html" style="display:block;margin-top:1.4rem;border:2px solid var(--bordo)"><span class="tag">Modelo autoral · o texto completo</span><h4>A lógica que transforma escore em perfil funcional</h4><p>Lido por camadas, o mesmo conjunto de dados responde ao que o laudo tradicional não alcança: o que está reduzido, o que está apenas desorganizado, o que é traço e o que é interferência. E, portanto, o que se treina, o que se compensa, o que se trata e o que se aceita.</p><div class="meta">Ler o artigo completo →</div></a>
+
+    <div class="carga"><b>Carga horária:</b> aproximadamente 10 a 14 horas, distribuídas ao longo de 2 a 3 meses. Algumas escalas podem ser preenchidas em casa.</div>
+  </div>
+</section>
+
+<section class="alt" id="home--conteudo">
+  <div class="wrap">
+    <p class="sec-label">Conteúdo</p>
+    <h2 class="sec-title">Textos e produção</h2>
+    <p class="sec-intro">Material dividido em duas camadas: conteúdo acessível para quem busca entender, e produção técnica para colegas e pesquisadores.</p>
+
+    <div class="tabs">
+      <button class="tab active" data-p="pub">Para todos</button>
+      <button class="tab" data-p="tec">Para profissionais</button>
+    </div>
+
+    <div class="panel active" id="home--pub">
+      <div class="cards">
+        <div class="card"><span class="tag">Protocolo · disponível</span><h4><a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a></h4><p>Programa semana a semana integrando MBSR, MBCT e ACT, com progressão diária, práticas formais e informais e registro de acompanhamento. Cada semana justificada por evidência.</p><div class="meta"><a href="/mindfulness-8-semanas.html">Ler o protocolo completo →</a></div><div class="integra">Documento técnico: <a href="/mindfulness-protocolo.html">protocolo integral</a></div></div>
+        <a class="card" href="/autismo-e-alimentacao.html"><span class="tag">Neurodesenvolvimento</span><h4>Autismo, intestino e alimentação</h4><p>O que a pesquisa do eixo intestino-cérebro mostra, e o que ainda não mostra, sobre alimentação no espectro autista, com o grau de evidência de cada intervenção.</p><div class="meta">Ler o texto completo →</div></a>
+        <a class="card" href="/biotipos-circuitos.html"><span class="tag">Saúde mental</span><h4>Seis cérebros, um diagnóstico</h4><p>Por que "depressão" não é uma doença só. A ciência mostra que pessoas com o mesmo diagnóstico podem ter cérebros que funcionam de formas diferentes, e é isso que explica por que um tratamento ajuda uma pessoa e não outra.</p><div class="meta">Entender os biotipos →</div></a>
+        <div class="card"><span class="tag">Personalidade</span><h4><a href="/big-five.html">Os cinco traços: e quando viram problema</a></h4><p>Neuroticismo, extroversão, abertura, amabilidade e conscienciosidade: o lado adaptativo e o lado que adoece de cada traço.</p><div class="meta"><a href="/big-five.html">Ler o texto completo →</a></div><div class="integra">Documento técnico: <a href="/big-five-integracao.html">capítulo integral, faceta a faceta</a></div></div>
+        <div class="card"><span class="tag">Versões · disponível</span><h4><a href="/mindfulness-adolescentes.html">Mindfulness para adolescentes e pré-adolescentes</a></h4><p>Adaptações do programa de 8 semanas com linguagem, duração e práticas ajustadas à faixa etária, mantendo a mesma base de evidência, e o realismo sobre o que ela sustenta.</p><div class="meta"><a href="/mindfulness-adolescentes.html">Ler o protocolo de 13 a 17 anos →</a></div><div class="integra">Versão de 9 a 12 anos: <a href="/mindfulness-pre-adolescentes.html">protocolo pré-adolescente</a></div></div>
+      </div>
+    </div>
+
+    <div class="panel" id="home--tec">
+      <div class="cards">
+        <a class="card tec" href="/modelo-4-camadas.html" style="border:2px solid var(--bordo)"><span class="tag">Modelo autoral · destaque</span><h4>Modelo dimensional integrado de 4 camadas</h4><p>A arquitetura teórica que sustenta toda a prática: cognição (com a separação entre capacidade e desorganização, o p-factor local), personalidade normal como modulação, personalidade patológica como interferência e HiTOP como contexto. Substitui o rótulo diagnóstico por um perfil funcional individualizado.</p><div class="meta">Ler o artigo completo →</div></a>
+        <div class="card tec"><span class="tag">Tratado · disponível</span><h4><a href="/tratado-hitop.html">HiTOP, avaliação dimensional e o modelo de 12 domínios</a></h4><p>Corpo teórico que sustenta toda a prática: a reconstrução da psicopatologia pela Taxonomia Hierárquica e sua integração granular com o Big Five; a desconstrução dimensional do autismo e do TDAH; e um modelo de avaliação em 12 domínios que funde Kolb &amp; Whishaw com Fuentes e Malloy-Diniz.</p><div class="meta"><a href="/tratado-hitop.html">Ler o tratado completo →</a></div><div class="integra">Texto irmão: <a href="/modelo-12-dominios.html">o modelo de 12 domínios</a></div></div>
+        <a class="card tec" href="/projeto-terapeutico.html"><span class="tag">Método · disponível</span><h4>O projeto terapêutico individualizado</h4><p>Como o perfil dimensional vira plano de tratamento: mapeamento por HiTOP e cinco fatores, definição dos processos de mudança a trabalhar, e o uso de tecnologia própria para feedback personalizado ao longo do processo.</p><div class="meta">Ler o documento completo →</div></a>
+        <a class="card tec" href="/biotipos-circuitos.html"><span class="tag">Revisão narrativa · disponível</span><h4>Da heterogeneidade aos circuitos: biotipos na depressão e na ansiedade</h4><p>Do modelo de rede tripla (Menon, 2011) e da taxonomia de circuitos (Williams, 2016) aos seis biotipos de Tozzi et al. (Nature Medicine, 2024). Percorre os seis circuitos macroscópicos articulando disfunção, sintoma e terapêutica, e discute a crise de replicação.</p><div class="meta">Ler a revisão completa →</div></a>
+        <a class="card tec" href="/farmacologia-neurotransmissores.html"><span class="tag">Farmacologia · disponível</span><h4>Neurofarmacologia dos quatro grandes sistemas</h4><p>Serotonina, dopamina, GABA e glutamato e suas implicações terapêuticas: a história dos antidepressivos dos IMAO à cetamina, os antipsicóticos nas vias dopaminérgicas, benzodiazepínicos versus barbitúricos e a fisiopatologia do Alzheimer até as terapias anti-amiloide.</p><div class="meta">Ler o artigo completo →</div></a>
+        <a class="card tec" href="/idnap.html"><span class="tag">Protocolo autoral · disponível</span><h4>IDNAP: Anamnese Neurodesenvolvimental Dimensional Integrada</h4><p>Protocolo que integra sete domínios sob HiTOP e RDoC, com sistema de pontuação e nove índices de discrepância. Operacionaliza trajetória do neurodesenvolvimento, assimetria, variabilidade, sensibilidade à carga e estratégias compensatórias.</p><div class="meta">Ver o protocolo →</div></a>
+        <a class="card tec" href="/demencias.html"><span class="tag">Revisão sistemática · disponível</span><h4>Progressão das alterações neuropsicológicas nas demências</h4><p>Correspondência entre teste, domínio e síndrome, conduzida segundo o PRISMA 2020. Nenhum marcador é patognomônico. O padrão relativo entre domínios é que discrimina.</p><div class="meta">Ler a revisão completa →</div></a>
+        <a class="card tec" href="/neurobiologia-da-linguagem.html"><span class="tag">Neurociência · disponível</span><h4>Neurobiologia da linguagem</h4><p>Da arquitetura de dupla via (Hickok &amp; Poeppel) à semiologia clínica das afasias e às trajetórias do desenvolvimento, com os instrumentos validados para o Brasil.</p><div class="meta">Ler o artigo completo →</div></a>
+        <a class="card tec" href="/bilinguismo-e-cerebro.html"><span class="tag">Revisão narrativa · disponível</span><h4>O cérebro bilíngue: decisão, afasia e reserva cognitiva</h4><p>Por que uma segunda língua desloca o julgamento moral para o utilitarismo, por que a língua nativa às vezes é a que se perde num AVC de hemisfério esquerdo, e o que o bilinguismo de fato faz, e não faz, pelo controle inibitório e pela reserva cognitiva.</p><div class="meta">Ler a revisão completa →</div></a>
+        <a class="card tec" href="/intervencoes-tea-tdah.html"><span class="tag">Diretrizes · disponível</span><h4>Intervenções baseadas em evidência no TEA e no TDAH</h4><p>O que funciona, com que dose e com que força de evidência: ABA e NDBI, intervenção mediada pelos pais, FBA e PBS, SWPBIS, TCC adaptada e atividade física, mais as 28 práticas do NCAEP e o monitoramento por escalas padronizadas, com as lacunas declaradas.</p><div class="meta">Ver as intervenções e as doses →</div></a>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<section id="home--instrumentos">
+  <div class="wrap">
+    <p class="sec-label">Inovação clínica</p>
+    <h2 class="sec-title">Instrumentos</h2>
+    <p class="sec-intro">Além de aplicar instrumentos, desenvolvo os meus: na fronteira entre avaliação, modelos dimensionais e tecnologia.</p>
+    <div class="tools">
+      <div class="tool"><div class="tag">Ferramenta aberta</div><h4>Fluência Verbal Alternada</h4><p>Aplicação completa com cronômetro por fase, divisão automática em quadrantes de 15s, marcação de erros e repetições, e percentis por faixa etária.</p><div class="st">Normas: de Paula, Paiva &amp; Costa (2015)</div></div>
+      <a class="tool" href="/neuro-age.html" style="display:block"><div class="tag">Plataforma</div><h4>Neuro-Age Master</h4><p>Funil diagnóstico em sete etapas para avaliação geriátrica: triagem funcional, rastreio, bateria estendida, mapeamento vascular, matriz de escores-Z e predição de hipóteses.</p><div class="st">Ver a arquitetura → · uso clínico próprio, não distribuído</div></a>
+      <div class="tool"><div class="tag">Protocolo</div><h4>IDNAP</h4><p>Anamnese dimensional integrada que gera perfil multidimensional individual, articulando HiTOP, RDoC, Big Five, PID-5 e trajetória de neurodesenvolvimento.</p><div class="st">Versão 2.0</div></div>
+      <div class="tool"><div class="tag">Em desenvolvimento</div><h4>Desenvolvimento pediátrico</h4><p>Software de acompanhamento de marcos com curvas de desenvolvimento, visualização gráfica e exportação de relatório.</p><div class="st">Versão 5.2</div></div>
+      <div class="tool" style="border:2px solid var(--vermelho)"><div class="tag">Ferramenta aberta · destaque</div><h4>Inventário de Valores e Personalidade</h4><p>Hierarquização dos seus valores por comparações par a par, com pontuação comparativa, verificação de consistência e um diário reflexivo que registra o porquê de cada escolha. Ao final, um mapa dos valores que de fato orientam suas decisões.</p><div class="st">Autoconhecimento, não diagnóstico · com Silvia Maia</div></div>
+      <div class="tool"><div class="tag">Utilitário</div><h4>Conversor de escore-z</h4><p>Conversão e classificação de escores brutos para profissionais, com faixas de classificação automáticas.</p><div class="st">Área restrita</div></div>
+      <div class="tool"><div class="tag">Rastreio livre</div><h4>Timed Up and Go</h4><p>Teste cronometrado de mobilidade funcional e risco de quedas em idosos, com classificação por faixas de risco e registro de achados de marcha.</p><div class="st">Domínio público · com aviso</div></div>
+      <div class="tool"><div class="tag">Área restrita</div><h4>Bateria de Avaliação Frontal</h4><p>Rastreio breve de funções executivas em seis subtestes, com correção automática e ponto de corte para disfunção frontal.</p><div class="st">Aplicação por examinador treinado</div></div>
+      <div class="tool"><div class="tag">Área restrita</div><h4>Bissecção de Linhas e Cancelamento dos Sinos</h4><p>Instrumentos de rastreio de negligência hemispacial, com cálculo de índice de lateralidade e desvio médio.</p><div class="st">Normas brasileiras</div></div>
+    </div>
+    <div class="aviso"><b>Sobre as ferramentas:</b> instrumentos de rastreio disponibilizados aqui têm finalidade informativa e de apoio à prática profissional. Não substituem avaliação nem estabelecem diagnóstico. Instrumentos protegidos por direito autoral são utilizados apenas em contexto clínico, sob responsabilidade profissional, e não são disponibilizados para download.</div>
+  </div>
+</section>
+
+<section id="home--grupo">
+  <div class="wrap">
+    <p class="sec-label">Comunidade</p>
+    <h2 class="sec-title">Grupo de estudos em neurociência</h2>
+    <p class="sec-intro">Um espaço de estudo e discussão em neurociência e neuropsicologia: <strong>aberto a todos</strong>: estudantes, colegas de psicologia e medicina, e qualquer pessoa interessada em entender o cérebro com profundidade. Encontros em torno de artigos, casos e temas de fronteira, no mesmo espírito do site: rigor científico e leitura por padrão, não por rótulo.</p>
+    <div class="path p1" style="max-width:560px">
+      <div class="ic">🧠</div>
+      <h3>Cronograma e slides abertos</h3>
+      <p>Sem custo e sem pré-requisito de formação, basta interesse genuíno. O grupo segue um cronograma próprio (ancorado em Bear e Kolb &amp; Whishaw) e os slides de síntese de cada encontro ficam disponíveis na íntegra.</p>
+      <a class="go" href="/grupo-de-estudos.html">Ver cronograma e slides →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="home--contato">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Vamos conversar</h2>
+      <p>Atendimento de adolescentes e adultos, presencial em Belo Horizonte e online, em português e inglês. Se ainda não sabe qual serviço se aplica ao seu caso, o primeiro contato serve exatamente para isso.</p>
+      <div class="cta-opcoes">
+        <a class="cta-op cta-wa" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener"><span class="ic">💬</span> WhatsApp: (31) 99984-6282</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-yt" href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener"><span class="ic">▶</span> Canal no YouTube</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+      </div>
+      <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis. No <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener" style="color:rgba(255,248,231,.9);text-decoration:underline">canal no YouTube</a> publico vídeos sobre os temas tratados aqui.</p>
+      
+    </div>
+  </div>
+</section>
 
 
 
@@ -328,6 +532,6 @@
     <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
   </div>
 </footer>
-<script src="/assets/site.js" defer></script>
+<script src="/site.js" defer></script>
 </body>
 </html>

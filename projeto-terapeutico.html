@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto Terapêutico Individualizado: do Perfil ao Plano</title>
+<meta name="description" content="Projeto terapêutico individualizado: como o perfil dimensional vira plano de tratamento, com mapeamento por HiTOP e Big Five e os processos de mudança.">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/projeto-terapeutico.html">
+<meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo">
+<meta property="og:title" content="Projeto Terapêutico Individualizado: do Perfil ao Plano">
+<meta property="og:description" content="Projeto terapêutico individualizado: como o perfil dimensional vira plano de tratamento, com mapeamento por HiTOP e Big Five e os processos de mudança.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/projeto-terapeutico.html">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo, CRP 04/63435, Belo Horizonte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Projeto Terapêutico Individualizado: do Perfil ao Plano">
+<meta name="twitter:description" content="Projeto terapêutico individualizado: como o perfil dimensional vira plano de tratamento, com mapeamento por HiTOP e Big Five e os processos de mudança.">
+<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/og.png">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+#pg-projeto-terapeutico-integra{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
+#pg-projeto-terapeutico-integra a{color:inherit;text-decoration:none}
+#pg-projeto-terapeutico-integra /* barra de progresso de leitura */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--vermelho);z-index:70;transition:width .08s linear}
+#pg-projeto-terapeutico-integra /* capa do artigo */
+  .capa{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:3.5rem 0 3rem}
+#pg-projeto-terapeutico-integra .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+#pg-projeto-terapeutico-integra .back{display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:rgba(255,248,231,.6)}
+#pg-projeto-terapeutico-integra .back:hover{color:var(--vermelho)}
+#pg-projeto-terapeutico-integra .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
+#pg-projeto-terapeutico-integra .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
+#pg-projeto-terapeutico-integra .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-projeto-terapeutico-integra .capa h1{font-family:Georgia,serif;font-size:2.3rem;line-height:1.2;max-width:22ch;margin-bottom:.9rem}
+#pg-projeto-terapeutico-integra .capa .dek{font-size:1.02rem;color:rgba(255,248,231,.8);max-width:62ch}
+#pg-projeto-terapeutico-integra .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(255,248,231,.15);font-size:.8rem;color:rgba(255,248,231,.6);line-height:1.9}
+#pg-projeto-terapeutico-integra .creditos b{color:var(--creme);font-weight:600}
+@media(max-width:680px){#pg-projeto-terapeutico-integra .capa h1{font-size:1.7rem}}
+#pg-projeto-terapeutico-integra /* layout leitura */
+  .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
+#pg-projeto-terapeutico-integra .layout>*{min-width:0}
+@media(max-width:980px){#pg-projeto-terapeutico-integra .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
+#pg-projeto-terapeutico-integra /* sumário */
+  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:.82rem;padding-right:.5rem}
+#pg-projeto-terapeutico-integra .toc h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-family:"Segoe UI",sans-serif}
+#pg-projeto-terapeutico-integra .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--sub);line-height:1.4;transition:.15s}
+#pg-projeto-terapeutico-integra .toc a:hover{border-left-color:var(--vermelho);color:var(--vinho)}
+#pg-projeto-terapeutico-integra .toc a.lv3{padding-left:1.4rem;font-size:.78rem;color:var(--muted)}
+#pg-projeto-terapeutico-integra .toc a.on{border-left-color:var(--vermelho);color:var(--vinho);font-weight:600}
+@media(max-width:980px){#pg-projeto-terapeutico-integra .toc{position:static;max-height:none;background:var(--papel);border:1px solid var(--borda);border-radius:14px;padding:1.2rem}
+#pg-projeto-terapeutico-integra .toc details summary{cursor:pointer;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);font-weight:700}
+#pg-projeto-terapeutico-integra .toc .lista{margin-top:.9rem;max-height:45vh;overflow-y:auto}}
+@media(min-width:981px){#pg-projeto-terapeutico-integra .toc details summary{display:none}
+#pg-projeto-terapeutico-integra .toc .lista{display:block!important}}
+#pg-projeto-terapeutico-integra /* corpo do artigo */
+  article{background:var(--papel);border:1px solid var(--borda);border-radius:18px;padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
+@media(max-width:680px){#pg-projeto-terapeutico-integra article{padding:1.6rem;border-radius:12px}}
+#pg-projeto-terapeutico-integra article p{font-family:Georgia,"Times New Roman",serif;font-size:1.045rem;line-height:1.78;color:var(--texto);margin-bottom:1.15rem}
+#pg-projeto-terapeutico-integra article p.subtitulo{font-family:"Segoe UI",sans-serif;font-size:.95rem;color:var(--bordo);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
+#pg-projeto-terapeutico-integra article h2{font-family:Georgia,serif;font-size:1.6rem;color:var(--vinho);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--vermelho);letter-spacing:.5px}
+#pg-projeto-terapeutico-integra article h2:first-child{margin-top:0;padding-top:0;border-top:none}
+#pg-projeto-terapeutico-integra article h3{font-family:Georgia,serif;font-size:1.18rem;color:var(--vinho);margin:2rem 0 .7rem}
+#pg-projeto-terapeutico-integra article h4{font-family:"Segoe UI",sans-serif;font-size:.96rem;color:var(--bordo);margin:1.5rem 0 .5rem;letter-spacing:.2px}
+#pg-projeto-terapeutico-integra article ul{list-style:none;margin:0 0 1.2rem}
+#pg-projeto-terapeutico-integra article li{font-family:Georgia,serif;font-size:1.005rem;line-height:1.7;color:var(--sub);padding:.32rem 0 .32rem 1.25rem;position:relative}
+#pg-projeto-terapeutico-integra article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--vermelho)}
+#pg-projeto-terapeutico-integra article strong{color:var(--vinho)}
+#pg-projeto-terapeutico-integra article em{font-style:italic}
+#pg-projeto-terapeutico-integra .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:10px}
+#pg-projeto-terapeutico-integra article table{border-collapse:collapse;width:100%;font-family:"Segoe UI",sans-serif;font-size:.84rem;min-width:560px}
+#pg-projeto-terapeutico-integra article th,#pg-projeto-terapeutico-integra article td{min-width:118px;word-break:normal;overflow-wrap:break-word;hyphens:none}
+#pg-projeto-terapeutico-integra article th{background:var(--vinho);color:var(--creme);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px}
+#pg-projeto-terapeutico-integra article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--sub);vertical-align:top}
+#pg-projeto-terapeutico-integra article tbody tr:nth-child(even){background:rgba(232,192,192,.13)}
+#pg-projeto-terapeutico-integra .aviso-topo{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.88rem;padding:1.1rem 1.3rem;border-radius:10px;margin-bottom:2rem;line-height:1.65}
+#pg-projeto-terapeutico-integra .aviso-topo b{color:#4d3b00}
+#pg-projeto-terapeutico-integra .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:.85rem;color:var(--muted);line-height:1.8}
+#pg-projeto-terapeutico-integra .fim a{color:var(--bordo);font-weight:600}
+#pg-projeto-terapeutico-integra .btn{display:inline-block;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.88rem;background:var(--vermelho);color:#fff;margin-top:1rem}
+#pg-projeto-terapeutico-integra .btn:hover{background:#c0240f}
+#pg-projeto-terapeutico-integra .fim .btn-alt{background:transparent;color:var(--bordo);border:1.5px solid var(--borda);margin-left:.5rem}
+#pg-projeto-terapeutico-integra .fim .btn-alt:hover{border-color:var(--vermelho);background:transparent}
+@media print{#pg-projeto-terapeutico-integra .toc,#pg-projeto-terapeutico-integra .btn,#pg-projeto-terapeutico-integra .back{display:none!important}
+#pg-projeto-terapeutico-integra{background:#fff}
+#pg-projeto-terapeutico-integra .capa{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+#pg-projeto-terapeutico-integra .capa h1,#pg-projeto-terapeutico-integra .capa .dek,#pg-projeto-terapeutico-integra .creditos,#pg-projeto-terapeutico-integra .creditos b{color:#000}
+#pg-projeto-terapeutico-integra .layout{display:block;padding:0}
+#pg-projeto-terapeutico-integra article{border:none;padding:0;max-width:none;background:#fff}
+#pg-projeto-terapeutico-integra article h2{break-after:avoid}
+#pg-projeto-terapeutico-integra article table{font-size:.7rem}}
+#pg-projeto-terapeutico-integra article p.ref{font-size:.88rem;line-height:1.6;color:var(--muted);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:"Segoe UI",sans-serif;overflow-wrap:break-word}
+#pg-projeto-terapeutico-integra article p.ref a{color:var(--bordo)}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Projeto Terapêutico Individualizado: do Perfil ao Plano",
+ "description": "Projeto terapêutico individualizado: como o perfil dimensional vira plano de tratamento, com mapeamento por HiTOP e Big Five e os processos de mudança.",
+ "url": "https://pedrorugerr-droid.github.io/projeto-terapeutico.html",
+ "mainEntityOfPage": {
+  "@type": "WebPage",
+  "@id": "https://pedrorugerr-droid.github.io/projeto-terapeutico.html"
+ },
+ "inLanguage": "pt-BR",
+ "datePublished": "2026-09-18",
+ "dateModified": "2026-09-18",
+ "image": "https://pedrorugerr-droid.github.io/og.png",
+ "author": {
+  "@type": "Person",
+  "name": "Pedro Andrade Rüger",
+  "jobTitle": "Psicólogo e Neuropsicólogo",
+  "url": "https://pedrorugerr-droid.github.io/",
+  "identifier": "CRP 04/63435",
+  "sameAs": [
+   "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
+   "https://www.youtube.com/@pedroandraderuger",
+   "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+  ]
+ },
+ "publisher": {
+  "@type": "Psychologist",
+  "@id": "https://pedrorugerr-droid.github.io/#psicologo",
+  "name": "Pedro Andrade Rüger",
+  "url": "https://pedrorugerr-droid.github.io/"
+ }
+}
+</script>
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
+    <div class="menu">
+      <a href="/#home--sobre">Sobre</a>
+      <a href="/o-que-eu-faco.html">Serviços</a>
+      <a href="/avaliacao-neuropsicologica.html">Avaliação</a>
+      <a href="/psicoterapia.html">Psicoterapia</a>
+      <a href="/#home--conteudo" data-op>Conteúdo</a>
+      <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
+      <a href="/#home--contato" class="nav-cta">Falar comigo</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <nav id="gaveta">
+    <a href="/">Início</a>
+    <a href="/#home--sobre">Sobre</a>
+    <a href="/#home--instrumentos">Instrumentos</a>
+    <div class="grupo">Serviços</div>
+    <a href="/o-que-eu-faco.html">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica</a>
+    <a href="/psicoterapia.html">Psicoterapia</a>
+    <a href="/psicodiagnostico.html">Psicodiagnóstico</a>
+    <a href="/orientacao-profissional.html">Orientação de carreira</a>
+    <div class="grupo">Conteúdo para todos</div>
+    <a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>
+    <a href="/autismo-e-alimentacao.html">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos.html">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five.html">Os cinco traços</a>
+    <div class="grupo">Conteúdo técnico</div>
+    <a href="/modelo-4-camadas.html">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop.html">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios.html">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico.html">Projeto terapêutico</a>
+    <a href="/idnap.html">IDNAP</a>
+    <a href="/demencias.html">Demências</a>
+    <a href="/neurobiologia-da-linguagem.html">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro.html">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah.html">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores.html">Neurofarmacologia</a>
+    <div class="grupo">Protocolos integrais</div>
+    <a href="/mindfulness-protocolo.html">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes.html">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes.html">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao.html">Big Five, faceta a faceta</a>
+    <div class="grupo">Mais</div>
+    <a href="/neuro-age.html">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos.html">Grupo de estudos</a>
+    <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    <a href="/#home--contato">Falar comigo</a>
+  </nav>
+</header>
+
+<main class="pagina" id="pg-projeto-terapeutico-integra">
+
+
+<section class="capa">
+  <div class="in">
+    <a class="back" href="/o-que-eu-faco.html">← Voltar aos serviços</a>
+    <div class="badge tec">Camada técnica · texto integral</div>
+    <h1>O projeto terapêutico individualizado</h1>
+    <p class="dek">Como o perfil dimensional vira plano de tratamento: mapeamento por HiTOP e cinco fatores, definição de processos de mudança, e o uso de tecnologia própria para feedback personalizado.</p>
+    <div class="creditos"><b>Pedro Andrade Rüger</b>: Psicólogo, CRP 04/63435 · Neuropsicólogo · Discente de Medicina (PUC Minas)<br>Documento de método · texto integral</div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="toc">
+    <details open>
+      <summary>Sumário: 10 seções</summary>
+      <h5>Neste documento</h5>
+      <div class="lista">
+        <a class="lv2" href="#projeto-terapeutico-integra--o-projeto-terapeutico-individualizado-integracao-de-neurocie">O projeto terapêutico individualizado: integração de neurociência, Taxonomia Dimensional (HiTOP) e Terapia Baseada em Processos (PB-CBT)</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--crp-04-63435">CRP:04/63435</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--1-o-fundamento-de-uma-pratica-transformadora-do-protocolo-a-">1. O Fundamento de uma prática transformadora: do protocolo à pessoa</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--2-estrutura-da-avaliacao-e-mapeamento-criando-o-perfil-cogni">2. Estrutura da Avaliação e Mapeamento: criando o perfil cognitivo</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--2-1-avaliacao-dimensional-hitop-e-ffm">2.1. Avaliação Dimensional (HiTOP e FFM)</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--2-2-o-mapa-da-mente-neurociencia-e-funcoes-executivas">2.2. O Mapa da Mente: Neurociência e Funções Executivas</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--3-a-estrutura-terapeutica-objetivos-e-processos-de-mudanca">3. A Estrutura Terapêutica: Objetivos e Processos de Mudança</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--3-2-ativacao-comportamental-ba-e-engenharia-do-reforco">3.2. Ativação Comportamental (BA) e Engenharia do Reforço</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--3-3-reflexao-existencial-filosofica">3.3. Reflexão Existencial/Filosófica</a>
+        <a class="lv2" href="#projeto-terapeutico-integra--4-otimizacao-tecnologica-e-feedback-personalizado">4. Otimização Tecnológica e *Feedback* Personalizado</a>
+      </div>
+    </details>
+  </aside>
+
+  <article id="projeto-terapeutico-integra--texto">
+
+<h2 id="projeto-terapeutico-integra--o-projeto-terapeutico-individualizado-integracao-de-neurocie">O projeto terapêutico individualizado: integração de neurociência, Taxonomia Dimensional (HiTOP) e Terapia Baseada em Processos (PB-CBT)</h2>
+<p class="subtitulo">Psicólogo: Pedro Andrade Rüger</p>
+<h2 id="projeto-terapeutico-integra--crp-04-63435">CRP:04/63435</h2>
+<h2 id="projeto-terapeutico-integra--1-o-fundamento-de-uma-pratica-transformadora-do-protocolo-a-">1. O Fundamento de uma prática transformadora: do protocolo à pessoa</h2>
+<p>Minha prática profissional é estruturada sobre o princípio de que a eficácia psicoterapêutica reside na capacidade de transcender protocolos diagnósticos rígidos e abraçar a complexidade dimensional e individual do paciente. O sofrimento psíquico não é tratado como uma entidade categórica a ser erradicada (e.g., &quot;depressão&quot;), mas como o resultado de uma rede dinâmica e maladaptativa de processos biopsicossociais. O foco é a personalização, alinhando rigor científico (neurociência) com a singularidade da jornada do indivíduo.</p>
+<p>A intervenção não visa apenas a redução de sintomas, mas a promoção de uma prosperidade psicológica duradoura, construída sobre a flexibilidade comportamental e a metacognição.</p>
+<h2 id="projeto-terapeutico-integra--2-estrutura-da-avaliacao-e-mapeamento-criando-o-perfil-cogni">2. Estrutura da Avaliação e Mapeamento: criando o perfil cognitivo</h2>
+<p>A intervenção é um projeto de reengenharia da experiência interna. Para otimizar a eficácia e garantir que o processo seja mais agradável e menos confrontador, iniciamos com uma fase detalhada de mapeamento.</p>
+<h2 id="projeto-terapeutico-integra--2-1-avaliacao-dimensional-hitop-e-ffm">2.1. Avaliação Dimensional (HiTOP e FFM)</h2>
+<p>Utilizamos modelos dimensionais avançados para mapear o perfil de funcionamento do paciente:</p>
+<p>1.  Taxonomia Hierárquica da Psicopatologia (HiTOP): O perfil do paciente é situado em espectros contínuos de funcionamento (e.g., Internalização, Desprendimento, Externalização), em vez de categorias binárias. O objetivo é responder: <em>Qual é a arquitetura de desregulação do paciente?</em></p>
+<p>2.  Modelo dos Cinco Grandes Fatores (Big Five - FFM): O sofrimento é concebido como uma extensão maladaptativa de traços de personalidade normais. Analisamos o perfil em nível de facetas (e.x, fantasia, autodisciplina) para identificar onde a força se torna vulnerabilidade (e.x:, alta abertura leva ao tédio existencial) ou onde o défict é crítico (ex:  baixa Conscienciosidade em Autodisciplina).</p>
+<h2 id="projeto-terapeutico-integra--2-2-o-mapa-da-mente-neurociencia-e-funcoes-executivas">2.2. O Mapa da Mente: Neurociência e Funções Executivas</h2>
+<p>O mapeamento não é completo sem a perspectiva neuropsicológica. O objetivo é desenvolver a metacognição do paciente sobre o funcionamento de seu próprio cérebro.</p>
+<div class="tabela-wrap"><table><thead><tr><th>Componente Mapeado</th><th>Objetivo de Compreensão</th><th>Intervenção Associada (ex)</th></tr></thead><tbody><tr><td><strong>Funções Executivas (FE)</strong></td><td>Identificar <strong>f</strong>adiga executiva (déficits em Inibição, memória de trabalho ou flexibilidade) que levam à procrastinação ou impulsividade.</td><td>Reengenharia Ambiental e uso de &quot;próteses&quot; comportamentais para poupar o Córtex Pré-Frontal (CPF) exaurido.</td></tr><tr><td><strong>Redes Neurais</strong></td><td>Distinguir Rede de Modo Padrão (DMN) hiperativa (associada à ruminação e crenças Nucleares) da Rede Focada em Tarefas (Task-Positive Network).</td><td>Técnicas de Desfusão Cognitiva para desacoplar a rigidez do DMN e fortalecer o foco no exterior.</td></tr><tr><td><strong>Bases Emocionais</strong></td><td>Compreender a hiper-reatividade emocional a partir de dois critérios (Sistema 1 - Processamento Primário) em relação à capacidade de regulação do CPF (Sistema 2 - Processamento Secundário).</td><td>Regulação e Canalização (Nomear para Domar): Ensinamos que emoções intensas são dados, não diretrizes. O foco é aumentar a &quot;banda larga&quot; emocional: a capacidade de sentir intensamente sem agir impulsivamente. Usamos a emoção como bússola de valores</td></tr></tbody></table></div>
+<h2 id="projeto-terapeutico-integra--3-a-estrutura-terapeutica-objetivos-e-processos-de-mudanca">3. A Estrutura Terapêutica: Objetivos e Processos de Mudança</h2>
+<p>O processo terapêutico é colaborativo, com a definição de objetivos específicos e mensuráveis estabelecidos <em>junto</em> com o paciente, garantindo que a direção da mudança esteja alinhada com seus valores e preferências (e.g., uma pessoa de alta Abertura não deve ter como objetivo ser rotineira; o objetivo é ter uma rotina <em>flexível</em>).</p>
+<p>3.1. Flexibilidade Cognitiva e Metacognição</p>
+<p>O cerne da intervenção é a mudança na relação do paciente com seus próprios pensamentos e emoções.</p>
+<p>Reestruturação Cognitiva Otimizada: Aplicamos o Questionamento Socrático para desafiar o conteúdo dos Pensamentos Automáticos e das Crenças Nucleares, promovendo o pensamento realista (ativação do CPF).</p>
+<p>Defusão Cognitiva (ACT): Para pensamentos rígidos ou ruminativos, o foco é na função do pensamento, usando técnicas para que o paciente perceba a cognição como &quot;spam mental&quot; ou um evento passageiro, reduzindo sua literalidade (metacognição).</p>
+<p>Desenvolvimento da Consciência Emocional: A integração da neurociência (Ínsula Anterior: Interocepção) auxilia o paciente a identificar e descrever seus estados internos (combatendo a Alexitimia) antes que estes se manifestem como crise.</p>
+<h2 id="projeto-terapeutico-integra--3-2-ativacao-comportamental-ba-e-engenharia-do-reforco">3.2. Ativação Comportamental (BA) e Engenharia do Reforço</h2>
+<p>O tratamento da anedonia e da avolição (comuns nos espectros de Internalização e Desprendimento) é feito através da Ativação Comportamental (BA<strong>)</strong>, mas com uma base processual.</p>
+<p>Fundamento: Ação precede a motivação. O sistema de recompensa (dopaminérgico) precisa ser reativado por reforçadores naturais e alinhados a valores, rompendo o <em>Loop de Esquiva</em> (onde a pessoa evita tarefas aversivas com recompensas imediatas, como o uso excessivo de jogos ou substâncias).</p>
+<p>Técnicas: Uso de agendamento de atividades de &quot;Mestria e Prazer&quot; e Experiências Comportamentais planejadas para gerar um erro de previsão no cérebro, modificando pressupostos (e.g., &quot;Se eu tentar socializar, serei rejeitado&quot; vs. &quot;Consegui ter uma conversa agradável com o colega&quot;).</p>
+<h2 id="projeto-terapeutico-integra--3-3-reflexao-existencial-filosofica">3.3. Reflexão Existencial/Filosófica</h2>
+<p>Para além da reestruturação e da ação, o processo incorpora uma dimensão de reflexão sobre a própria existência, crucial para indivíduos com alta Abertura à Experiência:</p>
+<p>Validação do Tédio Existencial: O desconforto com a realidade mundana é validado.</p>
+<p>Clarificação de Valores: Utiliza-se a <em>Bússola de Valores</em> para garantir que as ações diárias estejam alinhadas com o que o paciente considera significativo (ex: , liderança, conexão, criação), transformando a motivação de uma obrigação para uma escolha.</p>
+<p>Neuroplasticidade e Biografia: O paciente é encorajado a reinterpretar sua própria história (e.g., trauma, sucesso passado) não como determinantes rígidos, mas como evidências de sua capacidade intrínseca de neuroplasticidade e mudança.</p>
+<h2 id="projeto-terapeutico-integra--4-otimizacao-tecnologica-e-feedback-personalizado">4. Otimização Tecnológica e <em>Feedback</em> Personalizado</h2>
+<p>A prática integra a tecnologia para aumentar a consistência, o engajamento e a qualidade do <em>feedback</em> fora do consultório.</p>
+<div class="tabela-wrap"><table><thead><tr><th>Ferramenta Tecnológica</th><th>Funcionalidade e Aplicação na Prática</th></tr></thead><tbody><tr><td><strong>Plataforma de Mapeamento (Human Track)</strong></td><td>Automatização do envio e recebimento de relatórios de progresso, diários de Pensamentos Automáticos e rastreamento de tarefas comportamentais. Permite uma visão longitudinal e objetiva da evolução do processo.</td></tr><tr><td><strong>Conteúdo Multimídia Personalizado (i.A. Assistida)</strong></td><td>Criação de <em>podcasts</em>, vídeos ou <em>slides</em> com conteúdo educativo neurocientífico e psicoterapêutico especificamente adaptado aos processos ativos do paciente</td></tr><tr><td><strong>Envio Automatizado de Materiais</strong></td><td>Garantia de que o paciente receba materiais de apoio e revisão imediatamente após a sessão e ao longo da semana</td></tr></tbody></table></div>
+<p>Essa integração de métodos assegura que o projeto terapêutico seja não apenas baseado em evidências, mas intuitivamente ressonante com as preferências, o perfil cognitivo e os objetivos específicos do indivíduo. A meta é que o paciente se torne o cientista de sua própria experiência, capaz de mapear seu funcionamento e aplicar intervenções de forma autônoma.</p>
+<ul><li></li><li></li></ul>
+    <div class="fim">
+      <p>O ponto de partida deste método é a avaliação. O modelo de leitura está em <a href="/tratado-hitop.html">HiTOP</a> e em <a href="/modelo-12-dominios.html">os 12 domínios</a>.</p>
+      <a class="btn" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">Falar comigo pelo WhatsApp</a>
+      <a class="btn btn-alt" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Agendar pelo Doctoralia</a>
+    </div>
+  </article>
+</div>
+
+
+
+</main>
+
+<footer class="site">
+  <div class="nap">
+    <p><b class="nome">Pedro Andrade Rüger</b> · Psicólogo e Neuropsicólogo · CRP 04/63435</p>
+    <address>
+      R. Paracatu, 1163 – Sala 904 – Santo Agostinho<br>
+      Belo Horizonte – MG · CEP 30180-098<br>
+      <a href="tel:+5531999846282">(31) 99984-6282</a> ·
+      <a href="https://wa.me/message/TOXTR5MSFUHSE1" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:pedro.rugerr@gmail.com">pedro.rugerr@gmail.com</a>
+    </address>
+    <p style="margin-top:.6rem">
+      <a href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Doctoralia</a> ·
+      <a href="https://www.google.com/search?q=Psic%C3%B3logo+Pedro+Andrade+R%C3%BCger+Neuropsicologia+Belo+Horizonte" target="_blank" rel="noopener">Perfil no Google</a> ·
+      <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    </p>
+    <p style="margin-top:.6rem">Atendimento presencial em Belo Horizonte e online · português e inglês</p>
+    <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>

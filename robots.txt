@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /index (
+Disallow: /index%20(
+Disallow: /download
 
 Sitemap: https://pedrorugerr-droid.github.io/sitemap.xml

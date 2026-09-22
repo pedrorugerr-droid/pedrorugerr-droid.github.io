@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demências: Progressão das Alterações Neuropsicológicas</title>
+<meta name="description" content="Revisão da progressão neuropsicológica nas demências: Alzheimer típica e atípica, frontotemporal, corpos de Lewy, vascular e pseudodemência depressiva.">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/demencias.html">
+<meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo">
+<meta property="og:title" content="Demências: Progressão das Alterações Neuropsicológicas">
+<meta property="og:description" content="Revisão da progressão neuropsicológica nas demências: Alzheimer típica e atípica, frontotemporal, corpos de Lewy, vascular e pseudodemência depressiva.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/demencias.html">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pedro Andrade Rüger — Psicólogo e Neuropsicólogo, CRP 04/63435, Belo Horizonte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Demências: Progressão das Alterações Neuropsicológicas">
+<meta name="twitter:description" content="Revisão da progressão neuropsicológica nas demências: Alzheimer típica e atípica, frontotemporal, corpos de Lewy, vascular e pseudodemência depressiva.">
+<meta name="twitter:image" content="https://pedrorugerr-droid.github.io/og.png">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+#pg-demencias{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
+#pg-demencias a{color:inherit;text-decoration:none}
+#pg-demencias /* barra de progresso de leitura */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--vermelho);z-index:70;transition:width .08s linear}
+#pg-demencias /* capa do artigo */
+  .capa{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:3.5rem 0 3rem}
+#pg-demencias .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+#pg-demencias .back{display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:rgba(255,248,231,.6)}
+#pg-demencias .back:hover{color:var(--vermelho)}
+#pg-demencias .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
+#pg-demencias .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
+#pg-demencias .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-demencias .capa h1{font-family:Georgia,serif;font-size:2.3rem;line-height:1.2;max-width:22ch;margin-bottom:.9rem}
+#pg-demencias .capa .dek{font-size:1.02rem;color:rgba(255,248,231,.8);max-width:62ch}
+#pg-demencias .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(255,248,231,.15);font-size:.8rem;color:rgba(255,248,231,.6);line-height:1.9}
+#pg-demencias .creditos b{color:var(--creme);font-weight:600}
+@media(max-width:680px){#pg-demencias .capa h1{font-size:1.7rem}}
+#pg-demencias /* layout leitura */
+  .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
+#pg-demencias .layout>*{min-width:0}
+@media(max-width:980px){#pg-demencias .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
+#pg-demencias /* sumário */
+  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:.82rem;padding-right:.5rem}
+#pg-demencias .toc h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-family:"Segoe UI",sans-serif}
+#pg-demencias .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--sub);line-height:1.4;transition:.15s}
+#pg-demencias .toc a:hover{border-left-color:var(--vermelho);color:var(--vinho)}
+#pg-demencias .toc a.lv3{padding-left:1.4rem;font-size:.78rem;color:var(--muted)}
+#pg-demencias .toc a.on{border-left-color:var(--vermelho);color:var(--vinho);font-weight:600}
+@media(max-width:980px){#pg-demencias .toc{position:static;max-height:none;background:var(--papel);border:1px solid var(--borda);border-radius:14px;padding:1.2rem}
+#pg-demencias .toc details summary{cursor:pointer;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);font-weight:700}
+#pg-demencias .toc .lista{margin-top:.9rem;max-height:45vh;overflow-y:auto}}
+@media(min-width:981px){#pg-demencias .toc details summary{display:none}
+#pg-demencias .toc .lista{display:block!important}}
+#pg-demencias /* corpo do artigo */
+  article{background:var(--papel);border:1px solid var(--borda);border-radius:18px;padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
+@media(max-width:680px){#pg-demencias article{padding:1.6rem;border-radius:12px}}
+#pg-demencias article p{font-family:Georgia,"Times New Roman",serif;font-size:1.045rem;line-height:1.78;color:var(--texto);margin-bottom:1.15rem}
+#pg-demencias article p.subtitulo{font-family:"Segoe UI",sans-serif;font-size:.95rem;color:var(--bordo);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
+#pg-demencias article h2{font-family:Georgia,serif;font-size:1.6rem;color:var(--vinho);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--vermelho);letter-spacing:.5px}
+#pg-demencias article h2:first-child{margin-top:0;padding-top:0;border-top:none}
+#pg-demencias article h3{font-family:Georgia,serif;font-size:1.18rem;color:var(--vinho);margin:2rem 0 .7rem}
+#pg-demencias article h4{font-family:"Segoe UI",sans-serif;font-size:.96rem;color:var(--bordo);margin:1.5rem 0 .5rem;letter-spacing:.2px}
+#pg-demencias article ul{list-style:none;margin:0 0 1.2rem}
+#pg-demencias article li{font-family:Georgia,serif;font-size:1.005rem;line-height:1.7;color:var(--sub);padding:.32rem 0 .32rem 1.25rem;position:relative}
+#pg-demencias article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--vermelho)}
+#pg-demencias article strong{color:var(--vinho)}
+#pg-demencias article em{font-style:italic}
+#pg-demencias .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:10px}
+#pg-demencias article table{border-collapse:collapse;width:100%;font-family:"Segoe UI",sans-serif;font-size:.84rem;min-width:560px}
+#pg-demencias article th,#pg-demencias article td{min-width:118px;word-break:normal;overflow-wrap:break-word;hyphens:none}
+#pg-demencias article th{background:var(--vinho);color:var(--creme);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px}
+#pg-demencias article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--sub);vertical-align:top}
+#pg-demencias article tbody tr:nth-child(even){background:rgba(232,192,192,.13)}
+#pg-demencias .aviso-topo{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.88rem;padding:1.1rem 1.3rem;border-radius:10px;margin-bottom:2rem;line-height:1.65}
+#pg-demencias .aviso-topo b{color:#4d3b00}
+#pg-demencias .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:.85rem;color:var(--muted);line-height:1.8}
+#pg-demencias .fim a{color:var(--bordo);font-weight:600}
+#pg-demencias .btn{display:inline-block;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.88rem;background:var(--vermelho);color:#fff;margin-top:1rem}
+#pg-demencias .btn:hover{background:#c0240f}
+#pg-demencias .fim .btn-alt{background:transparent;color:var(--bordo);border:1.5px solid var(--borda);margin-left:.5rem}
+#pg-demencias .fim .btn-alt:hover{border-color:var(--vermelho);background:transparent}
+@media print{#pg-demencias .toc,#pg-demencias .btn,#pg-demencias .back{display:none!important}
+#pg-demencias{background:#fff}
+#pg-demencias .capa{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+#pg-demencias .capa h1,#pg-demencias .capa .dek,#pg-demencias .creditos,#pg-demencias .creditos b{color:#000}
+#pg-demencias .layout{display:block;padding:0}
+#pg-demencias article{border:none;padding:0;max-width:none;background:#fff}
+#pg-demencias article h2{break-after:avoid}
+#pg-demencias article table{font-size:.7rem}}
+#pg-demencias article p.ref{font-size:.88rem;line-height:1.6;color:var(--muted);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:"Segoe UI",sans-serif;overflow-wrap:break-word}
+#pg-demencias article p.ref a{color:var(--bordo)}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Demências: Progressão das Alterações Neuropsicológicas",
+ "description": "Revisão da progressão neuropsicológica nas demências: Alzheimer típica e atípica, frontotemporal, corpos de Lewy, vascular e pseudodemência depressiva.",
+ "url": "https://pedrorugerr-droid.github.io/demencias.html",
+ "mainEntityOfPage": {
+  "@type": "WebPage",
+  "@id": "https://pedrorugerr-droid.github.io/demencias.html"
+ },
+ "inLanguage": "pt-BR",
+ "datePublished": "2026-09-18",
+ "dateModified": "2026-09-18",
+ "image": "https://pedrorugerr-droid.github.io/og.png",
+ "author": {
+  "@type": "Person",
+  "name": "Pedro Andrade Rüger",
+  "jobTitle": "Psicólogo e Neuropsicólogo",
+  "url": "https://pedrorugerr-droid.github.io/",
+  "identifier": "CRP 04/63435",
+  "sameAs": [
+   "https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte",
+   "https://www.youtube.com/@pedroandraderuger",
+   "https://www.linkedin.com/in/pedro-andrade-r%C3%BCger"
+  ]
+ },
+ "publisher": {
+  "@type": "Psychologist",
+  "@id": "https://pedrorugerr-droid.github.io/#psicologo",
+  "name": "Pedro Andrade Rüger",
+  "url": "https://pedrorugerr-droid.github.io/"
+ }
+}
+</script>
+</head>
+<body>
+<div id="prog"></div>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
+    <div class="menu">
+      <a href="/#home--sobre">Sobre</a>
+      <a href="/o-que-eu-faco.html">Serviços</a>
+      <a href="/avaliacao-neuropsicologica.html">Avaliação</a>
+      <a href="/psicoterapia.html">Psicoterapia</a>
+      <a href="/#home--conteudo" data-op>Conteúdo</a>
+      <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
+      <a href="/#home--contato" class="nav-cta">Falar comigo</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <nav id="gaveta">
+    <a href="/">Início</a>
+    <a href="/#home--sobre">Sobre</a>
+    <a href="/#home--instrumentos">Instrumentos</a>
+    <div class="grupo">Serviços</div>
+    <a href="/o-que-eu-faco.html">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica</a>
+    <a href="/psicoterapia.html">Psicoterapia</a>
+    <a href="/psicodiagnostico.html">Psicodiagnóstico</a>
+    <a href="/orientacao-profissional.html">Orientação de carreira</a>
+    <div class="grupo">Conteúdo para todos</div>
+    <a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>
+    <a href="/autismo-e-alimentacao.html">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos.html">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five.html">Os cinco traços</a>
+    <div class="grupo">Conteúdo técnico</div>
+    <a href="/modelo-4-camadas.html">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop.html">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios.html">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico.html">Projeto terapêutico</a>
+    <a href="/idnap.html">IDNAP</a>
+    <a href="/demencias.html">Demências</a>
+    <a href="/neurobiologia-da-linguagem.html">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro.html">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah.html">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores.html">Neurofarmacologia</a>
+    <div class="grupo">Protocolos integrais</div>
+    <a href="/mindfulness-protocolo.html">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes.html">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes.html">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao.html">Big Five, faceta a faceta</a>
+    <div class="grupo">Mais</div>
+    <a href="/neuro-age.html">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos.html">Grupo de estudos</a>
+    <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    <a href="/#home--contato">Falar comigo</a>
+  </nav>
+</header>
+
+<main class="pagina" id="pg-demencias">
+
+
+<section class="capa">
+  <div class="in">
+    <a class="back" href="/#home--conteudo">← Voltar ao conteúdo</a>
+    <div class="badge tec">Revisão sistemática · texto integral</div>
+    <h1>Progressão das alterações neuropsicológicas nas demências</h1>
+    <p class="dek">Revisão sistemática PRISMA 2020 sobre a correspondência entre teste, domínio e síndrome. Nenhum marcador é patognomônico. O padrão relativo entre domínios é que discrimina.</p>
+    <div class="creditos"><b>Pedro Andrade Rüger</b>: Psicólogo, CRP 04/63435 · Neuropsicólogo · Discente de Medicina (PUC Minas)<br>Coautoria: Jonas Jardim de Paula (UFMG, Grupo Cog-Aging) · Lafaiete Guimarães Moreira (FUMEC e UFMG)<br>Revisão sistemática conduzida segundo o PRISMA 2020</div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="toc">
+    <details open>
+      <summary>Sumário: 25 seções</summary>
+      <h5>Neste documento</h5>
+      <div class="lista">
+        <a class="lv2" href="#demencias--resumo">Resumo</a>
+        <a class="lv2" href="#demencias--1-introducao">1 Introdução</a>
+        <a class="lv2" href="#demencias--2-metodo">2 Método</a>
+        <a class="lv3" href="#demencias--2-1-pergunta-de-revisao">2.1 Pergunta de revisão</a>
+        <a class="lv3" href="#demencias--2-2-bases-descritores-e-periodo">2.2 Bases, descritores e período</a>
+        <a class="lv3" href="#demencias--2-3-criterios-de-elegibilidade">2.3 Critérios de elegibilidade</a>
+        <a class="lv3" href="#demencias--2-4-selecao-dos-estudos">2.4 Seleção dos estudos</a>
+        <a class="lv3" href="#demencias--2-5-extracao-de-dados-e-avaliacao-de-qualidade">2.5 Extração de dados e avaliação de qualidade</a>
+        <a class="lv2" href="#demencias--3-resultados">3 Resultados</a>
+        <a class="lv3" href="#demencias--3-2-doenca-de-alzheimer-tipica">3.2 Doença de Alzheimer típica</a>
+        <a class="lv3" href="#demencias--3-3-variantes-atipicas-da-doenca-de-alzheimer">3.3 Variantes atípicas da doença de Alzheimer</a>
+        <a class="lv3" href="#demencias--3-4-degeneracao-frontotemporal-variante-comportamental">3.4 Degeneração frontotemporal, variante comportamental</a>
+        <a class="lv3" href="#demencias--3-5-afasias-progressivas-primarias">3.5 Afasias progressivas primárias</a>
+        <a class="lv3" href="#demencias--3-6-demencia-com-corpos-de-lewy">3.6 Demência com corpos de Lewy</a>
+        <a class="lv3" href="#demencias--3-7-demencia-da-doenca-de-parkinson">3.7 Demência da doença de Parkinson</a>
+        <a class="lv3" href="#demencias--3-8-paralisia-supranuclear-progressiva-e-degeneracao-cortico">3.8 Paralisia supranuclear progressiva e degeneração corticobasal</a>
+        <a class="lv3" href="#demencias--3-9-demencia-vascular-e-demencia-mista">3.9 Demência vascular e demência mista</a>
+        <a class="lv3" href="#demencias--3-10-pseudodemencia-depressiva">3.10 Pseudodemência depressiva</a>
+        <a class="lv3" href="#demencias--3-11-acuracia-e-sobreposicao-dos-marcadores">3.11 Acurácia e sobreposição dos marcadores</a>
+        <a class="lv2" href="#demencias--4-discussao">4 Discussão</a>
+        <a class="lv3" href="#demencias--4-2-arquitetura-proposta-da-bateria">4.2 Arquitetura proposta da bateria</a>
+        <a class="lv3" href="#demencias--4-3-leitura-longitudinal">4.3 Leitura longitudinal</a>
+        <a class="lv3" href="#demencias--4-4-limitacoes">4.4 Limitações</a>
+        <a class="lv2" href="#demencias--5-consideracoes-finais">5 Considerações finais</a>
+        <a class="lv2" href="#demencias--referencias">Referências</a>
+      </div>
+    </details>
+  </aside>
+
+  <article id="demencias--texto">
+
+<h2 id="demencias--resumo">Resumo</h2>
+<p>Introdução: o diagnóstico diferencial das demências depende do reconhecimento de que cada síndrome possui uma assinatura cognitiva e uma ordem característica própria de instalação e desenvolvimento dos déficits. Objetivo: revisar de forma sistemática a progressão das alterações neuropsicológicas nas principais demências e estabelecer a correspondência entre domínio cognitivo, instrumento e síndrome. Método: revisão sistemática conduzida segundo os princípios do PRISMA 2020, com busca nas bases PubMed e SciELO e busca manual em diretrizes e listas de referências, entre 2000 e 2025. A seleção, a extração e a avaliação de qualidade foram realizadas por dois revisores independentes, com resolução de divergências por consenso. Resultados: foram incluídos treze estudos na síntese, além de duas obras citadas como referências de contexto, abrangendo critérios diagnósticos consensuais, revisões e estudos de acurácia. Para cada síndrome, descrevem-se a sequência temporal dos déficits, os achados de neuroimagem e o marcador que a distingue, com atenção à sobreposição entre quadros e aos limites de sensibilidade e especificidade dos testes. Conclusão: nenhum marcador isolado é patognomônico, mas o padrão relativo entre domínios discrimina as síndromes; uma bateria eficaz deve conter, em cada domínio, o instrumento sensível ao marcador diferencial, com preferência por testes validados e normatizados para a população brasileira.</p>
+<p>Palavras-chave: Demência. Avaliação neuropsicológica. Diagnóstico diferencial. Progressão da doença. Revisão sistemática.</p>
+<h2 id="demencias--1-introducao">1 Introdução</h2>
+<p>As demências constituem um grupo heterogêneo de síndromes clínicas nas quais o declínio cognitivo adquirido compromete a autonomia funcional. O erro diagnóstico mais comum na prática não decorre da ausência de testes, mas da leitura equivocada de um perfil, ou seja, da tentativa de reduzir síndromes distintas a um único escore global de rastreio. Nesse sentido, a presente revisão é organizada a partir do princípio de que cada demência possui uma assinatura cognitiva e, sobretudo, uma ordem temporal característica na instalação dos déficits, de modo que o valor de um teste não está no que ele mede isoladamente, mas na sua capacidade de contribuir para a leitura de um padrão que separa uma síndrome das demais (WEINTRAUB; WICKLUND; SALMON, 2012; KIPPS; HODGES, 2005).</p>
+<p>A doença de Alzheimer ilustra o princípio. Seu substrato neuropatológico progride de forma previsível, das regiões transentorrinal e entorrinal para o hipocampo e, por fim, para o neocórtex de associação, conforme o estadiamento de Braak e Braak (1991). A essa progressão anatômica corresponde uma progressão clínica que parte de um comprometimento amnéstico de padrão hipocampal e avança para o acometimento executivo, de linguagem e visuoespacial (JACK JR. et al., 2024). É importante, contudo, evitar a leitura determinística desses marcadores. Como demonstrado por revisões com meta-regressão, existe uma sobreposição substancial entre síndromes, e a acurácia de cada teste isolado é limitada, de modo que o diagnóstico emerge do conjunto e não de um resultado único (SOKOLOVIČ et al., 2023).</p>
+<p>Este artigo tem três objetivos. O primeiro é revisar de forma sistemática a sequência de alterações neuropsicológicas de cada demência. O segundo é descrever os achados de neuroimagem estrutural e funcional que corroboram cada perfil. O terceiro é estabelecer a correspondência entre domínio cognitivo, instrumento e síndrome, reconhecendo a sobreposição entre quadros, de forma a fundamentar a arquitetura de uma bateria diagnóstica adequada à realidade brasileira, na qual a validação e a existência de normas locais são condições práticas incontornáveis (SMID et al., 2022; BARBOSA et al., 2022).</p>
+<h2 id="demencias--2-metodo">2 Método</h2>
+<p>Trata-se de revisão sistemática da literatura, de síntese qualitativa e orientação diagnóstica, conduzida segundo os princípios do PRISMA 2020 no que se refere à formulação da pergunta, à estratégia de busca, aos critérios de elegibilidade, ao processo de seleção e à apresentação do fluxo de estudos. A seleção dos estudos, a extração de dados e a avaliação de qualidade foram conduzidas de forma independente por dois revisores, com resolução de divergências por consenso.</p>
+<h3 id="demencias--2-1-pergunta-de-revisao">2.1 Pergunta de revisão</h3>
+<p>A pergunta foi estruturada no formato PECO. População: adultos e idosos com suspeita de síndrome demencial. Exposição: avaliação neuropsicológica organizada por domínios cognitivos. Comparação: entre os diferentes perfis sindrômicos de demência. Desfecho: identificação da sequência de alterações e do marcador diferencial capturável por teste. A questão central foi assim enunciada: qual a progressão típica das alterações neuropsicológicas em cada demência e qual instrumento é sensível ao marcador que a distingue?</p>
+<h3 id="demencias--2-2-bases-descritores-e-periodo">2.2 Bases, descritores e período</h3>
+<p>A busca foi executada nas bases PubMed e SciELO, complementada por busca manual em diretrizes de sociedades científicas e nas listas de referências dos estudos recuperados. O período abrangeu publicações de 2000 a 2025, com inclusão adicional de trabalhos seminais anteriores citados nas diretrizes. Empregaram-se descritores em inglês e português combinados por operadores booleanos. Os principais descritores por síndrome incluíram Alzheimer, frontotemporal, primary progressive aphasia, Lewy bodies, Parkinson, progressive supranuclear palsy, corticobasal e vascular cognitive impairment.</p>
+<h3 id="demencias--2-3-criterios-de-elegibilidade">2.3 Critérios de elegibilidade</h3>
+<p>Foram incluídos critérios diagnósticos consensuais, estudos longitudinais de progressão, estudos de sensibilidade e especificidade, revisões sistemáticas e estudos de normatização brasileira, com descrição explícita do perfil cognitivo. Foram excluídos relatos de caso isolados, estudos sem descrição do perfil cognitivo, materiais sem revisão por pares e trabalhos com população fora do escopo etário. A avaliação de qualidade priorizou a origem consensual dos critérios e o tamanho e a verificação diagnóstica das amostras.</p>
+<h3 id="demencias--2-4-selecao-dos-estudos">2.4 Seleção dos estudos</h3>
+<p>Foram identificados cento e noventa registros, dos quais vinte e dois foram removidos como duplicatas. Cento e sessenta e oito registros foram triados por título e resumo, com exclusão de cento e vinte. Quarenta e oito textos completos foram avaliados quanto à elegibilidade, e trinta e cinco foram excluídos por ausência de descrição do perfil cognitivo, ausência de revisão por pares ou população fora do escopo. Treze estudos foram incluídos na síntese qualitativa. Duas obras adicionais, o estadiamento neuropatológico de Braak e Braak (1991) e os padrões de neuroimagem de Duering et al. (2023), são citadas como referências de contexto e não integram o conjunto triado, por não descreverem perfil cognitivo. A triagem e a avaliação dos textos completos foram realizadas de forma independente por dois revisores, sendo a segunda revisão assistida por inteligência artificial. A concordância bruta entre os revisores foi de 86,7 por cento, e as duas divergências foram resolvidas por decisão editorial de consenso.</p>
+<h3 id="demencias--2-5-extracao-de-dados-e-avaliacao-de-qualidade">2.5 Extração de dados e avaliação de qualidade</h3>
+<p>Os dados foram extraídos por dois revisores de forma independente, com formulário padronizado que registrou o delineamento, a população, a síndrome-alvo, os domínios avaliados, os instrumentos e os achados de acurácia e de neuroimagem. A avaliação de qualidade considerou a origem consensual dos critérios, o tamanho amostral e a verificação diagnóstica das amostras, e foi igualmente conduzida em duplicata.</p>
+<h2 id="demencias--3-resultados">3 Resultados</h2>
+<p class="subtitulo">3.1 Considerações gerais e limites de acurácia</p>
+<p>Os treze estudos incluídos convergem em um ponto central: a avaliação por domínios aumenta a sensibilidade da diferenciação, sobretudo para as demências não Alzheimer, nas quais a memória pode não ser o primeiro domínio afetado (WEINTRAUB; WICKLUND; SALMON, 2012; KIPPS; HODGES, 2005). Convergem também em um alerta: nenhum teste isolado é patognomônico. A revisão com meta-regressão de Sokolovič et al. (2023), que reuniu cento e vinte e dois estudos e mais de vinte e três mil pacientes, mostra que as diferenças entre doença de Alzheimer e demência vascular, embora consistentes na direção esperada, apresentam ampla sobreposição de desempenho, de modo que os marcadores devem ser lidos como probabilísticos e integrados ao conjunto clínico e de neuroimagem.</p>
+<h3 id="demencias--3-2-doenca-de-alzheimer-tipica">3.2 Doença de Alzheimer típica</h3>
+<p>O quadro típico inicia por falha desproporcional da memória episódica, com déficit de consolidação e armazenamento. Observa-se baixo aprendizado ao longo das tentativas, curva de aprendizagem aplanada e, sobretudo, ausência de melhora da evocação com pistas ou com reconhecimento, o chamado padrão de esquecimento hipocampal, marcador que, ainda assim, apresenta sobreposição com outras síndromes e deve ser lido de forma probabilística (SOKOLOVIČ et al., 2023). Com a progressão, seguem-se o comprometimento executivo e de linguagem, na forma de anomia, e, mais tardiamente, das habilidades visuoespaciais, enquanto a cognição social permanece relativamente poupada no início (JACK JR. et al., 2024). Essa ordem acompanha a progressão neuropatológica das cortices transentorrinal e entorrinal para o hipocampo e o neocórtex (BRAAK; BRAAK, 1991).</p>
+<p>Na ressonância magnética estrutural, o achado característico é a atrofia do lobo temporal medial, com destaque para o hipocampo, desproporcional à atrofia global, seguida de atrofia temporoparietal. A tomografia por emissão de pósitrons com fluordesoxiglicose evidencia hipometabolismo temporoparietal e do cíngulo posterior, e os biomarcadores de amiloide, tau e neurodegeneração sustentam o diagnóstico biológico (JACK JR. et al., 2024).</p>
+<h3 id="demencias--3-3-variantes-atipicas-da-doenca-de-alzheimer">3.3 Variantes atípicas da doença de Alzheimer</h3>
+<p>Em parcela dos casos, sobretudo de início precoce, a doença de Alzheimer manifesta-se por perfis atípicos. Na variante disexecutiva, predomina o comprometimento executivo com memória relativamente preservada no início. Na atrofia cortical posterior, o quadro abre por déficits visuoespaciais e visuoperceptivos graves, com atrofia occipitoparietal. Na variante logopênica, observam-se anomia e prejuízo da repetição de frases por déficit da memória fonológica de curto prazo, com atrofia temporoparietal esquerda. Nas três formas, os biomarcadores confirmam a etiologia Alzheimer apesar da apresentação não amnéstica (JACK JR. et al., 2024; GORNO-TEMPINI et al., 2011).</p>
+<h3 id="demencias--3-4-degeneracao-frontotemporal-variante-comportamental">3.4 Degeneração frontotemporal, variante comportamental</h3>
+<p>A variante comportamental inicia por mudança de personalidade e conduta, com desinibição, apatia ou inércia, perda de empatia, comportamentos compulsivos, hiperoralidade e perda de crítica. A disfunção executiva e o comprometimento da cognição social são precoces, enquanto a memória episódica e as habilidades visuoespaciais permanecem relativamente poupadas no início, contraste que a distingue da doença de Alzheimer (RASCOVSKY et al., 2011). A ressonância revela atrofia frontal e temporal anterior, frequentemente assimétrica, e a tomografia com fluordesoxiglicose demonstra hipometabolismo frontal e temporal anterior.</p>
+<h3 id="demencias--3-5-afasias-progressivas-primarias">3.5 Afasias progressivas primárias</h3>
+<p>As afasias progressivas primárias constituem um espectro com três variantes de perfil distinto (GORNO-TEMPINI et al., 2011). Na variante semântica, há anomia grave e perda da compreensão de palavra única e do conhecimento conceitual, com fala fluente, correspondendo a atrofia do lobo temporal anterior de predomínio esquerdo. Na variante não fluente ou agramática, observam-se fala esforçada, agramatismo e apraxia de fala, com compreensão de palavra preservada e atrofia frontoinsular posterior esquerda. Na variante logopênica, predominam anomia e falha na repetição de frases, com atrofia temporoparietal esquerda e etiologia habitualmente Alzheimer. Abordagens clínicas mais recentes reforçam a heterogeneidade do espectro e a necessidade de avaliar de forma sistemática a nomeação, a compreensão de palavra única e a repetição de frases para separar as três variantes (MARSHALL et al., 2018).</p>
+<h3 id="demencias--3-6-demencia-com-corpos-de-lewy">3.6 Demência com corpos de Lewy</h3>
+<p>Ao contrário da doença de Alzheimer, a memória costuma estar relativamente preservada no início, enquanto predominam o comprometimento atencional, a disfunção executiva e, de forma precoce e desproporcional, o déficit visuoespacial e visuoperceptivo. Os pilares clínicos são a flutuação da cognição e da atenção, as alucinações visuais bem formadas, o transtorno comportamental do sono REM e o parkinsonismo (McKEITH et al., 2017). A ressonância estrutural pode estar relativamente preservada nas fases iniciais, e a relativa preservação do lobo temporal medial em relação à doença de Alzheimer é apontada como sinal a favor, embora haja sobreposição e frequente patologia mista. Entre os biomarcadores indicativos figuram a redução da captação estriatal de dopamina na cintilografia com transportador de dopamina, a redução na cintilografia miocárdica com metaiodobenzilguanidina e a confirmação de sono REM sem atonia na polissonografia.</p>
+<h3 id="demencias--3-7-demencia-da-doenca-de-parkinson">3.7 Demência da doença de Parkinson</h3>
+<p>O perfil cognitivo sobrepõe-se ao da demência com corpos de Lewy, com predomínio disexecutivo, atencional e visuoespacial. A distinção assenta em critério temporal: na demência da doença de Parkinson, o quadro demencial surge mais de um ano após o parkinsonismo estabelecido, enquanto, na demência com corpos de Lewy, a alteração cognitiva e o parkinsonismo surgem de forma concomitante ou a cognição precede o quadro motor. Os biomarcadores de transportador de dopamina são alterados em ambas, de modo que a diferenciação é sobretudo clínica e cronológica (EMRE et al., 2007; McKEITH et al., 2017).</p>
+<h3 id="demencias--3-8-paralisia-supranuclear-progressiva-e-degeneracao-cortico">3.8 Paralisia supranuclear progressiva e degeneração corticobasal</h3>
+<p>Ambas cursam com síndrome disexecutiva subcortical proeminente. Na paralisia supranuclear progressiva, somam-se lentidão cognitiva, apatia e disfunção executiva grave, com paralisia do olhar vertical e quedas precoces, e a ressonância evidencia atrofia mesencefálica. Na degeneração corticobasal, a apraxia ideomotora assimétrica é o achado mais sugestivo, acompanhada de fenômeno do membro alienígena e déficit sensitivo cortical, com atrofia frontoparietal assimétrica, contralateral ao lado mais afetado. Ambas correspondem a tauopatias. Os critérios consensuais vigentes orientam o diagnóstico de cada quadro (HÖGLINGER et al., 2017; ARMSTRONG et al., 2013). Do ponto de vista temporal, ambas costumam iniciar por volta da sétima década de vida e têm curso progressivo, com sobrevida mediana em torno de seis a nove anos. A heterogeneidade da apresentação corticobasal merece destaque: a síndrome corticobasal, definida clinicamente, deve ser distinguida da degeneração corticobasal, definida pela neuropatologia, pois a mesma síndrome clínica pode decorrer de patologia de Alzheimer, de paralisia supranuclear progressiva ou de degeneração lobar frontotemporal (LING et al., 2010; ARMSTRONG et al., 2013).</p>
+<h3 id="demencias--3-9-demencia-vascular-e-demencia-mista">3.9 Demência vascular e demência mista</h3>
+<p>O perfil clássico é subcortical, com lentificação do processamento e disfunção executiva e atencional proeminentes, enquanto a memória permanece relativamente mais preservada e, de forma característica, melhora com pistas, em contraste com a doença de Alzheimer. O perfil subcortical é descrito nos critérios consensuais (SKROBOT et al., 2018), e a diferença de desempenho, embora consistente na direção esperada, apresenta ampla sobreposição, o que reduz o valor de qualquer teste isolado (SOKOLOVIČ et al., 2023). O início e o curso dependem do substrato, sendo súbito e em degraus na forma multi-infarto e insidioso na doença de pequenos vasos. A demência mista, que combina o padrão amnéstico ao disexecutivo vascular, é a apresentação mais frequente no idoso. A ressonância documenta infartos, lacunas, hiperintensidades da substância branca, micro-hemorragias e espaços perivasculares aumentados (DUERING et al., 2023). No Brasil, as recomendações da Academia Brasileira de Neurologia orientam o rastreio e destacam a sensibilidade das medidas executivas e de velocidade de processamento (BARBOSA et al., 2022).</p>
+<h3 id="demencias--3-10-pseudodemencia-depressiva">3.10 Pseudodemência depressiva</h3>
+<p>A depressão de início tardio pode simular demência. O quadro caracteriza-se por queixa cognitiva com esforço e motivação reduzidos, respostas do tipo não sei, desempenho variável e rebaixamento de atenção e velocidade. O marcador diferencial é que a memória melhora de forma substancial com pistas e o reconhecimento é preservado, ao contrário do padrão hipocampal da doença de Alzheimer. Na ressonância, não há atrofia desproporcional do lobo temporal medial, e os biomarcadores de amiloide e tau são negativos, sustentando causa não degenerativa e potencialmente reversível (BRODATY; CONNORS, 2020).</p>
+<h3 id="demencias--3-11-acuracia-e-sobreposicao-dos-marcadores">3.11 Acurácia e sobreposição dos marcadores</h3>
+<p>A leitura recomendada é probabilística: o marcador aumenta ou reduz a verossimilhança de uma hipótese, mas raramente a confirma isoladamente.</p>
+<div class="tabela-wrap"><table><thead><tr><th>Contraste</th><th>Marcador neuropsicológico</th><th>Ressalva de acurácia</th></tr></thead><tbody><tr><td>Alzheimer vs. depressão</td><td>Reconhecimento rebaixado na Alzheimer, preservado na depressão</td><td>Bom poder discriminativo, mas depende de ponto de corte e escolaridade</td></tr><tr><td>Alzheimer vs. vascular</td><td>Memória melhora com pista na vascular; velocidade mais afetada</td><td>Sobreposição ampla de desempenho entre grupos</td></tr><tr><td>Alzheimer vs. frontotemporal</td><td>Cognição social e conduta alteradas com memória preservada na frontotemporal</td><td>Casos amnésticos de frontotemporal reduzem a especificidade</td></tr><tr><td>Corpos de Lewy vs. Alzheimer</td><td>Déficit visuoperceptivo precoce e temporal medial poupado</td><td>Requer biomarcador de transportador de dopamina para maior certeza</td></tr><tr><td>Semântica vs. demais afasias</td><td>Compreensão de palavra única rebaixada</td><td>Sobreposição inicial com anomia de outras etiologias</td></tr></tbody></table></div>
+<h2 id="demencias--4-discussao">4 Discussão</h2>
+<p class="subtitulo">4.1 Do marcador ao instrumento: o que cada teste deve cobrir</p>
+<p>A síntese permite traduzir cada marcador em uma função de teste, desde que se mantenha a leitura probabilística. A tarefa de aprendizagem verbal com reconhecimento deve contribuir para separar a doença de Alzheimer, na qual o reconhecimento é rebaixado, das condições em que a evocação melhora com pistas, como a demência vascular e a pseudodemência depressiva. As provas executivas, como as tarefas de interferência e de alternância, devem captar o comprometimento subcortical e frontal da demência vascular, da paralisia supranuclear e da variante comportamental frontotemporal. As tarefas de linguagem, incluindo nomeação por confronto, compreensão de palavra única e repetição de frases, devem distinguir as três variantes da afasia progressiva. As tarefas visuoespaciais e visuoperceptivas graduadas devem revelar o déficit precoce da demência com corpos de Lewy e da atrofia cortical posterior. As provas de cognição social devem expor a alteração precoce da variante comportamental, e as provas de praxia devem capturar a apraxia assimétrica da degeneração corticobasal (WEINTRAUB; WICKLUND; SALMON, 2012).</p>
+<h3 id="demencias--4-2-arquitetura-proposta-da-bateria">4.2 Arquitetura proposta da bateria</h3>
+<p>Da correspondência decorre um princípio de projeto. A bateria deve ser organizada por domínios e conter, em cada domínio, ao menos um instrumento sensível ao marcador diferencial. Além disso, a escolha dos instrumentos deve privilegiar aqueles validados e normatizados para a população brasileira, uma vez que a interpretação por escores ajustados por idade e escolaridade é condição de validade (MALLOY-DINIZ et al., 2007; DE PAULA et al., 2012; BARBOSA et al., 2022; SMID et al., 2022).</p>
+<div class="tabela-wrap"><table><thead><tr><th>Domínio</th><th>Função diferencial</th><th>Tipo de instrumento</th></tr></thead><tbody><tr><td>Memória episódica verbal</td><td>Separar Alzheimer de vascular e depressão</td><td>Aprendizagem auditivo-verbal com evocação tardia e reconhecimento</td></tr><tr><td>Memória visual</td><td>Corroborar o padrão hipocampal</td><td>Reprodução de figura complexa</td></tr><tr><td>Funções executivas</td><td>Vascular, supranuclear, frontotemporal</td><td>Tarefas de interferência, alternância e fluência fonêmica</td></tr><tr><td>Linguagem</td><td>Afasias progressivas</td><td>Nomeação por confronto, compreensão e repetição de frases</td></tr><tr><td>Visuoespacial e visuoperceptivo</td><td>Corpos de Lewy e Alzheimer posterior</td><td>Orientação de linhas, cópia de figuras, desenho do relógio</td></tr><tr><td>Atenção e velocidade</td><td>Flutuação e perfil vascular</td><td>Tarefa atencional com variabilidade do tempo de reação e dígitos</td></tr><tr><td>Cognição social</td><td>Frontotemporal comportamental</td><td>Reconhecimento de erros sociais e de emoções</td></tr><tr><td>Praxia</td><td>Corticobasal</td><td>Imitação de gestos e uso de objetos</td></tr><tr><td>Funcionalidade</td><td>Estadiamento</td><td>Escala de atividades de vida diária e mobilidade</td></tr></tbody></table></div>
+<h3 id="demencias--4-3-leitura-longitudinal">4.3 Leitura longitudinal</h3>
+<p>A leitura por estágios complementa a transversal. Na doença de Alzheimer, o estadiamento de Braak e Braak (1991) descreve seis estágios, dos confinados às cortices transentorrinal e entorrinal, com cognição normal, à fase neocortical de maior comprometimento. O comprometimento cognitivo leve representa a etapa sintomática pré-demência mais bem definida na prática, e a inclusão de medidas sensíveis à transição, como a evocação tardia e a fluência de categoria, aumenta o valor preditivo da avaliação (PETERSEN, 2004).</p>
+<h3 id="demencias--4-4-limitacoes">4.4 Limitações</h3>
+<p>Esta revisão apresenta limitações que condicionam a força de suas conclusões. A síntese é qualitativa e não incluiu metanálise própria dos índices de acurácia. A busca foi executada por meio das interfaces das bases, sem exportação automatizada, e a revisão não foi registrada em plataforma prospectiva. Além disso, restringiu-se ao inglês e ao português, com possível viés de idioma. Declara-se que parte dos instrumentos e das recomendações citados provém do grupo dos autores, e que a segunda revisão independente foi assistida por inteligência artificial, o que não substitui a revisão por um segundo revisor humano e é declarado por transparência. Recomenda-se, como continuidade, o registro prospectivo do protocolo e um estudo de normatização e de acurácia dos instrumentos propostos.</p>
+<h2 id="demencias--5-consideracoes-finais">5 Considerações finais</h2>
+<p>A revisão confirma que o poder diagnóstico da avaliação neuropsicológica reside no reconhecimento da sequência de alterações e do padrão relativo entre domínios, e não em um escore global de rastreio nem em um marcador isolado, dado o grau de sobreposição entre síndromes. A organização da bateria por domínios, com um instrumento sensível ao marcador diferencial em cada um deles, e a preferência por testes validados e normatizados para a população brasileira constituem a base racional para o desenvolvimento de um instrumento clínico.</p>
+<h2 id="demencias--referencias">Referências</h2>
+<p class="ref">ARMSTRONG, M. J. et al. Criteria for the diagnosis of corticobasal degeneration. Neurology, v. 80, n. 5, p. 496-503, 2013.</p>
+<p class="ref">BARBOSA, B. J. A. P. et al. Diagnóstico do comprometimento cognitivo vascular: recomendações da Academia Brasileira de Neurologia. Dementia and Neuropsychologia, v. 16, n. 3, supl. 1, p. 53-72, 2022.</p>
+<p class="ref">BRAAK, H.; BRAAK, E. Neuropathological stageing of Alzheimer-related changes. Acta Neuropathologica, v. 82, n. 4, p. 239-259, 1991.</p>
+<p class="ref">BRODATY, H.; CONNORS, M. H. Pseudodementia, pseudo-pseudodementia, and pseudodepression. Alzheimer&#x27;s and Dementia: DADM, v. 12, n. 1, e12027, 2020.</p>
+<p class="ref">DE PAULA, J. J. et al. Fidedignidade e validade de construto do Teste de Aprendizagem Auditivo-Verbal de Rey em idosos brasileiros. Revista de Psiquiatria Clínica, v. 39, n. 1, p. 19-23, 2012.</p>
+<p class="ref">DUERING, M. et al. Neuroimaging standards for research into small vessel disease: advances since 2013. The Lancet Neurology, v. 22, n. 7, p. 602-618, 2023.</p>
+<p class="ref">EMRE, M. et al. Clinical diagnostic criteria for dementia associated with Parkinson&#x27;s disease. Movement Disorders, v. 22, n. 12, p. 1689-1707, 2007.</p>
+<p class="ref">GORNO-TEMPINI, M. L. et al. Classification of primary progressive aphasia and its variants. Neurology, v. 76, n. 11, p. 1006-1014, 2011.</p>
+<p class="ref">HÖGLINGER, G. U. et al. Clinical diagnosis of progressive supranuclear palsy: the Movement Disorder Society criteria. Movement Disorders, v. 32, n. 6, p. 853-864, 2017.</p>
+<p class="ref">JACK JR., C. R. et al. Revised criteria for diagnosis and staging of Alzheimer&#x27;s disease. Alzheimer&#x27;s and Dementia, v. 20, n. 8, p. 5143-5169, 2024.</p>
+<p class="ref">KIPPS, C. M.; HODGES, J. R. Cognitive assessment for clinicians. JNNP, v. 76, supl. 1, p. i22-i30, 2005.</p>
+<p class="ref">LING, H. et al. Does corticobasal degeneration exist? A clinicopathological re-evaluation. Brain, v. 133, n. 7, p. 2045-2057, 2010.</p>
+<p class="ref">MALLOY-DINIZ, L. F. et al. The Rey Auditory-Verbal Learning Test: applicability for the Brazilian elderly population. Revista Brasileira de Psiquiatria, v. 29, n. 4, p. 324-329, 2007.</p>
+<p class="ref">MARSHALL, C. R. et al. Primary progressive aphasia: a clinical approach. Journal of Neurology, v. 265, n. 6, p. 1474-1490, 2018.</p>
+<p class="ref">McKEITH, I. G. et al. Diagnosis and management of dementia with Lewy bodies: fourth consensus report. Neurology, v. 89, n. 1, p. 88-100, 2017.</p>
+<p class="ref">PETERSEN, R. C. Mild cognitive impairment as a diagnostic entity. Journal of Internal Medicine, v. 256, n. 3, p. 183-194, 2004.</p>
+<p class="ref">RASCOVSKY, K. et al. Sensitivity of revised diagnostic criteria for the behavioural variant of frontotemporal dementia. Brain, v. 134, n. 9, p. 2456-2477, 2011.</p>
+<p class="ref">SKROBOT, O. A. et al. Progress toward standardized diagnosis of vascular cognitive impairment. Alzheimer&#x27;s and Dementia, v. 14, n. 3, p. 280-292, 2018.</p>
+<p class="ref">SMID, J. et al. Declínio cognitivo subjetivo, comprometimento cognitivo leve e demência: diagnóstico sindrômico. Dementia and Neuropsychologia, v. 16, n. 3, supl. 1, p. 1-24, 2022.</p>
+<p class="ref">SOKOLOVIČ, L. et al. Neuropsychological differential diagnosis of Alzheimer&#x27;s disease and vascular dementia: a systematic review with meta-regressions. Frontiers in Aging Neuroscience, v. 15, art. 1267434, 2023.</p>
+<p class="ref">WEINTRAUB, S.; WICKLUND, A. H.; SALMON, D. P. The neuropsychological profile of Alzheimer disease. Cold Spring Harbor Perspectives in Medicine, v. 2, n. 4, a006171, 2012.</p>
+    <div class="fim">
+      <p>A arquitetura de bateria proposta neste artigo é o que fundamenta o <a href="/neuro-age.html">Neuro-Age Master</a>, a plataforma de avaliação geriátrica desenvolvida a partir dele.</p>
+      <a class="btn" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Cheguei%20pelo%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener">Falar comigo pelo WhatsApp</a>
+      <a class="btn btn-alt" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Agendar pelo Doctoralia</a>
+    </div>
+  </article>
+</div>
+
+
+
+</main>
+
+<footer class="site">
+  <div class="nap">
+    <p><b class="nome">Pedro Andrade Rüger</b> · Psicólogo e Neuropsicólogo · CRP 04/63435</p>
+    <address>
+      R. Paracatu, 1163 – Sala 904 – Santo Agostinho<br>
+      Belo Horizonte – MG · CEP 30180-098<br>
+      <a href="tel:+5531999846282">(31) 99984-6282</a> ·
+      <a href="https://wa.me/message/TOXTR5MSFUHSE1" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:pedro.rugerr@gmail.com">pedro.rugerr@gmail.com</a>
+    </address>
+    <p style="margin-top:.6rem">
+      <a href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Doctoralia</a> ·
+      <a href="https://www.google.com/search?q=Psic%C3%B3logo+Pedro+Andrade+R%C3%BCger+Neuropsicologia+Belo+Horizonte" target="_blank" rel="noopener">Perfil no Google</a> ·
+      <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    </p>
+    <p style="margin-top:.6rem">Atendimento presencial em Belo Horizonte e online · português e inglês</p>
+    <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>
