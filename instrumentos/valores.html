@@ -9,6 +9,15 @@
 <meta name="theme-color" content="#1A0005">
 <link rel="apple-touch-icon" href="icone.png">
 <title>Inventário de Valores Pessoais</title>
+<meta name="description" content="Inventário de Valores Pessoais: hierarquize seus valores por comparações par a par, com verificação de consistência e diário reflexivo. Gratuito e salvo só no seu aparelho.">
+<meta name="author" content="Pedro Andrade Rüger">
+<link rel="canonical" href="https://pedrorugerr-droid.github.io/instrumentos/valores.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Inventário de Valores Pessoais">
+<meta property="og:description" content="Inventário de Valores Pessoais: hierarquize seus valores por comparações par a par, com verificação de consistência e diário reflexivo. Gratuito e salvo só no seu aparelho.">
+<meta property="og:url" content="https://pedrorugerr-droid.github.io/instrumentos/valores.html">
+<meta property="og:image" content="https://pedrorugerr-droid.github.io/og.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 /* ══ RESET ═══════════════════════════════════════════════════════ */
@@ -45,6 +54,8 @@ body { font-family: "Segoe UI","Georgia",system-ui,sans-serif; background:#FFF8E
 .hub-card-start { display:inline-block; padding:.5rem 1rem; border-radius:8px; font-size:.8rem; font-weight:700; color:white; align-self:flex-start; margin-top:.25rem; }
 .hub-card-v .hub-card-start { background:#E02C14; }
 .hub-card-p .hub-card-start { background:#92000A; }
+.hub-site { display:inline-block; margin-bottom:1.4rem; font-size:.8rem; color:rgba(255,248,231,.55); text-decoration:none; }
+.hub-site:hover { color:#E02C14; }
 .hub-footer { margin-top:2.5rem; font-size:.72rem; color:rgba(255,248,231,.3); text-align:center; max-width:480px; line-height:1.6; }
 .hub-cards { grid-template-columns:1fr; max-width:380px; }
 @media(max-width:500px){.hub-cards{grid-template-columns:1fr;}.hub-title{font-size:1.55rem;}}
@@ -263,6 +274,7 @@ button, .v-bussola-header, .p-bussola-header, .collapsible-header, summary, .fac
 <div id="mod-hub" class="main-screen active">
 <div class="hub-wrap">
   <div class="hub-header">
+    <a class="hub-site" href="/">← Voltar ao site</a>
     <div class="hub-logo">Instrumento Clínico &amp; Pessoal</div>
     <h1 class="hub-title">Inventário de<br>Valores Pessoais</h1>
     <div class="hub-authors">
