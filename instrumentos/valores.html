@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Valores">
+<meta name="theme-color" content="#1A0005">
+<link rel="apple-touch-icon" href="icone.png">
+<title>Inventário de Valores Pessoais</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* ══ RESET ═══════════════════════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Segoe UI","Georgia",system-ui,sans-serif; background:#FFF8E7; color:#1A0005; min-height:100vh; }
+.main-screen { display:none; }
+.main-screen.active { display:block; }
+
+/* ══ SHARED AUDIO ════════════════════════════════════════════════ */
+.audio-btn { position:absolute; top:8px; right:8px; width:32px; height:32px; border-radius:50%; border:none; cursor:pointer; background:#fce4e4; display:flex; align-items:center; justify-content:center; font-size:15px; transition:background .15s; z-index:2; }
+.audio-btn:hover { background:#f9c0c0; }
+.audio-btn.recording { background:#fed7d7; animation:pulse-red 1s infinite; }
+@keyframes pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(224,44,20,.4);}50%{box-shadow:0 0 0 6px rgba(224,44,20,0);} }
+
+/* ══ HUB ═════════════════════════════════════════════════════════ */
+.hub-wrap { min-height:100vh; background:linear-gradient(160deg,#1A0005 0%,#2D0010 55%,#1A0005 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2.5rem 1rem; }
+.hub-logo { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,248,231,.4); font-family:Arial,sans-serif; margin-bottom:14px; text-align:center; }
+.hub-title { font-size:2rem; font-weight:800; color:#FFF8E7; line-height:1.2; margin-bottom:1rem; text-align:center; font-family:Georgia,"Times New Roman",serif; }
+.hub-authors { background:rgba(255,248,231,.07); border:1px solid rgba(255,248,231,.16); border-radius:12px; padding:.85rem 1.5rem; display:inline-block; text-align:center; }
+.hub-author-line { font-size:.85rem; color:rgba(255,248,231,.68); line-height:1.7; }
+.hub-author-line strong { color:#FFF8E7; font-weight:600; }
+.hub-header { text-align:center; margin-bottom:2.5rem; max-width:640px; }
+.hub-divider { width:40px; height:3px; background:#E02C14; border-radius:2px; margin:1.25rem auto 0; }
+.hub-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:640px; width:100%; }
+.hub-card { background:rgba(255,248,231,.06); border:1.5px solid rgba(255,248,231,.14); border-radius:18px; padding:2rem 1.75rem; cursor:pointer; text-align:left; font-family:inherit; transition:all .2s; display:flex; flex-direction:column; gap:.75rem; color:#FFF8E7; position:relative; overflow:hidden; }
+.hub-card::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; border-radius:18px 18px 0 0; }
+.hub-card-v::before { background:#E02C14; }
+.hub-card-p::before { background:#92000A; }
+.hub-card:hover { background:rgba(255,248,231,.11); border-color:rgba(224,44,20,.45); transform:translateY(-3px); }
+.hub-card-icon { font-size:2.2rem; line-height:1; }
+.hub-card-title { font-size:1.1rem; font-weight:700; color:#FFF8E7; }
+.hub-card-desc { font-size:.82rem; color:rgba(255,248,231,.6); line-height:1.55; flex:1; }
+.hub-card-meta { font-size:.75rem; color:rgba(255,248,231,.4); border-top:1px solid rgba(255,248,231,.1); padding-top:.75rem; }
+.hub-card-start { display:inline-block; padding:.5rem 1rem; border-radius:8px; font-size:.8rem; font-weight:700; color:white; align-self:flex-start; margin-top:.25rem; }
+.hub-card-v .hub-card-start { background:#E02C14; }
+.hub-card-p .hub-card-start { background:#92000A; }
+.hub-footer { margin-top:2.5rem; font-size:.72rem; color:rgba(255,248,231,.3); text-align:center; max-width:480px; line-height:1.6; }
+.hub-cards { grid-template-columns:1fr; max-width:380px; }
+@media(max-width:500px){.hub-cards{grid-template-columns:1fr;}.hub-title{font-size:1.55rem;}}
+
+/* ══ VALORES MODULE ══════════════════════════════════════════════ */
+.v-wrap {
+  --vprimary:#92000A; --vphover:#6B0008; --vaccent:#FFEEEE;
+  --vtext:#1A0005; --vsub:#5C1A1A; --vmuted:#8B4A4A;
+  --vbg:#FFF8E7; --vcard:#FFFFFF; --vborder:#E8C0C0;
+  --vgold:#92000A; --vgoldbg:#FFF0F0; --vwarn:#7A2000;
+  --vwarnbg:#FFF5F0; --vwarnbord:#E02C14;
+  font-family:"Georgia","Times New Roman",serif;
+  background:var(--vbg); color:var(--vtext); min-height:100vh; padding:20px;
+}
+.v-container { max-width:900px; margin:0 auto; }
+.v-screen { display:none; }
+.v-screen.active { display:block; }
+.v-wrap .hdr { text-align:center; padding:32px 0 24px; }
+.v-wrap .logo { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--vmuted); font-family:Arial,sans-serif; margin-bottom:12px; }
+.v-wrap h1 { font-size:25px; font-weight:normal; color:var(--vprimary); margin-bottom:8px; }
+.v-wrap .lead { font-size:15px; color:var(--vsub); line-height:1.7; max-width:560px; margin:0 auto; }
+.v-wrap .card { background:var(--vcard); border-radius:12px; padding:36px; box-shadow:0 2px 14px rgba(146,0,10,.09); margin-bottom:20px; }
+.v-wrap .instr { background:var(--vaccent); border:1px solid #F0C0C0; border-radius:8px; padding:18px 22px; margin-bottom:26px; font-size:14px; color:var(--vsub); line-height:1.75; }
+.v-wrap .instr h3 { font-size:12px; letter-spacing:.6px; text-transform:uppercase; color:var(--vprimary); font-family:Arial,sans-serif; margin-bottom:10px; }
+.v-wrap .instr ul { padding-left:18px; }
+.v-wrap .instr li { margin-bottom:5px; }
+.v-wrap .resume-banner { background:var(--vwarnbg); border:1px solid var(--vwarnbord); border-radius:8px; padding:16px 20px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.v-wrap .resume-text { font-size:14px; color:var(--vwarn); line-height:1.5; }
+.v-wrap .resume-text strong { display:block; font-size:15px; }
+.v-wrap .btn-resume { padding:10px 20px; background:var(--vwarn); color:white; border:none; border-radius:7px; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; white-space:nowrap; }
+.v-wrap .btn-resume:hover { opacity:.85; }
+.v-wrap .btn-primary { display:block; width:100%; max-width:260px; margin:0 auto; padding:14px 28px; background:var(--vprimary); color:white; border:none; border-radius:8px; font-size:15px; font-family:Georgia,serif; cursor:pointer; transition:background .2s; }
+.v-wrap .btn-primary:hover { background:var(--vphover); }
+.v-wrap .btn-secondary { display:block; width:100%; max-width:260px; margin:12px auto 0; padding:12px 24px; background:transparent; color:var(--vprimary); border:1.5px solid var(--vprimary); border-radius:8px; font-size:14px; font-family:Georgia,serif; cursor:pointer; transition:all .2s; }
+.v-wrap .btn-secondary:hover { background:var(--vprimary); color:white; }
+.v-wrap .prog-wrap { margin-bottom:22px; }
+.v-wrap .prog-meta { display:flex; justify-content:space-between; font-size:12px; font-family:Arial,sans-serif; color:var(--vmuted); margin-bottom:6px; }
+.v-wrap .prog-bar { height:4px; background:var(--vborder); border-radius:2px; overflow:hidden; }
+.v-wrap .prog-fill { height:100%; background:var(--vprimary); border-radius:2px; transition:width .3s; }
+.v-wrap .cmp-grid { display:grid; grid-template-columns:1fr 38px 1fr; margin-bottom:26px; align-items:stretch; }
+.v-wrap .vpanel { border:1.5px solid var(--vborder); padding:24px; background:var(--vcard); display:flex; flex-direction:column; }
+.v-wrap .vpanel.pa { border-radius:10px 0 0 10px; border-right:none; }
+.v-wrap .vpanel.pb { border-radius:0 10px 10px 0; border-left:none; }
+.v-wrap .plabel { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--vmuted); font-family:Arial,sans-serif; margin-bottom:13px; }
+.v-wrap .vdef { font-size:15px; line-height:1.78; color:var(--vtext); flex:1; }
+.v-wrap .vs-col { display:flex; align-items:center; justify-content:center; font-size:12px; font-family:Arial,sans-serif; color:var(--vmuted); border-top:1.5px solid var(--vborder); border-bottom:1.5px solid var(--vborder); background:var(--vbg); }
+.v-wrap .reflection-wrap { margin-bottom:16px; }
+.v-wrap .reflection-label { font-size:12px; font-family:Arial,sans-serif; color:var(--vmuted); margin-bottom:6px; letter-spacing:.3px; }
+.v-wrap .reflection-label span { font-style:italic; }
+.v-wrap .reflection-field-wrap { position:relative; }
+.v-wrap textarea.reflection { width:100%; min-height:72px; max-height:160px; padding:12px 48px 12px 14px; font-size:14px; font-family:Georgia,serif; color:var(--vtext); background:var(--vcard); border:1.5px solid var(--vborder); border-radius:8px; resize:vertical; line-height:1.6; transition:border-color .2s; }
+.v-wrap textarea.reflection:focus { outline:none; border-color:var(--vprimary); }
+.v-wrap textarea.reflection::placeholder { color:var(--vmuted); font-style:italic; }
+.v-wrap .audio-interim { font-size:12px; color:var(--vmuted); font-style:italic; margin-top:4px; min-height:16px; }
+/* nav buttons */
+.v-nav-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.v-back-btn { padding:7px 14px; background:transparent; color:var(--vmuted); border:1.5px solid var(--vborder); border-radius:7px; font-size:12px; font-family:Arial,sans-serif; cursor:pointer; transition:all .15s; }
+.v-back-btn:hover { color:var(--vprimary); border-color:var(--vprimary); }
+.v-back-btn:disabled { opacity:.35; cursor:default; }
+.v-wrap .back-link { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--vmuted); text-decoration:none; margin-bottom:10px; opacity:.7; transition:opacity .15s; cursor:pointer; background:none; border:none; font-family:Georgia,serif; }
+.v-wrap .back-link:hover { opacity:1; }
+/* choice buttons */
+.v-wrap .choice-grid { display:grid; grid-template-columns:1fr 1fr 70px 1fr 1fr; gap:7px; }
+.v-wrap .btn-c { padding:13px 8px; border:none; border-radius:8px; cursor:pointer; font-family:Arial,sans-serif; line-height:1.3; text-align:center; transition:opacity .15s,transform .15s; }
+.v-wrap .btn-c:hover { opacity:.87; transform:translateY(-2px); }
+.v-wrap .btn-c .m { display:block; font-size:13px; font-weight:bold; margin-bottom:3px; }
+.v-wrap .btn-c .s { display:block; font-size:10px; opacity:.82; }
+.v-wrap .c-aa { background:#6B0008; color:#fff; }
+.v-wrap .c-a  { background:#92000A; color:#fff; }
+.v-wrap .c-eq { background:#6B7280; color:#fff; }
+.v-wrap .c-b  { background:#B34A00; color:#fff; }
+.v-wrap .c-bb { background:#E02C14; color:#fff; }
+.v-wrap .btn-c.pressed { opacity:.55; transform:scale(.97); }
+.v-wrap .kbd-hint { font-size:11px; font-family:Arial,sans-serif; color:var(--vmuted); text-align:center; margin-top:13px; }
+.v-wrap kbd { background:#fff0f0; border:1px solid var(--vborder); border-radius:3px; padding:1px 5px; font-size:10px; font-family:monospace; }
+
+/* Bússola Reflexiva */
+.v-bussola-wrap { margin-top:16px; border:1.5px solid var(--vborder); border-radius:10px; overflow:hidden; background:var(--vcard); }
+.v-bussola-header { padding:10px 16px; cursor:pointer; display:flex; align-items:center; justify-content:space-between; font-size:13px; font-family:Arial,sans-serif; color:var(--vprimary); background:var(--vgoldbg); user-select:none; }
+.v-bussola-header:hover { background:#ffe0e0; }
+.v-bussola-icon { transition:transform .2s; }
+.v-bussola-body { max-height:260px; overflow-y:auto; display:none; }
+.v-bussola-body.open { display:block; }
+.v-bussola-entry { padding:10px 14px; border-bottom:1px solid var(--vborder); }
+.v-bussola-entry:last-child { border-bottom:none; }
+.v-bussola-meta { font-size:10px; color:var(--vmuted); font-family:Arial; margin-bottom:4px; }
+.v-bussola-pair { font-size:11px; color:var(--vsub); margin-bottom:5px; }
+.v-bussola-text { font-size:13px; color:var(--vtext); font-style:italic; border-left:2px solid var(--vprimary); padding-left:8px; line-height:1.6; }
+.v-bussola-empty { padding:16px; text-align:center; font-size:12px; color:var(--vmuted); font-family:Arial; font-style:italic; }
+
+/* conflict */
+.v-wrap .conflict-counter { text-align:center; font-size:13px; font-family:Arial,sans-serif; color:var(--vmuted); margin-bottom:20px; }
+.v-wrap .conflict-desc { background:var(--vwarnbg); border:1px solid var(--vwarnbord); border-radius:8px; padding:14px 18px; margin-bottom:22px; font-size:13px; font-family:Arial,sans-serif; color:var(--vwarn); line-height:1.6; }
+.v-wrap .conflict-desc strong { font-size:14px; display:block; margin-bottom:6px; }
+.v-wrap .conflict-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:16px; }
+.v-wrap .c3card { border:1.5px solid var(--vborder); border-radius:10px; padding:18px; background:var(--vcard); display:flex; flex-direction:column; }
+.v-wrap .c3def { font-size:13px; line-height:1.7; color:var(--vtext); flex:1; margin-bottom:14px; }
+.v-wrap .c3name { font-size:11px; color:var(--vmuted); font-family:Arial,sans-serif; margin-bottom:12px; }
+.v-wrap .c3name strong { color:var(--vsub); font-size:12px; }
+.v-wrap .btn-pick { padding:9px 14px; border:none; border-radius:7px; background:var(--vprimary); color:white; cursor:pointer; font-size:13px; font-family:Arial,sans-serif; transition:background .2s; }
+.v-wrap .btn-pick:hover { background:var(--vphover); }
+.v-wrap .btn-skip-conflicts { display:block; margin:12px auto 0; font-size:13px; font-family:Arial,sans-serif; color:var(--vmuted); background:none; border:none; cursor:pointer; text-decoration:underline; }
+
+/* results */
+.v-wrap .result-list { background:var(--vcard); border-radius:12px; overflow:hidden; box-shadow:0 2px 14px rgba(146,0,10,.08); }
+.v-wrap .tier-hdr { padding:9px 22px; font-size:11px; font-family:Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; border-bottom:1px solid var(--vborder); }
+.v-wrap .t-core { background:var(--vgoldbg); color:var(--vgold); }
+.v-wrap .t-important { background:#FFF0F0; color:#92000A; }
+.v-wrap .t-secondary { background:#FFF8F8; color:#5C1A1A; }
+.v-wrap .t-periph { background:#FFF8F8; color:var(--vmuted); }
+.v-wrap .r-item { display:flex; align-items:flex-start; padding:14px 22px; border-bottom:1px solid var(--vborder); gap:16px; }
+.v-wrap .r-item:last-child { border-bottom:none; }
+.v-wrap .r-rank { font-size:16px; font-weight:bold; color:var(--vprimary); min-width:30px; font-family:Arial,sans-serif; padding-top:2px; text-align:right; }
+.v-wrap .r-rank.gd { color:var(--vgold); }
+.v-wrap .r-cont { flex:1; }
+.v-wrap .r-name { font-size:15px; font-weight:bold; margin-bottom:4px; }
+.v-wrap .r-def { font-size:12px; color:var(--vmuted); line-height:1.55; }
+.v-wrap .r-elo { font-size:11px; font-family:Arial,sans-serif; color:var(--vmuted); padding-top:3px; white-space:nowrap; text-align:right; }
+.v-wrap .clinical-block { background:var(--vcard); border-radius:12px; box-shadow:0 2px 14px rgba(146,0,10,.08); margin-top:20px; overflow:hidden; }
+.v-wrap details summary { padding:16px 22px; font-size:13px; font-family:Arial,sans-serif; color:var(--vprimary); cursor:pointer; letter-spacing:.3px; border-bottom:1px solid transparent; list-style:none; display:flex; align-items:center; gap:8px; }
+.v-wrap details summary::-webkit-details-marker { display:none; }
+.v-wrap details summary::before { content:"▶"; font-size:10px; transition:transform .2s; }
+.v-wrap details[open] summary::before { transform:rotate(90deg); }
+.v-wrap details[open] summary { border-bottom-color:var(--vborder); }
+.v-wrap .clinical-inner { padding:20px 22px; }
+.v-wrap .c-kv { display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; border-bottom:1px solid var(--vborder); font-size:13px; }
+.v-wrap .c-kv:last-child { border-bottom:none; }
+.v-wrap .c-kv .k { color:var(--vsub); }
+.v-wrap .c-kv .v { color:var(--vtext); font-weight:bold; font-family:Arial,sans-serif; }
+.v-wrap .c-section-title { font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--vmuted); font-family:Arial,sans-serif; margin:20px 0 10px; }
+.v-wrap .c-section-title:first-child { margin-top:0; }
+.v-wrap .slow-item { display:flex; gap:10px; padding:7px 0; border-bottom:1px solid var(--vborder); font-size:13px; align-items:center; }
+.v-wrap .slow-item:last-child { border-bottom:none; }
+.v-wrap .narr-inner { padding:20px 22px; }
+.v-wrap .narr-block { padding:12px 0; border-bottom:1px solid var(--vborder); }
+.v-wrap .narr-block:last-child { border-bottom:none; padding-bottom:4px; }
+.v-wrap .narr-block p { font-size:14px; font-family:Arial,sans-serif; color:var(--vtext); line-height:1.7; margin:0 0 8px; }
+.v-wrap .narr-block p:last-child { margin-bottom:0; }
+.v-wrap .narr-block p em { color:var(--vsub); font-style:italic; }
+.v-wrap .narr-section-title { font-size:11px !important; letter-spacing:1px; text-transform:uppercase; color:var(--vmuted) !important; font-family:Arial,sans-serif; margin:4px 0 10px !important; }
+.v-wrap .slow-time { font-family:Arial,sans-serif; font-size:12px; color:var(--vwarn); font-weight:bold; min-width:55px; text-align:right; }
+.v-wrap .slow-names { color:var(--vsub); }
+.v-wrap .v-diary-entry { padding:16px 0; border-bottom:1px solid var(--vborder); }
+.v-wrap .v-diary-entry:last-child { border-bottom:none; }
+.v-wrap .v-diary-meta { font-size:11px; font-family:Arial,sans-serif; color:var(--vmuted); margin-bottom:8px; }
+.v-wrap .v-diary-pair { display:flex; gap:8px; margin-bottom:8px; }
+.v-wrap .v-diary-def { flex:1; font-size:13px; line-height:1.6; color:var(--vsub); background:var(--vbg); border-radius:6px; padding:8px 10px; }
+.v-wrap .v-diary-vs { font-size:11px; font-family:Arial,sans-serif; color:var(--vmuted); padding-top:10px; white-space:nowrap; }
+.v-wrap .v-diary-decision { font-size:11px; font-family:Arial,sans-serif; color:var(--vmuted); margin-bottom:8px; }
+.v-wrap .v-diary-text { font-size:14px; line-height:1.75; color:var(--vtext); white-space:pre-wrap; font-style:italic; border-left:3px solid var(--vprimary); padding-left:14px; }
+/* radial map */
+.v-map-wrap { background:var(--vcard); border-radius:12px; padding:24px; box-shadow:0 2px 14px rgba(146,0,10,.08); margin-bottom:20px; }
+.v-map-title { font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--vmuted); font-family:Arial,sans-serif; text-align:center; margin-bottom:16px; }
+/* pdf button */
+.v-pdf-btn { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; background:var(--vprimary); color:white; border:none; border-radius:8px; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; transition:background .2s; margin-top:6px; }
+.v-pdf-btn:hover { background:var(--vphover); }
+/* model selection */
+.v-model-select-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.5rem; }
+.v-model-card { border:2px solid var(--vborder); border-radius:14px; padding:1.5rem; cursor:pointer; background:var(--vcard); transition:all .2s; display:flex; flex-direction:column; gap:.6rem; font-family:Georgia,serif; text-align:left; }
+.v-model-card:hover { border-color:var(--vprimary); box-shadow:0 4px 18px rgba(146,0,10,.13); transform:translateY(-2px); }
+.v-model-card-icon { font-size:2rem; line-height:1; }
+.v-model-card-title { font-size:1rem; font-weight:700; color:var(--vprimary); }
+.v-model-card-desc { font-size:.8rem; color:var(--vsub); line-height:1.65; flex:1; }
+.v-model-card-meta { font-size:.72rem; color:var(--vmuted); font-family:Arial,sans-serif; border-top:1px solid var(--vborder); padding-top:.6rem; }
+.v-model-progress-badge { display:inline-block; font-size:.7rem; font-family:Arial,sans-serif; padding:.2rem .65rem; border-radius:20px; background:#FFF0F0; color:var(--vprimary); border:1px solid var(--vborder); margin-top:.3rem; }
+@media(max-width:620px){
+  .v-wrap .cmp-grid { grid-template-columns:1fr; }
+  .v-wrap .vpanel.pa { border-radius:10px 10px 0 0; border-right:1.5px solid var(--vborder); border-bottom:none; }
+  .v-wrap .vpanel.pb { border-radius:0 0 10px 10px; border-left:1.5px solid var(--vborder); border-top:none; }
+  .v-wrap .vs-col { border:none; border-left:1.5px solid var(--vborder); border-right:1.5px solid var(--vborder); padding:5px; }
+  .v-wrap .choice-grid { grid-template-columns:1fr 1fr; }
+  .v-wrap .c-eq { grid-column:1/-1; }
+  .v-wrap .conflict-3col { grid-template-columns:1fr; }
+  .v-wrap .resume-banner { flex-direction:column; align-items:flex-start; }
+  .v-model-select-grid { grid-template-columns:1fr; }
+}
+
+</style>
+
+<!-- ═══ AJUSTES PARA CELULAR (somente layout; conteúdo inalterado) ═══ -->
+<style>
+#v-radial-map { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+button, .v-bussola-header, .p-bussola-header, .collapsible-header, summary, .facet-card { -webkit-tap-highlight-color:transparent; }
+@media (max-width:620px) {
+  .v-wrap { padding:12px; }
+  .v-wrap .card { padding:22px 16px; }
+  .v-wrap .hdr { padding:20px 0 16px; }
+  .v-wrap h1 { font-size:22px; }
+  .v-map-wrap { padding:16px 8px; }
+  #v-radial-map svg { width:640px !important; max-width:none !important; }
+  .v-map-title::after { content:" · arraste para o lado para ver o mapa inteiro"; text-transform:none; letter-spacing:0; }
+  .v-wrap .c-kv { flex-wrap:wrap; gap:2px 12px; }
+  .v-wrap .v-diary-pair { flex-direction:column; }
+  .v-wrap .v-diary-vs { padding-top:0; text-align:center; }
+  .v-wrap .r-item { padding:12px 14px; gap:10px; }
+  .v-wrap details summary { padding:14px 16px; }
+  .v-wrap .clinical-inner, .v-wrap .narr-inner { padding:16px; }
+  /* 16px evita o zoom automático do iPhone ao tocar no campo */
+  .v-wrap textarea.reflection, .p-wrap textarea, .p-bussola-edit-area { font-size:16px; }
+}
+@media (max-width:420px) {
+  .p-wrap .facet-grid { grid-template-columns:1fr; }
+  .p-wrap .likert-label { font-size:.66rem; }
+}
+/* telas de toque: sem dicas de teclado e sem "hover" preso após o toque */
+@media (hover:none) and (pointer:coarse) {
+  .v-wrap .kbd-hint, .p-wrap .keyboard-hint { display:none; }
+  .v-wrap .btn-c:hover { opacity:1; transform:none; }
+  .hub-card:hover, .v-model-card:hover { transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HUB ════════════════════════════════════════════════════ -->
+<div id="mod-hub" class="main-screen active">
+<div class="hub-wrap">
+  <div class="hub-header">
+    <div class="hub-logo">Instrumento Clínico &amp; Pessoal</div>
+    <h1 class="hub-title">Inventário de<br>Valores Pessoais</h1>
+    <div class="hub-authors">
+      <div class="hub-author-line"><strong>Autor:</strong> Pedro Andrade Rüger — CRP 04/63435</div>
+      <div class="hub-author-line"><strong>Co-autora:</strong> Silvia Maia</div>
+    </div>
+    <div class="hub-divider"></div>
+  </div>
+  <div class="hub-cards">
+    <button class="hub-card hub-card-v" onclick="vEnterValues()">
+      <div class="hub-card-icon">⚖️</div>
+      <div class="hub-card-title">Inventário de Valores</div>
+      <div class="hub-card-desc">Identifica e hierarquiza seus valores pessoais através de comparações par a par, com detecção de inconsistências e Bússola Reflexiva.</div>
+      <div class="hub-card-meta">63 valores · ~45–60 min · progresso salvo</div>
+      <span class="hub-card-start">Iniciar →</span>
+    </button>
+  </div>
+  <p class="hub-footer">Os dados são armazenados apenas no dispositivo local e não são transmitidos a nenhum servidor. O progresso é salvo automaticamente — você pode retomar em qualquer momento.</p>
+</div>
+</div>
+
+<!-- ═══ MÓDULO: VALORES ═══════════════════════════════════════════ -->
+<div id="mod-valores" class="main-screen">
+<div class="v-wrap"><div class="v-container">
+
+  <!-- SELEÇÃO DE MODELO -->
+  <div id="v-model-select" class="v-screen active">
+    <div class="hdr">
+      <button class="back-link" onclick="showModule('mod-hub')">← Menu principal</button>
+      <div class="logo">Instrumento Clínico · Versão 3.0</div>
+      <h1>Inventário de Valores Pessoais</h1>
+      <p class="lead">Escolha o método de avaliação. Os progressos são salvos de forma independente — você pode intercalar entre eles.</p>
+    </div>
+    <div class="card">
+      <div class="v-model-select-grid">
+        <button class="v-model-card" onclick="vSelectModel('swiss')">
+          <div class="v-model-card-icon">⚖️</div>
+          <div class="v-model-card-title">Torneio Suíço + Elo</div>
+          <div class="v-model-card-desc">Sistema adaptativo: cada rodada cria pares entre valores com pontuação semelhante. Eficiente e psicometricamente robusto.</div>
+          <div class="v-model-card-meta">186 comparações · 6 rodadas · ~45–60 min</div>
+          <div id="v-swiss-badge" class="v-model-progress-badge" style="display:none;"></div>
+        </button>
+        <button class="v-model-card" onclick="vSelectModel('rr')">
+          <div class="v-model-card-icon">🔁</div>
+          <div class="v-model-card-title">Comparação Completa</div>
+          <div class="v-model-card-desc">Round-Robin: todos os 1 953 pares possíveis são comparados. Máxima precisão — ideal para múltiplas sessões ao longo do tempo.</div>
+          <div class="v-model-card-meta">1 953 comparações · sem rodadas · múltiplas sessões</div>
+          <div id="v-rr-badge" class="v-model-progress-badge" style="display:none;"></div>
+        </button>
+      </div>
+      <p style="text-align:center;font-size:12px;color:var(--vmuted);font-family:Arial,sans-serif;margin-top:4px;">O laudo final tem o mesmo formato para ambos os métodos.</p>
+    </div>
+  </div>
+
+  <!-- BOAS-VINDAS -->
+  <div id="v-welcome" class="v-screen">
+    <div class="hdr">
+      <button class="back-link" onclick="vGoModelSelect()">← Método de avaliação</button>
+      <div class="logo">Instrumento Clínico · Versão 3.0</div>
+      <h1>Inventário de Valores Pessoais</h1>
+      <p class="lead">Avaliação sistemática de 63 valores fundamentais por meio de comparações pareadas.</p>
+    </div>
+    <div class="card">
+      <div id="v-resume-banner" class="resume-banner" style="display:none;">
+        <div class="resume-text"><strong>Progresso salvo encontrado</strong><span id="v-resume-info"></span></div>
+        <button class="btn-resume" onclick="vResumeTest()">Continuar →</button>
+      </div>
+      <div class="instr">
+        <h3>Como funciona</h3>
+        <ul>
+          <li>Você verá dois valores por vez, descritos pela sua <strong>definição comportamental</strong>. Inicialmente todos os valores têm peso idêntico (Elo 1000).</li>
+          <li>Indique qual tem maior importância <strong>na forma como você de fato gostaria de viver e tomar decisões</strong>.</li>
+          <li>Cinco opções: <em>Muito mais A · Mais A · Iguais · Mais B · Muito mais B</em>.</li>
+          <li><strong>186 comparações em 6 rodadas</strong>. Você pode pausar e retomar quando quiser.</li>
+          <li>A <strong>Bússola Reflexiva</strong> acumula em tempo real todas as reflexões que você registrar — como um diário de valores.</li>
+          <li>Use o botão <strong>← Anterior</strong> a qualquer momento para reeditar a última resposta.</li>
+        </ul>
+      </div>
+      <button class="btn-primary" onclick="vStartFresh()">Iniciar Inventário</button>
+      <button class="btn-secondary" id="v-btn-discard" style="display:none;" onclick="vDiscardAndStart()">Descartar progresso e começar do zero</button>
+      <div class="kbd-hint" style="margin-top:20px;">Atalhos: <kbd>1</kbd> Muito mais A &nbsp;·&nbsp; <kbd>2</kbd> Mais A &nbsp;·&nbsp; <kbd>3</kbd> Iguais &nbsp;·&nbsp; <kbd>4</kbd> Mais B &nbsp;·&nbsp; <kbd>5</kbd> Muito mais B</div>
+    </div>
+  </div>
+
+  <!-- COMPARAÇÃO -->
+  <div id="v-comparison" class="v-screen">
+    <div class="hdr" style="padding:18px 0 14px;display:flex;align-items:center;justify-content:space-between;">
+      <div class="logo">Inventário de Valores Pessoais</div>
+      <button class="back-link" onclick="showModule('mod-hub')" style="font-size:11px;">⊙ Menu principal</button>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-meta"><span id="v-prog-label">Comparação 1 de 186</span><span id="v-round-label">Rodada 1 de 6</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="v-prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="v-nav-row">
+      <button class="v-back-btn" id="v-back-btn" onclick="vGoBack()" disabled>← Anterior</button>
+      <span style="font-size:11px;font-family:Arial;color:var(--vmuted);">Voltar redefaz a resposta anterior</span>
+    </div>
+    <div class="cmp-grid">
+      <div class="vpanel pa"><div class="plabel">Valor A</div><div class="vdef" id="v-def-a"></div></div>
+      <div class="vs-col">vs</div>
+      <div class="vpanel pb"><div class="plabel">Valor B</div><div class="vdef" id="v-def-b"></div></div>
+    </div>
+    <div class="reflection-wrap">
+      <div class="reflection-label">Reflexão <span>(opcional — o que esta comparação fez você perceber?)</span></div>
+      <div class="reflection-field-wrap">
+        <textarea id="v-reflection-input" class="reflection" placeholder="Escreva aqui suas observações..."></textarea>
+        <button class="audio-btn" id="v-audio-btn" title="Gravar áudio" onclick="vToggleAudio()">🎤</button>
+      </div>
+      <div class="audio-interim" id="v-audio-interim"></div>
+    </div>
+    <div class="choice-grid">
+      <button id="v-btn1" class="btn-c c-aa" onclick="vAnswer(4,0)"><span class="m">← Muito mais A</span><span class="s">A é muito mais importante</span></button>
+      <button id="v-btn2" class="btn-c c-a"  onclick="vAnswer(2,0)"><span class="m">← Mais A</span><span class="s">A é mais importante</span></button>
+      <button id="v-btn3" class="btn-c c-eq" onclick="vAnswer(1,1)"><span class="m">Iguais</span><span class="s">equivalentes</span></button>
+      <button id="v-btn4" class="btn-c c-b"  onclick="vAnswer(0,2)"><span class="m">Mais B →</span><span class="s">B é mais importante</span></button>
+      <button id="v-btn5" class="btn-c c-bb" onclick="vAnswer(0,4)"><span class="m">Muito mais B →</span><span class="s">B é muito mais importante</span></button>
+    </div>
+    <div class="kbd-hint"><kbd>1</kbd> &nbsp;<kbd>2</kbd> &nbsp;<kbd>3</kbd> &nbsp;<kbd>4</kbd> &nbsp;<kbd>5</kbd></div>
+    <!-- Bússola Reflexiva -->
+    <div class="v-bussola-wrap">
+      <div class="v-bussola-header" onclick="vToggleBussola()">
+        <span>🧭 Bússola Reflexiva dos Valores</span>
+        <span id="v-bussola-count" style="font-size:11px;color:var(--vmuted);">0 reflexões</span>
+      </div>
+      <div class="v-bussola-body" id="v-bussola-body">
+        <div id="v-bussola-entries"></div>
+        <div id="v-bussola-empty" class="v-bussola-empty">Nenhuma reflexão ainda. As observações que você escrever durante as comparações aparecerão aqui como um diário de valores.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFLITOS -->
+  <div id="v-conflicts" class="v-screen">
+    <div class="hdr" style="padding:24px 0 18px;">
+      <div class="logo">Resolução de Inconsistências</div>
+      <h1>Verificação Final</h1>
+      <p class="lead">Identificamos situações em que suas preferências formaram ciclos. Isso é normal e esperado.</p>
+    </div>
+    <div class="card">
+      <div class="conflict-counter" id="v-conflict-counter"></div>
+      <div class="conflict-desc" id="v-conflict-desc"></div>
+      <div class="conflict-3col" id="v-conflict-3col"></div>
+      <p style="text-align:center;font-size:12px;color:var(--vmuted);margin-top:8px;">Selecione o valor <strong>mais importante</strong> dos três.</p>
+      <button class="btn-skip-conflicts" onclick="vSkipConflicts()">Pular e ver resultado →</button>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div id="v-results" class="v-screen">
+    <div class="hdr">
+      <div class="logo">Resultado</div>
+      <h1>Seus Valores Pessoais</h1>
+      <p class="lead" id="v-res-sub"></p>
+    </div>
+    <!-- Mapa radial -->
+    <div class="v-map-wrap">
+      <div class="v-map-title">Mapa Radial de Valores — do centro (mais importantes) para a periferia</div>
+      <div id="v-radial-map"></div>
+    </div>
+    <div class="clinical-block" id="v-narrative-block" style="display:none;">
+      <details open>
+        <summary>📋 Leitura Interpretativa</summary>
+        <div class="narr-inner" id="v-narrative-inner"></div>
+      </details>
+    </div>
+    <div class="result-list" id="v-result-list"></div>
+    <div class="clinical-block" id="v-tension-block">
+      <details open>
+        <summary>⚡ Análise de Tensões e Coerência Interna</summary>
+        <div class="clinical-inner" id="v-tension-inner"></div>
+      </details>
+    </div>
+    <div class="clinical-block" id="v-diary-block" style="display:none;">
+      <details><summary>🧭 Bússola Reflexiva — Diário Completo</summary>
+        <div class="clinical-inner" id="v-diary-inner"></div>
+      </details>
+    </div>
+    <div class="clinical-block">
+      <details><summary>Explicação do Ranking (por que cada valor ficou onde ficou)</summary>
+        <div class="clinical-inner" id="v-ranking-explain"></div>
+      </details>
+    </div>
+    <div class="clinical-block">
+      <details><summary>Registro Completo das Respostas</summary>
+        <div class="clinical-inner" id="v-full-log"></div>
+      </details>
+    </div>
+    <div class="clinical-block">
+      <details><summary>Dados Clínicos (uso profissional)</summary>
+        <div class="clinical-inner" id="v-clinical-inner"></div>
+      </details>
+    </div>
+    <div style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="v-pdf-btn" onclick="vExportPDF()">📄 Exportar Laudo em PDF</button>
+      <button class="btn-secondary" style="display:inline-block;width:auto;" onclick="vGoWelcome()">Novo Inventário</button>
+    </div>
+  </div>
+
+</div></div></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// SHARED NAVIGATION
+// ═══════════════════════════════════════════════════════════════════════
+function showModule(id) {
+  document.querySelectorAll('.main-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function vShow(id) {
+  document.querySelectorAll('#mod-valores .v-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// VALUES MODULE — DATA
+// ═══════════════════════════════════════════════════════════════════════
+const V_STORAGE_KEY = 'ivp-v2-state';
+const VRR_STORAGE_KEY = 'ivp-rr-state';
+const V_N = 63;
+const ELO_START = 1000;
+const TOTAL_ROUNDS = 6;
+const VRR_TOTAL_PAIRS = V_N * (V_N - 1) / 2; // 1953
+let vActiveModel = 'swiss'; // 'swiss' | 'rr'
+
+const V_DEFS = [
+  "Honrar os compromissos assumidos, dizer a verdade mesmo quando é difícil, agir com integridade mesmo sem testemunhas.",
+  "Expressar criatividade e originalidade; buscar novas formas de fazer as coisas, criar algo que não existia.",
+  "Cuidar de si mesmo física e emocionalmente; preservar o próprio equilíbrio e vitalidade.",
+  "Estar ao lado de quem ama; priorizar o tempo com família e amigos próximos em vez de outras demandas.",
+  "Aprender constantemente, buscar conhecimento e expandir a compreensão do mundo.",
+  "Fazer diferença positiva na vida das pessoas; contribuir com o bem-estar dos outros de forma concreta.",
+  "Ter renda, bens e recursos suficientes para viver com conforto e segurança financeira.",
+  "Ser reconhecido pelos próprios feitos; conquistar prestígio e admiração no ambiente social ou profissional.",
+  "Ter autonomia para tomar decisões sobre a própria vida sem depender da aprovação alheia.",
+  "Exercer influência sobre pessoas, projetos ou sistemas; ocupar posição de liderança.",
+  "Trabalhar em projetos que desafiam as próprias capacidades e produzem algo significativo.",
+  "Agir de forma justa com todos; defender igualdade de direitos e oportunidades.",
+  "Criar vínculos afetivos profundos; ser amado e amar de maneira íntima e recíproca.",
+  "Viver experiências intensas e estimulantes; buscar emoção e variedade em vez de rotina.",
+  "Ter paz interior; sentir-se em equilíbrio consigo mesmo e com as próprias escolhas.",
+  "Contribuir para a preservação do meio ambiente e dos ecossistemas.",
+  "Ter fé e prática religiosa ou espiritual como eixo orientador da própria vida.",
+  "Desfrutar de prazer sensorial, beleza estética e satisfação com as experiências da vida.",
+  "Sentir-se livre de ameaças físicas, financeiras ou emocionais; viver em ambiente previsível e estável.",
+  "Participar de grupos, comunidades ou causas maiores; sentir-se parte de algo além de si mesmo.",
+  "Reconhecer os próprios limites; evitar arrogância; aprender com os erros sem se envergonhar deles.",
+  "Usar o humor de forma genuína; encontrar leveza e diversão nas situações cotidianas.",
+  "Sentir prazer no próprio trabalho; encontrar satisfação no processo e não apenas nos resultados.",
+  "Ter acesso a cultura, artes e expressões humanas diversas; valorizar a experiência estética.",
+  "Agir corajosamente diante do medo ou da adversidade; enfrentar situações difíceis com determinação.",
+  "Ser leal às pessoas e causas em que acredita; não abandonar os compromissos nos momentos difíceis.",
+  "Manter o autocontrole; agir com disciplina e moderação mesmo diante de impulsos ou pressões.",
+  "Tratar com respeito e cuidado as pessoas mais velhas e as tradições culturais.",
+  "Ser uma fonte de cuidado e suporte para quem precisa; colocar o bem-estar alheio à frente do próprio.",
+  "Sentir gratidão genuína pelo que tem; reconhecer e valorizar as coisas boas já presentes na vida.",
+  "Crescer profissionalmente; conquistar mais responsabilidades, reconhecimento e habilidades no trabalho.",
+  "Contribuir para o progresso e a melhoria da sociedade; participar ativamente de mudanças positivas.",
+  "Abrir-se para experiências novas, culturas diferentes e formas de pensar distintas das próprias.",
+  "Respeitar e dar espaço para que os outros vivam conforme seus próprios valores, mesmo quando diferentes.",
+  "Deixar um legado duradouro; ser lembrado positivamente depois de partir.",
+  "Sentir prazer e satisfação no processo de competir e superar desafios ou adversários.",
+  "Viver com autenticidade; ser fiel à própria identidade em vez de se adaptar às expectativas alheias.",
+  "Buscar risco e novidade; explorar territórios desconhecidos física ou intelectualmente.",
+  "Dedicar tempo e energia a ajudar pessoas que enfrentam injustiça, dificuldade ou exclusão social.",
+  "Proteger e zelar pela família de origem ou pela família que construiu.",
+  "Vivenciar momentos de êxtase, transcendência ou conexão profunda com algo maior que si mesmo.",
+  "Sentir que a própria vida faz sentido; agir a partir de uma missão ou propósito claro.",
+  "Agir eticamente mesmo quando é inconveniente; não comprometer os próprios princípios por conveniência.",
+  "Perceber a beleza no mundo; apreciar arte, natureza e expressões estéticas de forma profunda.",
+  "Preservar a cultura, os costumes e os valores do próprio grupo de origem.",
+  "Construir e manter um lar que seja um espaço de acolhimento, estabilidade e bem-estar.",
+  "Experimentar prazer físico, satisfação sensorial e expressão saudável da sexualidade.",
+  "Expressar emoções, ideias e experiências por meio de formas artísticas.",
+  "Promover a paz entre pessoas ou grupos em conflito; evitar e resolver confrontos de forma construtiva.",
+  "Exercer o próprio corpo; manter a saúde e o desempenho físico como prioridade de vida.",
+  "Usar a razão, o pensamento crítico e a análise lógica para compreender e agir no mundo.",
+  "Construir relacionamentos baseados em confiança mútua, respeito e suporte genuíno ao longo do tempo.",
+  "Transformar contextos ou sistemas que não funcionam; inovar e romper padrões estabelecidos.",
+  "Sentir reconhecimento e aprovação das pessoas que fazem parte do próprio círculo de convivência.",
+  "Agir com generosidade; compartilhar recursos, tempo e energia com quem precisa sem esperar retorno.",
+  "Ter a capacidade de lidar com adversidades e se recuperar de situações difíceis.",
+  "Compreender com profundidade os próprios pensamentos, emoções e padrões de comportamento.",
+  "Ampliar o próprio potencial; tornar-se cada vez mais quem se deseja ser.",
+  "Aprender a perdoar os outros e a si mesmo; soltar ressentimentos e seguir em frente.",
+  "Construir e manter parcerias ou colaborações que criam algo maior do que cada pessoa poderia fazer sozinha.",
+  "Organizar, planejar e estruturar as próprias atividades de forma eficiente e produtiva.",
+  "Buscar a beleza, o equilíbrio e a harmonia como formas de expressão e experiência no mundo.",
+  "Vivenciar momentos de prazer, descanso e entretenimento como parte importante da vida."
+];
+
+const V_NAMES = [
+  "Honestidade","Criatividade","Autocuidado","Família e Vínculos Próximos","Aprendizado Contínuo",
+  "Serviço aos Outros","Segurança Financeira","Status e Reconhecimento","Autonomia","Poder e Liderança",
+  "Realização Profissional","Justiça","Amor Íntimo","Aventura e Emoção","Paz Interior",
+  "Sustentabilidade","Fé e Espiritualidade","Prazer Estético e Sensorial","Segurança e Estabilidade","Pertencimento",
+  "Humildade","Humor e Leveza","Satisfação no Trabalho","Acesso à Cultura","Coragem",
+  "Lealdade","Autodisciplina","Respeito às Tradições","Cuidar dos Outros","Gratidão",
+  "Crescimento na Carreira","Impacto Social","Abertura a Novas Experiências","Tolerância","Legado",
+  "Competição e Superação","Autenticidade","Curiosidade e Exploração","Solidariedade","Proteção da Família",
+  "Experiência Transcendente","Propósito","Ética e Integridade","Sensibilidade Estética","Preservação Cultural",
+  "Lar e Acolhimento","Prazer Físico e Sexualidade","Expressão Artística","Harmonia e Paz","Saúde Física",
+  "Pensamento Racional","Amizades Profundas","Inovação e Disrupção","Aprovação Social","Generosidade",
+  "Resiliência","Autoconhecimento","Crescimento Pessoal","Perdão","Colaboração",
+  "Organização e Eficiência","Beleza e Harmonia","Desfrute e Lazer"
+];
+
+// ── Clusters temáticos (Schwartz 1992/2012) ────────────────────
+// Índice = ID do valor; valor = número do cluster (1–10)
+const V_CLUSTERS = [
+  3,  // 0  Honestidade
+  6,  // 1  Criatividade
+  7,  // 2  Autocuidado
+  1,  // 3  Família e Vínculos Próximos
+  5,  // 4  Aprendizado Contínuo
+  2,  // 5  Serviço aos Outros
+  9,  // 6  Segurança Financeira
+  4,  // 7  Status e Reconhecimento
+  5,  // 8  Autonomia
+  4,  // 9  Poder e Liderança
+  4,  // 10 Realização Profissional
+  3,  // 11 Justiça
+  1,  // 12 Amor Íntimo
+  6,  // 13 Aventura e Emoção
+  8,  // 14 Paz Interior
+  2,  // 15 Sustentabilidade
+  8,  // 16 Fé e Espiritualidade
+  7,  // 17 Prazer Estético e Sensorial
+  9,  // 18 Segurança e Estabilidade
+  1,  // 19 Pertencimento
+  3,  // 20 Humildade
+  7,  // 21 Humor e Leveza
+  5,  // 22 Satisfação no Trabalho
+  10, // 23 Acesso à Cultura
+  5,  // 24 Coragem
+  1,  // 25 Lealdade
+  5,  // 26 Autodisciplina
+  9,  // 27 Respeito às Tradições
+  1,  // 28 Cuidar dos Outros
+  3,  // 29 Gratidão
+  4,  // 30 Crescimento na Carreira
+  2,  // 31 Impacto Social
+  6,  // 32 Abertura a Novas Experiências
+  2,  // 33 Tolerância
+  2,  // 34 Legado
+  4,  // 35 Competição e Superação
+  5,  // 36 Autenticidade
+  6,  // 37 Curiosidade e Exploração
+  2,  // 38 Solidariedade
+  1,  // 39 Proteção da Família
+  8,  // 40 Experiência Transcendente
+  8,  // 41 Propósito
+  3,  // 42 Ética e Integridade
+  10, // 43 Sensibilidade Estética
+  9,  // 44 Preservação Cultural
+  1,  // 45 Lar e Acolhimento
+  7,  // 46 Prazer Físico e Sexualidade
+  10, // 47 Expressão Artística
+  8,  // 48 Harmonia e Paz
+  7,  // 49 Saúde Física
+  5,  // 50 Pensamento Racional
+  1,  // 51 Amizades Profundas
+  6,  // 52 Inovação e Disrupção
+  4,  // 53 Aprovação Social
+  2,  // 54 Generosidade
+  5,  // 55 Resiliência
+  5,  // 56 Autoconhecimento
+  5,  // 57 Crescimento Pessoal
+  3,  // 58 Perdão
+  2,  // 59 Colaboração
+  5,  // 60 Organização e Eficiência
+  10, // 61 Beleza e Harmonia
+  7   // 62 Desfrute e Lazer
+];
+
+const CLUSTER_LABELS = {
+  1:  'Vínculos e Afeto',
+  2:  'Altruísmo e Impacto Coletivo',
+  3:  'Ética e Caráter',
+  4:  'Poder e Realização',
+  5:  'Crescimento e Autodireção',
+  6:  'Exploração e Inovação',
+  7:  'Bem-estar e Prazer',
+  8:  'Espiritualidade e Sentido',
+  9:  'Tradição e Segurança',
+  10: 'Expressão Estética e Cultural'
+};
+
+const CLUSTER_DESCRIPTIONS = {
+  1:  'relacionamentos próximos, cuidado e pertencimento',
+  2:  'contribuição para o outro, a sociedade e o planeta',
+  3:  'princípios internos, integridade e virtude',
+  4:  'conquista, influência e status social',
+  5:  'autonomia, desenvolvimento pessoal e eficácia',
+  6:  'novidade, inovação e descoberta',
+  7:  'prazer, saúde e qualidade de vida',
+  8:  'propósito, espiritualidade e sentido existencial',
+  9:  'estabilidade, continuidade e proteção',
+  10: 'beleza, arte e experiência cultural'
+};
+
+let vSt = {};
+
+function vFreshState() {
+  return {
+    elo: new Array(V_N).fill(ELO_START),
+    usedPairs: [],
+    byeCount: new Array(V_N).fill(0),
+    round: 1,
+    roundPairs: [],
+    pairIdx: 0,
+    answered: 0,
+    log: [],
+    conflicts: [],
+    conflictIdx: 0,
+    phase: 'comparison',
+    roundHistory: []
+  };
+}
+
+function vSaveState() {
+  const key = vActiveModel === 'rr' ? VRR_STORAGE_KEY : V_STORAGE_KEY;
+  try { localStorage.setItem(key, JSON.stringify(vSt)); } catch(e) {}
+}
+
+function vLoadState(forModel) {
+  const model = forModel !== undefined ? forModel : vActiveModel;
+  const key = model === 'rr' ? VRR_STORAGE_KEY : V_STORAGE_KEY;
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function vClearSaved() {
+  const key = vActiveModel === 'rr' ? VRR_STORAGE_KEY : V_STORAGE_KEY;
+  try { localStorage.removeItem(key); } catch(e) {}
+}
+
+// ── Round-Robin ────────────────────────────────────────────────
+function vRRGenerateAllPairs() {
+  const pairs = [];
+  for (let i = 0; i < V_N; i++)
+    for (let j = i + 1; j < V_N; j++)
+      pairs.push([i, j]);
+  for (let k = pairs.length - 1; k > 0; k--) {
+    const m = Math.floor(Math.random() * (k + 1));
+    [pairs[k], pairs[m]] = [pairs[m], pairs[k]];
+  }
+  return pairs;
+}
+
+function vRRFreshState() {
+  return {
+    model: 'rr',
+    wins: new Array(V_N).fill(0),
+    pairs: vRRGenerateAllPairs(),
+    pairIdx: 0,
+    log: [],
+    conflicts: [],
+    conflictIdx: 0,
+    phase: 'comparison'
+  };
+}
+
+function vRRAnswer(displayApts, displayBpts) {
+  const pair = vSt.pairs[vSt.pairIdx];
+  if (!pair) return;
+  const [idA, idB] = pair;
+  const reflection = document.getElementById('v-reflection-input').value.trim();
+  if (vRecognizer) { try { vRecognizer.stop(); } catch(e) {} }
+
+  let scoreA;
+  if (displayApts === 4) scoreA = 1;
+  else if (displayApts === 2) scoreA = 0.75;
+  else if (displayApts === 1 && displayBpts === 1) scoreA = 0.5;
+  else if (displayBpts === 2) scoreA = 0.25;
+  else scoreA = 0;
+
+  const winsBeforeA = vSt.wins[idA];
+  const winsBeforeB = vSt.wins[idB];
+  vSt.wins[idA] += scoreA;
+  vSt.wins[idB] += (1 - scoreA);
+
+  const logEntry = {
+    idA, idB, scoreA,
+    eloBeforeA: winsBeforeA, eloBeforeB: winsBeforeB,
+    eloAfterA: vSt.wins[idA], eloAfterB: vSt.wins[idB],
+    reflection, time: Date.now(), round: 1,
+    pairIdxAt: vSt.pairIdx,
+    labelA: displayApts > displayBpts ? 'A' : displayApts < displayBpts ? 'B' : '=',
+    choiceText: displayApts===4?'Muito mais A':displayApts===2?'Mais A':displayBpts===2?'Mais B':displayBpts===4?'Muito mais B':'Iguais'
+  };
+  vSt.log.push(logEntry);
+  vSt.pairIdx++;
+
+  if (reflection) vUpdateBussola();
+
+  if (vSt.pairIdx >= vSt.pairs.length) {
+    vSt.phase = 'conflicts';
+    vSaveState();
+    vDetectConflicts();
+    return;
+  }
+
+  vSaveState();
+  document.getElementById('v-reflection-input').value = '';
+  document.getElementById('v-audio-interim').textContent = '';
+  vRenderCmp();
+}
+
+// ── Model selection navigation ─────────────────────────────────
+function vEnterValues() {
+  showModule('mod-valores');
+  vShow('v-model-select');
+  vUpdateModelSelect();
+}
+
+function vUpdateModelSelect() {
+  const swissSaved = vLoadState('swiss');
+  const rrSaved = vLoadState('rr');
+
+  const swissBadge = document.getElementById('v-swiss-badge');
+  if (swissSaved && swissSaved.answered > 0) {
+    swissBadge.textContent = `Em andamento: ${swissSaved.answered} comparações · Rodada ${swissSaved.round} de ${TOTAL_ROUNDS}`;
+    swissBadge.style.display = 'inline-block';
+  } else {
+    swissBadge.style.display = 'none';
+  }
+
+  const rrBadge = document.getElementById('v-rr-badge');
+  if (rrSaved && rrSaved.pairIdx > 0) {
+    const pct = Math.round(rrSaved.pairIdx / VRR_TOTAL_PAIRS * 100);
+    rrBadge.textContent = `Em andamento: ${rrSaved.pairIdx} de ${VRR_TOTAL_PAIRS} (${pct}%)`;
+    rrBadge.style.display = 'inline-block';
+  } else {
+    rrBadge.style.display = 'none';
+  }
+}
+
+function vGoModelSelect() {
+  vShow('v-model-select');
+  vUpdateModelSelect();
+}
+
+function vSelectModel(model) {
+  vActiveModel = model;
+  const saved = vLoadState();
+  const hasSaved = saved && (model === 'swiss' ? (saved.answered > 0) : (saved.pairIdx > 0));
+
+  if (hasSaved) {
+    vSt = saved;
+    const done = model === 'swiss' ? saved.answered : saved.pairIdx;
+    const total = model === 'swiss' ? TOTAL_ROUNDS * 31 : VRR_TOTAL_PAIRS;
+    const suffix = model === 'swiss'
+      ? ` · Rodada ${saved.round} de ${TOTAL_ROUNDS}`
+      : ` de ${VRR_TOTAL_PAIRS} (${Math.round(done/total*100)}%)`;
+    document.getElementById('v-resume-info').textContent = `${done} comparações concluídas${suffix}`;
+    document.getElementById('v-resume-banner').style.display = 'flex';
+    document.getElementById('v-btn-discard').style.display = 'block';
+  } else {
+    document.getElementById('v-resume-banner').style.display = 'none';
+    document.getElementById('v-btn-discard').style.display = 'none';
+  }
+
+  // Update instruction text for model
+  const instrItem = document.querySelector('#v-welcome .instr ul li:nth-child(4)');
+  if (instrItem) {
+    instrItem.innerHTML = model === 'rr'
+      ? '<strong>1 953 comparações</strong> (todos os pares possíveis). Ideal para múltiplas sessões — pause e retome a qualquer momento.'
+      : '<strong>186 comparações em 6 rodadas</strong>. Você pode pausar e retomar quando quiser.';
+  }
+  const modelLabel = document.querySelector('#v-welcome .logo');
+  if (modelLabel) modelLabel.textContent = model === 'rr' ? 'Comparação Completa (Round-Robin)' : 'Torneio Suíço + Elo';
+
+  vShow('v-welcome');
+}
+
+// ── Swiss pairing ──────────────────────────────────────────────
+function vShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function vGenerateRoundPairs() {
+  const sorted = [...Array(V_N).keys()].sort((a,b) => vSt.elo[b] - vSt.elo[a]);
+  const used = new Set(vSt.usedPairs.map(([a,b]) => a*100+b));
+  const pairs = [];
+  const paired = new Set();
+
+  for (let i = 0; i < sorted.length; i++) {
+    if (paired.has(sorted[i])) continue;
+    for (let j = i+1; j < sorted.length; j++) {
+      if (paired.has(sorted[j])) continue;
+      const a = Math.min(sorted[i],sorted[j]), b = Math.max(sorted[i],sorted[j]);
+      if (!used.has(a*100+b)) {
+        pairs.push([sorted[i], sorted[j]]);
+        paired.add(sorted[i]); paired.add(sorted[j]);
+        break;
+      }
+    }
+  }
+
+  // byes for unmatched
+  sorted.forEach(id => {
+    if (!paired.has(id)) {
+      vSt.byeCount[id]++;
+    }
+  });
+
+  return pairs;
+}
+
+// ── Elo calculation ────────────────────────────────────────────
+function vUpdateElo(idA, idB, scoreA, K) {
+  const eA = vSt.elo[idA], eB = vSt.elo[idB];
+  const expA = 1 / (1 + Math.pow(10, (eB - eA) / 400));
+  const expB = 1 - expA;
+  vSt.elo[idA] = Math.round(eA + K * (scoreA - expA));
+  vSt.elo[idB] = Math.round(eB + K * ((1-scoreA) - expB));
+}
+
+// ── Answer handler ─────────────────────────────────────────────
+function vAnswer(displayApts, displayBpts) {
+  if (vActiveModel === 'rr') { vRRAnswer(displayApts, displayBpts); return; }
+  const pair = vSt.roundPairs[vSt.pairIdx];
+  const [idA, idB] = pair;
+  const reflection = document.getElementById('v-reflection-input').value.trim();
+
+  // Stop any audio
+  if (vRecognizer) { try { vRecognizer.stop(); } catch(e) {} }
+
+  let scoreA, K;
+  const total = displayApts + displayBpts;
+  if (total === 0) { scoreA = 0.5; K = 24; }
+  else { scoreA = displayApts / (displayApts + displayBpts + (displayApts===1&&displayBpts===1?0:0)); }
+
+  // "muito mais" = K48, "mais" = K32, "iguais" = K24
+  if (displayApts === 4 || displayBpts === 4) K = 48;
+  else if (displayApts === 2 || displayBpts === 2) K = 32;
+  else K = 24;
+
+  // actual score
+  if (displayApts === 4) scoreA = 1;
+  else if (displayApts === 2) scoreA = 0.75;
+  else if (displayApts === 1 && displayBpts === 1) scoreA = 0.5;
+  else if (displayBpts === 2) scoreA = 0.25;
+  else if (displayBpts === 4) scoreA = 0;
+
+  const eloBeforeA = vSt.elo[idA];
+  const eloBeforeB = vSt.elo[idB];
+  vUpdateElo(idA, idB, scoreA, K);
+
+  const logEntry = {
+    idA, idB,
+    scoreA, K,
+    eloBeforeA, eloBeforeB,
+    eloAfterA: vSt.elo[idA],
+    eloAfterB: vSt.elo[idB],
+    reflection,
+    time: Date.now(),
+    round: vSt.round,
+    pairIdxAt: vSt.pairIdx,
+    labelA: displayApts > displayBpts ? 'A' : displayApts < displayBpts ? 'B' : '=',
+    choiceText: displayApts===4?'Muito mais A':displayApts===2?'Mais A':displayBpts===2?'Mais B':displayBpts===4?'Muito mais B':'Iguais'
+  };
+  vSt.log.push(logEntry);
+  vSt.usedPairs.push([Math.min(idA,idB), Math.max(idA,idB)]);
+  vSt.answered++;
+  vSt.pairIdx++;
+
+  if (reflection) vUpdateBussola();
+
+  // advance
+  if (vSt.pairIdx >= vSt.roundPairs.length) {
+    vSt.roundHistory.push(vSt.round);
+    if (vSt.round < TOTAL_ROUNDS) {
+      vSt.round++;
+      vSt.roundPairs = vGenerateRoundPairs();
+      vSt.pairIdx = 0;
+    } else {
+      vSt.phase = 'conflicts';
+      vSaveState();
+      vDetectConflicts();
+      return;
+    }
+  }
+
+  vSaveState();
+  document.getElementById('v-reflection-input').value = '';
+  document.getElementById('v-audio-interim').textContent = '';
+  vRenderCmp();
+}
+
+// ── Go Back ────────────────────────────────────────────────────
+function vGoBack() {
+  if (vSt.log.length === 0) return;
+  const last = vSt.log[vSt.log.length - 1];
+
+  if (vActiveModel === 'rr') {
+    // restore wins
+    vSt.wins[last.idA] = last.eloBeforeA;
+    vSt.wins[last.idB] = last.eloBeforeB;
+    vSt.pairIdx = Math.max(0, vSt.pairIdx - 1);
+  } else {
+    // restore elo
+    vSt.elo[last.idA] = last.eloBeforeA;
+    vSt.elo[last.idB] = last.eloBeforeB;
+    // restore pair position
+    vSt.answered--;
+    vSt.usedPairs.pop();
+    // if we crossed a round boundary
+    if (vSt.pairIdx === 0 && vSt.round > 1) {
+      vSt.round--;
+      vSt.roundPairs = vGenerateRoundPairsForRound(vSt.round);
+      vSt.pairIdx = vSt.roundPairs.length - 1;
+    } else {
+      vSt.pairIdx = Math.max(0, vSt.pairIdx - 1);
+    }
+  }
+
+  vSt.log.pop();
+  vSaveState();
+  vUpdateBussola();
+
+  document.getElementById('v-reflection-input').value = last.reflection || '';
+  document.getElementById('v-audio-interim').textContent = '';
+  vRenderCmp();
+}
+
+// Reconstruct pairs for a prior round (same seed via usedPairs minus current round)
+function vGenerateRoundPairsForRound(targetRound) {
+  // We can re-derive from current usedPairs minus last round's pairs
+  // Since we don't have perfect round boundaries stored, we re-run pairing with pairs up to that point
+  // Simple approach: re-generate based on current elo state which was restored
+  const sorted = [...Array(V_N).keys()].sort((a,b) => vSt.elo[b] - vSt.elo[a]);
+  const used = new Set(vSt.usedPairs.map(([a,b]) => a*100+b));
+  const pairs = [];
+  const paired = new Set();
+  for (let i = 0; i < sorted.length; i++) {
+    if (paired.has(sorted[i])) continue;
+    for (let j = i+1; j < sorted.length; j++) {
+      if (paired.has(sorted[j])) continue;
+      const a = Math.min(sorted[i],sorted[j]), b = Math.max(sorted[i],sorted[j]);
+      if (!used.has(a*100+b)) {
+        pairs.push([sorted[i], sorted[j]]);
+        paired.add(sorted[i]); paired.add(sorted[j]);
+        break;
+      }
+    }
+  }
+  return pairs.length > 0 ? pairs : vSt.roundPairs;
+}
+
+// ── Render comparison screen ───────────────────────────────────
+function vRenderCmp() {
+  const pair = vActiveModel === 'rr' ? vSt.pairs[vSt.pairIdx] : vSt.roundPairs[vSt.pairIdx];
+  if (!pair) return;
+  const [idA, idB] = pair;
+  document.getElementById('v-def-a').textContent = V_DEFS[idA];
+  document.getElementById('v-def-b').textContent = V_DEFS[idB];
+
+  let pct, label1, label2;
+  if (vActiveModel === 'rr') {
+    pct = Math.round((vSt.pairIdx / VRR_TOTAL_PAIRS) * 100);
+    label1 = `Comparação ${vSt.pairIdx + 1} de ${VRR_TOTAL_PAIRS}`;
+    label2 = `${pct}% concluído`;
+  } else {
+    const totalPairs = TOTAL_ROUNDS * 31;
+    pct = Math.round((vSt.answered / totalPairs) * 100);
+    label1 = `Comparação ${vSt.answered + 1} de ${totalPairs}`;
+    label2 = `Rodada ${vSt.round} de ${TOTAL_ROUNDS}`;
+  }
+  document.getElementById('v-prog-fill').style.width = pct + '%';
+  document.getElementById('v-prog-label').textContent = label1;
+  document.getElementById('v-round-label').textContent = label2;
+
+  const backBtn = document.getElementById('v-back-btn');
+  backBtn.disabled = vSt.log.length === 0;
+
+  document.getElementById('v-reflection-input').value = '';
+  document.getElementById('v-audio-interim').textContent = '';
+}
+
+// ── Bússola Reflexiva ──────────────────────────────────────────
+function vToggleBussola() {
+  const body = document.getElementById('v-bussola-body');
+  body.classList.toggle('open');
+}
+
+function vOpenBussola() {
+  document.getElementById('v-bussola-body').classList.add('open');
+}
+
+function vUpdateBussola() {
+  const entries = vSt.log.filter(e => e.reflection);
+  const countEl = document.getElementById('v-bussola-count');
+  const container = document.getElementById('v-bussola-entries');
+  const emptyEl = document.getElementById('v-bussola-empty');
+
+  if (countEl) countEl.textContent = entries.length + (entries.length === 1 ? ' reflexão' : ' reflexões');
+
+  if (!container) return;
+  if (entries.length === 0) {
+    container.innerHTML = '';
+    if (emptyEl) emptyEl.style.display = '';
+    return;
+  }
+  if (emptyEl) emptyEl.style.display = 'none';
+
+  // auto-open on first reflection
+  if (entries.length === 1) vOpenBussola();
+
+  container.innerHTML = entries.map((e, i) => {
+    const choiceLabel = e.choiceText || '?';
+    const contextLabel = vActiveModel === 'rr'
+      ? `Comparação #${(e.pairIdxAt !== undefined ? e.pairIdxAt + 1 : i+1)}`
+      : `Rodada ${e.round}`;
+    return `<div class="v-bussola-entry">
+      <div class="v-bussola-meta">${contextLabel} · Reflexão ${i+1} · ${new Date(e.time).toLocaleDateString('pt-BR')}</div>
+      <div class="v-bussola-pair">[A] ${V_NAMES[e.idA]} vs [B] ${V_NAMES[e.idB]} → <strong>${choiceLabel}</strong></div>
+      <div class="v-bussola-text">${e.reflection}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Conflict detection ─────────────────────────────────────────
+function vDetectConflicts() {
+  const wins = {};
+  vSt.log.forEach(e => {
+    if (e.scoreA > 0.5) {
+      if (!wins[e.idA]) wins[e.idA] = new Set();
+      wins[e.idA].add(e.idB);
+    } else if (e.scoreA < 0.5) {
+      if (!wins[e.idB]) wins[e.idB] = new Set();
+      wins[e.idB].add(e.idA);
+    }
+  });
+
+  const cycles = [];
+  for (let a = 0; a < V_N; a++) {
+    for (let b = 0; b < V_N; b++) {
+      if (b === a) continue;
+      if (!wins[a] || !wins[a].has(b)) continue;
+      for (let c = 0; c < V_N; c++) {
+        if (c === a || c === b) continue;
+        if (!wins[b] || !wins[b].has(c)) continue;
+        if (!wins[c] || !wins[c].has(a)) continue;
+        const key = [a,b,c].sort().join('-');
+        if (!cycles.find(cy => cy.key === key)) {
+          cycles.push({ key, ids:[a,b,c], score: vSt.elo[a]+vSt.elo[b]+vSt.elo[c] });
+        }
+      }
+    }
+  }
+
+  cycles.sort((x,y) => y.score - x.score);
+  vSt.conflicts = cycles.slice(0,8).map(c => c.ids);
+  vSt.conflictIdx = 0;
+  vSaveState();
+
+  if (vSt.conflicts.length === 0) {
+    vShowResults();
+  } else {
+    vShow('v-conflicts');
+    vRenderConflict();
+  }
+}
+
+function vRenderConflict() {
+  const total = vSt.conflicts.length;
+  const idx = vSt.conflictIdx;
+  document.getElementById('v-conflict-counter').textContent = `Inconsistência ${idx+1} de ${total}`;
+  document.getElementById('v-conflict-desc').innerHTML = `<strong>Ciclo detectado entre três valores</strong>Você preferiu A ao B, B ao C e C ao A. Selecione o mais importante dos três.`;
+  const ids = vSt.conflicts[idx];
+  document.getElementById('v-conflict-3col').innerHTML = ids.map(id => `
+    <div class="c3card">
+      <div class="c3name"><strong>${V_NAMES[id]}</strong></div>
+      <div class="c3def">${V_DEFS[id]}</div>
+      <button class="btn-pick" onclick="vPickConflict(${id})">Este é mais importante</button>
+    </div>`).join('');
+}
+
+function vPickConflict(winnerId) {
+  const ids = vSt.conflicts[vSt.conflictIdx];
+  const losers = ids.filter(id => id !== winnerId);
+  losers.forEach(lid => vUpdateElo(winnerId, lid, 1, 24));
+  vSt.conflictIdx++;
+  vSaveState();
+  if (vSt.conflictIdx >= vSt.conflicts.length) {
+    vShowResults();
+  } else {
+    vRenderConflict();
+  }
+}
+
+function vSkipConflicts() {
+  vShowResults();
+}
+
+// ── Tension & Coherence Analysis ──────────────────────────────
+function vAnalyzeTensions(ranked) {
+  const top10Set = new Set(ranked.slice(0, 10));
+  const top10Arr = ranked.slice(0, 10);
+
+  // All direct comparisons between top-10 values
+  const top10Comps = vSt.log.filter(e => top10Set.has(e.idA) && top10Set.has(e.idB));
+
+  // Close comparisons (scoreA = 0.75 or 0.25 = "Mais A/B")
+  const closeComps = top10Comps.filter(e => e.scoreA === 0.75 || e.scoreA === 0.25);
+
+  // Equal comparisons
+  const equalComps = top10Comps.filter(e => e.scoreA === 0.5);
+
+  // Coherence: % of decisive comparisons where winner matches final rank order
+  const decisiveComps = top10Comps.filter(e => e.scoreA !== 0.5);
+  let coherentCount = 0;
+  decisiveComps.forEach(e => {
+    const rA = ranked.indexOf(e.idA), rB = ranked.indexOf(e.idB);
+    if ((e.scoreA > 0.5 && rA < rB) || (e.scoreA < 0.5 && rB < rA)) coherentCount++;
+  });
+  const coherence = decisiveComps.length > 0
+    ? Math.round(coherentCount / decisiveComps.length * 100) : null;
+
+  // Cycles within top 10
+  const localWins = {};
+  top10Comps.forEach(e => {
+    if (e.scoreA > 0.5) { if (!localWins[e.idA]) localWins[e.idA] = new Set(); localWins[e.idA].add(e.idB); }
+    else if (e.scoreA < 0.5) { if (!localWins[e.idB]) localWins[e.idB] = new Set(); localWins[e.idB].add(e.idA); }
+  });
+  const cycles = [];
+  const seenKeys = new Set();
+  for (const a of top10Arr) {
+    for (const b of top10Arr) {
+      if (b === a || !localWins[a]?.has(b)) continue;
+      for (const c of top10Arr) {
+        if (c === a || c === b || !localWins[b]?.has(c) || !localWins[c]?.has(a)) continue;
+        const key = [a,b,c].sort().join('-');
+        if (!seenKeys.has(key)) { seenKeys.add(key); cycles.push([a,b,c]); }
+      }
+    }
+  }
+
+  return { top10Comps, closeComps, equalComps, coherence, cycles, totalDecisive: decisiveComps.length };
+}
+
+function vBuildNarrative(ranked, tensions) {
+  const top3 = ranked.slice(0, 3);
+
+  // Determinar orientação temática pelo top 3
+  const clusterCounts = {};
+  top3.forEach(id => {
+    const c = V_CLUSTERS[id];
+    clusterCounts[c] = (clusterCounts[c] || 0) + 1;
+  });
+  const sorted = Object.entries(clusterCounts).sort((a, b) => b[1] - a[1]);
+  const primaryCluster = parseInt(sorted[0][0]);
+  const primaryCount   = sorted[0][1];
+
+  let themeText = '';
+  if (primaryCount === 3) {
+    themeText = `Seus três valores mais centrais pertencem ao mesmo domínio: <strong>${CLUSTER_LABELS[primaryCluster]}</strong>. Isso indica uma orientação fortemente voltada para ${CLUSTER_DESCRIPTIONS[primaryCluster]}.`;
+  } else if (primaryCount === 2) {
+    const sec = sorted[1] ? parseInt(sorted[1][0]) : null;
+    themeText = `Seus valores centrais apontam predominantemente para <strong>${CLUSTER_LABELS[primaryCluster]}</strong>`
+      + (sec ? `, com presença de <strong>${CLUSTER_LABELS[sec]}</strong>` : '') + `.`;
+  } else {
+    const labels = top3.map(id => `<strong>${CLUSTER_LABELS[V_CLUSTERS[id]]}</strong>`).join(', ');
+    themeText = `Seus três valores mais centrais pertencem a domínios distintos (${labels}), indicando um perfil diversificado sem orientação temática única.`;
+  }
+
+  const top3Names = top3.map(id => `<strong>${V_NAMES[id]}</strong>`).join(', ');
+  let html = `<div class="narr-block"><p>Seus três valores mais centrais são ${top3Names}. ${themeText}</p></div>`;
+
+  // Coerência interna
+  if (tensions && tensions.coherence !== null) {
+    const coh = tensions.coherence;
+    let cohText = '';
+    if (coh >= 80) {
+      cohText = `A coerência interna das suas escolhas é <strong>alta (${coh}%)</strong> — quando os mesmos valores se confirmam em diferentes comparações, a hierarquia resultante tem alta confiabilidade.`;
+    } else if (coh >= 60) {
+      cohText = `A coerência interna foi <strong>moderada (${coh}%)</strong>. Algumas inversões entre escolhas pontuais e o ranking final sugerem que certos valores disputam espaço dependendo do contexto — algo comum em quem tem múltiplas esferas de vida igualmente significativas.`;
+    } else {
+      cohText = `A coerência interna foi <strong>baixa (${coh}%)</strong>. Isso é clinicamente relevante: alguns valores que aparecem no topo do ranking foram preteridos em comparações diretas. Pode indicar ambivalência real, sensibilidade ao contexto das perguntas, ou um momento de revisão de prioridades.`;
+    }
+    html += `<div class="narr-block"><p>${cohText}</p></div>`;
+  }
+
+  // Pares em tensão (margem estreita)
+  if (tensions && tensions.closeComps && tensions.closeComps.length > 0) {
+    html += `<div class="narr-block"><p class="narr-section-title">⚡ Tensões identificadas</p>`;
+    tensions.closeComps.slice(0, 3).forEach(e => {
+      const winner = e.scoreA > 0.5 ? e.idA : e.idB;
+      const loser  = e.scoreA > 0.5 ? e.idB : e.idA;
+      html += `<p>Ao comparar <strong>${V_NAMES[e.idA]}</strong> e <strong>${V_NAMES[e.idB]}</strong>, a escolha foi <strong>${V_NAMES[winner]}</strong> — mas com margem estreita, o que coloca os dois em tensão real.`;
+      if (e.reflection && e.reflection.trim()) {
+        html += ` Você registrou: <em>"${e.reflection.trim()}"</em>`;
+      }
+      html += `</p>`;
+    });
+    html += `</div>`;
+  }
+
+  // Pares equivalentes
+  if (tensions && tensions.equalComps && tensions.equalComps.length > 0) {
+    html += `<div class="narr-block"><p class="narr-section-title">⚖️ Valores equivalentes</p>`;
+    tensions.equalComps.slice(0, 3).forEach(e => {
+      html += `<p><strong>${V_NAMES[e.idA]}</strong> e <strong>${V_NAMES[e.idB]}</strong> foram considerados igualmente importantes — eles coexistem sem hierarquia estável no seu sistema de valores.`;
+      if (e.reflection && e.reflection.trim()) {
+        html += ` Você registrou: <em>"${e.reflection.trim()}"</em>`;
+      }
+      html += `</p>`;
+    });
+    html += `</div>`;
+  }
+
+  // Ciclos
+  if (tensions && tensions.cycles && tensions.cycles.length > 0) {
+    html += `<div class="narr-block"><p class="narr-section-title">🔄 Ciclos de equivalência</p>`;
+    tensions.cycles.slice(0, 2).forEach(([a, b, c]) => {
+      html += `<p>Foi identificado um ciclo entre <strong>${V_NAMES[a]}</strong>, <strong>${V_NAMES[b]}</strong> e <strong>${V_NAMES[c]}</strong>: nas comparações diretas, cada um prevaleceu sobre outro. Os três funcionam como valores equivalentes — coexistem sem hierarquia estável entre si.</p>`;
+    });
+    html += `</div>`;
+  }
+
+  return html;
+}
+
+function vBuildTensionBlock(ranked) {
+  const { top10Comps, closeComps, equalComps, coherence, cycles, totalDecisive } = vAnalyzeTensions(ranked);
+  const el = document.getElementById('v-tension-inner');
+  if (!el) return;
+
+  if (top10Comps.length === 0) {
+    el.innerHTML = '<p style="color:var(--vmuted);font-size:13px;font-family:Arial;">Não foram encontradas comparações diretas dentro do top 10 ainda. Complete mais rodadas para obter esta análise.</p>';
+    return;
+  }
+
+  let html = '<div class="c-section-title">Coerência Interna (Top 10)</div>';
+
+  if (coherence !== null) {
+    const col = coherence >= 80 ? '#276749' : coherence >= 60 ? '#B34A00' : '#92000A';
+    const label = coherence >= 80 ? 'Alta — escolhas muito consistentes com o ranking final'
+                : coherence >= 60 ? 'Moderada — algumas inversões entre escolhas e ranking'
+                : 'Baixa — inversões significativas, valores genuinamente equivalentes';
+    html += `<div class="c-kv"><span class="k">Comparações diretas entre os 10 primeiros</span><span class="v">${totalDecisive} comparações</span></div>
+    <div class="c-kv"><span class="k">Coerência interna</span><span class="v" style="color:${col};">${coherence}% — ${label}</span></div>`;
+  }
+
+  if (closeComps.length > 0) {
+    html += '<div class="c-section-title" style="margin-top:16px;">Comparações tensas — valores em disputa real</div>';
+    html += '<p style="font-size:12px;color:var(--vmuted);font-family:Arial;margin-bottom:8px;">Estes pares foram separados por "Mais" (não "Muito mais") — revelam onde a hierarquia é frágil e contextual.</p>';
+    closeComps.slice(0, 8).forEach(e => {
+      const winner = e.scoreA > 0.5 ? e.idA : e.idB;
+      const loser  = e.scoreA > 0.5 ? e.idB : e.idA;
+      html += `<div class="slow-item"><span class="slow-names"><strong>${V_NAMES[winner]}</strong> prevaleceu levemente sobre <strong>${V_NAMES[loser]}</strong></span><span class="slow-time" style="color:var(--vwarnbord);font-size:11px;">Tensa</span></div>`;
+    });
+  }
+
+  if (equalComps.length > 0) {
+    html += '<div class="c-section-title" style="margin-top:16px;">Valores equivalentes no top 10</div>';
+    equalComps.forEach(e => {
+      html += `<div class="slow-item"><span class="slow-names"><strong>${V_NAMES[e.idA]}</strong> = <strong>${V_NAMES[e.idB]}</strong></span><span class="slow-time" style="color:var(--vmuted);font-size:11px;">Iguais</span></div>`;
+    });
+  }
+
+  if (cycles.length > 0) {
+    html += '<div class="c-section-title" style="margin-top:16px;">Ciclos dentro do top 10 (A &gt; B &gt; C &gt; A)</div>';
+    html += '<p style="font-size:12px;color:var(--vmuted);font-family:Arial;margin-bottom:8px;">Inconsistências lógicas entre valores do topo são normais e clinicamente relevantes — indicam valores genuinamente equivalentes que coexistem sem hierarquia clara.</p>';
+    cycles.slice(0, 4).forEach(([a,b,c]) => {
+      html += `<div class="c-kv"><span class="k" style="font-size:12px;">${V_NAMES[a]} → ${V_NAMES[b]} → ${V_NAMES[c]} → ${V_NAMES[a]}</span><span class="v" style="font-size:11px;color:var(--vprimary);">Ciclo</span></div>`;
+    });
+  }
+
+  el.innerHTML = html;
+}
+
+// ── SVG → PNG helper for PDF ───────────────────────────────────
+function vSvgToPngDataUrl(svgEl) {
+  return new Promise(resolve => {
+    try {
+      const svgStr = new XMLSerializer().serializeToString(svgEl);
+      const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = 800; c.height = 800;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#FFF8F0';
+        ctx.fillRect(0, 0, 800, 800);
+        ctx.drawImage(img, 0, 0, 800, 800);
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL('image/png'));
+      };
+      img.onerror = () => resolve(null);
+      img.src = url;
+    } catch(e) { resolve(null); }
+  });
+}
+
+// ── Results ────────────────────────────────────────────────────
+function vShowResults() {
+  vShow('v-results');
+
+  const ranked = vActiveModel === 'rr'
+    ? [...Array(V_N).keys()].sort((a,b) => vSt.wins[b] - vSt.wins[a])
+    : [...Array(V_N).keys()].sort((a,b) => vSt.elo[b] - vSt.elo[a]);
+
+  const totalAnswered = vActiveModel === 'rr' ? vSt.pairIdx : vSt.answered;
+  const modelLabel = vActiveModel === 'rr' ? 'Comparação Completa (Round-Robin)' : `${TOTAL_ROUNDS} rodadas (Suíço+Elo)`;
+  document.getElementById('v-res-sub').textContent = `${totalAnswered} comparações · ${modelLabel} · ${vSt.log.filter(e=>e.reflection).length} reflexões registradas`;
+
+  // Build radial map
+  vBuildRadialMap(ranked);
+
+  // Narrative interpretation
+  const narrativeTensions = vAnalyzeTensions(ranked);
+  const narrativeBlock = document.getElementById('v-narrative-block');
+  if (narrativeBlock) {
+    narrativeBlock.style.display = '';
+    document.getElementById('v-narrative-inner').innerHTML = vBuildNarrative(ranked, narrativeTensions);
+  }
+
+  // Build ranked list
+  const tiers = [{n:'🌟 Valores Centrais (1–10)',cls:'t-core',end:10},{n:'⭐ Valores Importantes (11–25)',cls:'t-important',end:25},{n:'📌 Valores Secundários (26–45)',cls:'t-secondary',end:45},{n:'○ Valores Periféricos (46–63)',cls:'t-periph',end:63}];
+  let html = ''; let tierIdx = 0; let tierStart = 0;
+  ranked.forEach((id, i) => {
+    const rank = i+1;
+    if (tierIdx < tiers.length && rank === tierStart+1) {
+      html += `<div class="tier-hdr ${tiers[tierIdx].cls}">${tiers[tierIdx].n}</div>`;
+    }
+    if (tierIdx < tiers.length && rank > tiers[tierIdx].end) { tierIdx++; tierStart = rank-1; }
+    const scoreDisp = vActiveModel === 'rr'
+      ? `${vSt.wins[id].toFixed(1)}V`
+      : `Elo ${vSt.elo[id].toFixed(0)}`;
+    html += `<div class="r-item"><div class="r-rank${rank<=10?' gd':''}">${rank}</div><div class="r-cont"><div class="r-name">${V_NAMES[id]}</div><div class="r-def">${V_DEFS[id].substring(0,100)}…</div></div><div class="r-elo">${scoreDisp}</div></div>`;
+  });
+  document.getElementById('v-result-list').innerHTML = html;
+
+  // Tension & Coherence
+  vBuildTensionBlock(ranked);
+
+  // Ranking explanation
+  const wins = {}, losses = {};
+  vSt.log.forEach(e => {
+    if (e.scoreA > 0.5) {
+      wins[e.idA] = (wins[e.idA]||[]).concat(e.idB);
+      losses[e.idB] = (losses[e.idB]||[]).concat(e.idA);
+    } else if (e.scoreA < 0.5) {
+      wins[e.idB] = (wins[e.idB]||[]).concat(e.idA);
+      losses[e.idA] = (losses[e.idA]||[]).concat(e.idB);
+    }
+  });
+
+  let explHtml = '';
+  ranked.slice(0,20).forEach((id, i) => {
+    const w = (wins[id]||[]).length;
+    const l = (losses[id]||[]).length;
+    const wNames = (wins[id]||[]).slice(0,5).map(x=>V_NAMES[x]).join(', ');
+    explHtml += `<div class="c-kv"><span class="k">#${i+1} ${V_NAMES[id]}</span><span class="v">${w}V / ${l}D</span></div>`;
+    if (w > 0) explHtml += `<div style="font-size:11px;color:var(--vmuted);padding:2px 0 8px;font-family:Arial;">Venceu: ${wNames}${(wins[id]||[]).length>5?` e mais ${(wins[id]||[]).length-5}`:''}.</div>`;
+  });
+  const explFooter = vActiveModel === 'rr'
+    ? 'Mostrando os 20 primeiros. V=vitórias (fracionárias), D=derrotas. Comparação Completa — todos os pares foram comparados.'
+    : 'Mostrando os 20 primeiros. V=vitórias, D=derrotas no sistema Elo suíço.';
+  document.getElementById('v-ranking-explain').innerHTML = explHtml + `<p style="font-size:11px;color:var(--vmuted);margin-top:12px;font-family:Arial;">${explFooter}</p>`;
+
+  // Bússola diary
+  const reflections = vSt.log.filter(e => e.reflection);
+  if (reflections.length > 0) {
+    document.getElementById('v-diary-block').style.display = '';
+    document.getElementById('v-diary-inner').innerHTML = reflections.map((e,i) => `
+      <div class="v-diary-entry">
+        <div class="v-diary-meta">Rodada ${e.round} · ${new Date(e.time).toLocaleDateString('pt-BR')}</div>
+        <div class="v-diary-pair"><div class="v-diary-def">${V_DEFS[e.idA].substring(0,80)}…</div><div class="v-diary-vs">vs</div><div class="v-diary-def">${V_DEFS[e.idB].substring(0,80)}…</div></div>
+        <div class="v-diary-decision">Escolha: <strong>${e.choiceText}</strong></div>
+        <div class="v-diary-text">${e.reflection}</div>
+      </div>`).join('');
+  }
+
+  // Full log
+  document.getElementById('v-full-log').innerHTML = vBuildFullLog();
+
+  // Clinical
+  const times = vSt.log.map(e => e.time);
+  const slow = vSt.log.filter(e => {
+    const idx = vSt.log.indexOf(e);
+    if (idx === 0) return false;
+    return (e.time - vSt.log[idx-1].time) > 30000;
+  });
+  document.getElementById('v-clinical-inner').innerHTML = `
+    <div class="c-section-title">Estatísticas</div>
+    <div class="c-kv"><span class="k">Total de comparações</span><span class="v">${vSt.answered}</span></div>
+    <div class="c-kv"><span class="k">Reflexões registradas</span><span class="v">${reflections.length}</span></div>
+    <div class="c-kv"><span class="k">Conflitos detectados</span><span class="v">${vSt.conflicts.length}</span></div>
+    ${vActiveModel === 'rr' ? `
+    <div class="c-kv"><span class="k">Vitórias máximas</span><span class="v">${Math.max(...vSt.wins).toFixed(1)} (${V_NAMES[vSt.wins.indexOf(Math.max(...vSt.wins))]})</span></div>
+    <div class="c-kv"><span class="k">Vitórias mínimas</span><span class="v">${Math.min(...vSt.wins).toFixed(1)} (${V_NAMES[vSt.wins.indexOf(Math.min(...vSt.wins))]})</span></div>
+    ` : `
+    <div class="c-kv"><span class="k">Elo máximo</span><span class="v">${Math.max(...vSt.elo)} (${V_NAMES[vSt.elo.indexOf(Math.max(...vSt.elo))]})</span></div>
+    <div class="c-kv"><span class="k">Elo mínimo</span><span class="v">${Math.min(...vSt.elo)} (${V_NAMES[vSt.elo.indexOf(Math.min(...vSt.elo))]})</span></div>
+    `}
+    ${slow.length>0?`<div class="c-section-title">Comparações com maior tempo de deliberação</div>${slow.slice(0,5).map(e=>`<div class="slow-item"><span class="slow-names">${V_NAMES[e.idA]} vs ${V_NAMES[e.idB]}</span></div>`).join('')}`:''}
+  `;
+}
+
+function vBuildFullLog() {
+  if (!vSt.log || vSt.log.length === 0) return '<p style="color:var(--vmuted);font-size:13px;">Nenhuma resposta registrada.</p>';
+  return vSt.log.map((e, i) => {
+    const bar = e.scoreA > 0.5 ? `▶ ${V_NAMES[e.idA]}` : e.scoreA < 0.5 ? `▶ ${V_NAMES[e.idB]}` : `= Iguais`;
+    return `<div class="c-kv">
+      <span class="k" style="font-size:12px;">#${i+1} R${e.round} · ${V_NAMES[e.idA]} vs ${V_NAMES[e.idB]}</span>
+      <span class="v" style="font-size:12px;">${e.choiceText||bar}</span>
+    </div>${e.reflection?`<div style="font-size:11px;color:var(--vmuted);padding:2px 0 8px;font-family:Arial;font-style:italic;border-left:2px solid var(--vprimary);padding-left:8px;margin:4px 0 8px;">"${e.reflection}"</div>`:''}`;
+  }).join('');
+}
+
+// ── Radial Map ─────────────────────────────────────────────────
+function vBuildRadialMap(ranked) {
+  const W = 800, H = 800, cx = 400, cy = 400;
+  const rings = [
+    { r: 90,  count: 5,  fill: '#92000A', textColor: '#FFF8E7', fontSize: 11, showName: true  },
+    { r: 185, count: 15, fill: '#B34A00', textColor: '#FFF8E7', fontSize: 9,  showName: true  },
+    { r: 280, count: 20, fill: '#D4781A', textColor: '#1A0005', fontSize: 8,  showName: false },
+    { r: 370, count: 23, fill: '#E8B84B', textColor: '#1A0005', fontSize: 7,  showName: false }
+  ];
+
+  let svgParts = [`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">`];
+
+  // Background
+  svgParts.push(`<circle cx="${cx}" cy="${cy}" r="390" fill="#FFF8F0" stroke="#E8C0C0" stroke-width="1"/>`);
+
+  // Ring guide circles
+  rings.forEach(ring => {
+    svgParts.push(`<circle cx="${cx}" cy="${cy}" r="${ring.r+28}" fill="none" stroke="${ring.fill}" stroke-width=".5" stroke-dasharray="4 4" opacity=".3"/>`);
+  });
+
+  let rankOffset = 0;
+  rings.forEach((ring, ri) => {
+    const { r, count, fill, textColor, fontSize, showName } = ring;
+    for (let i = 0; i < count; i++) {
+      const globalRank = rankOffset + i;
+      if (globalRank >= ranked.length) break;
+      const id = ranked[globalRank];
+      const angle = (2 * Math.PI * i / count) - Math.PI / 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      const rank = globalRank + 1;
+
+      // circle node
+      const nodeR = ri === 0 ? 26 : ri === 1 ? 18 : 14;
+      svgParts.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${nodeR}" fill="${fill}" opacity="${1 - ri*0.12}"/>`);
+
+      if (showName) {
+        // Rank number + short name
+        const shortName = V_NAMES[id].length > 12 ? V_NAMES[id].substring(0,11)+'…' : V_NAMES[id];
+        svgParts.push(`<text x="${x.toFixed(1)}" y="${(y-5).toFixed(1)}" text-anchor="middle" fill="${textColor}" font-size="${fontSize}" font-family="Arial" font-weight="bold">${rank}</text>`);
+        svgParts.push(`<text x="${x.toFixed(1)}" y="${(y+6).toFixed(1)}" text-anchor="middle" fill="${textColor}" font-size="${fontSize-1}" font-family="Arial">${shortName}</text>`);
+      } else {
+        svgParts.push(`<text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" fill="${textColor}" font-size="${fontSize}" font-family="Arial" font-weight="bold">${rank}</text>`);
+      }
+    }
+    rankOffset += count;
+  });
+
+  // Center label
+  svgParts.push(`<circle cx="${cx}" cy="${cy}" r="36" fill="#1A0005"/>`);
+  svgParts.push(`<text x="${cx}" y="${cy-6}" text-anchor="middle" fill="#FFF8E7" font-size="9" font-family="Arial">VALORES</text>`);
+  svgParts.push(`<text x="${cx}" y="${cy+7}" text-anchor="middle" fill="#FFF8E7" font-size="9" font-family="Arial">PESSOAIS</text>`);
+
+  // Legend
+  const legendItems = [
+    {fill:'#92000A',label:'Core (1–5)'},
+    {fill:'#B34A00',label:'Importantes (6–20)'},
+    {fill:'#D4781A',label:'Secundários (21–40)'},
+    {fill:'#E8B84B',label:'Periféricos (41–63)'}
+  ];
+  legendItems.forEach((item, i) => {
+    const lx = 30, ly = 730 + i * 16;
+    svgParts.push(`<circle cx="${lx+6}" cy="${ly}" r="6" fill="${item.fill}"/>`);
+    svgParts.push(`<text x="${lx+18}" y="${ly+4}" fill="#5C1A1A" font-size="10" font-family="Arial">${item.label}</text>`);
+  });
+
+  svgParts.push('</svg>');
+  document.getElementById('v-radial-map').innerHTML = svgParts.join('');
+}
+
+// ── PDF Export ─────────────────────────────────────────────────
+async function vExportPDF() {
+  if (!window.jspdf) { alert('jsPDF não carregou. Verifique sua conexão.'); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const ranked = vActiveModel === 'rr'
+    ? [...Array(V_N).keys()].sort((a,b) => vSt.wins[b] - vSt.wins[a])
+    : [...Array(V_N).keys()].sort((a,b) => vSt.elo[b] - vSt.elo[a]);
+  const pw = 210, ph = 297, ml = 20, mr = 190, lh = 7;
+  let y = 20;
+
+  const addLine = (txt, size, bold, color) => {
+    doc.setFontSize(size||11);
+    doc.setFont('helvetica', bold?'bold':'normal');
+    if (color) doc.setTextColor(...color); else doc.setTextColor(26,0,5);
+    doc.text(txt, ml, y);
+    y += lh;
+  };
+  const addWrapped = (txt, size, indent) => {
+    doc.setFontSize(size||10);
+    doc.setFont('helvetica','normal');
+    doc.setTextColor(92,26,26);
+    const lines = doc.splitTextToSize(txt, mr - ml - (indent||0));
+    lines.forEach(l => {
+      if (y > ph - 20) { doc.addPage(); y = 20; }
+      doc.text(l, ml+(indent||0), y);
+      y += 5.5;
+    });
+  };
+  const gap = (n) => { y += (n||4); };
+  const newPage = () => { doc.addPage(); y = 20; };
+  const hRule = () => {
+    doc.setDrawColor(146,0,10);
+    doc.setLineWidth(.3);
+    doc.line(ml, y, mr, y);
+    y += 4;
+  };
+
+  // ── PAGE 1: Title ──────────────────────────────────────────
+  doc.setFillColor(26,0,5);
+  doc.rect(0, 0, 210, 60, 'F');
+  doc.setFontSize(9); doc.setFont('helvetica','normal'); doc.setTextColor(180,80,80);
+  doc.text('INSTRUMENTO CLÍNICO E PESSOAL · LAUDO CONFIDENCIAL', 105, 18, {align:'center'});
+  doc.setFontSize(22); doc.setFont('helvetica','bold'); doc.setTextColor(255,248,231);
+  doc.text('Laudo do Inventário de Valores', 105, 34, {align:'center'});
+  doc.setFontSize(11); doc.setFont('helvetica','normal'); doc.setTextColor(200,140,140);
+  doc.text('Instrumento de Valores e Personalidade', 105, 44, {align:'center'});
+  doc.setFontSize(9); doc.setTextColor(150,100,100);
+  doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 105, 53, {align:'center'});
+  y = 72;
+  addLine('Autoria', 9, false, [146,0,10]);
+  addLine('Pedro Andrade Rüger — CRP 04/63435', 11, true);
+  addLine('Co-autora: Silvia Maia', 10);
+  gap();
+  hRule();
+  addLine('Resumo da avaliação', 10, false, [146,0,10]);
+  gap(2);
+  const pdfTotalComps = vActiveModel === 'rr' ? vSt.pairIdx : vSt.answered;
+  addLine(`Método de avaliação: ${vActiveModel === 'rr' ? 'Comparação Completa (Round-Robin)' : 'Torneio Suíço + Elo'}`, 10);
+  addLine(`Total de comparações realizadas: ${pdfTotalComps}`, 10);
+  if (vActiveModel !== 'rr') addLine(`Rodadas concluídas: ${TOTAL_ROUNDS}`, 10);
+  addLine(`Reflexões registradas: ${vSt.log.filter(e=>e.reflection).length}`, 10);
+  addLine(`Conflitos detectados e resolvidos: ${vSt.conflicts.length}`, 10);
+  const topScore = vActiveModel === 'rr' ? `${vSt.wins[ranked[0]].toFixed(1)} vitórias` : `Elo ${vSt.elo[ranked[0]]}`;
+  addLine(`Valor mais pontuado: ${V_NAMES[ranked[0]]} (${topScore})`, 10);
+  gap();
+  hRule();
+  if (vActiveModel === 'rr') {
+    addWrapped('Método: Comparação Completa (Round-Robin). Todos os 1 953 pares possíveis entre os 63 valores foram comparados. O ranking é determinado pelo total de vitórias fracionárias de cada valor, onde "Muito mais importante" vale 1,0 ponto, "Mais importante" vale 0,75, "Iguais" vale 0,5 e assim por diante. Inconsistências foram detectadas e resolvidas por escolha direta.');
+  } else {
+    addWrapped('Método: Torneio Suíço + Elo. Todos os valores iniciam com peso idêntico (Elo 1000). O ranking é determinado pelo sistema Elo suíço em 6 rodadas de comparações pareadas, onde "Muito mais importante" transfere mais pontos do que "Mais importante". Inconsistências lógicas foram detectadas e resolvidas por escolha direta.');
+  }
+  gap();
+  addWrapped('AVISO: Este instrumento é de uso clínico e pessoal. As informações contidas neste laudo são confidenciais.');
+
+  // ── PAGE: Mapa Radial ────────────────────────────────────
+  newPage();
+  doc.setFillColor(26,0,5);
+  doc.rect(ml, y-4, mr-ml, 10, 'F');
+  doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+  doc.text('MAPA RADIAL DE VALORES', ml+5, y+3);
+  y += 14;
+
+  const svgEl = document.querySelector('#v-radial-map svg');
+  if (svgEl) {
+    const pngData = await vSvgToPngDataUrl(svgEl);
+    if (pngData) {
+      const imgSz = 162;
+      doc.addImage(pngData, 'PNG', (210 - imgSz) / 2, y, imgSz, imgSz);
+      y += imgSz + 6;
+    }
+  }
+  doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(92,26,26);
+  const legendPdf = [['#92000A','Core (1–5)'],['#B34A00','Importantes (6–20)'],['#D4781A','Secundários (21–40)'],['#E8B84B','Periféricos (41–63)']];
+  legendPdf.forEach(([color, label], i) => {
+    const lx = ml + i * 42;
+    const [r2,g2,b2] = color.match(/\w\w/g).map(x=>parseInt(x,16));
+    doc.setFillColor(r2,g2,b2); doc.rect(lx, y-3, 5, 4, 'F');
+    doc.setTextColor(92,26,26); doc.text(label, lx+7, y);
+  });
+  y += 8;
+  addWrapped('O mapa posiciona os valores do centro (mais importantes) para a periferia. Os círculos internos mostram nome e número; os externos mostram apenas o número de ranking.');
+
+  // ── PAGE: Gráfico Top 20 ─────────────────────────────────
+  newPage();
+  doc.setFillColor(146,0,10);
+  doc.rect(ml, y-4, mr-ml, 10, 'F');
+  doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+  doc.text('TOP 20 VALORES — PONTUAÇÃO COMPARATIVA', ml+5, y+3);
+  y += 14;
+
+  const scoreArr2 = vActiveModel === 'rr' ? vSt.wins : vSt.elo;
+  const maxSc = Math.max(...scoreArr2);
+  const minSc = vActiveModel === 'rr' ? 0 : Math.min(...scoreArr2);
+  const barMaxW = mr - ml - 74;
+
+  ranked.slice(0, 20).forEach((id, i) => {
+    const rank = i + 1;
+    const sc = scoreArr2[id];
+    const pct = maxSc > minSc ? (sc - minSc) / (maxSc - minSc) : 1;
+    const barW = Math.max(2, pct * barMaxW);
+    const [tr,tg,tb] = rank <= 10 ? [146,0,10] : rank <= 25 ? [179,74,0] : [212,120,26];
+
+    if (y > ph - 22) newPage();
+    doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(26,0,5);
+    const nameStr = `#${rank} ${V_NAMES[id].length > 22 ? V_NAMES[id].substring(0,21)+'…' : V_NAMES[id]}`;
+    doc.text(nameStr, ml, y);
+    doc.setFillColor(tr,tg,tb);
+    doc.rect(ml + 68, y - 3.5, barW, 5, 'F');
+    doc.setFont('helvetica','normal'); doc.setTextColor(139,74,74); doc.setFontSize(7.5);
+    doc.text(vActiveModel === 'rr' ? sc.toFixed(1) : sc.toString(), ml + 70 + barW, y);
+    y += 9;
+  });
+  gap(4);
+  [[146,0,10,'Valores Centrais (1–10)'],[179,74,0,'Valores Importantes (11–20)'],[212,120,26,'Valores Secundários (21+)']].forEach(([r3,g3,b3,lbl]) => {
+    doc.setFillColor(r3,g3,b3); doc.rect(ml, y-3, 5, 4, 'F');
+    doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(92,26,26);
+    doc.text(lbl, ml+8, y); y += 7;
+  });
+
+  // ── PAGE: Análise de Tensões ─────────────────────────────
+  const tens = vAnalyzeTensions(ranked);
+  if (tens.top10Comps.length > 0) {
+    newPage();
+    doc.setFillColor(179,74,0);
+    doc.rect(ml, y-4, mr-ml, 10, 'F');
+    doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+    doc.text('ANÁLISE DE TENSÕES E COERÊNCIA INTERNA', ml+5, y+3);
+    y += 14;
+
+    if (tens.coherence !== null) {
+      const cohColor = tens.coherence >= 80 ? [39,103,73] : tens.coherence >= 60 ? [179,74,0] : [146,0,10];
+      const cohLabel = tens.coherence >= 80 ? 'Alta' : tens.coherence >= 60 ? 'Moderada' : 'Baixa';
+      doc.setFontSize(10); doc.setFont('helvetica','bold'); doc.setTextColor(...cohColor);
+      doc.text(`Coerência interna: ${tens.coherence}% (${cohLabel})`, ml, y); y += 6;
+      doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(92,26,26);
+      doc.text(`Baseado em ${tens.totalDecisive} comparações diretas entre os 10 valores mais importantes.`, ml, y); y += 10;
+    }
+
+    if (tens.closeComps.length > 0) {
+      doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(146,0,10);
+      doc.text('Comparações tensas dentro do top 10', ml, y); y += 5;
+      addWrapped('Pares separados por "Mais" (não "Muito mais") — a hierarquia entre eles é contextual e pode variar.');
+      tens.closeComps.slice(0,8).forEach(e => {
+        const w = e.scoreA > 0.5 ? e.idA : e.idB, l2 = e.scoreA > 0.5 ? e.idB : e.idA;
+        doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(26,0,5);
+        const line = `• ${V_NAMES[w]} prevaleceu levemente sobre ${V_NAMES[l2]}`;
+        const ls2 = doc.splitTextToSize(line, mr-ml-4);
+        ls2.forEach(ln => { if(y>ph-18)newPage(); doc.text(ln, ml+2, y); y+=5; });
+      });
+    }
+
+    if (tens.equalComps.length > 0) {
+      gap(4);
+      doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(146,0,10);
+      doc.text('Valores equivalentes no top 10', ml, y); y += 5;
+      tens.equalComps.forEach(e => {
+        doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(26,0,5);
+        doc.text(`• ${V_NAMES[e.idA]}  =  ${V_NAMES[e.idB]}`, ml+2, y); y += 5;
+      });
+    }
+
+    if (tens.cycles.length > 0) {
+      gap(4);
+      doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(146,0,10);
+      doc.text('Ciclos detectados dentro do top 10  (A > B > C > A)', ml, y); y += 5;
+      addWrapped('Ciclos revelam valores sem hierarquia estável — coexistem como equivalentes. São normais e clinicamente significativos.');
+      tens.cycles.slice(0,4).forEach(([a,b,c]) => {
+        doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(26,0,5);
+        const cyLine = `• ${V_NAMES[a]} > ${V_NAMES[b]} > ${V_NAMES[c]} > ${V_NAMES[a]}`;
+        const cls = doc.splitTextToSize(cyLine, mr-ml-4);
+        cls.forEach(ln => { if(y>ph-18)newPage(); doc.text(ln, ml+2, y); y+=5; });
+      });
+    }
+  }
+
+  // ── PAGE 2+: Ranking completo ────────────────────────────
+  newPage();
+  const wins = {}, losses = {};
+  vSt.log.forEach(e => {
+    if (e.scoreA > 0.5) { wins[e.idA]=(wins[e.idA]||[]).concat(e.idB); losses[e.idB]=(losses[e.idB]||[]).concat(e.idA); }
+    else if (e.scoreA < 0.5) { wins[e.idB]=(wins[e.idB]||[]).concat(e.idA); losses[e.idA]=(losses[e.idA]||[]).concat(e.idB); }
+  });
+
+  doc.setFillColor(146,0,10);
+  doc.rect(ml, y-4, mr-ml, 10, 'F');
+  doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+  doc.text('RANKING COMPLETO DE VALORES', ml+5, y+3);
+  y += 12;
+
+  const tierBands = [{end:10,label:'VALORES CENTRAIS',fill:[255,240,240]},{end:25,label:'VALORES IMPORTANTES',fill:[255,248,244]},{end:45,label:'VALORES SECUNDÁRIOS',fill:[255,252,248]},{end:63,label:'VALORES PERIFÉRICOS',fill:[255,255,255]}];
+  let ti = 0;
+
+  ranked.forEach((id, i) => {
+    if (y > ph-28) { newPage(); }
+    const rank = i+1;
+    if (ti < tierBands.length && rank === (ti===0?1:(tierBands[ti-1].end+1))) {
+      gap(3);
+      doc.setFillColor(...tierBands[ti].fill);
+      doc.rect(ml, y-3, mr-ml, 7, 'F');
+      doc.setTextColor(146,0,10); doc.setFontSize(8); doc.setFont('helvetica','bold');
+      doc.text(tierBands[ti].label, ml+2, y+2);
+      y += 8; ti++;
+    }
+
+    const w = (wins[id]||[]).length, l = (losses[id]||[]).length;
+    const pdfScore = vActiveModel === 'rr'
+      ? `${vSt.wins[id].toFixed(1)}V / ${(V_N-1-vSt.wins[id]).toFixed(1)}D`
+      : `Elo: ${vSt.elo[id]}  |  ${w}V / ${l}D`;
+    doc.setFontSize(9); doc.setFont('helvetica','bold'); doc.setTextColor(26,0,5);
+    doc.text(`#${rank}`, ml, y);
+    doc.setFont('helvetica','bold'); doc.setTextColor(92,26,26);
+    doc.text(V_NAMES[id], ml+12, y);
+    doc.setFont('helvetica','normal'); doc.setTextColor(139,74,74);
+    doc.text(pdfScore, mr-45, y, {align:'right'});
+    y += 5;
+
+    // why explanation
+    const wNames = (wins[id]||[]).slice(0,4).map(x=>V_NAMES[x]).join(', ');
+    if (w > 0) {
+      doc.setFontSize(7.5); doc.setFont('helvetica','italic'); doc.setTextColor(139,74,74);
+      const why = `Venceu: ${wNames}${(wins[id]||[]).length>4?` e mais ${(wins[id]||[]).length-4} valores`:''}`;
+      const wlines = doc.splitTextToSize(why, mr-ml-14);
+      wlines.forEach(wl => { if(y>ph-15){newPage();} doc.text(wl, ml+12, y); y+=4.5; });
+    }
+    y += 1.5;
+  });
+
+  // ── PAGE: Bússola Reflexiva ──────────────────────────────
+  const reflections = vSt.log.filter(e => e.reflection);
+  if (reflections.length > 0) {
+    newPage();
+    doc.setFillColor(146,0,10);
+    doc.rect(ml, y-4, mr-ml, 10, 'F');
+    doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+    doc.text('BÚSSOLA REFLEXIVA DOS VALORES', ml+5, y+3);
+    y += 14;
+    addWrapped('As reflexões abaixo foram registradas pelo paciente durante as comparações, funcionando como um diário de valores em processo.');
+    gap();
+
+    reflections.forEach((e, i) => {
+      if (y > ph-40) newPage();
+      doc.setFillColor(255,240,240);
+      doc.rect(ml, y-3, mr-ml, 7, 'F');
+      doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(146,0,10);
+      doc.text(`Reflexão ${i+1} — Rodada ${e.round} · ${V_NAMES[e.idA]} vs ${V_NAMES[e.idB]}`, ml+2, y+2);
+      y += 8;
+      doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(139,74,74);
+      doc.text(`Escolha: ${e.choiceText}`, ml+2, y);
+      y += 6;
+      addWrapped(`"${e.reflection}"`, 9, 4);
+      gap(3);
+    });
+  }
+
+  // ── PAGE: Full comparison log ─────────────────────────────
+  newPage();
+  doc.setFillColor(26,0,5);
+  doc.rect(ml, y-4, mr-ml, 10, 'F');
+  doc.setTextColor(255,248,231); doc.setFontSize(12); doc.setFont('helvetica','bold');
+  doc.text('REGISTRO COMPLETO DAS COMPARAÇÕES', ml+5, y+3);
+  y += 14;
+
+  vSt.log.forEach((e, i) => {
+    if (y > ph-20) newPage();
+    doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(92,26,26);
+    doc.text(`#${i+1} R${e.round}`, ml, y);
+    doc.setFont('helvetica','normal'); doc.setTextColor(26,0,5);
+    const compLine = `${V_NAMES[e.idA]} vs ${V_NAMES[e.idB]}`;
+    const clines = doc.splitTextToSize(compLine, mr-ml-24);
+    clines.forEach((cl,ci) => { doc.text(cl, ml+(ci===0?16:16), y+(ci*4)); });
+    y += clines.length*4;
+    doc.setFont('helvetica','bold'); doc.setTextColor(146,0,10);
+    doc.text(`→ ${e.choiceText}`, ml+16, y); y += 5;
+    if (e.reflection) {
+      doc.setFont('helvetica','italic'); doc.setTextColor(139,74,74); doc.setFontSize(7.5);
+      const rlines = doc.splitTextToSize(`"${e.reflection}"`, mr-ml-20);
+      rlines.forEach(rl => { if(y>ph-15)newPage(); doc.text(rl, ml+20, y); y+=4; });
+      y+=2;
+    }
+  });
+
+  doc.save(`laudo-valores-${new Date().toISOString().split('T')[0]}.pdf`);
+}
+
+// ── Welcome screen init ────────────────────────────────────────
+function vCheckResume() {
+  const saved = vLoadState();
+  if (saved && saved.answered > 0) {
+    vSt = saved;
+    const banner = document.getElementById('v-resume-banner');
+    banner.style.display = 'flex';
+    document.getElementById('v-resume-info').textContent = `${saved.answered} comparações concluídas · Rodada ${saved.round} de ${TOTAL_ROUNDS}`;
+    document.getElementById('v-btn-discard').style.display = 'block';
+  }
+}
+
+function vResumeTest() {
+  const saved = vLoadState();
+  if (!saved) return;
+  vSt = saved;
+  if (vSt.phase === 'conflicts') {
+    vShow('v-conflicts');
+    vRenderConflict();
+  } else if (vSt.phase === 'done') {
+    vShowResults();
+  } else {
+    vShow('v-comparison');
+    vRenderCmp();
+    vUpdateBussola();
+  }
+}
+
+function vStartFresh() {
+  vClearSaved();
+  if (vActiveModel === 'rr') {
+    vSt = vRRFreshState();
+  } else {
+    vSt = vFreshState();
+    vSt.roundPairs = vGenerateRoundPairs();
+  }
+  vShow('v-comparison');
+  vRenderCmp();
+  vUpdateBussola();
+}
+
+function vDiscardAndStart() {
+  vClearSaved();
+  if (vActiveModel === 'rr') {
+    vSt = vRRFreshState();
+  } else {
+    vSt = vFreshState();
+    vSt.roundPairs = vGenerateRoundPairs();
+  }
+  document.getElementById('v-resume-banner').style.display = 'none';
+  document.getElementById('v-btn-discard').style.display = 'none';
+  vShow('v-comparison');
+  vRenderCmp();
+  vUpdateBussola();
+}
+
+function vGoWelcome() {
+  vGoModelSelect();
+}
+
+// ── Audio (values) ─────────────────────────────────────────────
+let vRecognizer = null;
+function vToggleAudio() {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) { alert('Reconhecimento de voz não disponível neste navegador.'); return; }
+  const btn = document.getElementById('v-audio-btn');
+  if (vRecognizer) {
+    vRecognizer.stop();
+    vRecognizer = null;
+    btn.classList.remove('recording');
+    btn.textContent = '🎤';
+    return;
+  }
+  const r = new SpeechRec();
+  r.lang = 'pt-BR'; r.continuous = true; r.interimResults = true;
+  r.onresult = ev => {
+    let interim = '', final = '';
+    for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+      else interim += ev.results[i][0].transcript;
+    }
+    if (final) {
+      const ta = document.getElementById('v-reflection-input');
+      ta.value += (ta.value ? ' ' : '') + final.trim();
+    }
+    document.getElementById('v-audio-interim').textContent = interim;
+  };
+  r.onend = () => { btn.classList.remove('recording'); btn.textContent = '🎤'; vRecognizer = null; };
+  r.start();
+  vRecognizer = r;
+  btn.classList.add('recording');
+  btn.textContent = '⏹';
+}
+
+// ── Keyboard (values) ──────────────────────────────────────────
+document.addEventListener('keydown', ev => {
+  if (!document.getElementById('mod-valores').classList.contains('active')) return;
+  if (document.activeElement && ['TEXTAREA','INPUT'].includes(document.activeElement.tagName)) return;
+  if (!document.getElementById('v-comparison').classList.contains('active')) return;
+  const map = {'1':[4,0],'2':[2,0],'3':[1,1],'4':[0,2],'5':[0,4]};
+  if (map[ev.key]) { ev.preventDefault(); vAnswer(...map[ev.key]); }
+});
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  const vSaved = vLoadState();
+  if (vSaved && vSaved.answered > 0) {
+    document.getElementById('v-resume-banner').style.display = 'flex';
+    document.getElementById('v-resume-info').textContent = `${vSaved.answered} comparações concluídas · Rodada ${vSaved.round} de ${TOTAL_ROUNDS}`;
+    document.getElementById('v-btn-discard').style.display = 'block';
+  }
+});
+</script>
+
+<!-- ═══ AJUSTES PARA CELULAR: centraliza o mapa radial ao abrir ═══ -->
+<script>
+(function () {
+  var m = document.getElementById('v-radial-map');
+  if (!m || !window.MutationObserver) return;
+  new MutationObserver(function () {
+    setTimeout(function () { if (m.scrollWidth > m.clientWidth) m.scrollLeft = (m.scrollWidth - m.clientWidth) / 2; }, 50);
+  }).observe(m, { childList: true });
+})();
+</script>
+
+<!-- ═══ ENVIO DO PROGRESSO AO TERAPEUTA + DICA DO IPHONE ═══════════
+     Gera um arquivo com o progresso salvo neste aparelho para o paciente
+     enviar (WhatsApp, e-mail). O terapeuta importa o arquivo na versão
+     profissional. Não altera o funcionamento do instrumento. -->
+<style>
+.ivp-envio-btn { display:block; margin:1.5rem auto 0; padding:.8rem 1.4rem; background:#FFF8E7; color:#92000A; border:none; border-radius:10px; font-size:.92rem; font-weight:700; font-family:"Segoe UI",system-ui,sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.ivp-envio-btn:hover { background:#fff; }
+.ivp-envio-btn.claro { background:#92000A; color:#fff; margin:1rem auto 0; }
+.ivp-envio-btn.claro:hover { background:#6B0008; }
+.ivp-ios-dica { max-width:640px; width:100%; margin:0 0 1.25rem; background:rgba(224,44,20,.15); border:1px solid rgba(224,44,20,.5); border-radius:12px; padding:.8rem 1rem; font-size:.82rem; line-height:1.5; color:#FFF8E7; font-family:"Segoe UI",system-ui,sans-serif; }
+.ivp-ios-dica strong { color:#fff; }
+.ivp-envio { display:none; position:fixed; inset:0; z-index:2000; background:rgba(26,0,5,.7); align-items:center; justify-content:center; padding:1rem; }
+.ivp-envio.on { display:flex; }
+.ivp-envio-card { background:#FFF8E7; color:#1A0005; border-radius:16px; padding:1.5rem 1.4rem; max-width:440px; width:100%; max-height:90vh; overflow-y:auto; font-family:"Segoe UI",system-ui,sans-serif; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+.ivp-envio-card h2 { font-size:1.15rem; color:#92000A; margin-bottom:.6rem; }
+.ivp-envio-card p { font-size:.88rem; line-height:1.55; color:#5C1A1A; margin-bottom:.8rem; }
+.ivp-envio-resumo { background:#fff; border:1px solid #E8C0C0; border-radius:10px; padding:.7rem .9rem; font-size:.85rem; line-height:1.7; margin-bottom:.9rem; }
+.ivp-envio-card label { display:block; font-size:.8rem; font-weight:600; color:#5C1A1A; margin-bottom:.3rem; }
+.ivp-envio-card input { width:100%; padding:.65rem .8rem; border:1.5px solid #E8C0C0; border-radius:9px; font-size:16px; font-family:inherit; color:#1A0005; background:#fff; margin-bottom:1rem; }
+.ivp-envio-card input:focus { outline:none; border-color:#92000A; }
+.ivp-envio-acoes { display:flex; gap:.6rem; flex-wrap:wrap; }
+.ivp-envio-acoes button { flex:1; min-width:130px; padding:.75rem 1rem; border-radius:10px; font-size:.9rem; font-weight:700; font-family:inherit; cursor:pointer; border:1.5px solid #92000A; -webkit-tap-highlight-color:transparent; }
+.ivp-envio-ok { background:#92000A; color:#fff; }
+.ivp-envio-ok:disabled { opacity:.4; cursor:default; }
+.ivp-envio-cancelar { background:transparent; color:#92000A; }
+.ivp-envio-msg { font-size:.82rem; margin-top:.8rem; color:#276749; line-height:1.5; }
+.ivp-envio-msg.erro { color:#92000A; }
+</style>
+
+<div id="ivp-envio" class="ivp-envio" role="dialog" aria-modal="true" aria-labelledby="ivp-envio-titulo">
+  <div class="ivp-envio-card">
+    <h2 id="ivp-envio-titulo">Enviar progresso ao terapeuta</h2>
+    <p>Vamos gerar um arquivo com suas respostas e reflexões até agora. Envie esse arquivo ao seu terapeuta por WhatsApp ou e-mail. Seu progresso continua salvo aqui: você pode seguir respondendo e enviar de novo quando quiser.</p>
+    <div class="ivp-envio-resumo" id="ivp-envio-resumo"></div>
+    <label for="ivp-envio-nome">Seu nome completo</label>
+    <input id="ivp-envio-nome" autocomplete="name" maxlength="120">
+    <div class="ivp-envio-acoes">
+      <button class="ivp-envio-ok" id="ivp-envio-ok">Gerar e enviar arquivo</button>
+      <button class="ivp-envio-cancelar" id="ivp-envio-cancelar">Fechar</button>
+    </div>
+    <div class="ivp-envio-msg" id="ivp-envio-msg"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEYS = ['ivp-v2-state', 'ivp-rr-state'];
+  function $(id) { return document.getElementById(id); }
+  function ler(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function grava(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  // Pede ao navegador para não apagar os dados salvos sozinho
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
+
+  // Dica do iPhone: o Safari apaga dados de sites não visitados por 7 dias;
+  // aberto pelo ícone da Tela de Início, isso não acontece.
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var instalado = window.navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  var hubHeader = document.querySelector('#mod-hub .hub-header');
+  if (ios && !instalado && hubHeader && location.protocol !== 'file:') {
+    var dica = document.createElement('div');
+    dica.className = 'ivp-ios-dica';
+    dica.innerHTML = '<strong>No iPhone, antes de começar:</strong> toque no botão Compartilhar do Safari (quadrado com a seta) → <strong>Adicionar à Tela de Início</strong>, e passe a abrir o instrumento sempre pelo ícone. Assim seu progresso fica guardado com segurança, mesmo se você passar dias sem responder.';
+    hubHeader.parentNode.insertBefore(dica, hubHeader.nextSibling);
+  }
+
+  // Na versão profissional o envio não se aplica
+  if (window.ivpProRaw) return;
+
+  function resumo() {
+    var linhas = [], algum = false;
+    try { var s = JSON.parse(ler('ivp-v2-state') || 'null'); if (s && s.answered) { algum = true; linhas.push('Valores (Torneio Suíço): ' + (s.phase === 'done' ? 'concluído' : s.answered + ' de 186 comparações')); } } catch (e) {}
+    try { var r = JSON.parse(ler('ivp-rr-state') || 'null'); if (r && r.pairIdx) { algum = true; linhas.push('Valores (Comparação Completa): ' + (r.phase === 'done' ? 'concluído' : r.pairIdx + ' de 1953 comparações')); } } catch (e) {}
+    return { algum: algum, texto: linhas.join('<br>') };
+  }
+
+  function abrir() {
+    var r = resumo();
+    $('ivp-envio-resumo').innerHTML = r.algum ? r.texto : 'Você ainda não respondeu nenhuma questão. Comece o inventário e depois volte aqui.';
+    $('ivp-envio-ok').disabled = !r.algum;
+    $('ivp-envio-nome').value = ler('ivp-paciente-nome') || '';
+    $('ivp-envio-msg').textContent = ''; $('ivp-envio-msg').className = 'ivp-envio-msg';
+    $('ivp-envio').classList.add('on');
+  }
+  function fechar() { $('ivp-envio').classList.remove('on'); }
+
+  function msg(t, erro) { $('ivp-envio-msg').textContent = t; $('ivp-envio-msg').className = 'ivp-envio-msg' + (erro ? ' erro' : ''); }
+
+  function baixar(blob, nome) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = nome;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 10000);
+  }
+
+  function enviar() {
+    var nome = $('ivp-envio-nome').value.trim().replace(/\s+/g, ' ');
+    if (!nome) { msg('Escreva seu nome para o terapeuta saber de quem é o arquivo.', true); $('ivp-envio-nome').focus(); return; }
+    grava('ivp-paciente-nome', nome);
+    var origem = ler('ivp-paciente-id');
+    if (!origem) { origem = Date.now().toString(36) + Math.random().toString(36).slice(2, 9); grava('ivp-paciente-id', origem); }
+    var dados = {};
+    KEYS.forEach(function (k) { var v = ler(k); if (v !== null) dados[k] = v; });
+    var pacote = { tipo: 'ivp-progresso-paciente', versao: 1, origemId: origem, nome: nome, enviadoEm: new Date().toISOString(), dados: dados };
+    var slug = nome.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 50);
+    var nomeArq = 'progresso_' + slug + '_' + new Date().toISOString().slice(0, 10) + '.json';
+    var blob = new Blob([JSON.stringify(pacote)], { type: 'application/json' });
+    var arquivo = null;
+    try { arquivo = new File([blob], nomeArq, { type: 'application/json' }); } catch (e) {}
+
+    if (arquivo && navigator.canShare && navigator.canShare({ files: [arquivo] })) {
+      navigator.share({ files: [arquivo], title: 'Progresso — ' + nome, text: 'Meu progresso no Inventário de Valores Pessoais.' })
+        .then(function () { msg('Pronto! Arquivo enviado. Você pode continuar respondendo normalmente.'); })
+        .catch(function (e) {
+          if (e && e.name === 'AbortError') { msg('Envio cancelado.', true); return; }
+          baixar(blob, nomeArq);
+          msg('O arquivo "' + nomeArq + '" foi salvo no aparelho. Envie-o ao terapeuta pelo WhatsApp ou e-mail (como documento/anexo).');
+        });
+    } else {
+      baixar(blob, nomeArq);
+      msg('O arquivo "' + nomeArq + '" foi salvo (pasta Downloads). Envie-o ao terapeuta pelo WhatsApp ou e-mail, como documento/anexo.');
+    }
+  }
+
+  window.ivpEnviarProgresso = abrir;
+  $('ivp-envio-ok').addEventListener('click', enviar);
+  $('ivp-envio-cancelar').addEventListener('click', fechar);
+  $('ivp-envio').addEventListener('click', function (ev) { if (ev.target === this) fechar(); });
+
+  // Botões: no menu principal e ao final de cada resultado
+  function botao(classe) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ivp-envio-btn' + (classe ? ' ' + classe : '');
+    b.textContent = '📤 Enviar meu progresso ao terapeuta';
+    b.addEventListener('click', abrir);
+    return b;
+  }
+  var hubCards = document.querySelector('#mod-hub .hub-cards');
+  if (hubCards) hubCards.parentNode.insertBefore(botao(), hubCards.nextSibling);
+  var vFim = document.querySelector('#v-results .v-pdf-btn');
+  if (vFim) vFim.parentNode.parentNode.insertBefore(botao('claro'), vFim.parentNode.nextSibling);
+  })();
+</script>
+</body>
+</html>
