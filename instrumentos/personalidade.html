@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Personalidade">
+<meta name="theme-color" content="#1A0005">
+<link rel="apple-touch-icon" href="icone.png">
+<title>Inventário de Personalidade</title>
+<meta name="robots" content="noindex">
+<style>
+/* ══ RESET ═══════════════════════════════════════════════════════ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Segoe UI","Georgia",system-ui,sans-serif; background:#FFF8E7; color:#1A0005; min-height:100vh; }
+.main-screen { display:none; }
+.main-screen.active { display:block; }
+
+/* ══ SHARED AUDIO ════════════════════════════════════════════════ */
+.audio-btn { position:absolute; top:8px; right:8px; width:32px; height:32px; border-radius:50%; border:none; cursor:pointer; background:#fce4e4; display:flex; align-items:center; justify-content:center; font-size:15px; transition:background .15s; z-index:2; }
+.audio-btn:hover { background:#f9c0c0; }
+.audio-btn.recording { background:#fed7d7; animation:pulse-red 1s infinite; }
+@keyframes pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(224,44,20,.4);}50%{box-shadow:0 0 0 6px rgba(224,44,20,0);} }
+
+/* ══ HUB ═════════════════════════════════════════════════════════ */
+.hub-wrap { min-height:100vh; background:linear-gradient(160deg,#1A0005 0%,#2D0010 55%,#1A0005 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2.5rem 1rem; }
+.hub-logo { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,248,231,.4); font-family:Arial,sans-serif; margin-bottom:14px; text-align:center; }
+.hub-title { font-size:2rem; font-weight:800; color:#FFF8E7; line-height:1.2; margin-bottom:1rem; text-align:center; font-family:Georgia,"Times New Roman",serif; }
+.hub-authors { background:rgba(255,248,231,.07); border:1px solid rgba(255,248,231,.16); border-radius:12px; padding:.85rem 1.5rem; display:inline-block; text-align:center; }
+.hub-author-line { font-size:.85rem; color:rgba(255,248,231,.68); line-height:1.7; }
+.hub-author-line strong { color:#FFF8E7; font-weight:600; }
+.hub-header { text-align:center; margin-bottom:2.5rem; max-width:640px; }
+.hub-divider { width:40px; height:3px; background:#E02C14; border-radius:2px; margin:1.25rem auto 0; }
+.hub-cards { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:640px; width:100%; }
+.hub-card { background:rgba(255,248,231,.06); border:1.5px solid rgba(255,248,231,.14); border-radius:18px; padding:2rem 1.75rem; cursor:pointer; text-align:left; font-family:inherit; transition:all .2s; display:flex; flex-direction:column; gap:.75rem; color:#FFF8E7; position:relative; overflow:hidden; }
+.hub-card::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; border-radius:18px 18px 0 0; }
+.hub-card-v::before { background:#E02C14; }
+.hub-card-p::before { background:#92000A; }
+.hub-card:hover { background:rgba(255,248,231,.11); border-color:rgba(224,44,20,.45); transform:translateY(-3px); }
+.hub-card-icon { font-size:2.2rem; line-height:1; }
+.hub-card-title { font-size:1.1rem; font-weight:700; color:#FFF8E7; }
+.hub-card-desc { font-size:.82rem; color:rgba(255,248,231,.6); line-height:1.55; flex:1; }
+.hub-card-meta { font-size:.75rem; color:rgba(255,248,231,.4); border-top:1px solid rgba(255,248,231,.1); padding-top:.75rem; }
+.hub-card-start { display:inline-block; padding:.5rem 1rem; border-radius:8px; font-size:.8rem; font-weight:700; color:white; align-self:flex-start; margin-top:.25rem; }
+.hub-card-v .hub-card-start { background:#E02C14; }
+.hub-card-p .hub-card-start { background:#92000A; }
+.hub-footer { margin-top:2.5rem; font-size:.72rem; color:rgba(255,248,231,.3); text-align:center; max-width:480px; line-height:1.6; }
+.hub-cards { grid-template-columns:1fr; max-width:380px; }
+@media(max-width:500px){.hub-cards{grid-template-columns:1fr;}.hub-title{font-size:1.55rem;}}
+
+/* ══ PERSONALIDADE MODULE ════════════════════════════════════════ */
+.p-wrap {
+  --pprimary:#92000A; --pprimary-dark:#6B0008; --paccent:#E02C14;
+  --pbg:#FFF8E7; --psurface:#FFFFFF; --ptext:#1A0005;
+  --ptext-muted:#5C1A1A; --pborder:#E8C0C0; --pshadow:0 2px 14px rgba(146,0,10,0.1);
+  --pN:#92000A; --pE:#c05621; --pO:#6b46c1; --pA:#276749; --pC:#2b6cb0;
+  font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+  background:var(--pbg); color:var(--ptext);
+  min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:2rem 1rem;
+}
+.p-screen { display:none; width:100%; max-width:680px; }
+.p-screen.active { display:block; }
+.p-wrap .card { background:var(--psurface); border-radius:18px; padding:2rem 2.25rem; box-shadow:var(--pshadow); width:100%; }
+.p-wrap h1 { font-size:1.75rem; font-weight:700; color:var(--pprimary); margin-bottom:.5rem; }
+.p-wrap p { line-height:1.65; color:var(--ptext-muted); margin-bottom:.75rem; }
+.p-wrap .back-link { display:inline-flex; align-items:center; gap:5px; font-size:.78rem; color:var(--ptext-muted); text-decoration:none; margin-bottom:1rem; opacity:.7; transition:opacity .15s; cursor:pointer; background:none; border:none; font-family:inherit; }
+.p-wrap .back-link:hover { opacity:1; }
+.p-wrap .progress-wrap { margin-bottom:1.75rem; }
+.p-wrap .progress-meta { display:flex; justify-content:space-between; font-size:.78rem; color:var(--ptext-muted); margin-bottom:.4rem; }
+.p-wrap .progress-bar { height:5px; background:var(--pborder); border-radius:3px; overflow:hidden; }
+.p-wrap .progress-fill { height:100%; border-radius:3px; background:var(--pprimary); transition:width .45s cubic-bezier(.4,0,.2,1); }
+.p-wrap .item-text { font-size:1.1rem; line-height:1.58; color:var(--ptext); padding:1.25rem 1.5rem; background:var(--pbg); border-radius:12px; border-left:4px solid var(--pprimary); margin-bottom:1.5rem; }
+.p-wrap .likert-wrap { display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; margin-bottom:1.5rem; }
+.p-wrap .likert-btn { padding:.85rem .25rem; border:2px solid var(--pborder); background:var(--psurface); border-radius:12px; cursor:pointer; text-align:center; transition:all .12s; font-family:inherit; display:flex; flex-direction:column; align-items:center; gap:.3rem; }
+.p-wrap .likert-btn:hover { border-color:var(--pprimary); background:#fff0f0; }
+.p-wrap .likert-btn.selected { border-color:var(--pprimary); background:#ffe4e4; }
+.p-wrap .likert-score { font-size:1.4rem; font-weight:700; color:var(--ptext-muted); line-height:1; }
+.p-wrap .likert-btn:hover .likert-score, .p-wrap .likert-btn.selected .likert-score { color:var(--pprimary); }
+.p-wrap .likert-label { font-size:.62rem; color:var(--ptext-muted); line-height:1.25; text-align:center; }
+.p-wrap .likert-btn:hover .likert-label, .p-wrap .likert-btn.selected .likert-label { color:var(--pprimary-dark); }
+.p-wrap .reflection-section { border-top:1.5px solid var(--pborder); padding-top:1.25rem; margin-top:.5rem; }
+.p-wrap .reflection-label { font-size:.78rem; font-weight:600; color:var(--ptext-muted); margin-bottom:.3rem; }
+.p-wrap .reflection-hint { font-size:.75rem; color:var(--ptext-muted); font-style:italic; margin-bottom:.65rem; line-height:1.5; }
+.p-wrap .reflection-field-wrap { position:relative; }
+.p-wrap textarea { width:100%; min-height:90px; border:1.5px solid var(--pborder); border-radius:10px; padding:.75rem 2.75rem .75rem 1rem; font-family:inherit; font-size:.9rem; line-height:1.55; resize:vertical; color:var(--ptext); transition:border-color .15s; background:var(--pbg); }
+.p-wrap textarea:focus { outline:none; border-color:var(--pprimary); }
+.p-wrap .audio-interim { font-size:.72rem; color:var(--ptext-muted); font-style:italic; margin-top:4px; min-height:14px; }
+.p-wrap .next-btn { display:block; width:100%; margin-top:1.25rem; padding:.85rem; background:var(--pprimary); color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700; font-family:inherit; cursor:pointer; transition:background .12s; opacity:.4; pointer-events:none; }
+.p-wrap .next-btn.enabled { opacity:1; pointer-events:auto; }
+.p-wrap .next-btn.enabled:hover { background:var(--pprimary-dark); }
+.p-wrap .keyboard-hint { font-size:.7rem; color:var(--ptext-muted); text-align:center; margin-top:.5rem; }
+.p-wrap .domain-section { margin-bottom:2rem; }
+.p-wrap .domain-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.5rem; }
+.p-wrap .domain-badge { display:inline-flex; align-items:center; padding:.25rem .85rem; border-radius:20px; font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:white; }
+.p-wrap .domain-N{background:var(--pN);}.p-wrap .domain-E{background:var(--pE);}.p-wrap .domain-O{background:var(--pO);}.p-wrap .domain-A{background:var(--pA);}.p-wrap .domain-C{background:var(--pC);}
+.p-wrap .domain-score-big { font-size:1.3rem; font-weight:700; }
+.p-wrap .domain-score-big small { font-size:.75rem; font-weight:400; color:var(--ptext-muted); }
+.p-wrap .domain-bar { height:8px; background:var(--pborder); border-radius:4px; overflow:hidden; margin:.5rem 0; }
+.p-wrap .domain-bar-fill { height:100%; border-radius:4px; transition:width .7s ease; }
+.p-wrap .domain-desc { font-size:.78rem; color:var(--ptext-muted); margin-bottom:1rem; line-height:1.5; }
+.p-wrap .facet-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.65rem; }
+.p-wrap .facet-card { background:var(--pbg); border-radius:10px; padding:.75rem 1rem; }
+.p-wrap .facet-name-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.4rem; }
+.p-wrap .facet-name { font-size:.78rem; font-weight:600; color:var(--ptext-muted); }
+.p-wrap .facet-score-num { font-size:.78rem; font-weight:700; color:var(--ptext); }
+.p-wrap .facet-bar { height:5px; background:var(--pborder); border-radius:3px; overflow:hidden; }
+.p-wrap .facet-fill { height:100%; border-radius:3px; }
+.p-wrap .facet-level { font-size:.68rem; color:var(--ptext-muted); margin-top:.3rem; }
+.p-wrap .separator { height:1px; background:var(--pborder); margin:1.5rem 0; }
+.p-wrap .collapsible { border:1.5px solid var(--pborder); border-radius:12px; margin-top:1.5rem; overflow:hidden; }
+.p-wrap .collapsible-header { padding:.85rem 1.25rem; cursor:pointer; font-weight:600; font-size:.88rem; display:flex; justify-content:space-between; align-items:center; background:var(--pbg); user-select:none; color:var(--pprimary); }
+.p-wrap .collapsible-header:hover { background:#ffe4e4; }
+.p-wrap .collapsible-body { padding:1.25rem; display:none; }
+.p-wrap .collapsible-body.open { display:block; }
+.p-wrap .p-diary-entry { border-left:3px solid var(--pprimary); padding:.85rem 1rem; background:var(--pbg); border-radius:0 10px 10px 0; margin-bottom:1rem; }
+.p-wrap .p-diary-entry:last-child { margin-bottom:0; }
+.p-wrap .p-diary-entry-header { font-size:.72rem; font-weight:700; color:var(--ptext-muted); margin-bottom:.4rem; text-transform:uppercase; letter-spacing:.04em; }
+.p-wrap .p-diary-entry-text { font-size:.88rem; line-height:1.6; color:var(--ptext); white-space:pre-wrap; }
+.p-wrap .intro-list { list-style:none; margin:1rem 0 1.5rem; display:flex; flex-direction:column; gap:.5rem; }
+.p-wrap .intro-list li { display:flex; align-items:flex-start; gap:.75rem; font-size:.88rem; color:var(--ptext-muted); line-height:1.5; }
+.p-wrap .intro-list li::before { content:"●"; color:var(--pprimary); flex-shrink:0; margin-top:.05em; }
+.p-wrap .btn { display:inline-block; padding:.75rem 1.5rem; border-radius:10px; border:none; cursor:pointer; font-size:.9rem; font-weight:600; font-family:inherit; transition:all .12s; text-align:center; }
+.p-wrap .btn-primary { background:var(--pprimary); color:white; }
+.p-wrap .btn-primary:hover { background:var(--pprimary-dark); }
+.p-wrap .btn-secondary { background:var(--pborder); color:var(--ptext-muted); }
+.p-wrap .btn-secondary:hover { background:#d0a0a0; color:var(--ptext); }
+.p-wrap .btn-block { width:100%; margin-top:1.25rem; }
+.p-wrap .banner { background:#fff0f0; border:1.5px solid var(--paccent); border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.p-wrap .banner p { margin:0; color:var(--pprimary-dark); font-size:.88rem; }
+.p-wrap .banner-btns { display:flex; gap:.5rem; flex-shrink:0; }
+.p-wrap .results-actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.5rem; }
+/* Bússola Reflexiva — Personalidade */
+.p-bussola-wrap { margin-top:1.25rem; border:1.5px solid var(--pborder); border-radius:12px; overflow:hidden; background:var(--psurface); }
+.p-bussola-header { padding:.65rem 1rem; cursor:pointer; display:flex; align-items:center; justify-content:space-between; font-size:.8rem; font-family:Arial,sans-serif; color:var(--pprimary); background:#fff0f0; user-select:none; }
+.p-bussola-header:hover { background:#ffe0e0; }
+.p-bussola-body { display:none; max-height:260px; overflow-y:auto; }
+.p-bussola-body.open { display:block; }
+.p-bussola-entry { padding:.75rem 1rem; border-bottom:1px solid var(--pborder); }
+.p-bussola-entry:last-child { border-bottom:none; }
+.p-bussola-entry-meta { font-size:.68rem; font-family:Arial; color:var(--ptext-muted); margin-bottom:.3rem; text-transform:uppercase; letter-spacing:.03em; }
+.p-bussola-entry-text { font-size:.82rem; line-height:1.6; color:var(--ptext); font-style:italic; border-left:2px solid var(--pprimary); padding-left:.6rem; margin-bottom:.4rem; white-space:pre-wrap; }
+.p-bussola-edit-area { width:100%; min-height:60px; border:1.5px solid var(--pborder); border-radius:8px; padding:.5rem .75rem; font-size:.82rem; font-family:inherit; color:var(--ptext); line-height:1.55; resize:vertical; background:var(--pbg); display:none; }
+.p-bussola-edit-area:focus { outline:none; border-color:var(--pprimary); }
+.p-bussola-edit-area.visible { display:block; }
+.p-bussola-edit-btn { font-size:.68rem; font-family:Arial; color:var(--pprimary); background:none; border:none; cursor:pointer; padding:.1rem .35rem; text-decoration:underline; }
+.p-bussola-save-btn { font-size:.68rem; font-family:Arial; color:white; background:var(--pprimary); border:none; border-radius:4px; cursor:pointer; padding:.2rem .5rem; display:none; }
+.p-bussola-save-btn.visible { display:inline-block; }
+.p-bussola-empty { padding:.85rem 1rem; font-size:.75rem; color:var(--ptext-muted); font-family:Arial; font-style:italic; text-align:center; }
+.p-wrap .facet-card { cursor:pointer; }
+.p-wrap .facet-desc { display:none; margin-top:.55rem; font-size:.74rem; color:var(--ptext-muted); line-height:1.5; border-top:1px solid var(--pborder); padding-top:.5rem; }
+.p-wrap .facet-desc.open { display:block; }
+.p-wrap .facet-level-row { display:flex; gap:.5rem; margin-top:.4rem; }
+.p-wrap .facet-level-chip { font-size:.68rem; padding:.15rem .45rem; border-radius:4px; line-height:1.4; }
+.p-wrap .chip-low { background:#e8f4fd; color:#2b6cb0; }
+.p-wrap .chip-high { background:#fde8e8; color:#92000A; }
+.p-wrap .facet-toggle { font-size:.65rem; color:var(--pprimary); float:right; font-family:Arial; }
+@media(max-width:500px){.p-wrap{padding:1rem .5rem;}.p-wrap .card{padding:1.5rem 1.25rem;}.p-wrap .likert-wrap{gap:.3rem;}.p-wrap .likert-btn{padding:.65rem .15rem;}.p-wrap .facet-grid{grid-template-columns:1fr 1fr;}}
+</style>
+
+<!-- ═══ AJUSTES PARA CELULAR (somente layout; conteúdo inalterado) ═══ -->
+<style>
+#v-radial-map { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+button, .v-bussola-header, .p-bussola-header, .collapsible-header, summary, .facet-card { -webkit-tap-highlight-color:transparent; }
+@media (max-width:620px) {
+  .v-wrap { padding:12px; }
+  .v-wrap .card { padding:22px 16px; }
+  .v-wrap .hdr { padding:20px 0 16px; }
+  .v-wrap h1 { font-size:22px; }
+  .v-map-wrap { padding:16px 8px; }
+  #v-radial-map svg { width:640px !important; max-width:none !important; }
+  .v-map-title::after { content:" · arraste para o lado para ver o mapa inteiro"; text-transform:none; letter-spacing:0; }
+  .v-wrap .c-kv { flex-wrap:wrap; gap:2px 12px; }
+  .v-wrap .v-diary-pair { flex-direction:column; }
+  .v-wrap .v-diary-vs { padding-top:0; text-align:center; }
+  .v-wrap .r-item { padding:12px 14px; gap:10px; }
+  .v-wrap details summary { padding:14px 16px; }
+  .v-wrap .clinical-inner, .v-wrap .narr-inner { padding:16px; }
+  /* 16px evita o zoom automático do iPhone ao tocar no campo */
+  .v-wrap textarea.reflection, .p-wrap textarea, .p-bussola-edit-area { font-size:16px; }
+}
+@media (max-width:420px) {
+  .p-wrap .facet-grid { grid-template-columns:1fr; }
+  .p-wrap .likert-label { font-size:.66rem; }
+}
+/* telas de toque: sem dicas de teclado e sem "hover" preso após o toque */
+@media (hover:none) and (pointer:coarse) {
+  .v-wrap .kbd-hint, .p-wrap .keyboard-hint { display:none; }
+  .v-wrap .btn-c:hover { opacity:1; transform:none; }
+  .hub-card:hover, .v-model-card:hover { transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HUB ════════════════════════════════════════════════════ -->
+<div id="mod-hub" class="main-screen active">
+<div class="hub-wrap">
+  <div class="hub-header">
+    <div class="hub-logo">Instrumento Clínico &amp; Pessoal</div>
+    <h1 class="hub-title">Inventário de<br>Personalidade</h1>
+    <div class="hub-authors">
+      <div class="hub-author-line"><strong>Autor:</strong> Pedro Andrade Rüger — CRP 04/63435</div>
+      <div class="hub-author-line"><strong>Co-autora:</strong> Silvia Maia</div>
+    </div>
+    <div class="hub-divider"></div>
+  </div>
+  <div class="hub-cards">
+    <button class="hub-card hub-card-p" onclick="showModule('mod-personalidade')">
+      <div class="hub-card-icon">🧠</div>
+      <div class="hub-card-title">Inventário de Personalidade</div>
+      <div class="hub-card-desc">Avalia os cinco grandes domínios da personalidade (Big Five) e suas trinta facetas, com reflexão qualitativa e registro em áudio por questão.</div>
+      <div class="hub-card-meta">120 questões · ~45–70 min · progresso salvo</div>
+      <span class="hub-card-start">Iniciar →</span>
+    </button>
+  </div>
+  <p class="hub-footer">Os dados são armazenados apenas no dispositivo local e não são transmitidos a nenhum servidor. O progresso é salvo automaticamente — você pode retomar em qualquer momento.</p>
+</div>
+</div>
+
+<!-- ═══ MÓDULO: PERSONALIDADE ════════════════════════════════════ -->
+<div id="mod-personalidade" class="main-screen">
+<div class="p-wrap">
+  <div id="p-welcome" class="p-screen active">
+    <div class="card">
+      <button class="back-link" onclick="showModule('mod-hub')">← Menu principal</button>
+      <h1>Inventário de Personalidade</h1>
+      <p style="color:var(--ptext);font-size:1rem;margin-bottom:1rem;">Avaliação dos cinco grandes domínios da personalidade e suas trinta facetas.</p>
+      <ul class="intro-list">
+        <li>Para cada afirmação, indique o quanto ela descreve <strong>como você geralmente é</strong> — não como você está hoje.</li>
+        <li>Há espaço para reflexão após cada questão. Você pode escrever ou usar o microfone.</li>
+        <li>Não há respostas certas ou erradas. A honestidade produz resultados mais úteis.</li>
+        <li><strong>Tempo estimado:</strong> 45–70 minutos · progresso salvo automaticamente.</li>
+      </ul>
+      <div id="p-resume-banner" style="display:none;" class="banner">
+        <p>Você tem uma sessão em andamento. Deseja continuar?</p>
+        <div class="banner-btns">
+          <button class="btn btn-primary" onclick="pResumeSession()">Continuar</button>
+          <button class="btn btn-secondary" onclick="pConfirmNewSession()">Recomeçar</button>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="p-start-btn" onclick="pStartAssessment()">Iniciar</button>
+    </div>
+  </div>
+  <div id="p-assessment" class="p-screen">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <button class="back-link" onclick="pGoBack()" id="p-back-btn" style="opacity:.5;pointer-events:none;">← Anterior</button>
+        <button class="back-link" onclick="pSaveAndGoHub()" style="margin-left:auto;">⊙ Menu principal</button>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span id="p-progress-text">Questão 1 de 60</span><span id="p-progress-pct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="p-progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="item-text" id="p-item-text"></div>
+      <div class="likert-wrap">
+        <button class="likert-btn" onclick="pSelectScore(1)" id="p-lbtn1"><span class="likert-score">1</span><span class="likert-label">Discordo<br>fortemente</span></button>
+        <button class="likert-btn" onclick="pSelectScore(2)" id="p-lbtn2"><span class="likert-score">2</span><span class="likert-label">Discordo</span></button>
+        <button class="likert-btn" onclick="pSelectScore(3)" id="p-lbtn3"><span class="likert-score">3</span><span class="likert-label">Neutro</span></button>
+        <button class="likert-btn" onclick="pSelectScore(4)" id="p-lbtn4"><span class="likert-score">4</span><span class="likert-label">Concordo</span></button>
+        <button class="likert-btn" onclick="pSelectScore(5)" id="p-lbtn5"><span class="likert-score">5</span><span class="likert-label">Concordo<br>fortemente</span></button>
+      </div>
+      <div class="reflection-section">
+        <div class="reflection-label">Reflexão (opcional)</div>
+        <div class="reflection-hint">Como esta afirmação se manifesta na sua vida? Pontos positivos, desafios, como mudou com o tempo.</div>
+        <div class="reflection-field-wrap">
+          <textarea id="p-reflection-input" placeholder="Escreva ou fale sobre esta questão..."></textarea>
+          <button class="audio-btn" id="p-audio-btn" title="Gravar áudio" onclick="pToggleAudio()">🎤</button>
+        </div>
+        <div class="audio-interim" id="p-audio-interim"></div>
+      </div>
+      <button class="next-btn" id="p-next-btn" onclick="pCommitAnswer()">Próxima →</button>
+      <p class="keyboard-hint">Atalho: teclas 1–5 · Enter avança</p>
+      <!-- Bússola Reflexiva da Personalidade -->
+      <div class="p-bussola-wrap" id="p-bussola-wrap">
+        <div class="p-bussola-header" onclick="pToggleBussola()">
+          <span>🧭 Bússola Reflexiva</span>
+          <span id="p-bussola-count" style="font-size:.7rem;color:var(--ptext-muted);">0 reflexões</span>
+        </div>
+        <div class="p-bussola-body" id="p-bussola-body">
+          <div id="p-bussola-entries"></div>
+          <div id="p-bussola-empty" class="p-bussola-empty">Nenhuma reflexão ainda. O que você escrever durante o inventário aparecerá aqui — e poderá ser editado a qualquer momento.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="p-results" class="p-screen">
+    <div class="card">
+      <button class="back-link" onclick="showModule('mod-hub')">← Menu principal</button>
+      <h1>Seu Perfil de Personalidade</h1>
+      <p style="margin-bottom:2rem;">Resultados baseados em suas respostas. Cada faceta é pontuada de 0 a 100.</p>
+      <div id="p-results-content"></div>
+      <div class="collapsible" id="p-full-responses" style="display:none;">
+        <div class="collapsible-header" onclick="pToggleCollapsible('p-full-body','p-full-icon')">
+          <span>Registro Completo das Respostas (Laudo)</span><span id="p-full-icon">▾</span>
+        </div>
+        <div class="collapsible-body" id="p-full-body"><div id="p-full-content"></div></div>
+      </div>
+      <div class="collapsible" id="p-diary-section" style="display:none;">
+        <div class="collapsible-header" onclick="pToggleCollapsible('p-diary-body','p-diary-icon')">
+          <span>Diário de Reflexões</span><span id="p-diary-icon">▾</span>
+        </div>
+        <div class="collapsible-body" id="p-diary-body"><div id="p-diary-content"></div></div>
+      </div>
+      <div class="results-actions">
+        <button class="btn btn-secondary" onclick="pExportJSON()">Exportar dados (JSON)</button>
+        <button class="btn btn-primary" onclick="pConfirmNewSession()">Novo inventário</button>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// SHARED NAVIGATION
+// ═══════════════════════════════════════════════════════════════════════
+function showModule(id) {
+  document.querySelectorAll('.main-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function pShow(id) {
+  document.querySelectorAll('#mod-personalidade .p-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// PERSONALITY MODULE — DATA
+// ═══════════════════════════════════════════════════════════════════════
+const P_STORAGE_KEY = 'ivp-personalidade-v3';
+
+const P_DOMAINS = {
+  N: { name: 'Neuroticismo', desc: 'Tendência a experienciar emoções negativas como ansiedade, raiva, depressão e vulnerabilidade ao estresse.' },
+  E: { name: 'Extroversão', desc: 'Tendência a buscar estimulação social, energia, assertividade e emoções positivas.' },
+  O: { name: 'Abertura', desc: 'Disposição para explorar novas ideias, experiências estéticas e formas criativas de pensar.' },
+  A: { name: 'Amabilidade', desc: 'Tendência a ser cooperativo, confiante e empático nas relações interpessoais.' },
+  C: { name: 'Conscienciosidade', desc: 'Tendência a ser organizado, disciplinado, orientado a objetivos e cuidadoso.' }
+};
+
+const P_FACETS = [
+  {id:'N1',domain:'N',name:'Ansiedade',       items:[0,1,60,61]},
+  {id:'N2',domain:'N',name:'Raiva e Hostilidade',items:[2,3,62,63]},
+  {id:'N3',domain:'N',name:'Depressão',        items:[4,5,64,65]},
+  {id:'N4',domain:'N',name:'Autoconsciência',  items:[6,7,66,67]},
+  {id:'N5',domain:'N',name:'Impulsividade',    items:[8,9,68,69]},
+  {id:'N6',domain:'N',name:'Vulnerabilidade',  items:[10,11,70,71]},
+  {id:'E1',domain:'E',name:'Cordialidade',     items:[12,13,72,73]},
+  {id:'E2',domain:'E',name:'Gregarismo',       items:[14,15,74,75]},
+  {id:'E3',domain:'E',name:'Assertividade',    items:[16,17,76,77]},
+  {id:'E4',domain:'E',name:'Atividade',        items:[18,19,78,79]},
+  {id:'E5',domain:'E',name:'Busca de Emoções', items:[20,21,80,81]},
+  {id:'E6',domain:'E',name:'Emoções Positivas',items:[22,23,82,83]},
+  {id:'O1',domain:'O',name:'Fantasia',         items:[24,25,84,85]},
+  {id:'O2',domain:'O',name:'Estética',         items:[26,27,86,87]},
+  {id:'O3',domain:'O',name:'Sentimentos',      items:[28,29,88,89]},
+  {id:'O4',domain:'O',name:'Ações',            items:[30,31,90,91]},
+  {id:'O5',domain:'O',name:'Ideias',           items:[32,33,92,93]},
+  {id:'O6',domain:'O',name:'Valores',          items:[34,35,94,95]},
+  {id:'A1',domain:'A',name:'Confiança',        items:[36,37,96,97]},
+  {id:'A2',domain:'A',name:'Franqueza',        items:[38,39,98,99]},
+  {id:'A3',domain:'A',name:'Altruísmo',        items:[40,41,100,101]},
+  {id:'A4',domain:'A',name:'Complacência',     items:[42,43,102,103]},
+  {id:'A5',domain:'A',name:'Modéstia',         items:[44,45,104,105]},
+  {id:'A6',domain:'A',name:'Sensibilidade',    items:[46,47,106,107]},
+  {id:'C1',domain:'C',name:'Competência',      items:[48,49,108,109]},
+  {id:'C2',domain:'C',name:'Ordem',            items:[50,51,110,111]},
+  {id:'C3',domain:'C',name:'Senso do Dever',   items:[52,53,112,113]},
+  {id:'C4',domain:'C',name:'Realização',       items:[54,55,114,115]},
+  {id:'C5',domain:'C',name:'Autodisciplina',   items:[56,57,116,117]},
+  {id:'C6',domain:'C',name:'Deliberação',      items:[58,59,118,119]}
+];
+
+const P_ITEMS = [
+  {text:"Frequentemente me preocupo com coisas que podem dar errado.",reverse:false},
+  {text:"Raramente me sinto tenso ou nervoso.",reverse:true},
+  {text:"Quando alguém me irrita, tendo a expressar minha frustração.",reverse:false},
+  {text:"Consigo controlar minha irritação mesmo em situações difíceis.",reverse:true},
+  {text:"Às vezes me sinto triste ou melancólico sem razão aparente.",reverse:false},
+  {text:"Geralmente me sinto bem-humorado e satisfeito com a vida.",reverse:true},
+  {text:"Em situações sociais, fico preocupado com o que os outros pensam de mim.",reverse:false},
+  {text:"Sinto-me à vontade mesmo quando estou sendo observado.",reverse:true},
+  {text:"Com frequência cedo às tentações, mesmo quando sei que não deveria.",reverse:false},
+  {text:"Consigo resistir a impulsos quando necessário.",reverse:true},
+  {text:"Em situações de crise, tendo a entrar em pânico.",reverse:false},
+  {text:"Me considero uma pessoa estável e resistente ao estresse.",reverse:true},
+  {text:"Genuinamente me importo com o bem-estar das pessoas ao meu redor.",reverse:false},
+  {text:"Prefiro manter distância emocional das pessoas.",reverse:true},
+  {text:"Gosto de estar em grupos e festas.",reverse:false},
+  {text:"Prefiro atividades solitárias a estar em grupos grandes.",reverse:true},
+  {text:"Quando trabalho em grupo, costumo assumir o papel de liderança.",reverse:false},
+  {text:"Prefiro deixar que outros tomem as decisões em grupo.",reverse:true},
+  {text:"Mantenho uma rotina ocupada e prefiro estar sempre fazendo algo.",reverse:false},
+  {text:"Prefiro um ritmo mais tranquilo e pausado de vida.",reverse:true},
+  {text:"Gosto de experiências fortes e intensas.",reverse:false},
+  {text:"Evito situações muito estimulantes ou arriscadas.",reverse:true},
+  {text:"Frequentemente me sinto alegre e cheio de energia.",reverse:false},
+  {text:"Raramente sinto entusiasmo ou euforia.",reverse:true},
+  {text:"Tenho uma imaginação rica e vívida.",reverse:false},
+  {text:"Prefiro manter os pés no chão a fantasiar.",reverse:true},
+  {text:"Sou facilmente tocado por beleza na arte, música ou natureza.",reverse:false},
+  {text:"A arte e a música não me interessam muito.",reverse:true},
+  {text:"Presto muita atenção aos meus estados emocionais.",reverse:false},
+  {text:"Raramente paro para analisar meus sentimentos.",reverse:true},
+  {text:"Gosto de experimentar coisas novas e diferentes.",reverse:false},
+  {text:"Prefiro seguir rotinas estabelecidas a buscar novidade.",reverse:true},
+  {text:"Me interesso por questões filosóficas e abstratas.",reverse:false},
+  {text:"Não me atraem debates intelectuais profundos.",reverse:true},
+  {text:"Acredito que valores morais e éticos deveriam ser constantemente revisados.",reverse:false},
+  {text:"Prefiro seguir valores tradicionais estabelecidos.",reverse:true},
+  {text:"Geralmente assumo que as pessoas têm boas intenções.",reverse:false},
+  {text:"Fico desconfiado com facilidade.",reverse:true},
+  {text:"Prefiro ser direto e honesto, mesmo que seja desconfortável.",reverse:false},
+  {text:"Às vezes evito ser totalmente honesto para não magoar os outros.",reverse:true},
+  {text:"Encontro satisfação genuína em ajudar os outros.",reverse:false},
+  {text:"Prefiro focar em meus próprios objetivos antes de ajudar os outros.",reverse:true},
+  {text:"Prefiro ceder do que entrar em conflito.",reverse:false},
+  {text:"Defendo firmemente meu ponto de vista quando discordo.",reverse:true},
+  {text:"Não gosto de chamar atenção para minhas conquistas.",reverse:false},
+  {text:"Não tenho problema em reconhecer publicamente meus sucessos.",reverse:true},
+  {text:"Me preocupo com o sofrimento dos outros, mesmo de desconhecidos.",reverse:false},
+  {text:"Costumo separar emocionalmente os problemas dos outros dos meus.",reverse:true},
+  {text:"Me considero competente na maioria das tarefas que realizo.",reverse:false},
+  {text:"Frequentemente duvido da minha capacidade de lidar com situações.",reverse:true},
+  {text:"Mantenho meu espaço e pertences bem organizados.",reverse:false},
+  {text:"Minha organização deixa a desejar com frequência.",reverse:true},
+  {text:"Levo compromissos muito a sério.",reverse:false},
+  {text:"Às vezes ignoro obrigações quando algo mais atraente aparece.",reverse:true},
+  {text:"Trabalho muito para alcançar meus objetivos.",reverse:false},
+  {text:"Não me considero especialmente ambicioso.",reverse:true},
+  {text:"Inicio tarefas prontamente, sem procrastinar.",reverse:false},
+  {text:"Frequentemente adio tarefas que deveria fazer.",reverse:true},
+  {text:"Penso bem antes de agir.",reverse:false},
+  {text:"Costumo agir por impulso sem considerar as consequências.",reverse:true},
+  // ── N1 Ansiedade (extra) ──
+  {text:"Sinto que algo de ruim pode acontecer, mesmo quando não há motivo concreto.",reverse:false},
+  {text:"Consigo relaxar facilmente, mesmo diante de prazos e cobranças importantes.",reverse:true},
+  // ── N2 Raiva (extra) ──
+  {text:"Pequenos contratempos do cotidiano costumam me deixar irritado.",reverse:false},
+  {text:"Não costumo guardar rancor de pessoas que me decepcionam.",reverse:true},
+  // ── N3 Depressão (extra) ──
+  {text:"Há momentos em que me sinto inútil ou sem valor, sem razão clara.",reverse:false},
+  {text:"Mesmo nos dias difíceis, consigo encontrar algo positivo na situação.",reverse:true},
+  // ── N4 Autoconsciência (extra) ──
+  {text:"Sinto vergonha com facilidade quando cometo erros na frente de outras pessoas.",reverse:false},
+  {text:"Não me incomoda muito cometer erros ou me destacar em público.",reverse:true},
+  // ── N5 Impulsividade (extra) ──
+  {text:"Frequentemente faço ou compro coisas por impulso e me arrependo depois.",reverse:false},
+  {text:"Consigo adiar uma recompensa imediata quando sei que vale a pena esperar.",reverse:true},
+  // ── N6 Vulnerabilidade (extra) ──
+  {text:"Quando muitas coisas vão mal ao mesmo tempo, sinto que não consigo dar conta.",reverse:false},
+  {text:"Mesmo sob pressão intensa, consigo manter o raciocínio claro e tomar decisões.",reverse:true},
+  // ── E1 Cordialidade (extra) ──
+  {text:"As pessoas costumam me descrever como alguém caloroso e acolhedor.",reverse:false},
+  {text:"Tenho dificuldade em demonstrar afeto, mesmo com pessoas próximas.",reverse:true},
+  // ── E2 Gregarismo (extra) ──
+  {text:"Saio de encontros sociais me sentindo energizado, não esgotado.",reverse:false},
+  {text:"Prefiro um jantar tranquilo com uma pessoa a uma festa com muitas.",reverse:true},
+  // ── E3 Assertividade (extra) ──
+  {text:"Não tenho dificuldade em expressar minha opinião, mesmo quando é impopular.",reverse:false},
+  {text:"Evito confrontar diretamente alguém, mesmo quando sei que estou certo.",reverse:true},
+  // ── E4 Atividade (extra) ──
+  {text:"Fico entediado rapidamente quando não tenho nada produtivo para fazer.",reverse:false},
+  {text:"Aprecio longos períodos de descanso e quietude sem me sentir culpado.",reverse:true},
+  // ── E5 Busca de Emoções (extra) ──
+  {text:"Sinto atração por atividades que envolvem risco, adrenalina ou imprevisibilidade.",reverse:false},
+  {text:"Prefiro ambientes calmos e previsíveis a situações de alto impacto.",reverse:true},
+  // ── E6 Emoções Positivas (extra) ──
+  {text:"As pessoas costumam me descrever como alguém animado e positivo.",reverse:false},
+  {text:"Raramente me sinto genuinamente empolgado ou entusiasmado com algo.",reverse:true},
+  // ── O1 Fantasia (extra) ──
+  {text:"Frequentemente me perco em devaneios e mundos imaginários.",reverse:false},
+  {text:"Não costumo perder tempo imaginando situações que provavelmente não vão acontecer.",reverse:true},
+  // ── O2 Estética (extra) ──
+  {text:"Presto muita atenção à estética dos ambientes em que vivo e trabalho.",reverse:false},
+  {text:"Não vejo muito sentido em dedicar tempo ou dinheiro a expressões artísticas.",reverse:true},
+  // ── O3 Sentimentos (extra) ──
+  {text:"Minhas emoções são ricas e variadas, e me guio muito por elas nas decisões.",reverse:false},
+  {text:"Prefiro agir com base em fatos e análise do que me deixar guiar por sentimentos.",reverse:true},
+  // ── O4 Ações (extra) ──
+  {text:"Quando tenho tempo livre, prefiro explorar lugares e atividades desconhecidos.",reverse:false},
+  {text:"Sinto-me mais confortável quando sei exatamente o que esperar de uma situação.",reverse:true},
+  // ── O5 Ideias (extra) ──
+  {text:"Gosto de explorar teorias e hipóteses mesmo quando não têm aplicação prática imediata.",reverse:false},
+  {text:"Prefiro discussões concretas e práticas a debates filosóficos ou teóricos.",reverse:true},
+  // ── O6 Valores (extra) ──
+  {text:"Questiono ativamente as crenças e normas morais com as quais fui criado.",reverse:false},
+  {text:"Acredito que as tradições e valores estabelecidos existem por boas razões e merecem respeito.",reverse:true},
+  // ── A1 Confiança (extra) ──
+  {text:"Raramente questiono se as pessoas estão sendo honestas comigo.",reverse:false},
+  {text:"Preciso conhecer bem uma pessoa antes de confiar nela de verdade.",reverse:true},
+  // ── A2 Franqueza (extra) ──
+  {text:"Não tenho costume de omitir informações para me parecer mais favorável aos outros.",reverse:false},
+  {text:"Às vezes adapto o que digo dependendo do que acho que a pessoa quer ouvir.",reverse:true},
+  // ── A3 Altruísmo (extra) ──
+  {text:"Com frequência coloco as necessidades dos outros antes das minhas próprias.",reverse:false},
+  {text:"Acredito que cada um deve resolver seus próprios problemas antes de pedir ajuda.",reverse:true},
+  // ── A4 Complacência (extra) ──
+  {text:"Quando há divergência, busco um ponto de equilíbrio em vez de insistir na minha posição.",reverse:false},
+  {text:"Não tenho dificuldade em discordar abertamente de alguém, mesmo em público.",reverse:true},
+  // ── A5 Modéstia (extra) ──
+  {text:"Fico desconfortável quando recebo elogios ou reconhecimento em público.",reverse:false},
+  {text:"Gosto de compartilhar com outras pessoas quando conquisto algo importante.",reverse:true},
+  // ── A6 Sensibilidade (extra) ──
+  {text:"Notícias sobre sofrimento humano me afetam emocionalmente de forma intensa.",reverse:false},
+  {text:"Consigo manter distância emocional de situações difíceis que não me envolvem diretamente.",reverse:true},
+  // ── C1 Competência (extra) ──
+  {text:"Confio na minha capacidade de resolver problemas novos e desafiadores.",reverse:false},
+  {text:"Frequentemente sinto que os outros são mais capazes do que eu para lidar com situações complexas.",reverse:true},
+  // ── C2 Ordem (extra) ──
+  {text:"Tenho sistemas claros para organizar minhas tarefas e compromissos do dia a dia.",reverse:false},
+  {text:"Meu espaço de trabalho costuma ficar desorganizado com facilidade.",reverse:true},
+  // ── C3 Senso do Dever (extra) ──
+  {text:"Sinto desconforto genuíno quando deixo de cumprir algo que me comprometi a fazer.",reverse:false},
+  {text:"Não sinto muita culpa quando falho com compromissos menores ou não urgentes.",reverse:true},
+  // ── C4 Realização (extra) ──
+  {text:"Tenho metas claras e faço esforço consistente para alcançá-las, mesmo quando é difícil.",reverse:false},
+  {text:"Prefiro uma vida tranquila e equilibrada a uma carreira muito exigente e competitiva.",reverse:true},
+  // ── C5 Autodisciplina (extra) ──
+  {text:"Consigo manter o foco em uma tarefa mesmo quando ela é tediosa ou exige esforço prolongado.",reverse:false},
+  {text:"Quando uma tarefa exige muito esforço contínuo, tendo a me distrair ou abandoná-la pela metade.",reverse:true},
+  // ── C6 Deliberação (extra) ──
+  {text:"Antes de uma decisão importante, costumo considerar diferentes cenários e possíveis riscos.",reverse:false},
+  {text:"Prefiro decidir rapidamente e ajustar depois, em vez de planejar por muito tempo.",reverse:true}
+];
+
+const P_FACET_DESCRIPTIONS = {
+  N1: { desc:"Avalia a propensão a estados emocionais negativos, apreensão e nível de preocupação com o futuro.", low:"Calmo, relaxado e menos propenso a se preocupar com o amanhã.", high:"Apreensivo, tenso, propenso ao medo e à hipervigilância." },
+  N2: { desc:"Mede a prontidão para experimentar e expressar irritação, frustração e amargura.", low:"Menor propensão a se irritar; estável e pacífico diante de contrariedades.", high:"Tendência a expressar raiva, melindrar-se facilmente e demonstrar frustração com frequência." },
+  N3: { desc:"Mede a tendência a vivenciar afetos depressivos, tristeza, desânimo e desespero.", low:"Raramente experimenta esses sentimentos; tende a ser mais resiliente afetivamente.", high:"Maior disposição para sentir solidão, culpa e desesperança; desencoraja-se facilmente." },
+  N4: { desc:"Reflete a sensibilidade ao julgamento social, timidez e propensão ao sentimento de vergonha.", low:"Sente-se confortável em público, lida bem com situações constrangedoras e tem menor angústia social.", high:"Propensão marcante a sentir constrangimento, inadequação e desconforto ante outras pessoas." },
+  N5: { desc:"Avalia a capacidade de conter desejos, tolerar a frustração e adiar a gratificação imediata.", low:"Postura comedida em relação aos próprios impulsos; maior facilidade em resistir a tentações cotidianas.", high:"Dificuldade em resistir a impulsos urgentes; menor tolerância à frustração e busca por alívio rápido." },
+  N6: { desc:"Mede a capacidade percebida de manejar o estresse, crises e tomar decisões sob forte pressão ambiental.", low:"Sente-se seguro, estável e psicologicamente robusto para lidar com situações críticas.", high:"Insegurança crônica para tomar decisões sob estresse; propensão a entrar em pânico ou sentir-se paralisado em crises." },
+  E1: { desc:"Mede a capacidade de estabelecer intimidade, afeição e proximidade com outras pessoas.", low:"Apresenta maior nível de formalidade; reservado e não cria vínculos afetivos com facilidade.", high:"Postura genuinamente simpática, afetuosa, calorosa e facilidade em quebrar o gelo social." },
+  E2: { desc:"Avalia a preferência pela companhia de outras pessoas e o desejo de pertencer a grupos.", low:"Prefere atividades solitárias ou ambientes tranquilos com poucas pessoas; evita aglomerações.", high:"Aprecia intensamente a companhia dos outros; prefere interagir e desenvolver tarefas em grupos grandes." },
+  E3: { desc:"Mede o grau de dominância, ascendência social, firmeza e expressão de opiniões.", low:"Tende a não se posicionar de forma impositiva; prefere receber orientações a fornecê-las; hesita em falar.", high:"Fala sem hesitação, posiciona-se de maneira afirmativa e dominante, assumindo papéis de liderança natural." },
+  E4: { desc:"Reflete o ritmo de vida, a energia mecânica, a velocidade de execução e a necessidade de manter-se ocupado.", low:"Ritmo mais tranquilo, pausado e vagaroso; prefere focar em poucas atividades por vez.", high:"Postura entusiasmada, dinâmica e acelerada; prefere agendas cheias e possui alto vigor físico/mental." },
+  E5: { desc:"Avalia o desejo por excitação, estímulos fortes, novidades e ambientes agitados.", low:"Evita situações muito estimulantes, barulhentas ou arriscadas; aprecia a serenidade e a previsibilidade.", high:"Preferência por atividades animadas, de alto impacto ou até arriscadas; estilo de vida estimulante e mutável." },
+  E6: { desc:"Mede a tendência crônica a experimentar sentimentos de alegria, entusiasmo, otimismo e felicidade.", low:"Menos propenso ao entusiasmo ou à euforia; não necessariamente infeliz, mas com afeto mais contido.", high:"Marcadamente alegre, animado, otimista e com tendência a focar nos aspectos positivos da vida." },
+  O1: { desc:"Mede a riqueza, profundidade e a frequência da atividade imaginativa.", low:"Preferência por manter os pés no chão, focando no pensamento factual e em atividades estritamente concretas.", high:"Imaginação rica e vívida; usa o devaneio e a criatividade como formas de enriquecer a própria experiência." },
+  O2: { desc:"Avalia o apreço pela beleza, pela expressão artística, pela música, poesia e pela natureza.", low:"Menor interesse por formas puras de expressão estética; arte e música não exercem grande impacto emocional.", high:"Profundamente tocado e sensibilizado pelas artes e pela beleza; forte necessidade de fruição estética." },
+  O3: { desc:"Reflete a receptividade em relação às próprias emoções e a valorização dos estados afetivos como guias.", low:"Atribui pouca importância aos sentimentos; expressa e processa emoções com menor intensidade ou foco analítico.", high:"Presta muita atenção aos estados internos; vivencia e valoriza afetos e nuances emocionais de forma intensa." },
+  O4: { desc:"Mede a disposição para tentar novas atividades, mudar rotinas e explorar novos padrões.", low:"Forte apego à rotina, ao familiar e ao previsível; manifesta resistência a mudanças estruturais.", high:"Prefere novidade e engajamento em novos projetos; aversão à mesmice; busca constante por quebrar padrões." },
+  O5: { desc:"Mede a curiosidade intelectual, o interesse pelo conhecimento teórico e o prazer no exercício do pensamento abstrato.", low:"Gama limitada de interesses intelectuais; preferência por focar em problemas práticos, evitando debates abstratos.", high:"Forte inclinação para ideias complexas, debates filosóficos, questionamentos teóricos e expansão contínua do saber." },
+  O6: { desc:"Avalia a abertura para reavaliar dogmas, preceitos morais, sociais, religiosos e políticos.", low:"Tradicionalista e conservador; preferência por seguir valores já estabelecidos pela cultura ou grupo de origem.", high:"Postura pluralista e não dogmática; grande abertura para questionar e revisar os próprios valores e aceitar a diferença." },
+  A1: { desc:"Mede a disposição para acreditar na honestidade, boa-fé e nas intenções benevolentes alheias.", low:"Tendência ao ceticismo; desconfia com facilidade das motivações alheias no âmbito social ou profissional.", high:"Assume inicialmente que as pessoas têm boas intenções; propenso a confiar de maneira aberta." },
+  A2: { desc:"Avalia o nível de transparência, ingenuidade social e a disposição para ser direto e sincero.", low:"Comedido ao expor opiniões; pode usar de adulação, diplomacia ou omissão estratégica para autopreservação.", high:"Expressa seu ponto de vista abertamente; expõe com franqueza e de forma direta sua real opinião." },
+  A3: { desc:"Mede a generosidade, a prontidão em ajudar os outros e a cortesia ativa nas relações.", low:"Postura mais autocentrada no desenvolvimento de suas ações; resistência em se envolver em problemas alheios.", high:"Disposição marcante para o auxílio mútuo; sente satisfação genuína em cooperar e focar no bem-estar do outro." },
+  A4: { desc:"Reflete a reação diante de conflitos interpessoais; a tendência a ceder versus a tendência a competir ou confrontar.", low:"Firme em suas posições; propenso a revidar ofensas ou usar de sarcasmo e agressividade para se defender.", high:"Evita o confronto direto; compreensivo, tende a inibir a própria ofensa e ceder em prol da harmonia interpessoal." },
+  A5: { desc:"Mede a necessidade de receber atenção ou reconhecimento social versus a humildade realista.", low:"Postura vaidosa ou autoafirmativa; pode transmitir uma imagem arrogante ou presunçosa aos outros.", high:"Humilde, discreto e comedido; busca em menor escala os holofotes e não foca em ostentar suas conquistas." },
+  A6: { desc:"Avalia a extensão em que as decisões e atitudes são guiadas pela simpatia e pela empatia com os necessitados.", low:"Mais realista e pragmático nas ações; menor inclinação a ser movido puramente pela compaixão ou apelo emocional.", high:"Fortemente movido pelas necessidades alheias; alto grau de empatia e preocupação com causas humanitárias e sociais." },
+  C1: { desc:"Mede o senso de autoeficácia, a crença na própria capacidade, inteligência e prudência prática para resolver tarefas.", low:"Sente-se frequentemente despreparado ou inseguro quanto à sua eficiência prática diante dos desafios.", high:"Autoconfiante, prudente na busca de informações e seguro de sua capacidade para gerenciar problemas." },
+  C2: { desc:"Avalia o nível de organização pessoal, metodologia de trabalho, limpeza, simetria e planejamento detalhado.", low:"Pouco metódico na realização das atividades; menor exigência de organização física; raramente planeja com antecedência.", high:"Altamente organizado, asseado e sistemático; planeja suas tarefas detalhadamente e mantém processos sob controle." },
+  C3: { desc:"Mede a fidelidade a princípios morais, contratuais, obrigações éticas e o nível de responsabilidade social.", low:"Menor apego a regras rígidas; pode agir com displicência ou flexibilidade excessiva frente a compromissos formais.", high:"Altamente confiável e rigoroso no cumprimento de deveres; forte direcionamento por princípios éticos e escrupulosos." },
+  C4: { desc:"Mede o nível de ambição, aspiração na carreira, foco no sucesso e a obstinação em bater metas desafiadoras.", low:"Menor determinação competitiva; contenta-se com níveis funcionais de entrega; menor ambição profissional crônica.", high:"Extremamente determinado e motivado para o sucesso; trabalha incansavelmente em direção a metas elevadas e excelência." },
+  C5: { desc:"Avalia a capacidade de iniciar tarefas prontamente e perseverar em projetos áridos ou difíceis até o fim, vencendo a procrastinação.", low:"Procrastina o início de atividades enfadonhas; desencoraja-se facilmente e tende a abandonar projetos pela metade.", high:"Inicia tarefas de imediato; alta energia interna para finalizar o que começou, superando o tédio e distrações com facilidade." },
+  C6: { desc:"Mede a tendência a pensar cuidadosamente antes de agir, a cautela prática e a prevenção de riscos.", low:"Toma decisões de forma precipitada ou altamente espontânea; prefere arriscar e agir pelo instinto do imprevisto.", high:"Despende tempo considerável analisando variáveis antes de agir; cauteloso, preventivo e focado em mitigar contratempos." }
+};
+
+// ═══════════════════════════════════════════════════════════════════════
+// ORDEM DE APRESENTAÇÃO MESCLADA
+// P_ITEMS continua agrupado por faceta (N1,N1,N2,N2,...) porque P_FACETS e
+// pState.scores indexam os itens por esse índice fixo. O que muda é apenas
+// a ORDEM EM QUE OS ITENS SÃO EXIBIDOS, definida por P_ORDER.
+// Construção determinística (a mesma sequência para todos os respondentes):
+//   · 4 blocos de 30 questões, cada bloco com 1 item de cada uma das 30 facetas;
+//   · rotação (bloco + faceta) % 4 na escolha do item, o que distribui os 4
+//     itens de cada faceta pelos quatro quartos do instrumento;
+//   · dentro de cada bloco os domínios ciclam N,E,O,A,C, de modo que nunca há
+//     dois itens seguidos do mesmo domínio nem da mesma faceta;
+//   · passe final que quebra sequências de mais de 2 itens com a mesma
+//     polaridade (direto/reverso), trocando apenas itens do mesmo domínio,
+//     o que preserva as duas restrições acima.
+// Verificado: 120 itens únicos, 0 repetições de faceta ou domínio em
+// sequência, run máximo de polaridade = 2, intervalo mínimo de 24 questões
+// entre dois itens da mesma faceta. Rode pValidateOrder() no console.
+// ═══════════════════════════════════════════════════════════════════════
+const P_DOMAIN_CYCLE = ['N','E','O','A','C'];
+
+const P_FACET_OF_ITEM = (() => {
+  const map = new Array(P_ITEMS.length);
+  P_FACETS.forEach((f, fi) => f.items.forEach(i => { map[i] = fi; }));
+  return map;
+})();
+
+function pItemFacet(itemIdx)  { return P_FACETS[P_FACET_OF_ITEM[itemIdx]]; }
+function pItemDomain(itemIdx) { return pItemFacet(itemIdx).domain; }
+function pItemPolarity(itemIdx) { return P_ITEMS[itemIdx].reverse ? 1 : 0; }
+
+function pBuildBaseOrder() {
+  const byDomain = {};
+  P_DOMAIN_CYCLE.forEach(d => { byDomain[d] = P_FACETS.filter(f => f.domain === d); });
+  const perDomain = byDomain[P_DOMAIN_CYCLE[0]].length;   // 6 facetas por domínio
+  const blocks = P_FACETS[0].items.length;                // 4 itens por faceta
+  const order = [];
+  for (let b = 0; b < blocks; b++) {
+    for (let step = 0; step < perDomain; step++) {
+      for (let d = 0; d < P_DOMAIN_CYCLE.length; d++) {
+        // quadrado latino: o ciclo de domínios gira a cada bloco e a faceta
+        // sorteada dentro do domínio avança a cada passo, de modo que cada
+        // faceta entra exatamente uma vez por bloco
+        const domain = P_DOMAIN_CYCLE[(d + b) % P_DOMAIN_CYCLE.length];
+        const list = byDomain[domain];
+        const facet = list[(step + d + 2 * b) % list.length];
+        const fi = P_FACETS.indexOf(facet);
+        order.push(facet.items[(b + fi) % facet.items.length]);
+      }
+    }
+  }
+  return order;
+}
+
+function pBreakPolarityRuns(order) {
+  const MAX = 2;
+  const runAt = (arr, p) => {
+    if (p < MAX) return false;
+    for (let k = 1; k <= MAX; k++) if (pItemPolarity(arr[p-k]) !== pItemPolarity(arr[p])) return false;
+    return true;
+  };
+  for (let pass = 0; pass < 6; pass++) {
+    let changed = false;
+    for (let i = MAX; i < order.length; i++) {
+      if (!runAt(order, i)) continue;
+      const want = 1 - pItemPolarity(order[i]);
+      const dom = pItemDomain(order[i]);
+      for (let j = 0; j < order.length; j++) {
+        if (j === i || pItemDomain(order[j]) !== dom || pItemPolarity(order[j]) !== want) continue;
+        const test = order.slice();
+        const tmp = test[i]; test[i] = test[j]; test[j] = tmp;
+        let ok = true;
+        [i-2,i-1,i,i+1,i+2,j-2,j-1,j,j+1,j+2].forEach(pz => {
+          if (pz >= MAX && pz < test.length && runAt(test, pz)) ok = false;
+        });
+        if (ok) { order[i] = test[i]; order[j] = test[j]; changed = true; break; }
+      }
+    }
+    if (!changed) break;
+  }
+  return order;
+}
+
+const P_ORDER = pBreakPolarityRuns(pBuildBaseOrder());
+
+const P_POSITION_OF_ITEM = (() => {
+  const map = new Array(P_ITEMS.length);
+  P_ORDER.forEach((itemIdx, pos) => { map[itemIdx] = pos; });
+  return map;
+})();
+
+// Autoteste de integridade da ordem. Uso: pValidateOrder() no console.
+function pValidateOrder() {
+  const erros = [];
+  if (P_ORDER.length !== P_ITEMS.length) erros.push('tamanho: ' + P_ORDER.length);
+  if (new Set(P_ORDER).size !== P_ITEMS.length) erros.push('índices duplicados ou ausentes');
+  for (let i = 1; i < P_ORDER.length; i++) {
+    if (P_FACET_OF_ITEM[P_ORDER[i]] === P_FACET_OF_ITEM[P_ORDER[i-1]]) erros.push('faceta repetida na posição ' + (i+1));
+    if (pItemDomain(P_ORDER[i]) === pItemDomain(P_ORDER[i-1])) erros.push('domínio repetido na posição ' + (i+1));
+  }
+  let runMax = 1, run = 1;
+  for (let i = 1; i < P_ORDER.length; i++) {
+    if (pItemPolarity(P_ORDER[i]) === pItemPolarity(P_ORDER[i-1])) { run++; runMax = Math.max(runMax, run); } else run = 1;
+  }
+  let intervaloMin = Infinity;
+  P_FACETS.forEach(f => {
+    const ps = f.items.map(i => P_POSITION_OF_ITEM[i]).sort((a,b) => a-b);
+    for (let k = 1; k < ps.length; k++) intervaloMin = Math.min(intervaloMin, ps[k] - ps[k-1]);
+  });
+  const r = { erros, runPolaridadeMax: runMax, intervaloMinMesmaFaceta: intervaloMin };
+  console.log(r);
+  return r;
+}
+
+let pState = {
+  phase:'welcome', position:0, currentScore:null,
+  scores:{}, reflections:{}, responseTimes:{}, itemStartTime: Date.now()
+};
+
+function pSaveState() {
+  try { localStorage.setItem(P_STORAGE_KEY, JSON.stringify(pState)); } catch(e) {}
+}
+function pLoadState() {
+  try { const r=localStorage.getItem(P_STORAGE_KEY); return r?JSON.parse(r):null; } catch(e){return null;} }
+function pClearState() { try{localStorage.removeItem(P_STORAGE_KEY);}catch(e){} }
+
+function pComputeFacetScore(facetId) {
+  const facet = P_FACETS.find(f=>f.id===facetId);
+  if (!facet) return 0;
+  const answered = facet.items.map(i => pState.scores[i]).filter(s => s !== undefined);
+  if (answered.length === 0) return null;
+  // Require at least half the items answered to compute a score
+  if (answered.length < Math.ceil(facet.items.length / 2)) return null;
+  const adjusted = answered.map(s => s.reverse ? (6 - s.raw) : s.raw);
+  const sum = adjusted.reduce((a, b) => a + b, 0);
+  const n = adjusted.length;
+  // Formula: (sum - n) / (n * 4) * 100  →  0 when all=1, 100 when all=5
+  return Math.round(((sum - n) / (n * 4)) * 100);
+}
+
+function pComputeDomainScore(domainKey) {
+  const facets = P_FACETS.filter(f=>f.domain===domainKey);
+  const scores = facets.map(f=>pComputeFacetScore(f.id)).filter(s=>s!==null);
+  if (scores.length===0) return null;
+  return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+}
+
+function pFacetLevel(score) {
+  if (score===null) return '';
+  if (score<30) return 'Baixo';
+  if (score<70) return 'Médio';
+  return 'Alto';
+}
+
+function pRenderQuestion() {
+  const pos = pState.position;
+  const idx = P_ORDER[pos];
+  const item = P_ITEMS[idx];
+  document.getElementById('p-item-text').textContent = item.text;
+  document.getElementById('p-progress-text').textContent = `Questão ${pos+1} de ${P_ITEMS.length}`;
+  const pct = Math.round((pos/P_ITEMS.length)*100);
+  document.getElementById('p-progress-pct').textContent = pct+'%';
+  document.getElementById('p-progress-fill').style.width = pct+'%';
+  document.getElementById('p-reflection-input').value = pState.reflections[idx] || '';
+  document.getElementById('p-audio-interim').textContent = '';
+
+  const saved = pState.scores[idx];
+  for (let i=1;i<=5;i++) {
+    const btn = document.getElementById('p-lbtn'+i);
+    btn.classList.toggle('selected', saved && saved.raw===i);
+  }
+  pState.currentScore = saved ? saved.raw : null;
+  pUpdateNextBtn();
+  pState.itemStartTime = Date.now();
+}
+
+function pSelectScore(score) {
+  pState.currentScore = score;
+  for (let i=1;i<=5;i++) document.getElementById('p-lbtn'+i).classList.toggle('selected',i===score);
+  pUpdateNextBtn();
+  // Save transient score so switching to hub preserves it
+  const idx = P_ORDER[pState.position];
+  pState.scores[idx] = { raw: score, reverse: P_ITEMS[idx].reverse };
+  pState.reflections[idx] = document.getElementById('p-reflection-input').value.trim();
+  pSaveState();
+}
+
+function pUpdateNextBtn() {
+  const btn = document.getElementById('p-next-btn');
+  const isLast = pState.position === P_ITEMS.length - 1;
+  btn.textContent = isLast ? 'Ver Resultado' : 'Próxima →';
+  btn.classList.toggle('enabled', pState.currentScore !== null);
+  const backBtn = document.getElementById('p-back-btn');
+  if (backBtn) {
+    if (pState.position > 0) { backBtn.style.opacity='1'; backBtn.style.pointerEvents='auto'; }
+    else { backBtn.style.opacity='.35'; backBtn.style.pointerEvents='none'; }
+  }
+}
+
+function pGoBack() {
+  if (pState.position === 0) return;
+  const curIdx = P_ORDER[pState.position];
+  pState.reflections[curIdx] = document.getElementById('p-reflection-input').value.trim();
+  if (pState.currentScore !== null) {
+    pState.scores[curIdx] = { raw: pState.currentScore, reverse: P_ITEMS[curIdx].reverse };
+  }
+  pState.position--;
+  pState.currentScore = null;
+  pSaveState();
+  pRenderQuestion();
+}
+
+function pSaveAndGoHub() {
+  const idx = P_ORDER[pState.position];
+  pState.reflections[idx] = document.getElementById('p-reflection-input').value.trim();
+  if (pState.currentScore !== null) {
+    pState.scores[idx] = { raw: pState.currentScore, reverse: P_ITEMS[idx].reverse };
+  }
+  pSaveState();
+  showModule('mod-hub');
+}
+
+function pToggleBussola() {
+  document.getElementById('p-bussola-body').classList.toggle('open');
+}
+
+function pOpenBussola() {
+  document.getElementById('p-bussola-body').classList.add('open');
+}
+
+function pUpdateBussola() {
+  const entries = Object.entries(pState.reflections)
+    .filter(([,r]) => r && r.trim())
+    .map(([idx, r]) => ({ idx: parseInt(idx), pos: P_POSITION_OF_ITEM[parseInt(idx)], text: r }))
+    .sort((a, b) => a.pos - b.pos);
+
+  const countEl = document.getElementById('p-bussola-count');
+  const container = document.getElementById('p-bussola-entries');
+  const emptyEl = document.getElementById('p-bussola-empty');
+  if (!countEl || !container) return;
+
+  countEl.textContent = entries.length + (entries.length === 1 ? ' reflexão' : ' reflexões');
+
+  if (entries.length === 0) {
+    container.innerHTML = '';
+    if (emptyEl) emptyEl.style.display = '';
+    return;
+  }
+  if (emptyEl) emptyEl.style.display = 'none';
+  if (entries.length === 1) pOpenBussola();
+
+  container.innerHTML = entries.map(({ idx, pos, text }) => {
+    const facet = pItemFacet(idx);
+    return `<div class="p-bussola-entry" id="pb-entry-${idx}">
+      <div class="p-bussola-entry-meta">Questão ${pos+1} · ${facet ? facet.name : ''}</div>
+      <div class="p-bussola-entry-text" id="pb-text-${idx}">${text.replace(/</g,'&lt;')}</div>
+      <textarea class="p-bussola-edit-area" id="pb-edit-${idx}" rows="3">${text.replace(/</g,'&lt;')}</textarea>
+      <div style="display:flex;gap:.5rem;align-items:center;margin-top:.3rem;">
+        <button class="p-bussola-edit-btn" id="pb-editbtn-${idx}" onclick="pStartBussolaEdit(${idx})">✏ Editar</button>
+        <button class="p-bussola-save-btn" id="pb-savebtn-${idx}" onclick="pSaveBussolaEntry(${idx})">Salvar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function pStartBussolaEdit(idx) {
+  const textEl = document.getElementById('pb-text-' + idx);
+  const editEl = document.getElementById('pb-edit-' + idx);
+  const editBtn = document.getElementById('pb-editbtn-' + idx);
+  const saveBtn = document.getElementById('pb-savebtn-' + idx);
+  if (!textEl || !editEl) return;
+  textEl.style.display = 'none';
+  editEl.classList.add('visible');
+  saveBtn.classList.add('visible');
+  editBtn.textContent = '✕ Cancelar';
+  editBtn.onclick = () => pCancelBussolaEdit(idx);
+  editEl.focus();
+  editEl.selectionStart = editEl.value.length;
+}
+
+function pCancelBussolaEdit(idx) {
+  const textEl = document.getElementById('pb-text-' + idx);
+  const editEl = document.getElementById('pb-edit-' + idx);
+  const editBtn = document.getElementById('pb-editbtn-' + idx);
+  const saveBtn = document.getElementById('pb-savebtn-' + idx);
+  if (!textEl || !editEl) return;
+  editEl.value = pState.reflections[idx] || '';
+  textEl.style.display = '';
+  editEl.classList.remove('visible');
+  saveBtn.classList.remove('visible');
+  editBtn.textContent = '✏ Editar';
+  editBtn.onclick = () => pStartBussolaEdit(idx);
+}
+
+function pSaveBussolaEntry(idx) {
+  const editEl = document.getElementById('pb-edit-' + idx);
+  const textEl = document.getElementById('pb-text-' + idx);
+  const editBtn = document.getElementById('pb-editbtn-' + idx);
+  const saveBtn = document.getElementById('pb-savebtn-' + idx);
+  if (!editEl) return;
+  const newText = editEl.value.trim();
+  pState.reflections[idx] = newText;
+  pSaveState();
+  if (textEl) textEl.innerHTML = newText.replace(/</g,'&lt;');
+  textEl.style.display = '';
+  editEl.classList.remove('visible');
+  saveBtn.classList.remove('visible');
+  editBtn.textContent = '✏ Editar';
+  editBtn.onclick = () => pStartBussolaEdit(idx);
+}
+
+function pToggleFacetDesc(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.toggle('open');
+    const card = el.closest('.facet-card');
+    if (card) {
+      const tog = card.querySelector('.facet-toggle');
+      if (tog) tog.textContent = el.classList.contains('open') ? '▴ fechar' : '▾ ver';
+    }
+  }
+}
+
+function pCommitAnswer() {
+  if (pState.currentScore === null) return;
+  const pos = pState.position;
+  const idx = P_ORDER[pos];
+  const item = P_ITEMS[idx];
+  pState.scores[idx] = { raw: pState.currentScore, reverse: item.reverse };
+  pState.reflections[idx] = document.getElementById('p-reflection-input').value.trim();
+  pState.responseTimes[idx] = Date.now() - pState.itemStartTime;
+  if (pAudioRecognizer) { try{pAudioRecognizer.stop();}catch(e){} }
+  if (pos >= P_ITEMS.length - 1) {
+    pState.phase = 'done';
+    pSaveState();
+    pShowResults();
+  } else {
+    pState.position++;
+    pSaveState();
+    pRenderQuestion();
+    pUpdateBussola();
+  }
+}
+
+function pShowResults() {
+  pShow('p-results');
+  const container = document.getElementById('p-results-content');
+  let html = '';
+  ['N','E','O','A','C'].forEach(dk => {
+    const dom = P_DOMAINS[dk];
+    const ds = pComputeDomainScore(dk);
+    const facets = P_FACETS.filter(f=>f.domain===dk);
+    html += `<div class="domain-section">
+      <div class="domain-header">
+        <span class="domain-badge domain-${dk}">${dom.name}</span>
+        <span class="domain-score-big">${ds??'—'}<small>/100</small></span>
+      </div>
+      <div class="domain-bar"><div class="domain-bar-fill" style="width:${ds??0}%;background:var(--p${dk})"></div></div>
+      <p class="domain-desc">${dom.desc}</p>
+      <div class="facet-grid">`;
+    facets.forEach(f => {
+      const fs = pComputeFacetScore(f.id);
+      const fd = P_FACET_DESCRIPTIONS[f.id] || {};
+      const levelText = fs !== null ? (fs < 30 ? fd.low : fs >= 70 ? fd.high : '') : '';
+      const descId = 'fdesc-' + f.id;
+      html += `<div class="facet-card" onclick="pToggleFacetDesc('${descId}')">
+        <div class="facet-name-row"><span class="facet-name">${f.name}</span><span class="facet-score-num">${fs??'—'} <span class="facet-toggle">▾ ver</span></span></div>
+        <div class="facet-bar"><div class="facet-fill" style="width:${fs??0}%;background:var(--p${dk})"></div></div>
+        <div class="facet-level">${pFacetLevel(fs)}</div>
+        <div class="facet-desc" id="${descId}">
+          <div style="font-size:.73rem;color:var(--ptext-muted);margin-bottom:.4rem;">${fd.desc||''}</div>
+          <div class="facet-level-row"><span class="facet-level-chip chip-low">⬇ Baixo: ${fd.low||''}</span></div>
+          <div class="facet-level-row"><span class="facet-level-chip chip-high">⬆ Alto: ${fd.high||''}</span></div>
+          ${levelText ? `<div style="margin-top:.4rem;font-size:.72rem;color:var(--pprimary);font-weight:600;">Seu perfil (${pFacetLevel(fs)}): ${levelText}</div>` : ''}
+        </div>
+      </div>`;
+    });
+    html += '</div></div><div class="separator"></div>';
+  });
+  container.innerHTML = html;
+
+  const fullEl = document.getElementById('p-full-responses');
+  if (fullEl) fullEl.style.display='';
+  const fullContent = document.getElementById('p-full-content');
+  if (fullContent) fullContent.innerHTML = pBuildFullResponses();
+
+  const hasReflections = Object.values(pState.reflections).some(r=>r&&r.trim());
+  if (hasReflections) {
+    const diarySection = document.getElementById('p-diary-section');
+    if (diarySection) diarySection.style.display='';
+    const diaryContent = document.getElementById('p-diary-content');
+    if (diaryContent) diaryContent.innerHTML = pBuildDiary();
+  }
+}
+
+// Laudo: as respostas são agrupadas por domínio e faceta (leitura clínica),
+// e cada item indica a posição em que foi apresentado ao respondente.
+function pBuildFullResponses() {
+  const labels = ['','Discordo fortemente','Discordo','Neutro','Concordo','Concordo fortemente'];
+  let html = '';
+  ['N','E','O','A','C'].forEach(dk => {
+    const facets = P_FACETS.filter(f => f.domain === dk);
+    const temResposta = facets.some(f => f.items.some(i => pState.scores[i]));
+    if (!temResposta) return;
+    html += `<div style="margin:20px 0 4px;"><span class="domain-badge domain-${dk}">${P_DOMAINS[dk].name}</span></div>`;
+    facets.forEach(f => {
+      const items = f.items
+        .filter(i => pState.scores[i])
+        .sort((a,b) => P_POSITION_OF_ITEM[a] - P_POSITION_OF_ITEM[b]);
+      if (items.length === 0) return;
+      const fs = pComputeFacetScore(f.id);
+      html += `<div style="margin-top:12px;font-size:.8rem;font-weight:700;color:var(--pprimary);border-bottom:1.5px solid var(--pborder);padding-bottom:4px;">
+        ${f.id} · ${f.name}${fs !== null ? ` <span style="font-weight:400;color:var(--ptext-muted);">(${fs}/100 · ${pFacetLevel(fs)})</span>` : ''}
+      </div>`;
+      items.forEach(idx => {
+        const sc = pState.scores[idx];
+        const score = sc.raw, adj = sc.reverse ? (6-score) : score;
+        const highlight = adj>=4?'color:#276749;font-weight:bold':adj<=2?'color:#92000A;font-weight:bold':'color:#2b6cb0;';
+        const ref = pState.reflections[idx];
+        html += `<div style="padding:10px 0;border-bottom:1px solid var(--pborder);">
+          <div style="font-size:11px;color:var(--ptext-muted);font-family:Arial;margin-bottom:4px;">Questão ${P_POSITION_OF_ITEM[idx]+1} de ${P_ITEMS.length} · item ${idx+1} · ${sc.reverse?'reverso':'direto'}</div>
+          <div style="font-size:13px;color:var(--ptext);margin-bottom:6px;">${P_ITEMS[idx].text}</div>
+          <div style="font-size:12px;font-family:Arial;"><span style="${highlight}">${score} · ${labels[score]}</span> <span style="color:var(--ptext-muted);font-size:11px;">(valor ajustado: ${adj})</span></div>
+          ${ref?`<div style="font-size:12px;font-style:italic;color:var(--ptext);border-left:2px solid var(--pprimary);padding-left:8px;margin-top:6px;">"${ref}"</div>`:''}
+        </div>`;
+      });
+    });
+  });
+  return html;
+}
+
+function pBuildDiary() {
+  return Object.entries(pState.reflections)
+    .filter(([,r])=>r&&r.trim())
+    .sort((a,b)=>P_POSITION_OF_ITEM[parseInt(a[0])] - P_POSITION_OF_ITEM[parseInt(b[0])])
+    .map(([idx,ref])=>{
+      const item = P_ITEMS[parseInt(idx)];
+      const facet = pItemFacet(parseInt(idx));
+      return `<div class="p-diary-entry">
+        <div class="p-diary-entry-header">Questão ${P_POSITION_OF_ITEM[parseInt(idx)]+1} · ${facet?facet.name:''}</div>
+        <div style="font-size:12px;color:var(--ptext-muted);margin-bottom:6px;">${item?item.text:''}</div>
+        <div class="p-diary-entry-text">${ref}</div>
+      </div>`;
+    }).join('');
+}
+
+function pStartAssessment() {
+  pState.phase='assessment';
+  pState.position=0;
+  pState.currentScore=null;
+  pShow('p-assessment');
+  pRenderQuestion();
+}
+
+function pResumeSession() {
+  const saved = pLoadState();
+  if (!saved) return;
+  pState = saved;
+  if (pState.phase==='done') pShowResults();
+  else { pShow('p-assessment'); pRenderQuestion(); }
+}
+
+function pConfirmNewSession() {
+  pClearState();
+  pState = {phase:'welcome',position:0,currentScore:null,scores:{},reflections:{},responseTimes:{},itemStartTime:Date.now()};
+  document.getElementById('p-resume-banner').style.display='none';
+  pShow('p-welcome');
+}
+
+function pExportJSON() {
+  const data = JSON.stringify({
+    domains: ['N','E','O','A','C'].map(dk=>({
+      key:dk, name:P_DOMAINS[dk].name, score:pComputeDomainScore(dk),
+      facets: P_FACETS.filter(f=>f.domain===dk).map(f=>({id:f.id,name:f.name,score:pComputeFacetScore(f.id)}))
+    })),
+    reflections: pState.reflections,
+    exportedAt: new Date().toISOString()
+  }, null, 2);
+  const blob = new Blob([data],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'personalidade-resultado.json';
+  a.click();
+}
+
+function pToggleCollapsible(bodyId, iconId) {
+  const body = document.getElementById(bodyId);
+  const open = body.classList.toggle('open');
+  const icon = document.getElementById(iconId);
+  if (icon) icon.textContent = open ? '▴' : '▾';
+}
+
+let pAudioRecognizer = null;
+function pToggleAudio() {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) { alert('Reconhecimento de voz não disponível neste navegador.'); return; }
+  const btn = document.getElementById('p-audio-btn');
+  if (pAudioRecognizer) {
+    pAudioRecognizer.stop(); pAudioRecognizer = null;
+    btn.classList.remove('recording'); btn.textContent = '🎤'; return;
+  }
+  const r = new SpeechRec();
+  r.lang = 'pt-BR'; r.continuous = true; r.interimResults = true;
+  r.onresult = ev => {
+    let interim='', final='';
+    for (let i=ev.resultIndex; i<ev.results.length; i++) {
+      if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+      else interim += ev.results[i][0].transcript;
+    }
+    if (final) {
+      const ta = document.getElementById('p-reflection-input');
+      ta.value += (ta.value ? ' ' : '') + final.trim();
+    }
+    const interimEl = document.getElementById('p-audio-interim');
+    if (interimEl) interimEl.textContent = interim;
+  };
+  r.onend = () => { btn.classList.remove('recording'); btn.textContent = '🎤'; pAudioRecognizer = null; };
+  r.start(); pAudioRecognizer = r;
+  btn.classList.add('recording'); btn.textContent = '⏹';
+}
+
+document.addEventListener('keydown', ev => {
+  if (!document.getElementById('mod-personalidade').classList.contains('active')) return;
+  if (!document.getElementById('p-assessment').classList.contains('active')) return;
+  if (document.activeElement && ['TEXTAREA','INPUT'].includes(document.activeElement.tagName)) return;
+  if (['1','2','3','4','5'].includes(ev.key)) { ev.preventDefault(); pSelectScore(parseInt(ev.key)); }
+  if (ev.key === 'Enter' && pState.currentScore !== null) { ev.preventDefault(); pCommitAnswer(); }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const pSaved = pLoadState();
+  if (pSaved && typeof pSaved.position !== 'number') { pClearState(); return; }
+  if (pSaved && pSaved.phase !== 'welcome' && Object.keys(pSaved.scores||{}).length > 0) {
+    pState = pSaved;
+    document.getElementById('p-resume-banner').style.display = '';
+    document.getElementById('p-start-btn').style.display = 'none';
+  }
+});
+</script>
+
+<!-- ═══ ENVIO DO PROGRESSO AO TERAPEUTA + DICA DO IPHONE ═══════════
+     Gera um arquivo com o progresso salvo neste aparelho para o paciente
+     enviar (WhatsApp, e-mail). O terapeuta importa o arquivo na versão
+     profissional. Não altera o funcionamento do instrumento. -->
+<style>
+.ivp-envio-btn { display:block; margin:1.5rem auto 0; padding:.8rem 1.4rem; background:#FFF8E7; color:#92000A; border:none; border-radius:10px; font-size:.92rem; font-weight:700; font-family:"Segoe UI",system-ui,sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.ivp-envio-btn:hover { background:#fff; }
+.ivp-envio-btn.claro { background:#92000A; color:#fff; margin:1rem auto 0; }
+.ivp-envio-btn.claro:hover { background:#6B0008; }
+.ivp-ios-dica { max-width:640px; width:100%; margin:0 0 1.25rem; background:rgba(224,44,20,.15); border:1px solid rgba(224,44,20,.5); border-radius:12px; padding:.8rem 1rem; font-size:.82rem; line-height:1.5; color:#FFF8E7; font-family:"Segoe UI",system-ui,sans-serif; }
+.ivp-ios-dica strong { color:#fff; }
+.ivp-envio { display:none; position:fixed; inset:0; z-index:2000; background:rgba(26,0,5,.7); align-items:center; justify-content:center; padding:1rem; }
+.ivp-envio.on { display:flex; }
+.ivp-envio-card { background:#FFF8E7; color:#1A0005; border-radius:16px; padding:1.5rem 1.4rem; max-width:440px; width:100%; max-height:90vh; overflow-y:auto; font-family:"Segoe UI",system-ui,sans-serif; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+.ivp-envio-card h2 { font-size:1.15rem; color:#92000A; margin-bottom:.6rem; }
+.ivp-envio-card p { font-size:.88rem; line-height:1.55; color:#5C1A1A; margin-bottom:.8rem; }
+.ivp-envio-resumo { background:#fff; border:1px solid #E8C0C0; border-radius:10px; padding:.7rem .9rem; font-size:.85rem; line-height:1.7; margin-bottom:.9rem; }
+.ivp-envio-card label { display:block; font-size:.8rem; font-weight:600; color:#5C1A1A; margin-bottom:.3rem; }
+.ivp-envio-card input { width:100%; padding:.65rem .8rem; border:1.5px solid #E8C0C0; border-radius:9px; font-size:16px; font-family:inherit; color:#1A0005; background:#fff; margin-bottom:1rem; }
+.ivp-envio-card input:focus { outline:none; border-color:#92000A; }
+.ivp-envio-acoes { display:flex; gap:.6rem; flex-wrap:wrap; }
+.ivp-envio-acoes button { flex:1; min-width:130px; padding:.75rem 1rem; border-radius:10px; font-size:.9rem; font-weight:700; font-family:inherit; cursor:pointer; border:1.5px solid #92000A; -webkit-tap-highlight-color:transparent; }
+.ivp-envio-ok { background:#92000A; color:#fff; }
+.ivp-envio-ok:disabled { opacity:.4; cursor:default; }
+.ivp-envio-cancelar { background:transparent; color:#92000A; }
+.ivp-envio-msg { font-size:.82rem; margin-top:.8rem; color:#276749; line-height:1.5; }
+.ivp-envio-msg.erro { color:#92000A; }
+</style>
+
+<div id="ivp-envio" class="ivp-envio" role="dialog" aria-modal="true" aria-labelledby="ivp-envio-titulo">
+  <div class="ivp-envio-card">
+    <h2 id="ivp-envio-titulo">Enviar progresso ao terapeuta</h2>
+    <p>Vamos gerar um arquivo com suas respostas e reflexões até agora. Envie esse arquivo ao seu terapeuta por WhatsApp ou e-mail. Seu progresso continua salvo aqui: você pode seguir respondendo e enviar de novo quando quiser.</p>
+    <div class="ivp-envio-resumo" id="ivp-envio-resumo"></div>
+    <label for="ivp-envio-nome">Seu nome completo</label>
+    <input id="ivp-envio-nome" autocomplete="name" maxlength="120">
+    <div class="ivp-envio-acoes">
+      <button class="ivp-envio-ok" id="ivp-envio-ok">Gerar e enviar arquivo</button>
+      <button class="ivp-envio-cancelar" id="ivp-envio-cancelar">Fechar</button>
+    </div>
+    <div class="ivp-envio-msg" id="ivp-envio-msg"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEYS = ['ivp-personalidade-v3'];
+  function $(id) { return document.getElementById(id); }
+  function ler(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function grava(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  // Pede ao navegador para não apagar os dados salvos sozinho
+  try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
+
+  // Dica do iPhone: o Safari apaga dados de sites não visitados por 7 dias;
+  // aberto pelo ícone da Tela de Início, isso não acontece.
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var instalado = window.navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  var hubHeader = document.querySelector('#mod-hub .hub-header');
+  if (ios && !instalado && hubHeader && location.protocol !== 'file:') {
+    var dica = document.createElement('div');
+    dica.className = 'ivp-ios-dica';
+    dica.innerHTML = '<strong>No iPhone, antes de começar:</strong> toque no botão Compartilhar do Safari (quadrado com a seta) → <strong>Adicionar à Tela de Início</strong>, e passe a abrir o instrumento sempre pelo ícone. Assim seu progresso fica guardado com segurança, mesmo se você passar dias sem responder.';
+    hubHeader.parentNode.insertBefore(dica, hubHeader.nextSibling);
+  }
+
+  // Na versão profissional o envio não se aplica
+  if (window.ivpProRaw) return;
+
+  function resumo() {
+    var linhas = [], algum = false;
+    try { var p = JSON.parse(ler('ivp-personalidade-v3') || 'null'); var n = p && p.scores ? Object.keys(p.scores).length : 0; if (n) { algum = true; linhas.push('Personalidade: ' + (p.phase === 'done' ? 'concluído' : n + ' de 120 questões')); } } catch (e) {}
+    return { algum: algum, texto: linhas.join('<br>') };
+  }
+
+  function abrir() {
+    var r = resumo();
+    $('ivp-envio-resumo').innerHTML = r.algum ? r.texto : 'Você ainda não respondeu nenhuma questão. Comece o inventário e depois volte aqui.';
+    $('ivp-envio-ok').disabled = !r.algum;
+    $('ivp-envio-nome').value = ler('ivp-paciente-nome') || '';
+    $('ivp-envio-msg').textContent = ''; $('ivp-envio-msg').className = 'ivp-envio-msg';
+    $('ivp-envio').classList.add('on');
+  }
+  function fechar() { $('ivp-envio').classList.remove('on'); }
+
+  function msg(t, erro) { $('ivp-envio-msg').textContent = t; $('ivp-envio-msg').className = 'ivp-envio-msg' + (erro ? ' erro' : ''); }
+
+  function baixar(blob, nome) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = nome;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 10000);
+  }
+
+  function enviar() {
+    var nome = $('ivp-envio-nome').value.trim().replace(/\s+/g, ' ');
+    if (!nome) { msg('Escreva seu nome para o terapeuta saber de quem é o arquivo.', true); $('ivp-envio-nome').focus(); return; }
+    grava('ivp-paciente-nome', nome);
+    var origem = ler('ivp-paciente-id');
+    if (!origem) { origem = Date.now().toString(36) + Math.random().toString(36).slice(2, 9); grava('ivp-paciente-id', origem); }
+    var dados = {};
+    KEYS.forEach(function (k) { var v = ler(k); if (v !== null) dados[k] = v; });
+    var pacote = { tipo: 'ivp-progresso-paciente', versao: 1, origemId: origem, nome: nome, enviadoEm: new Date().toISOString(), dados: dados };
+    var slug = nome.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 50);
+    var nomeArq = 'progresso_' + slug + '_' + new Date().toISOString().slice(0, 10) + '.json';
+    var blob = new Blob([JSON.stringify(pacote)], { type: 'application/json' });
+    var arquivo = null;
+    try { arquivo = new File([blob], nomeArq, { type: 'application/json' }); } catch (e) {}
+
+    if (arquivo && navigator.canShare && navigator.canShare({ files: [arquivo] })) {
+      navigator.share({ files: [arquivo], title: 'Progresso — ' + nome, text: 'Meu progresso no Inventário de Personalidade.' })
+        .then(function () { msg('Pronto! Arquivo enviado. Você pode continuar respondendo normalmente.'); })
+        .catch(function (e) {
+          if (e && e.name === 'AbortError') { msg('Envio cancelado.', true); return; }
+          baixar(blob, nomeArq);
+          msg('O arquivo "' + nomeArq + '" foi salvo no aparelho. Envie-o ao terapeuta pelo WhatsApp ou e-mail (como documento/anexo).');
+        });
+    } else {
+      baixar(blob, nomeArq);
+      msg('O arquivo "' + nomeArq + '" foi salvo (pasta Downloads). Envie-o ao terapeuta pelo WhatsApp ou e-mail, como documento/anexo.');
+    }
+  }
+
+  window.ivpEnviarProgresso = abrir;
+  $('ivp-envio-ok').addEventListener('click', enviar);
+  $('ivp-envio-cancelar').addEventListener('click', fechar);
+  $('ivp-envio').addEventListener('click', function (ev) { if (ev.target === this) fechar(); });
+
+  // Botões: no menu principal e ao final de cada resultado
+  function botao(classe) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ivp-envio-btn' + (classe ? ' ' + classe : '');
+    b.textContent = '📤 Enviar meu progresso ao terapeuta';
+    b.addEventListener('click', abrir);
+    return b;
+  }
+  var hubCards = document.querySelector('#mod-hub .hub-cards');
+  if (hubCards) hubCards.parentNode.insertBefore(botao(), hubCards.nextSibling);
+    var pFim = document.querySelector('#p-results .results-actions');
+  if (pFim) pFim.parentNode.insertBefore(botao('claro'), pFim.nextSibling);
+})();
+</script>
+</body>
+</html>
