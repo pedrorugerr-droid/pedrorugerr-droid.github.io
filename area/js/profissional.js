@@ -27,13 +27,15 @@
     if (uid === usuarioAtual) return;
     usuarioAtual = uid;
     $('btnSair').classList.toggle('oculto', !uid);
+    $('btnSenha').classList.add('oculto'); fecharSenha();
     clearInterval(relogio);
     if (!uid) {
-      window.Area.montarLogin(tela(), area, { titulo: 'Entrar', texto: 'Acesso restrito ao profissional responsável.' });
+      window.Area.montarLogin(tela(), area, { titulo: 'Entrar', texto: 'Acesso restrito ao profissional responsável.', senha: true });
       return;
     }
     try {
       if (!(await area.souProfissional())) { erroGeral('Acesso restrito ao profissional responsável.'); return; }
+      $('btnSenha').classList.remove('oculto');
       montarBase();
       await recarregar();
       relogio = setInterval(() => { if (document.visibilityState === 'visible') recarregar(true).catch(() => {}); }, 60000);
@@ -239,9 +241,45 @@
     aviso('Arquivo salvo. Na Central, abra o módulo e use "Importar respostas do site".', 'ok');
   }
 
+  // ---------- definir ou trocar a senha (o profissional digita; nada é guardado no site) ----------
+  function fecharSenha() { const c = $('caixaSenha'); if (c) { c.classList.add('oculto'); c.innerHTML = ''; } }
+  function abrirSenha() {
+    const c = $('caixaSenha');
+    c.innerHTML = `
+      <div class="cartao">
+        <h2>Definir senha</h2>
+        <p class="suave">Depois disso você entra com e-mail e senha. O link por e-mail continua valendo para quando esquecer a senha.</p>
+        <form id="fNovaSenha">
+          <label class="rotulo" for="nsSenha">Nova senha (pelo menos 8 caracteres)</label>
+          <input id="nsSenha" type="password" autocomplete="new-password" minlength="8" required>
+          <label class="rotulo" for="nsSenha2">Repita a senha</label>
+          <input id="nsSenha2" type="password" autocomplete="new-password" minlength="8" required>
+          <div class="botoes"><button type="submit">Salvar senha</button><button type="button" class="sec" id="nsFechar">Fechar</button></div>
+        </form>
+        <div id="nsMsg"></div>
+      </div>`;
+    c.classList.remove('oculto');
+    const msg = (t, tipo) => { $('nsMsg').innerHTML = t ? `<div class="msg ${tipo || 'erro'}">${esc(t)}</div>` : ''; };
+    $('nsFechar').onclick = fecharSenha;
+    $('fNovaSenha').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const s1 = $('nsSenha').value, s2 = $('nsSenha2').value;
+      if (s1.length < 8) { msg('Use pelo menos 8 caracteres.'); return; }
+      if (s1 !== s2) { msg('As duas senhas não são iguais.'); return; }
+      const b = $('fNovaSenha').querySelector('button[type=submit]'); b.disabled = true; msg('');
+      try {
+        await area.definirSenha(s1);
+        $('fNovaSenha').classList.add('oculto');
+        msg('Senha salva. Da próxima vez, entre com e-mail e senha.', 'ok');
+      } catch (e) { msg(traduzErro(e)); } finally { b.disabled = false; $('nsSenha').value = ''; $('nsSenha2').value = ''; }
+    });
+    $('nsSenha').focus();
+  }
+
   function iniciar() {
     try { area = window.Area.api(window.Area.criarCliente()); } catch (e) { erroGeral(e.message); return; }
     $('btnSair').addEventListener('click', async () => { await area.sair(); usuarioAtual = undefined; rotear(); });
+    $('btnSenha').addEventListener('click', () => { if ($('caixaSenha').classList.contains('oculto')) abrirSenha(); else fecharSenha(); });
     area.aoMudarSessao(() => { setTimeout(rotear, 0); });
     rotear();
   }
