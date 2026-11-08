@@ -7,6 +7,10 @@
   let area = null;
   let usuarioAtual = undefined;
   const est = { pacientes: [], instrumentos: [], conteudos: {}, sel: null, filtro: '', libs: [], resps: [], cons: [] };
+  // O paciente vê o título neutro; aqui o código do instrumento vai junto (ex.: etdah_pais), se o nome não o trouxer.
+  const nomeProf = (i) => (i.nome.toLowerCase().includes(i.id.toLowerCase()) ? i.nome : `${i.nome} [${i.id}]`);
+  // Na lista de liberação: uso livre ou protegido, e "a conferir" (marcações da tabela instrumentos; não mudam o acesso).
+  const nomeLista = (i) => nomeProf(i) + (i.uso_livre === undefined ? '' : i.uso_livre ? ' · livre' : ' · protegido') + (i.a_conferir ? ' · A CONFERIR' : '');
   let relogio = null;
 
   function erroGeral(t) { tela().innerHTML = `<div class="cartao"><div class="msg erro">${esc(t)}</div></div>`; }
@@ -23,15 +27,13 @@
     if (uid === usuarioAtual) return;
     usuarioAtual = uid;
     $('btnSair').classList.toggle('oculto', !uid);
-    $('btnSenha').classList.add('oculto'); fecharSenha();
     clearInterval(relogio);
     if (!uid) {
-      window.Area.montarLogin(tela(), area, { titulo: 'Entrar', texto: 'Acesso restrito ao profissional responsável.', senha: true });
+      window.Area.montarLogin(tela(), area, { titulo: 'Entrar', texto: 'Acesso restrito ao profissional responsável.' });
       return;
     }
     try {
       if (!(await area.souProfissional())) { erroGeral('Acesso restrito ao profissional responsável.'); return; }
-      $('btnSenha').classList.remove('oculto');
       montarBase();
       await recarregar();
       relogio = setInterval(() => { if (document.visibilityState === 'visible') recarregar(true).catch(() => {}); }, 60000);
@@ -115,7 +117,7 @@
     const caixa = $('pfDetalhe');
     if (!p) { caixa.innerHTML = '<div class="cartao"><p class="suave">Escolha um paciente.</p></div>'; return; }
     est.cons = await area.consentimentosDe(p.id);
-    const nomeInst = Object.fromEntries(est.instrumentos.map((i) => [i.id, i.nome]));
+    const nomeInst = Object.fromEntries(est.instrumentos.map((i) => [i.id, nomeProf(i)]));
     const libs = est.libs.filter((l) => l.paciente_id === p.id);
     const porLib = Object.fromEntries(est.resps.filter((r) => r.paciente_id === p.id).map((r) => [r.liberacao_id, r]));
     const ultimoCons = est.cons.slice().sort((a, b) => (a.aceito_em < b.aceito_em ? 1 : -1))[0];
@@ -133,7 +135,7 @@
         <h3>Liberar instrumento</h3>
         <div class="linha-form">
           <div><label class="rotulo" for="pfInst">Instrumento</label>
-            <select id="pfInst">${est.instrumentos.filter((i) => i.ativo).map((i) => `<option value="${esc(i.id)}">${esc(i.nome)}</option>`).join('')}</select></div>
+            <select id="pfInst">${est.instrumentos.filter((i) => i.ativo).map((i) => `<option value="${esc(i.id)}">${esc(nomeLista(i))}</option>`).join('')}</select></div>
           <div><label class="rotulo" for="pfObs">Observação (só você vê)</label><input id="pfObs" type="text" placeholder="ex.: reavaliação"></div>
           <button id="pfLiberar">Liberar</button>
         </div>
@@ -180,6 +182,8 @@
       const id = $('pfInst').value; if (!id) return;
       const aberta = libs.find((l) => l.instrumento_id === id && !l.revogada && !(porLib[l.id] && porLib[l.id].enviado_em));
       if (aberta && !confirm('Este instrumento já está liberado e ainda não foi enviado. Liberar outra aplicação mesmo assim?')) return;
+      const inst = est.instrumentos.find((i) => i.id === id);
+      if (inst && inst.a_conferir && !confirm(`Este instrumento está marcado "a conferir"${inst.obs_prof ? ': ' + inst.obs_prof : ''}. Liberar mesmo assim?`)) return;
       try { await area.liberar(p.id, id, $('pfObs').value); await recarregar(); aviso('Instrumento liberado. O paciente já vê ao entrar. Para mandar o link, use "Avisar pelo WhatsApp" ou "Copiar aviso".', 'ok'); } catch (e) { aviso(traduzErro(e)); }
     };
     caixa.querySelectorAll('[data-ver]').forEach((b) => b.onclick = () => verResposta(p, libs.find((l) => l.id === b.dataset.ver)).catch((e) => aviso(traduzErro(e))));
@@ -210,7 +214,7 @@
         antes = (r && r.respostas) || {};
         rotuloAntes = ` · comparando com o envio de ${data(anteriores[0].r.enviado_em)} (em amarelo o que mudou)`;
       }
-      caixa.innerHTML = `<div class="item-lista"><div><h2 style="margin:0">${esc(inst.nome)}</h2>
+      caixa.innerHTML = `<div class="item-lista"><div><h2 style="margin:0">${esc(nomeProf(inst))}</h2>
           <span class="suave">${esc(p.nome || p.email)} · ${resp.enviado_em ? 'enviado em ' + esc(dataHora(resp.enviado_em)) : 'em andamento, ' + resp.progresso + '%'} · versão ${esc(resp.versao_conteudo)}${esc(rotuloAntes)}</span></div>
           <div class="botoes naoimprime" style="margin:0">
             ${anteriores.length ? `<button class="sec peq" id="pfComparar">${comparar ? 'Sem comparação' : 'Comparar com envio anterior'}</button>` : ''}
@@ -235,45 +239,9 @@
     aviso('Arquivo salvo. Na Central, abra o módulo e use "Importar respostas do site".', 'ok');
   }
 
-  // ---------- definir ou trocar a senha (o profissional digita; nada é guardado no site) ----------
-  function fecharSenha() { const c = $('caixaSenha'); if (c) { c.classList.add('oculto'); c.innerHTML = ''; } }
-  function abrirSenha() {
-    const c = $('caixaSenha');
-    c.innerHTML = `
-      <div class="cartao">
-        <h2>Definir senha</h2>
-        <p class="suave">Depois disso você entra com e-mail e senha. O link por e-mail continua valendo para quando esquecer a senha.</p>
-        <form id="fNovaSenha">
-          <label class="rotulo" for="nsSenha">Nova senha (pelo menos 8 caracteres)</label>
-          <input id="nsSenha" type="password" autocomplete="new-password" minlength="8" required>
-          <label class="rotulo" for="nsSenha2">Repita a senha</label>
-          <input id="nsSenha2" type="password" autocomplete="new-password" minlength="8" required>
-          <div class="botoes"><button type="submit">Salvar senha</button><button type="button" class="sec" id="nsFechar">Fechar</button></div>
-        </form>
-        <div id="nsMsg"></div>
-      </div>`;
-    c.classList.remove('oculto');
-    const msg = (t, tipo) => { $('nsMsg').innerHTML = t ? `<div class="msg ${tipo || 'erro'}">${esc(t)}</div>` : ''; };
-    $('nsFechar').onclick = fecharSenha;
-    $('fNovaSenha').addEventListener('submit', async (ev) => {
-      ev.preventDefault();
-      const s1 = $('nsSenha').value, s2 = $('nsSenha2').value;
-      if (s1.length < 8) { msg('Use pelo menos 8 caracteres.'); return; }
-      if (s1 !== s2) { msg('As duas senhas não são iguais.'); return; }
-      const b = $('fNovaSenha').querySelector('button[type=submit]'); b.disabled = true; msg('');
-      try {
-        await area.definirSenha(s1);
-        $('fNovaSenha').classList.add('oculto');
-        msg('Senha salva. Da próxima vez, entre com e-mail e senha.', 'ok');
-      } catch (e) { msg(traduzErro(e)); } finally { b.disabled = false; $('nsSenha').value = ''; $('nsSenha2').value = ''; }
-    });
-    $('nsSenha').focus();
-  }
-
   function iniciar() {
     try { area = window.Area.api(window.Area.criarCliente()); } catch (e) { erroGeral(e.message); return; }
     $('btnSair').addEventListener('click', async () => { await area.sair(); usuarioAtual = undefined; rotear(); });
-    $('btnSenha').addEventListener('click', () => { if ($('caixaSenha').classList.contains('oculto')) abrirSenha(); else fecharSenha(); });
     area.aoMudarSessao(() => { setTimeout(rotear, 0); });
     rotear();
   }

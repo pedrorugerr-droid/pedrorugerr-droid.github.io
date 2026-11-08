@@ -22,10 +22,6 @@
     const m = (e && (e.message || e.error_description || e.msg)) || String(e || 'Erro desconhecido');
     if (/rate limit|too many|security purposes/i.test(m)) return 'Muitos pedidos seguidos. Espere um minuto e tente de novo.';
     if (/not liberado|não está liberado|signups not allowed|hook/i.test(m)) return 'Este e-mail não está liberado. Fale com o profissional responsável.';
-    if (/invalid login credentials/i.test(m)) return 'E-mail ou senha incorretos. Se ainda não definiu a senha, entre pelo link do e-mail.';
-    if (/password should be at least|weak.?password/i.test(m)) return 'A senha é curta demais. Use pelo menos 8 caracteres.';
-    if (/should be different from the old/i.test(m)) return 'A nova senha precisa ser diferente da atual.';
-    if (/email not confirmed/i.test(m)) return 'E-mail ainda não confirmado. Entre pelo link do e-mail.';
     if (/expired|invalid.*(otp|token)|token.*(expired|invalid)/i.test(m)) return 'Código vencido ou incorreto. Peça um novo.';
     if (/failed to fetch|network|load failed/i.test(m)) return 'Sem conexão com a internet. O que você escreveu continua guardado neste aparelho.';
     if (/row-level security|violates/i.test(m)) return 'Esta ação não é permitida (o questionário pode já ter sido enviado ou não estar mais liberado).';
@@ -60,11 +56,6 @@
       async conferirCodigo(email, codigo) {
         return dados(await sb.auth.verifyOtp({ email: email.trim().toLowerCase(), token: codigo.trim(), type: 'email' }));
       },
-      // Só a Área do profissional oferece senha; a do paciente continua sem senha.
-      async entrarComSenha(email, senha) {
-        return dados(await sb.auth.signInWithPassword({ email: email.trim().toLowerCase(), password: senha }));
-      },
-      async definirSenha(senha) { return dados(await sb.auth.updateUser({ password: senha })); },
       async sair() { await sb.auth.signOut(); },
 
       // ---------- paciente ----------
@@ -79,7 +70,7 @@
       async liberacoes() {
         return dados(await sb.from('liberacoes').select('id,paciente_id,instrumento_id,criado_em,revogada,observacao').order('criado_em', { ascending: false })) || [];
       },
-      async instrumentosResumo() { return dados(await sb.from('instrumentos').select('id,nome,versao,ativo')) || []; },
+      async instrumentosResumo() { return dados(await sb.from('instrumentos').select('id,nome,versao,ativo,uso_livre,a_conferir,obs_prof')) || []; },
       async conteudo(instrumentoId) {
         const l = dados(await sb.from('instrumentos').select('id,nome,versao,conteudo').eq('id', instrumentoId));
         return (l && l[0]) || null;
@@ -157,29 +148,18 @@
   }
 
   // Tela de login comum às duas páginas (e-mail, depois código ou link).
-  // Com opcoes.senha (só na Área do profissional), abre em e-mail + senha e o link fica como alternativa.
   function montarLogin(caixa, area, opcoes) {
-    const comSenha = !!opcoes.senha;
     caixa.innerHTML = `
       <div class="cartao">
         <h2>${esc(opcoes.titulo)}</h2>
         <p class="suave">${esc(opcoes.texto)}</p>
-        ${comSenha ? `
-        <form id="fSenha">
-          <label class="rotulo" for="lgSEmail">E-mail</label>
-          <input id="lgSEmail" type="email" autocomplete="username" inputmode="email" required>
-          <label class="rotulo" for="lgSenha">Senha</label>
-          <input id="lgSenha" type="password" autocomplete="current-password" required>
-          <div class="botoes"><button type="submit">Entrar</button></div>
-          <p class="suave">Primeiro acesso ou esqueceu a senha? <button type="button" class="sec peq" id="lgPorLink">Receber link por e-mail</button></p>
-        </form>` : ''}
-        <form id="fEmail"${comSenha ? ' class="oculto"' : ''}>
+        <form id="fEmail">
           <label class="rotulo" for="lgEmail">Seu e-mail</label>
           <input id="lgEmail" type="email" autocomplete="email" inputmode="email" required>
-          <div class="botoes"><button type="submit">Receber acesso por e-mail</button>${comSenha ? '<button type="button" class="sec" id="lgVoltaSenha">Entrar com senha</button>' : ''}</div>
+          <div class="botoes"><button type="submit">Receber acesso por e-mail</button></div>
         </form>
         <form id="fCodigo" class="oculto">
-          <p>Enviamos um e-mail para <b id="lgPara"></b>. Toque no link do e-mail. Se preferir, digite aqui o código que veio no e-mail.</p>
+          <p>Enviamos um e-mail para <b id="lgPara"></b>. Toque no link do e-mail. Se o e-mail trouxer um código de 6 dígitos, você também pode digitá-lo aqui.</p>
           <label class="rotulo" for="lgCodigo">Código</label>
           <input id="lgCodigo" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10">
           <div class="botoes"><button type="submit">Entrar</button><button type="button" class="sec" id="lgOutro">Usar outro e-mail</button></div>
@@ -206,22 +186,6 @@
       try { await area.conferirCodigo(email, $('lgCodigo').value); } catch (e) { msg(traduzErro(e)); } finally { b.disabled = false; }
     });
     $('lgOutro').addEventListener('click', () => { $('fCodigo').classList.add('oculto'); $('fEmail').classList.remove('oculto'); msg(''); });
-    if (comSenha) {
-      $('fSenha').addEventListener('submit', async (ev) => {
-        ev.preventDefault();
-        const b = $('fSenha').querySelector('button[type=submit]'); b.disabled = true; msg('');
-        try { await area.entrarComSenha($('lgSEmail').value, $('lgSenha').value); }
-        catch (e) { msg(traduzErro(e)); $('lgSenha').value = ''; }
-        finally { b.disabled = false; }
-      });
-      $('lgPorLink').addEventListener('click', () => {
-        $('lgEmail').value = $('lgSEmail').value.trim();
-        $('fSenha').classList.add('oculto'); $('fEmail').classList.remove('oculto'); msg(''); $('lgEmail').focus();
-      });
-      $('lgVoltaSenha').addEventListener('click', () => {
-        $('fEmail').classList.add('oculto'); $('fCodigo').classList.add('oculto'); $('fSenha').classList.remove('oculto'); msg('');
-      });
-    }
   }
 
   window.Area = { esc, $, data, dataHora, traduzErro, criarCliente, api, situacao, pacoteCentral, baixarJson, montarLogin };
