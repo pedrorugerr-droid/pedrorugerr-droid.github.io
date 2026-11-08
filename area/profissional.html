@@ -10,8 +10,12 @@
 <body>
 <header class="topo">
   <h1>Área do profissional</h1>
-  <button type="button" id="btnSair" class="oculto">Sair</button>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+    <button type="button" id="btnSenha" class="oculto">Definir senha</button>
+    <button type="button" id="btnSair" class="oculto">Sair</button>
+  </div>
 </header>
+<section id="caixaSenha" class="oculto" style="max-width:520px;margin:0 auto;padding:16px 16px 0"></section>
 <main id="tela" class="largo">
   <div class="cartao"><p class="suave">Carregando...</p></div>
 </main>
