@@ -91,6 +91,7 @@
   }
 
   async function telaLista() {
+    tela().style.zoom = '';
     tela().innerHTML = '<div class="cartao"><p class="suave">Carregando...</p></div>';
     const [libs, insts, resps] = await Promise.all([area.liberacoes(), area.instrumentosResumo(), area.respostasResumo()]);
     const nomeInst = Object.fromEntries(insts.map((i) => [i.id, i.nome]));
@@ -135,6 +136,11 @@
     if (local && local.respostas && local.pendente) { Object.assign(respostas, local.respostas); pendente = true; }
     const secoes = conteudo.secoes || [];
     let idx = local && Number.isInteger(local.secao) ? Math.min(local.secao, secoes.length) : -1; // -1 = apresentação, secoes.length = revisão
+    // Partes condicionais (anamnese do adulto) entram e saem da navegação conforme as respostas.
+    const visiveis = () => secoes.map((s, i) => i).filter((i) => F.secaoVisivel(secoes[i], respostas, conteudo));
+    const proxima = (n) => { const v = visiveis().find((i) => i > n); return v === undefined ? secoes.length : v; };
+    const anterior = (n) => { const l = visiveis().filter((i) => i < n); return l.length ? l[l.length - 1] : -1; };
+    if (idx >= 0 && idx < secoes.length && !visiveis().includes(idx)) idx = proxima(idx);
     let timer = null, salvando = false;
 
     const status = (t) => { const el = $('pcStatus'); if (el) el.textContent = t; };
@@ -173,39 +179,42 @@
     }
 
     function cabecalho() {
-      const passo = idx < 0 ? 'Apresentação' : idx >= secoes.length ? 'Revisão e envio' : `Tela ${idx + 1} de ${secoes.length}`;
+      const vis = visiveis();
+      const passo = idx < 0 ? 'Apresentação' : idx >= secoes.length ? 'Revisão e envio' : `Tela ${vis.indexOf(idx) + 1} de ${vis.length}`;
       return `<div class="cartao"><b>${esc(nome || inst.nome)}</b>
         <div class="barra"><div id="pcBarra" style="width:${prog()}%"></div></div>
         <div class="suave">${esc(passo)} · ${prog()}% respondido</div></div>`;
     }
     function desenhar() {
+      tela().style.zoom = conteudo.fonteGrande ? '1.15' : ''; // questionários 60+: letra maior
       if (idx < 0) {
         tela().innerHTML = `${cabecalho()}<div class="cartao"><h2>Como responder</h2><p>${esc(conteudo.apresentacao || '')}</p>
           <div class="botoes fim"><button class="sec" id="pcLista">Voltar à lista</button><button id="pcProx">Começar</button></div></div>`;
         $('pcLista').onclick = () => { salvarServidor(); guardarAgora = null; telaLista().catch((e) => erroGeral(traduzErro(e))); };
-        $('pcProx').onclick = () => ir(0);
+        $('pcProx').onclick = () => ir(proxima(-1));
         return;
       }
       if (idx >= secoes.length) { desenharRevisao(); return; }
       tela().innerHTML = `${cabecalho()}<div class="cartao" id="pcSecao"></div>
         <div class="rodape-form"><div class="salvamento" id="pcStatus">${pendente ? 'Alterações ainda não salvas' : ''}</div>
-        <div class="botoes fim"><button class="sec" id="pcAnt">Voltar</button><button id="pcProx">${idx === secoes.length - 1 ? 'Revisar e enviar' : 'Próxima'}</button></div></div>`;
-      F.desenharSecao($('pcSecao'), secoes[idx], respostas, { aoMudar: mudou });
-      $('pcAnt').onclick = () => ir(idx - 1);
-      $('pcProx').onclick = () => ir(idx + 1);
+        <div class="botoes fim"><button class="sec" id="pcAnt">Voltar</button><button id="pcProx">${proxima(idx) >= secoes.length ? 'Revisar e enviar' : 'Próxima'}</button></div></div>`;
+      F.desenharSecao($('pcSecao'), secoes[idx], respostas, { aoMudar: mudou, conteudo });
+      $('pcAnt').onclick = () => ir(anterior(idx));
+      $('pcProx').onclick = () => ir(proxima(idx));
     }
     function desenharRevisao() {
       const falta = F.faltando(conteudo, respostas);
+      const vis = visiveis();
       const porSecao = secoes.map((s, i) => ({ i, s, n: s.campos.filter((c) => falta.includes(c)).length })).filter((x) => x.n);
       tela().innerHTML = `${cabecalho()}<div class="cartao"><h2>Revisão</h2>
         ${falta.length ? `<p>Ficaram <b>${falta.length}</b> perguntas sem resposta. Você pode enviar assim mesmo ou voltar para completar.</p>
-          <ul>${porSecao.map((x) => `<li><a href="#" data-ir="${x.i}">Tela ${x.i + 1}</a>: ${esc(x.s.parte ? x.s.parte + ', ' : '')}${esc(x.s.titulo)} (${x.n} sem resposta)</li>`).join('')}</ul>`
+          <ul>${porSecao.map((x) => `<li><a href="#" data-ir="${x.i}">Tela ${vis.indexOf(x.i) + 1}</a>: ${esc(x.s.parte ? x.s.parte + ', ' : '')}${esc(x.s.titulo)} (${x.n} sem resposta)</li>`).join('')}</ul>`
           : '<p>Todas as perguntas foram respondidas.</p>'}
         <p>Depois de enviar, você não poderá mais alterar as respostas. Se precisar corrigir algo, fale com o profissional.</p>
         <div class="salvamento" id="pcStatus"></div>
         <div class="botoes fim"><button class="sec" id="pcAnt">Voltar</button><button id="pcEnviar">Enviar respostas</button></div></div>`;
       tela().querySelectorAll('a[data-ir]').forEach((a) => a.addEventListener('click', (ev) => { ev.preventDefault(); ir(Number(a.dataset.ir)); }));
-      $('pcAnt').onclick = () => ir(secoes.length - 1);
+      $('pcAnt').onclick = () => ir(anterior(secoes.length));
       $('pcEnviar').onclick = async () => {
         if (!confirm('Enviar as respostas agora? Depois do envio não é possível alterar.')) return;
         $('pcEnviar').disabled = true; status('Enviando...');
@@ -225,6 +234,7 @@
   }
 
   function telaEnviado(inst, resp) {
+    tela().style.zoom = '';
     tela().innerHTML = `<div class="cartao"><b>${esc(inst.nome)}</b><p class="etiqueta ok">Enviado em ${esc(dataHora(resp.enviado_em))}</p>
       <p>Obrigado! As suas respostas já estão com o profissional.</p>
       <div class="botoes"><button class="sec" id="pcLista">Voltar à lista</button><button class="sec" id="pcVer">Ver minhas respostas</button></div></div>
