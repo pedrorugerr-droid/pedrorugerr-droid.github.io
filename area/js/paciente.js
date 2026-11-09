@@ -8,6 +8,24 @@
   let usuarioAtual = undefined;
   let cadastro = null;
   let guardarAgora = null; // salva o questionário aberto (ao esconder a página)
+  let aviso = ''; // mensagem mostrada na próxima tela de login (ex.: saiu por falta de liberação)
+
+  // Erro devolvido pelo servidor no link do e-mail (ex.: login recusado pelo gancho do token).
+  function erroDoLink() {
+    const p = new URLSearchParams((location.hash || '').replace(/^#/, '') + '&' + (location.search || '').replace(/^\?/, ''));
+    const d = p.get('error_description') || p.get('error');
+    if (!d) return '';
+    try { history.replaceState(null, '', location.pathname); } catch (e) { /* ignore */ }
+    return traduzErro({ message: d });
+  }
+
+  // Sai da conta e volta ao login com o aviso neutro.
+  async function sairSemLiberacao() {
+    aviso = window.Area.NADA_LIBERADO;
+    try { await area.sair(); } catch (e) { /* ignore */ }
+    usuarioAtual = undefined;
+    await rotear();
+  }
 
   function erroGeral(texto) {
     tela().innerHTML = `<div class="cartao"><div class="msg erro">${esc(texto)}</div></div>`;
@@ -24,7 +42,10 @@
       window.Area.montarLogin(tela(), area, {
         titulo: 'Entrar',
         texto: 'Use o e-mail que você informou ao profissional. Você vai receber um e-mail com o acesso, sem senha.',
+        conferir: true,
+        aviso,
       });
+      aviso = '';
       return;
     }
     await entrar();
@@ -34,11 +55,15 @@
     tela().innerHTML = '<div class="cartao"><p class="suave">Carregando...</p></div>';
     try {
       cadastro = await area.meuCadastro();
-      if (!cadastro) {
-        tela().innerHTML = `<div class="cartao"><h2>Acesso não liberado</h2>
-          <p>Este e-mail ainda não tem questionários liberados. Fale com o profissional responsável.</p></div>`;
-        return;
+      // Só entra quem tem pelo menos uma liberação ativa (não revogada, de instrumento ativo).
+      // As regras do servidor (RLS) já escondem o que foi revogado ou desativado.
+      let ativas = 0;
+      if (cadastro) {
+        const [libs, insts] = await Promise.all([area.liberacoes(), area.instrumentosResumo()]);
+        const visiveis = new Set(insts.map((i) => i.id));
+        ativas = libs.filter((l) => !l.revogada && visiveis.has(l.instrumento_id)).length;
       }
+      if (!ativas) { await sairSemLiberacao(); return; }
       const cons = await area.meusConsentimentos();
       if (!cons.some((c) => c.versao_termo === window.TERMO.versao)) { telaTermo(); return; }
       await telaLista();
@@ -209,6 +234,7 @@
   }
 
   function iniciar() {
+    aviso = erroDoLink();
     try { area = window.Area.api(window.Area.criarCliente()); } catch (e) { erroGeral(e.message); return; }
     $('btnSair').addEventListener('click', async () => { await area.sair(); usuarioAtual = undefined; rotear(); });
     area.aoMudarSessao(() => { setTimeout(rotear, 0); });

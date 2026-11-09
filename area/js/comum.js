@@ -18,10 +18,13 @@
     return isNaN(d) ? '' : d.toLocaleDateString('pt-BR');
   }
 
+  // Mesma mensagem para e-mail desconhecido, paciente sem liberação ativa ou desativado.
+  const NADA_LIBERADO = 'No momento não há nada liberado para você. Fale com o profissional.';
+
   function traduzErro(e) {
     const m = (e && (e.message || e.error_description || e.msg)) || String(e || 'Erro desconhecido');
     if (/rate limit|too many|security purposes/i.test(m)) return 'Muitos pedidos seguidos. Espere um minuto e tente de novo.';
-    if (/not liberado|não está liberado|signups not allowed|hook/i.test(m)) return 'Este e-mail não está liberado. Fale com o profissional responsável.';
+    if (/not liberado|não está liberado|nada liberado|signups not allowed|hook/i.test(m)) return NADA_LIBERADO;
     if (/invalid login credentials/i.test(m)) return 'E-mail ou senha incorretos. Se ainda não definiu a senha, entre pelo link do e-mail.';
     if (/password should be at least|weak.?password/i.test(m)) return 'A senha é curta demais. Use pelo menos 8 caracteres.';
     if (/should be different from the old/i.test(m)) return 'A nova senha precisa ser diferente da atual.';
@@ -56,6 +59,13 @@
       aoMudarSessao(fn) { return sb.auth.onAuthStateChange((ev, s) => fn(ev, s)); },
       async pedirAcesso(email) {
         dados(await sb.auth.signInWithOtp({ email: email.trim().toLowerCase(), options: { emailRedirectTo: urlVolta(), shouldCreateUser: true } }));
+      },
+      // Pergunta ao servidor se o e-mail pode entrar, antes de mandar o e-mail (resposta só sim ou não).
+      // Se a consulta falhar, segue: os ganchos do servidor recusam do mesmo jeito.
+      async podeEntrar(email) {
+        const r = await sb.rpc('pode_entrar', { email: email.trim().toLowerCase() });
+        if (r && r.error) return true;
+        return r.data === true;
       },
       async conferirCodigo(email, codigo) {
         return dados(await sb.auth.verifyOtp({ email: email.trim().toLowerCase(), token: codigo.trim(), type: 'email' }));
@@ -188,12 +198,14 @@
       </div>`;
     const msg = (t, tipo) => { $('lgMsg').innerHTML = t ? `<div class="msg ${tipo || 'erro'}">${esc(t)}</div>` : ''; };
     let email = '';
+    if (opcoes.aviso) msg(opcoes.aviso);
     $('fEmail').addEventListener('submit', async (ev) => {
       ev.preventDefault();
       email = $('lgEmail').value.trim().toLowerCase();
       if (!email) return;
       const b = ev.submitter || $('fEmail').querySelector('button'); b.disabled = true; msg('');
       try {
+        if (opcoes.conferir && !(await area.podeEntrar(email))) { msg(NADA_LIBERADO); return; }
         await area.pedirAcesso(email);
         $('lgPara').textContent = email;
         $('fEmail').classList.add('oculto'); $('fCodigo').classList.remove('oculto');
@@ -224,5 +236,5 @@
     }
   }
 
-  window.Area = { esc, $, data, dataHora, traduzErro, criarCliente, api, situacao, pacoteCentral, baixarJson, montarLogin };
+  window.Area = { esc, $, data, dataHora, traduzErro, NADA_LIBERADO, criarCliente, api, situacao, pacoteCentral, baixarJson, montarLogin };
 })();
