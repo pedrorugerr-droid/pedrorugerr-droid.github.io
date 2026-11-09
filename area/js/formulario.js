@@ -12,14 +12,15 @@
   }
   const preenchido = (v) => v !== null && v !== undefined && String(v).trim() !== '';
 
+  // Campos com "opcional: true" (ex.: reflexões livres) não contam no progresso nem no aviso de "sem resposta".
   function progresso(conteudo, respostas) {
-    const campos = todosCampos(conteudo);
+    const campos = todosCampos(conteudo).filter((c) => !c.opcional);
     if (!campos.length) return 0;
     const n = campos.filter((c) => preenchido((respostas || {})[c.k])).length;
     return Math.round((n / campos.length) * 100);
   }
   function faltando(conteudo, respostas) {
-    return todosCampos(conteudo).filter((c) => !preenchido((respostas || {})[c.k]));
+    return todosCampos(conteudo).filter((c) => !c.opcional && !preenchido((respostas || {})[c.k]));
   }
 
   function htmlCampo(c, valor, somenteLeitura) {
