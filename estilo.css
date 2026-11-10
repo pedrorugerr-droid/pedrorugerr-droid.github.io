@@ -21,9 +21,11 @@ header.nav{position:sticky;top:0;z-index:80;background:rgba(26,0,5,.97);backdrop
 .menu a:hover,.menu a.on{color:var(--vermelho)}
 .nav-cta{background:var(--vermelho);color:#fff!important;padding:.5rem .95rem;border-radius:8px;font-weight:600;font-size:.8rem!important}
 .nav-cta:hover{background:#c0240f;color:#fff!important}
+.nav-pac{border:1.5px solid rgba(255,248,231,.45);color:var(--creme)!important;padding:.42rem .85rem;border-radius:8px;font-weight:600;font-size:.8rem!important}
+.nav-pac:hover{border-color:var(--vermelho);color:var(--vermelho)!important}
 .burger{display:none;background:none;border:1.5px solid rgba(255,248,231,.35);color:var(--creme);border-radius:8px;padding:.4rem .6rem;font-size:1rem;cursor:pointer;margin-left:.6rem}
-@media(max-width:1080px){.menu a[data-op]{display:none}}
-@media(max-width:900px){.menu a:not(.nav-cta){display:none}.burger{display:inline-block}}
+@media(max-width:1240px){.menu a[data-op]{display:none}}
+@media(max-width:1060px){.menu a:not(.nav-cta):not(.nav-pac){display:none}.burger{display:inline-block}}
 @media(max-width:560px){
   .nav-in{padding:.7rem .9rem;gap:.5rem}
   .brand{font-size:.9rem;white-space:normal;line-height:1.15;max-width:46vw}
@@ -32,6 +34,7 @@ header.nav{position:sticky;top:0;z-index:80;background:rgba(26,0,5,.97);backdrop
   .menu a{margin-left:.5rem}
   .burger{margin-left:.4rem;padding:.35rem .5rem}
   #gaveta{padding:.5rem .9rem 1rem}
+  .menu a.nav-pac{display:none}
 }
 #gaveta{display:none;background:var(--vinho2);border-bottom:1px solid rgba(255,248,231,.12);padding:.6rem 1.5rem 1.1rem}
 #gaveta.aberta{display:block}
