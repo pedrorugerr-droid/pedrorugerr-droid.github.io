@@ -4,4 +4,4 @@ Disallow: /index (
 Disallow: /index%20(
 Disallow: /download
 
-Sitemap: https://pedrorugerr-droid.github.io/sitemap.xml
+Sitemap: https://pedroruger.com.br/sitemap.xml
