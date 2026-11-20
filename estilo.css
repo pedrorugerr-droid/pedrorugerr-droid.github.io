@@ -37,10 +37,22 @@ header.nav{position:sticky;top:0;z-index:80;background:rgba(26,0,5,.97);backdrop
   .menu a.nav-pac{display:none}
 }
 #gaveta{display:none;background:var(--vinho2);border-bottom:1px solid rgba(255,248,231,.12);padding:.6rem 1.5rem 1.1rem}
-#gaveta.aberta{display:block}
+/* a gaveta rola por dentro: o cabeçalho é sticky, então sem isso os itens de baixo ficavam inalcançáveis no celular */
+#gaveta.aberta{display:block;max-height:calc(100vh - var(--nav-h,64px));max-height:calc(100dvh - var(--nav-h,64px));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+html.gaveta-aberta,html.gaveta-aberta body{overflow:hidden}
 #gaveta a{display:block;color:rgba(255,248,231,.85);font-size:.9rem;padding:.55rem 0;border-bottom:1px solid rgba(255,248,231,.08)}
+@media(max-width:1060px){#gaveta a{padding:.8rem 0;font-size:1rem}}
 #gaveta a:hover{color:var(--vermelho)}
 #gaveta .grupo{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,231,.4);margin-top:.9rem;padding-bottom:.2rem}
+
+/* botão flutuante de WhatsApp */
+.wa-flutuante{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));z-index:85;display:flex;align-items:center;gap:.5rem;background:#25D366;color:#fff!important;border-radius:999px;padding:.8rem;box-shadow:0 6px 18px rgba(0,0,0,.35);font-weight:600;font-size:.9rem;line-height:1;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.wa-flutuante:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.wa-flutuante svg{width:30px;height:30px;flex:none;fill:#fff}
+.wa-flutuante span{padding-right:.35rem}
+@media(max-width:560px){.wa-flutuante span{display:none}.wa-flutuante{padding:.75rem}}
+html.gaveta-aberta .wa-flutuante{display:none}
+@media print{.wa-flutuante{display:none}}
 
 footer.site{background:var(--vinho2);color:rgba(255,248,231,.55);text-align:center;padding:2rem 1.5rem;font-size:.78rem;line-height:1.8}
 footer.site a:hover{color:var(--vermelho)}
