@@ -11,7 +11,7 @@
 <meta property="og:description" content="Psiquiatria para crianças, adolescentes e adultos em Belo Horizonte. Livros, publicações, palestras e vídeos.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:image" content="img/avatar.jpg">
+<meta property="og:image" content="img/foto.jpg">
 <title>Dr. José Ferreira Belizário Filho · Médico psiquiatra · CRM-MG 21176 · RQE 63882</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%2324443d'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='%23f7f3ec' text-anchor='middle'%3EJB%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="img/avatar.jpg">
@@ -148,11 +148,22 @@
   @media (max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
 
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
-  a.card{text-decoration:none;color:inherit;display:block;transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
-  a.card:hover{transform:translateY(-3px);border-color:var(--line-strong);box-shadow:var(--shadow)}
+  .card.link{position:relative;transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
+  .card.link:hover{transform:translateY(-3px);border-color:var(--line-strong);box-shadow:var(--shadow)}
+  .card.link .stretch{color:inherit;text-decoration:none}
+  .card.link .stretch:after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:0}
+  .card.link .stretch:focus-visible{outline:none}
+  .card.link:has(.stretch:focus-visible){outline:2px solid var(--clay);outline-offset:3px}
+  .card.link .links,.card.link .thumb{position:relative;z-index:1}
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .btn-sm{padding:8px 14px;font-size:13px;gap:7px;box-shadow:none}
+  .btn-sm svg{width:15px;height:15px}
+  .btn-soft{background:var(--clay-soft);color:var(--clay)}
+  .btn-soft:hover{background:#eed3c2}
+  .note{font-size:13px;color:var(--muted);margin:12px 0 0}
   .card .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-weight:700;font-size:14px;color:var(--clay)}
   .card .go:after{content:"→";transition:transform .2s var(--ease)}
-  a.card:hover .go:after{transform:translateX(4px)}
+  .card.link:hover .go:after{transform:translateX(4px)}
   .area-ico{width:46px;height:46px;border-radius:12px;background:var(--clay-soft);color:var(--clay);display:grid;place-items:center;margin-bottom:16px}
   .area-ico svg{width:24px;height:24px}
   .card h3+p{margin-bottom:0}
@@ -180,7 +191,7 @@
   .book{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start}
   .cover{position:relative;aspect-ratio:2/3;border-radius:4px 10px 10px 4px;padding:18px 14px 16px 20px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;overflow:hidden;box-shadow:inset 7px 0 0 rgba(0,0,0,.16),inset 9px 0 0 rgba(255,255,255,.08),0 14px 28px -12px rgba(29,47,43,.45);transition:transform .25s var(--ease)}
   .cover:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.16),transparent 40%);pointer-events:none}
-  a.card:hover .cover{transform:rotate(-1.5deg) translateY(-2px)}
+  .card.link:hover .cover{transform:rotate(-1.5deg) translateY(-2px)}
   .cover .ct{display:block;font-family:var(--serif);font-size:15px;line-height:1.22}
   .cover .ca{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;opacity:.85}
   .cover .rule{width:26px;height:2px;background:rgba(255,255,255,.6);margin:10px 0 0}
@@ -227,11 +238,13 @@
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .thumb{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#1d2f2b;margin-bottom:16px}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
-  a.card:hover .thumb img{transform:scale(1.04)}
+  .card.link:hover .thumb img{transform:scale(1.04)}
   .thumb .play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(to top,rgba(0,0,0,.25),transparent 60%)}
   .thumb .play span{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:var(--green);box-shadow:0 8px 20px -8px rgba(0,0,0,.5);transition:transform .2s var(--ease)}
   .thumb .play svg{width:20px;height:20px;margin-left:3px}
-  a.card:hover .thumb .play span{transform:scale(1.08)}
+  .thumb .play{border:0;padding:0;cursor:pointer;width:100%}
+  .thumb:hover .play span{transform:scale(1.08)}
+  .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .vcard{padding:16px 16px 20px}
   .vcard h3{font-size:18px;margin-top:10px;line-height:1.3}
   .placeholder{border:1.5px dashed var(--line-strong);background:transparent;box-shadow:none}
@@ -369,7 +382,8 @@ const LIVROS = [
     capa: "c1",
     resumo: "Livro do Dr. Belizário sobre o lugar da inclusão no campo da saúde, tema que atravessa toda a sua trajetória clínica e de pesquisa. Sinopse a ser escrita pelo autor.",
     links: [
-      {rotulo: "Ver na Amazon", url: "https://www.amazon.com.br/Inclusao-Uma-Revolu%C3%A7ao-Na-Saude/dp/8585644168", tipo: "primary"}
+      {rotulo: "Comprar na Amazon", url: "https://www.amazon.com.br/Inclusao-Uma-Revolu%C3%A7ao-Na-Saude/dp/8585644168", tipo: "primary"},
+      {rotulo: "Exemplares na Estante Virtual", url: "https://www.estantevirtual.com.br/busca?q=inclus%C3%A3o%20uma%20revolu%C3%A7%C3%A3o%20na%20sa%C3%BAde%20belis%C3%A1rio", tipo: "ghost"}
     ],
     citacao: "BELISÁRIO FILHO, José Ferreira. Inclusão: uma revolução na saúde. Rio de Janeiro: WVA, 1999. 159 p."
   },
@@ -757,7 +771,8 @@ function ctaBlock(){
   </div>`;
 }
 function ytThumb(id){return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
-function videoCard(v){return `<a class="card vcard" href="#/videos/${v.id}"><div class="thumb"><img src="${ytThumb(v.youtube)}" alt="" loading="lazy"><div class="play"><span>${ICON.play}</span></div></div><span class="pill green">${esc(v.tema)}</span><h3>${esc(v.titulo)}</h3></a>`}
+function ytUrl(id){return `https://www.youtube.com/watch?v=${id}`}
+function videoCard(v){return `<div class="card vcard link"><div class="thumb"><img src="${ytThumb(v.youtube)}" alt="" loading="lazy"><button class="play" data-yt="${v.youtube}" aria-label="Assistir aqui: ${esc(v.titulo)}"><span>${ICON.play}</span></button></div><span class="pill green">${esc(v.tema)}</span><h3><a class="stretch" href="#/videos/${v.id}">${esc(v.titulo)}</a></h3><div class="links"><a class="btn btn-sm btn-soft" href="${ytUrl(v.youtube)}" target="_blank" rel="noopener">Assistir no YouTube${ICON.ext}</a></div></div>`}
 function renderVideos(){
   const q = (document.getElementById("vq").value||"").toLowerCase().trim();
   const cat = document.querySelector("#vchips .chip.on").dataset.t;
@@ -768,6 +783,15 @@ function renderVideos(){
 function cover(l,sm){return `<div class="cover ${l.capa}${sm?" sm":""}"><span class="ca">${esc(l.autores.split(" e ")[0].replace("José Ferreira ",""))}</span><span><span class="ct">${esc(l.capaTitulo||l.titulo)}</span><div class="rule"></div></span><span class="ca">${esc(l.ano)}</span></div>`}
 function backLink(href,label){return `<a class="back" href="${href}">${ICON.back}${label}</a>`}
 function extBtn(k,cls){return `<a class="btn ${cls}" href="${k.url}" target="_blank" rel="noopener">${esc(k.rotulo)}${ICON.ext}</a>`}
+/* links de acesso direto: os do item ou, se não houver versão online, uma busca no Google Acadêmico */
+function scholar(p){return {rotulo:"Procurar no Google Acadêmico", url:"https://scholar.google.com/scholar?q="+encodeURIComponent('"'+p.titulo+'"')}}
+function acessos(item, sm){
+  const sz = sm ? " btn-sm" : "";
+  if(item.links.length) return item.links.map((k,i)=>extBtn(k,(k.tipo==="ghost"||i>0?"btn-ghost":(sm?"btn-soft":"btn-primary"))+sz)).join("");
+  return extBtn(scholar(item),"btn-ghost"+sz);
+}
+const SEM_ONLINE = `<p class="note">Texto completo não disponível online.</p>`;
+function livroCard(l, sm){return `<div class="card link"><div class="book"${sm?' style="grid-template-columns:96px 1fr;gap:20px"':''}>${cover(l,sm)}<div><span class="pill clay">${sm?"Livro · ":""}${l.ano}</span><h3 style="${sm?"font-size:19px;margin-top:10px":"margin:12px 0 8px"}"><a class="stretch" href="#/livros/${l.id}">${esc(l.titulo)}</a></h3>${sm?"":`<p class="muted small" style="margin:0">${esc(l.autores)} · ${esc(l.editora)}</p>`}<div class="links">${acessos(l,true)}</div></div></div></div>`}
 
 const TITULOS = {inicio:"",trajetoria:"Trajetória",livros:"Livros",publicacoes:"Publicações",palestras:"Palestras e eventos",videos:"Vídeos",paciente:"Área do paciente",contato:"Contato"};
 
@@ -814,7 +838,7 @@ const pages = {
       <div class="block">
         <div class="block-head"><div><div class="eyebrow">Destaques</div><h2>Livros e conteúdos</h2></div><a class="btn btn-ghost" href="#/livros">Ver todos os livros</a></div>
         <div class="grid g2">
-          ${LIVROS.map(l=>`<a class="card" href="#/livros/${l.id}"><div class="book" style="grid-template-columns:96px 1fr;gap:20px">${cover(l,true)}<div><span class="pill clay">Livro · ${l.ano}</span><h3 style="font-size:19px;margin-top:10px">${esc(l.titulo)}</h3><div class="go">Ver livro</div></div></div></a>`).join("")}
+          ${LIVROS.map(l=>livroCard(l,true)).join("")}
         </div>
       </div>
 
@@ -899,7 +923,7 @@ const pages = {
               <dt>Local e ano</dt><dd>${esc(l.local)}, ${l.ano}</dd>
               <dt>Detalhes</dt><dd>${esc(l.paginas)}</dd>
             </dl>
-            <div class="actions">${l.links.map(k=>extBtn(k,k.tipo==="primary"?"btn-primary":"btn-ghost")).join("")}</div>
+            <div class="actions">${acessos(l)}</div>
             <h3 class="h-sub" style="margin:40px 0 12px">Como citar</h3>
             <div class="cite">${esc(l.citacao)}</div>
           </div>
@@ -907,9 +931,9 @@ const pages = {
       </section>`;
     }
     return `<section class="page">
-      <div class="page-head"><div class="eyebrow">Obras</div><h2>Livros</h2><p class="lead">Livros de autoria do Dr. Belizário. Cada obra tem sua própria página, com informações e link de acesso.</p></div>
+      <div class="page-head"><div class="eyebrow">Obras</div><h2>Livros</h2><p class="lead">Livros de autoria do Dr. Belizário. Use os botões de cada obra para acessá-la diretamente, ou clique no título para ver detalhes e como citar.</p></div>
       <div class="grid g2">
-        ${LIVROS.map(l=>`<a class="card" href="#/livros/${l.id}"><div class="book">${cover(l)}<div><span class="pill clay">${l.ano}</span><h3 style="margin:12px 0 8px">${esc(l.titulo)}</h3><p class="muted small" style="margin:0">${esc(l.autores)} · ${esc(l.editora)}</p><div class="go">Abrir página do livro</div></div></div></a>`).join("")}
+        ${LIVROS.map(l=>livroCard(l)).join("")}
       </div>
       ${ctaBlock()}
     </section>`;
@@ -928,19 +952,19 @@ const pages = {
           <dt>Publicado em</dt><dd>${esc(p.veiculo)}</dd>
           ${p.ano?`<dt>Ano</dt><dd>${p.ano}</dd>`:""}
         </dl>
-        <div class="actions">${p.links.length?p.links.map(k=>extBtn(k,"btn-primary")).join(""):`<span class="pill">Texto completo: link a inserir</span>`}</div>
+        <div class="actions">${acessos(p)}</div>${p.links.length?"":SEM_ONLINE}
         <h3 class="h-sub" style="margin:40px 0 12px">Como citar</h3>
         <div class="cite" style="max-width:860px">${esc(p.citacao)}</div>
       </section>`;
     }
     return `<section class="page">
-      <div class="page-head"><div class="eyebrow">Produção científica</div><h2>Publicações</h2><p class="lead">Artigos, capítulos e trabalhos acadêmicos. Clique em cada item para abrir a página com a referência completa e o link para o texto.</p></div>
+      <div class="page-head"><div class="eyebrow">Produção científica</div><h2>Publicações</h2><p class="lead">Artigos, capítulos e trabalhos acadêmicos. Use os botões de cada item para ir direto ao texto, ou clique no título para ver a referência completa e como citar.</p></div>
       <div class="grid g2">
-        ${PUBLICACOES.map(p=>`<a class="card" href="#/publicacoes/${p.id}">
+        ${PUBLICACOES.map(p=>`<div class="card link">
           <span class="pill clay">${esc(p.tipo)}</span>${p.ano?`<span class="pill">${p.ano}</span>`:""}${p.links.length?`<span class="pill green">Disponível online</span>`:""}
-          <h3 style="font-size:20px;margin:12px 0 8px">${esc(p.titulo)}</h3>
+          <h3 style="font-size:20px;margin:12px 0 8px"><a class="stretch" href="#/publicacoes/${p.id}">${esc(p.titulo)}</a></h3>
           <p class="muted small" style="margin:0">${esc(p.veiculo)}</p>
-          <div class="go">Abrir publicação</div></a>`).join("")}
+          <div class="links">${acessos(p,true)}</div>${p.links.length?"":SEM_ONLINE}</div>`).join("")}
       </div>
       ${ctaBlock()}
     </section>`;
@@ -975,13 +999,13 @@ const pages = {
         <h2 style="margin:12px 0 22px;max-width:900px">${esc(v.titulo)}</h2>
         <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${v.youtube}" title="${esc(v.titulo)}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
         ${v.descricao?`<p class="lead" style="margin-top:24px">${esc(v.descricao)}</p>`:""}
-        <div class="actions" style="margin-top:22px"><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=${v.youtube}" target="_blank" rel="noopener">Assistir no YouTube${ICON.ext}</a>${CONFIG.youtubeChannel?`<a class="btn btn-primary" href="${CONFIG.youtubeChannel}?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no canal</a>`:""}</div>
+        <div class="actions" style="margin-top:22px"><a class="btn btn-ghost" href="${ytUrl(v.youtube)}" target="_blank" rel="noopener">Assistir no YouTube${ICON.ext}</a>${CONFIG.youtubeChannel?`<a class="btn btn-primary" href="${CONFIG.youtubeChannel}?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no canal</a>`:""}</div>
         ${rel.length?`<div class="block"><h3 class="h-sub">Mais vídeos sobre ${esc(v.tema.toLowerCase())}</h3><div class="grid g3">${rel.map(videoCard).join("")}</div></div>`:""}
       </section>`;
     }
     const destaque = VIDEOS.find(v=>v.youtube===VIDEO_DESTAQUE);
     return `<section class="page">
-      <div class="page-head"><div class="eyebrow">Canal Dr. Belizário no YouTube</div><h2>Vídeos</h2><p class="lead">${VIDEOS.filter(v=>v.tema!=="Entrevistas").length} vídeos do canal e entrevistas sobre saúde mental, infância, família, telas e tecnologia. Cada vídeo tem sua própria página.</p>
+      <div class="page-head"><div class="eyebrow">Canal Dr. Belizário no YouTube</div><h2>Vídeos</h2><p class="lead">${VIDEOS.filter(v=>v.tema!=="Entrevistas").length} vídeos do canal e entrevistas sobre saúde mental, infância, família, telas e tecnologia. Toque na imagem para assistir aqui mesmo, ou abra direto no YouTube.</p>
         <div class="actions" style="margin-top:20px"><a class="btn btn-primary" href="${CONFIG.youtubeChannel}?sub_confirmation=1" target="_blank" rel="noopener">Inscrever-se no canal</a><a class="btn btn-ghost" href="${CONFIG.youtubeChannel}" target="_blank" rel="noopener">Abrir no YouTube${ICON.ext}</a></div></div>
       ${destaque?`<div class="grid g2" style="align-items:center;gap:40px;margin-bottom:56px"><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${destaque.youtube}" title="${esc(destaque.titulo)}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div><div><span class="pill clay">Comece por aqui</span><h3 style="margin:12px 0 10px;font-size:28px">${esc(destaque.titulo)}</h3><p class="muted">O Dr. Belizário apresenta o canal e os temas que aborda.</p></div></div>`:""}
       <div class="toolbar"><input class="search" id="vq" type="search" placeholder="Buscar vídeo pelo título" aria-label="Buscar vídeos"></div>
@@ -1102,6 +1126,14 @@ function route(){
     renderTalks();
   }
 }
+
+/* tocar o vídeo dentro do próprio cartão */
+app.addEventListener("click",e=>{
+  const b = e.target.closest("button.play[data-yt]"); if(!b) return;
+  e.preventDefault();
+  const t = b.closest(".thumb");
+  t.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.yt}?autoplay=1&rel=0" title="Vídeo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+});
 
 function initWa(){
   const u = waUrl();
