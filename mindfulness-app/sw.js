@@ -1,7 +1,7 @@
 /* Service worker do aplicativo Mindfulness-IBE.
    Rede primeiro (para que versões novas apareçam logo) e cópia local quando não há internet.
    Ao mudar qualquer arquivo do aplicativo, aumente VERSAO. */
-var VERSAO = 'mindfulness-app-v2';
+var VERSAO = 'mindfulness-app-v3';
 var ARQUIVOS = [
   './', 'index.html', 'app.css', 'regras.js', 'pdf.js', 'app.js',
   'protocolo.json', 'instrumentos.json', 'manifest.webmanifest',

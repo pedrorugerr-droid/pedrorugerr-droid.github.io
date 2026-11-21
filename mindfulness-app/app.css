@@ -18,6 +18,8 @@ h3{font-size:1.02rem;margin:1rem 0 .4rem}
 p{margin-bottom:.75rem}
 ul.lista{margin:.3rem 0 .9rem 1.1rem}
 ul.lista li{margin-bottom:.35rem}
+ol.lista{margin:.3rem 0 .9rem 0;padding-left:1.6rem}
+ol.lista li{margin-bottom:.35rem;padding-left:.15rem}
 small,.mudo{color:var(--muted);font-size:.85rem}
 
 /* cabeçalho */
@@ -148,3 +150,10 @@ nav.baixo svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:
 .passos-inst .num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700}
 .ic-inst{width:22px;height:22px;vertical-align:-5px;fill:none;stroke:#0A84FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .passos-inst svg circle{fill:var(--texto);stroke:none}
+.passos-inst li>div{flex:1;min-width:0}
+.barra-safari{display:flex;align-items:center;gap:.5rem;margin:.7rem 0 .1rem;background:#F2F2F7;border:1px solid #D1D1D6;border-radius:999px;padding:.4rem .45rem .4rem .9rem;color:#1C1C1E;font-size:.85rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.barra-safari .bs-seta{font-size:1.2rem;line-height:1;color:#3A3A3C}
+.barra-safari .bs-end{flex:1;min-width:0;text-align:center;color:#3A3A3C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra-safari .bs-menu{font-weight:800;letter-spacing:1px;border:2px solid var(--vermelho);border-radius:999px;padding:.05rem .55rem;background:#fff;animation:pulso 1.6s ease-in-out infinite}
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(224,44,20,.45)}50%{box-shadow:0 0 0 7px rgba(224,44,20,0)}}
+@media (prefers-reduced-motion:reduce){.barra-safari .bs-menu{animation:none}}

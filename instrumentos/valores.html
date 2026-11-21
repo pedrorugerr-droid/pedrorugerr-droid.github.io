@@ -233,6 +233,25 @@ body { font-family: "Segoe UI","Georgia",system-ui,sans-serif; background:#FFF8E
   .v-model-select-grid { grid-template-columns:1fr; }
 }
 
+/* destaque do aplicativo Mindfulness-IBE */
+.app-mf-faixa{max-width:1080px;margin:0 auto;padding:0 1.5rem;box-sizing:border-box}
+.app-mf{display:flex;gap:1.2rem;align-items:center;background:linear-gradient(160deg,#1A0005 0%,#2D0010 60%,#1A0005 100%);color:#FFF8E7;border:2px solid #E02C14;border-radius:16px;padding:1.4rem 1.5rem;margin:1.8rem 0;box-sizing:border-box;text-align:left}
+.app-mf img{width:68px;height:68px;border-radius:16px;flex:0 0 68px}
+.app-mf .app-mf-tx{flex:1;min-width:0}
+.app-mf .app-mf-k{font-size:.66rem;letter-spacing:1.8px;text-transform:uppercase;color:#FF9F8F;font-weight:700;margin:0 0 .3rem}
+.app-mf .app-mf-t{font-family:Georgia,'Times New Roman',serif;font-size:1.22rem;font-weight:700;color:#FFF8E7;margin:0 0 .4rem;line-height:1.25}
+.app-mf .app-mf-d{font-size:.9rem;color:rgba(255,248,231,.82);margin:0 0 .9rem;line-height:1.55}
+.app-mf .app-mf-bts{display:flex;gap:.6rem;flex-wrap:wrap}
+.app-mf a.app-mf-b{display:inline-block;background:#E02C14;color:#fff!important;font-weight:700;font-size:.92rem;padding:.75rem 1.3rem;border-radius:10px;text-decoration:none!important;border:0}
+.app-mf a.app-mf-b:hover{background:#c0240f}
+.app-mf a.app-mf-b2{display:inline-block;color:#FFF8E7!important;border:1.5px solid rgba(255,248,231,.35);font-size:.88rem;padding:.7rem 1.1rem;border-radius:10px;text-decoration:none!important;background:transparent}
+@media(max-width:600px){.app-mf-faixa{padding:0 1rem}.app-mf{display:block;padding:1.1rem;margin:1.3rem 0}.app-mf img{float:left;width:52px;height:52px;border-radius:12px;margin:0 .8rem .4rem 0}.app-mf .app-mf-d{clear:both;padding-top:.3rem}.app-mf .app-mf-bts{width:100%}.app-mf a.app-mf-b,.app-mf a.app-mf-b2{width:100%;text-align:center;box-sizing:border-box}}
+.app-mf-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(224,44,20,.16);border:1px solid rgba(224,44,20,.6);color:#FFF8E7!important;border-radius:999px;padding:.3rem .85rem .3rem .35rem;font-size:.82rem;line-height:1.3;text-decoration:none!important;margin-bottom:1.1rem}
+.app-mf-pill img{width:24px;height:24px;border-radius:7px;flex:0 0 24px}
+.app-mf-pill b{color:#FF9F8F}
+@media print{.app-mf-faixa,.app-mf{display:none!important}}
+#gaveta a.gav-app{color:#FF9F8F;font-weight:700}
+.hub-wrap .app-mf-faixa{padding:0}
 </style>
 
 <!-- ═══ AJUSTES PARA CELULAR (somente layout; conteúdo inalterado) ═══ -->
@@ -292,6 +311,15 @@ button, .v-bussola-header, .p-bussola-header, .collapsible-header, summary, .fac
       <span class="hub-card-start">Iniciar →</span>
     </button>
   </div>
+<div class="app-mf-faixa"><div class="app-mf">
+  <img src="/mindfulness-app/icones/icone-192.png" alt="" width="68" height="68">
+  <div class="app-mf-tx">
+    <div class="app-mf-k">Aplicativo gratuito · para instalar no celular</div>
+    <div class="app-mf-t" role="heading" aria-level="2">Mindfulness-IBE: o programa de oito semanas no seu celular</div>
+    <div class="app-mf-d">Triagem inicial, práticas guiadas com voz e cronômetro, diários, regras de segurança e acompanhamento semana a semana, tudo seguindo o protocolo. Funciona sem internet, não pede cadastro e os registros ficam só no seu aparelho.</div>
+    <div class="app-mf-bts"><a class="app-mf-b" href="/mindfulness-app/#instalar">Abrir e instalar o aplicativo</a><a class="app-mf-b2" href="/mindfulness-8-semanas.html">Conhecer o programa</a></div>
+  </div>
+</div></div>
   <p class="hub-footer">Os dados são armazenados apenas no dispositivo local e não são transmitidos a nenhum servidor. O progresso é salvo automaticamente — você pode retomar em qualquer momento.</p>
 </div>
 </div>

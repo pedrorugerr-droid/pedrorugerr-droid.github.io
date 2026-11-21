@@ -294,6 +294,11 @@
   function render() {
     var rota = (location.hash || '#inicio').slice(1).split('/');
     var nome = rota[0] || 'inicio', arg = rota[1];
+    if (nome === 'instalar') {
+      nome = 'inicio';
+      try { history.replaceState(null, '', location.pathname); } catch (e) { }
+      if (Aparelho.ios && !instalado()) setTimeout(abrirInstrucoes, 0);
+    }
     if (!E.termo) nome = 'termo';
     if (S && S.fase && nome !== 'sessao') { pararTimer(); S = null; Tela.soltar(); Voz.calar(); }
     var fn = ROTAS[nome] || ROTAS.inicio;
@@ -308,6 +313,7 @@
     var t = P.termo;
     return '<div class="cartao escuro"><span class="selo">Primeira abertura</span><h1>' + h(t.titulo.replace(' (modelo)', '')) + '</h1>' +
       '<p class="mudo">' + h(P.titulo) + '. ' + h(P.autor) + '.</p></div>' +
+      (E.config.instalarDepois !== hoje() ? cartaoInstalar(true) : '') +
       '<div class="cartao"><p>' + h(t.abertura) + '</p><ol class="lista" type="a">' + t.itens.map(function (i) { return '<li>' + h(i) + '</li>'; }).join('') + '</ol>' +
       '<p>' + h(P.limites.nao_substitui) + '</p>' +
       '<div class="aviso">Seus dados ficam só neste aparelho. O aplicativo não tem servidor, não pede cadastro e não envia nada pela internet. Para guardar uma cópia ou levar ao profissional, use a exportação e o relatório em PDF.</div>' +
@@ -522,7 +528,8 @@
     var android = /Android/i.test(ua);
     var embutido = /Instagram|FBAN|FBAV|FB_IAB|Line\/|WhatsApp|TikTok|musical_ly|Twitter|LinkedInApp|GSA\//i.test(ua);
     var outroIOS = ios && /CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua);
-    return { ios: ios, android: android, celular: ios || android, embutido: embutido, outroIOS: outroIOS };
+    var mv = ua.match(/Version\/(\d+)/);
+    return { ios: ios, android: android, celular: ios || android, embutido: embutido, outroIOS: outroIOS, versaoIOS: mv ? parseInt(mv[1], 10) : 0 };
   })();
   function instalado() {
     try { if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches) return true; } catch (e) { }
@@ -549,12 +556,27 @@
         passo(3, 'Na página que abrir, toque de novo em <b>Instalar no meu celular</b>.') + '</ol>' +
         '<button class="btn alt largo" data-acao="copiar-link">Copiar o endereço</button>';
     } else if (Aparelho.ios) {
-      corpo = (Aparelho.outroIOS ? '<div class="aviso">No iPhone, a instalação é mais garantida pelo <b>Safari</b>. Se os passos abaixo não aparecerem aqui, copie o endereço e abra no Safari.</div>' : '') +
-        '<p>A Apple não permite instalar por um botão: são três toques no próprio navegador.</p><ol class="passos-inst">' +
-        passo(1, 'Toque em <b>Compartilhar</b> ' + ICONE_COMPARTILHAR + ' (na barra de baixo ou ao lado do endereço).') +
-        passo(2, 'Role a lista e toque em <b>Adicionar à Tela de Início</b> ' + ICONE_ADICIONAR + '.') +
-        passo(3, 'Toque em <b>Adicionar</b>, no canto de cima. O ícone aparece na tela inicial.') + '</ol>' +
-        (Aparelho.outroIOS ? '<button class="btn alt largo" data-acao="copiar-link">Copiar o endereço</button>' : '');
+      var c = ICONE_COMPARTILHAR, a = ICONE_ADICIONAR;
+      if (Aparelho.outroIOS) {
+        corpo = '<div class="aviso">No iPhone, a instalação é mais garantida pelo <b>Safari</b>. Se os passos abaixo não aparecerem aqui, copie o endereço e abra no Safari.</div><ol class="passos-inst">' +
+          passo(1, 'Toque em <b>Compartilhar</b> ' + c + ', no alto ao lado do endereço ou dentro do menu <b>•••</b>.') +
+          passo(2, 'Toque em <b>Adicionar à Tela de Início</b> ' + a + '.') +
+          passo(3, 'Toque em <b>Adicionar</b>. O ícone aparece na tela inicial.') + '</ol>' +
+          '<button class="btn alt largo" data-acao="copiar-link">Copiar o endereço</button>';
+      } else if (Aparelho.versaoIOS === 0 || Aparelho.versaoIOS >= 26) {
+        corpo = '<p>A Apple não permite instalar por um botão: são quatro toques no próprio Safari.</p><ol class="passos-inst">' +
+          passo(1, 'Toque no botão <b>•••</b>, à direita do endereço, na barra de baixo do Safari.' +
+            '<div class="barra-safari" aria-hidden="true"><span class="bs-seta">‹</span><span class="bs-end">pedroruger.com.br</span><span class="bs-menu">•••</span></div>') +
+          passo(2, 'No menu que abrir, toque em <b>Compartilhar</b> ' + c + '.') +
+          passo(3, 'Role a lista para baixo e toque em <b>Adicionar à Tela de Início</b> ' + a + '.') +
+          passo(4, 'Deixe ligada a opção <b>Abrir como App Web</b> e toque em <b>Adicionar</b>, no canto de cima. O ícone aparece na tela inicial.') + '</ol>' +
+          '<p class="mudo">Se a sua barra mostra o botão Compartilhar ' + c + ' direto, comece pelo passo 2.</p>';
+      } else {
+        corpo = '<p>A Apple não permite instalar por um botão: são três toques no próprio Safari.</p><ol class="passos-inst">' +
+          passo(1, 'Toque em <b>Compartilhar</b> ' + c + ', no meio da barra de baixo do Safari (no iPad, no alto, ao lado do endereço).') +
+          passo(2, 'Role a lista para baixo e toque em <b>Adicionar à Tela de Início</b> ' + a + '.') +
+          passo(3, 'Toque em <b>Adicionar</b>, no canto de cima. O ícone aparece na tela inicial.') + '</ol>';
+      }
     } else {
       corpo = '<p>Este navegador não mostrou a instalação automática. Faça pelo menu:</p><ol class="passos-inst">' +
         passo(1, 'Toque no menu ' + ICONE_MENU + ', no canto de cima da tela.') +
