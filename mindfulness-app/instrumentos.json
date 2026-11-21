@@ -1,0 +1,152 @@
+{
+  "observacao": "Itens incluídos apenas dos questionários de uso livre (família PHQ, da Pfizer, sem necessidade de permissão para reproduzir e traduzir; PCL-5, do Centro Nacional de TEPT dos Estados Unidos, de domínio público). DES-II e ASRS-1.1 têm direitos autorais dos autores e da Organização Mundial da Saúde: o aplicativo mostra só o nome e pede a pontuação obtida com o profissional. ACE: só a contagem, como pede o manual.",
+  "instrumentos": {
+    "PHQ9": {
+      "nome": "PHQ-9",
+      "descricao": "Questionário sobre a saúde do paciente (humor)",
+      "livre": true,
+      "enunciado": "Durante as últimas 2 semanas, com que frequência você foi incomodado(a) por qualquer um dos problemas abaixo?",
+      "opcoes": [
+        {"valor": 0, "texto": "Nenhuma vez"},
+        {"valor": 1, "texto": "Vários dias"},
+        {"valor": 2, "texto": "Mais da metade dos dias"},
+        {"valor": 3, "texto": "Quase todos os dias"}
+      ],
+      "itens": [
+        "Pouco interesse ou pouco prazer em fazer as coisas",
+        "Se sentir \"para baixo\", deprimido(a) ou sem perspectiva",
+        "Dificuldade para pegar no sono ou permanecer dormindo, ou dormir mais do que de costume",
+        "Se sentir cansado(a) ou com pouca energia",
+        "Falta de apetite ou comendo demais",
+        "Se sentir mal consigo mesmo(a), ou achar que você é um fracasso ou que decepcionou sua família ou você mesmo(a)",
+        "Dificuldade para se concentrar nas coisas, como ler o jornal ou ver televisão",
+        "Lentidão para se movimentar ou falar, a ponto de as outras pessoas perceberem; ou o oposto: estar tão agitado(a) ou inquieto(a) que você fica andando de um lado para o outro muito mais do que de costume",
+        "Pensar em se ferir de alguma maneira ou que seria melhor estar morto(a)"
+      ],
+      "maximo": 27
+    },
+    "GAD7": {
+      "nome": "GAD-7",
+      "descricao": "Escala de ansiedade generalizada",
+      "livre": true,
+      "enunciado": "Durante as últimas 2 semanas, com que frequência você foi incomodado(a) pelos problemas abaixo?",
+      "opcoes": [
+        {"valor": 0, "texto": "Nenhuma vez"},
+        {"valor": 1, "texto": "Vários dias"},
+        {"valor": 2, "texto": "Mais da metade dos dias"},
+        {"valor": 3, "texto": "Quase todos os dias"}
+      ],
+      "itens": [
+        "Sentir-se nervoso(a), ansioso(a) ou muito tenso(a)",
+        "Não ser capaz de impedir ou de controlar as preocupações",
+        "Preocupar-se muito com diversas coisas",
+        "Dificuldade para relaxar",
+        "Ficar tão agitado(a) que se torna difícil permanecer sentado(a)",
+        "Ficar facilmente aborrecido(a) ou irritado(a)",
+        "Sentir medo como se algo horrível fosse acontecer"
+      ],
+      "maximo": 21
+    },
+    "PHQ15": {
+      "nome": "PHQ-15",
+      "descricao": "Sintomas físicos",
+      "livre": true,
+      "enunciado": "Durante as últimas 4 semanas, quanto você foi incomodado(a) por qualquer um dos problemas abaixo?",
+      "opcoes": [
+        {"valor": 0, "texto": "Não me incomodou"},
+        {"valor": 1, "texto": "Incomodou um pouco"},
+        {"valor": 2, "texto": "Incomodou muito"}
+      ],
+      "itens": [
+        "Dor de estômago",
+        "Dor nas costas",
+        "Dor nos braços, nas pernas ou nas articulações (joelhos, quadris etc.)",
+        "Cólicas ou outros problemas menstruais (se não se aplica, marque \"não me incomodou\")",
+        "Dor de cabeça",
+        "Dor no peito",
+        "Tontura",
+        "Desmaios",
+        "Sentir o coração bater forte ou acelerado",
+        "Falta de ar",
+        "Dor ou problemas durante a relação sexual",
+        "Prisão de ventre, intestino solto ou diarreia",
+        "Náusea, gases ou indigestão",
+        "Sentir-se cansado(a) ou com pouca energia",
+        "Dificuldade para dormir"
+      ],
+      "maximo": 30
+    },
+    "PCL5": {
+      "nome": "PCL-5",
+      "descricao": "Lista de verificação de sintomas de estresse pós-traumático",
+      "livre": true,
+      "aviso": "As perguntas se referem a uma experiência muito estressante que você tenha vivido. Responder pode mobilizar lembranças difíceis. Não é preciso descrever a experiência. Você pode pular este questionário e respondê-lo com um profissional.",
+      "enunciado": "No último mês, quanto você foi incomodado(a) por:",
+      "opcoes": [
+        {"valor": 0, "texto": "Nem um pouco"},
+        {"valor": 1, "texto": "Um pouco"},
+        {"valor": 2, "texto": "Moderadamente"},
+        {"valor": 3, "texto": "Muito"},
+        {"valor": 4, "texto": "Extremamente"}
+      ],
+      "itens": [
+        "Lembranças indesejadas, perturbadoras e repetitivas da experiência estressante",
+        "Sonhos perturbadores e repetitivos com a experiência estressante",
+        "De repente, sentir ou agir como se a experiência estressante estivesse acontecendo de novo (como se você estivesse revivendo a experiência)",
+        "Sentir-se muito chateado(a) quando algo lembra você da experiência estressante",
+        "Ter reações físicas intensas quando algo lembra você da experiência estressante (por exemplo, coração acelerado, dificuldade para respirar, suor)",
+        "Evitar lembranças, pensamentos ou sentimentos relacionados à experiência estressante",
+        "Evitar lembranças externas da experiência estressante (por exemplo, pessoas, lugares, conversas, atividades, objetos ou situações)",
+        "Não conseguir se lembrar de partes importantes da experiência estressante",
+        "Ter crenças negativas intensas sobre você, outras pessoas ou o mundo (por exemplo, pensamentos como \"eu sou ruim\", \"existe algo muito errado comigo\", \"ninguém é confiável\", \"o mundo é totalmente perigoso\")",
+        "Culpar a si mesmo(a) ou a outras pessoas pela experiência estressante ou pelo que aconteceu depois dela",
+        "Ter sentimentos negativos intensos, como medo, pavor, raiva, culpa ou vergonha",
+        "Perder o interesse em atividades de que você costumava gostar",
+        "Sentir-se distante ou isolado(a) das outras pessoas",
+        "Dificuldade para ter sentimentos positivos (por exemplo, não conseguir sentir felicidade ou sentimentos de carinho por pessoas próximas)",
+        "Irritabilidade, explosões de raiva ou agir de forma agressiva",
+        "Correr muitos riscos ou fazer coisas que podem lhe causar algum mal",
+        "Ficar \"superalerta\", vigilante ou de sobreaviso",
+        "Sentir-se sobressaltado(a) ou assustar-se facilmente",
+        "Dificuldade para se concentrar",
+        "Dificuldade para pegar no sono ou para continuar dormindo"
+      ],
+      "maximo": 80
+    },
+    "DES2": {
+      "nome": "DES-II",
+      "descricao": "Escala de experiências dissociativas",
+      "livre": false,
+      "orientacao": "A DES-II tem direitos autorais e não é reproduzida aqui. Responda com o seu profissional. Se você já tem a pontuação (média de 0 a 100), digite abaixo.",
+      "entrada": {"min": 0, "max": 100, "rotulo": "Pontuação média da DES-II (0 a 100)"}
+    },
+    "ASRS_A": {
+      "nome": "ASRS-1.1, parte A",
+      "descricao": "Rastreio de sintomas de desatenção e hiperatividade em adultos (Organização Mundial da Saúde)",
+      "livre": false,
+      "orientacao": "A ASRS-1.1 tem direitos autorais da Organização Mundial da Saúde e não é reproduzida aqui. Responda com o seu profissional. Se você já tem o resultado, digite quantas das 6 perguntas da parte A ficaram positivas.",
+      "entrada": {"min": 0, "max": 6, "rotulo": "Respostas positivas na parte A (0 a 6)"}
+    },
+    "ACE": {
+      "nome": "ACE",
+      "descricao": "Questionário de experiências adversas na infância",
+      "livre": true,
+      "somente_contagem": true,
+      "orientacao": "Responda apenas a contagem, sem detalhar, e pule se preferir. O questionário tem 10 perguntas sobre experiências antes dos 18 anos; informe quantas tiveram resposta \"sim\". Se você não conhece o questionário, deixe para responder com o profissional.",
+      "entrada": {"min": 0, "max": 10, "rotulo": "Quantas respostas \"sim\" (0 a 10)"}
+    }
+  },
+  "perguntas": {
+    "psicose_mania": "Você está, neste momento, com sintomas de psicose (ouvir ou ver coisas que outras pessoas não percebem, desconfiança intensa) ou num episódio de mania ou hipomania?",
+    "trauma_recente": "Você viveu um trauma muito recente (há menos de 3 meses)?",
+    "substancias": "Você está em fase de uso agudo de álcool ou de outras substâncias?",
+    "panico_diario": "Você tem tido ataques de pânico todos os dias?",
+    "dissociacao_intensa": "Você tem tido dissociação intensa (sensação forte e frequente de estar desligado(a) de si ou do ambiente)?",
+    "tept_complexo": "Você tem diagnóstico de TEPT complexo ainda sem estabilização?",
+    "sintomas_fisicos": "Você tem sintomas físicos intensos, sem explicação médica, que causam grande sofrimento?",
+    "panico_mes": "Você teve algum ataque de pânico no último mês?",
+    "desconforto_corpo": "Você sente desconforto marcado ao prestar atenção no próprio corpo ou na respiração?",
+    "sintomas_atuais": "Você tem, hoje, sintomas que atrapalham o seu dia (ansiedade, tristeza, lembranças difíceis, sintomas no corpo)?",
+    "atencao_3min": "Você tem dificuldade de sustentar a atenção em uma coisa por mais de 3 minutos?"
+  }
+}

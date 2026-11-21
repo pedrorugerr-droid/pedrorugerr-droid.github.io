@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mindfulness-IBE: aplicativo do protocolo</title>
+<meta name="description" content="Aplicativo gratuito que guia a prática domiciliar do Protocolo Mindfulness-IBE v2.1 para adultos: autotriagem, sessões guiadas, guia de respiração, registros e relatório para o profissional. Funciona sem internet e guarda os dados só no seu aparelho.">
+<link rel="canonical" href="https://pedroruger.com.br/mindfulness-app/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="theme-color" content="#1A0005">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icones/icone-192.png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mindfulness">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Mindfulness-IBE: aplicativo do protocolo">
+<meta property="og:description" content="Guia de prática domiciliar do Protocolo Mindfulness-IBE v2.1, com dados só no seu aparelho.">
+<meta property="og:url" content="https://pedroruger.com.br/mindfulness-app/">
+<meta property="og:image" content="https://pedroruger.com.br/og.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="#inicio">Mindfulness-IBE<small>Protocolo v2.1 · Pedro Andrade Rüger</small></a>
+  <a class="site" href="/mindfulness-protocolo.html">Ler o manual</a>
+</header>
+<main id="app" aria-live="polite">
+  <div class="cartao"><p>Carregando o aplicativo...</p>
+  <noscript><p>Este aplicativo precisa de JavaScript ativado no navegador.</p></noscript></div>
+</main>
+<nav class="baixo" id="nav" aria-label="Navegação principal"></nav>
+<div id="camada"></div>
+<script src="regras.js"></script>
+<script src="pdf.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

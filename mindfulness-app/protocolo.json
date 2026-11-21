@@ -1,0 +1,718 @@
+{
+  "app": "mindfulness-ibe",
+  "versao_protocolo": "2.1",
+  "titulo": "Protocolo Mindfulness-IBE v2.1: Adultos",
+  "autor": "Pedro Andrade Rüger, Psicólogo Clínico, CRP 04/63435",
+  "fonte": "/mindfulness-protocolo.html",
+  "extraido_em": "2026-11-21",
+  "observacao": "Conteúdo extraído da página /mindfulness-protocolo.html (versão 2.1). Os textos são os da página; o aplicativo não acrescenta práticas, durações, pontos de corte nem regras.",
+
+  "limites": {
+    "texto": "Este é um manual de prática domiciliar de 8 semanas que integra elementos da Redução de Estresse Baseada em Mindfulness (MBSR), da Terapia Cognitiva Baseada em Mindfulness (MBCT) e da Terapia de Aceitação e Compromisso (ACT). Ele descreve o que praticar em casa a cada dia: roteiro, duração, registros e o que fazer quando surgem dificuldades. Pode ser seguido por conta própria, depois da autotriagem, ou com acompanhamento de um psicólogo, médico ou instrutor de mindfulness.",
+    "nao_iniciar_sozinho": ["psicose ativa", "episódio maníaco ou hipomaníaco atual", "pensamentos de morte ou de suicídio", "dissociação intensa", "uso de álcool ou outras substâncias em fase aguda", "trauma muito recente (menos de 3 meses)", "TEPT complexo sem estabilização", "ataques de pânico diários", "sintomas físicos intensos sem explicação médica e com grande sofrimento"],
+    "prioridade": "Em qualquer dessas situações, a prioridade é a estabilização clínica. Mindfulness pode entrar depois, como complemento, em geral no ramo trauma-informado. Se você tiver pensamentos de suicídio, procure ajuda agora: CVV, ligação gratuita para o 188, 24 horas; SAMU, 192; ou o pronto-socorro mais próximo.",
+    "nao_substitui": "O manual não substitui avaliação clínica individual."
+  },
+
+  "ajuda": {
+    "cvv": {"nome": "CVV", "numero": "188", "texto": "ligação gratuita para o 188, 24 horas"},
+    "samu": {"nome": "SAMU", "numero": "192"},
+    "outros": "CAPS ou pronto-socorro",
+    "texto": "Se você tiver pensamentos de suicídio, procure ajuda agora: CVV, ligação gratuita para o 188, 24 horas; SAMU, 192; ou o pronto-socorro mais próximo."
+  },
+
+  "visao_geral": "O manual treina uma habilidade por semana, em sequência: (1) atenção a âncoras externas e psicoeducação; (2) respiração lenta ritmada para regulação do sistema nervoso autônomo; (3) atenção focada na respiração natural; (4) descentramento e desfusão: observar pensamentos como eventos mentais; (5) escaneamento corporal e monitoramento aberto; (6) aceitação: permanecer com uma emoção difícil sem fugir dela nem alimentá-la; (7) clarificação de valores e ação comprometida; (8) consolidação e plano de manutenção.",
+
+  "ramos": {
+    "PADRAO": {
+      "nome": "PADRÃO",
+      "indicacao": "Nenhum dos critérios acima",
+      "adaptacoes": "Sequência integral como descrita",
+      "descricao": "O ramo PADRÃO segue a sequência como descrita."
+    },
+    "TRAUMA": {
+      "nome": "TRAUMA-INFORMADO",
+      "indicacao": "PCL-5 igual ou acima de 33; DES-II igual ou acima de 30; ataque de pânico no último mês; PHQ-15 igual ou acima de 15; desconforto marcado ao prestar atenção no próprio corpo ou na respiração; ACE igual ou acima de 4 acompanhado de sintomas atuais",
+      "adaptacoes": "Roteiros próprios nas Semanas 2 a 6; sessões de 12 min nas Semanas 1 a 4; âncoras externas por mais tempo; olhos abertos sempre permitidos; nota de desconforto antes e depois de cada sessão; escaneamento corporal gradual a partir da Semana 5",
+      "descricao": "O ramo TRAUMA-INFORMADO tem roteiros próprios nas Semanas 2 a 6, com âncoras externas por mais tempo, olhos abertos e aproximação gradual das sensações do corpo."
+    },
+    "ESTENDIDA": {
+      "nome": "ATENÇÃO ESTENDIDA",
+      "indicacao": "ASRS-1.1, parte A, com 4 ou mais respostas positivas; ou incapacidade de sustentar a atenção por mais de 3 minutos",
+      "adaptacoes": "Semanas 1 e 3 duram duas semanas cada (programa de 10 semanas); prática em blocos de 5 min, 3 vezes ao dia; guia visual de respiração na Semana 2; para avançar, conseguir sustentar a âncora por 3 min com retornos, em pelo menos 4 dias da semana",
+      "descricao": "O ramo ATENÇÃO ESTENDIDA, para dificuldades importantes de atenção, alonga as Semanas 1 e 3 e divide a prática em blocos curtos.",
+      "semanas_repetidas": [1, 3],
+      "total_semanas": 10,
+      "bloco_min": 5,
+      "blocos_por_dia": 3,
+      "criterio_avanco": {"sustentar_min": 3, "dias_min": 4, "texto": "para avançar, conseguir sustentar a âncora por 3 min com retornos, em pelo menos 4 dias da semana"}
+    },
+    "combinacao": "Uma pessoa pode precisar dos dois ramos especiais. Nesse caso, siga os roteiros do ramo trauma-informado com a duração e os blocos curtos do ramo atenção estendida. Na dúvida entre dois ramos, escolha o mais cuidadoso."
+  },
+
+  "mudanca_de_ramo": {
+    "texto": "Quem pratica pode sempre passar, por conta própria, para um ramo mais cuidadoso, a qualquer momento. Voltar ao ramo PADRÃO exige duas semanas estáveis (sem nota de desconforto igual ou acima de 7 e sem efeitos indesejados que atrapalhem o dia) e, se houver acompanhamento, decisão conjunta com o profissional. Registre a data e o motivo da mudança no diário.",
+    "voltar_ao_padrao": {"semanas_estaveis": 2, "nota_max_exclusiva": 7, "sem_efeito_que_atrapalhe": true, "decisao_conjunta_se_acompanhado": true}
+  },
+
+  "triagem": {
+    "instrucao": "Responda antes da Semana 1. Os questionários abaixo são de uso livre e há versões em português disponíveis. Eles não fazem diagnóstico: servem para indicar o cuidado necessário e o ramo mais seguro. Se você está sendo acompanhado, faça a triagem com seu profissional.",
+    "passo1": {
+      "titulo": "Passo 1. Há motivo para procurar um profissional antes de começar?",
+      "sinais": [
+        {"id": "ideacao", "sinal": "Pensamentos de morte ou de se machucar", "verificacao": "PHQ-9, item 9, com qualquer resposta diferente de \"nenhuma vez\"; ou triagem positiva na C-SSRS", "acao": "Não iniciar sozinho. Buscar ajuda no mesmo dia: CVV 188, SAMU 192, CAPS ou pronto-socorro", "regra": {"instrumento": "PHQ9", "item": 9, "diferente_de": 0}, "urgente": true},
+        {"id": "depressao_grave", "sinal": "Depressão grave", "verificacao": "PHQ-9 igual ou acima de 20", "acao": "Avaliação profissional antes de iniciar", "regra": {"instrumento": "PHQ9", "total_min": 20}},
+        {"id": "ansiedade_grave", "sinal": "Ansiedade grave", "verificacao": "GAD-7 igual ou acima de 15", "acao": "Iniciar apenas com acompanhamento profissional", "regra": {"instrumento": "GAD7", "total_min": 15}},
+        {"id": "psicose_mania", "sinal": "Psicose, mania ou hipomania atual", "verificacao": "Avaliação clínica", "acao": "Psiquiatria antes de qualquer prática meditativa", "regra": {"perguntas": ["psicose_mania"]}},
+        {"id": "estabilizar", "sinal": "Trauma recente, uso agudo de substâncias, ataques de pânico diários", "verificacao": "Relato da pessoa", "acao": "Estabilizar primeiro; mindfulness depois, como complemento", "regra": {"perguntas": ["trauma_recente", "substancias", "panico_diario"]}},
+        {"id": "nao_iniciar_sozinho", "sinal": "Dissociação intensa, TEPT complexo sem estabilização, sintomas físicos intensos sem explicação médica e com grande sofrimento", "verificacao": "Relato da pessoa (Para quem é e limites de uso)", "acao": "Procure avaliação profissional antes", "regra": {"perguntas": ["dissociacao_intensa", "tept_complexo", "sintomas_fisicos"]}}
+      ]
+    },
+    "passo2": {
+      "titulo": "Passo 2. Qual ramo usar?",
+      "TRAUMA": [
+        {"instrumento": "PCL5", "total_min": 33, "texto": "PCL-5 igual ou acima de 33"},
+        {"instrumento": "DES2", "total_min": 30, "texto": "DES-II igual ou acima de 30"},
+        {"perguntas": ["panico_mes"], "texto": "ataque de pânico no último mês"},
+        {"instrumento": "PHQ15", "total_min": 15, "texto": "PHQ-15 igual ou acima de 15"},
+        {"perguntas": ["desconforto_corpo"], "texto": "desconforto marcado ao prestar atenção no próprio corpo ou na respiração"},
+        {"instrumento": "ACE", "total_min": 4, "e_perguntas": ["sintomas_atuais"], "texto": "ACE igual ou acima de 4 acompanhado de sintomas atuais"}
+      ],
+      "ESTENDIDA": [
+        {"instrumento": "ASRS_A", "total_min": 4, "texto": "ASRS-1.1, parte A, com 4 ou mais respostas positivas"},
+        {"perguntas": ["atencao_3min"], "texto": "incapacidade de sustentar a atenção por mais de 3 minutos"}
+      ],
+      "regra_ramo": "basta um critério",
+      "combinacao": "Uma pessoa pode precisar dos dois ramos especiais. Nesse caso, siga os roteiros do ramo trauma-informado com a duração e os blocos curtos do ramo atenção estendida. Na dúvida entre dois ramos, escolha o mais cuidadoso."
+    },
+    "ace": "Sobre o ACE (questionário de experiências adversas na infância): responder pode mobilizar lembranças difíceis. Responda apenas a contagem, sem detalhar, e pule se preferir. Sozinho, o ACE não define o ramo; ele pesa quando há sintomas atuais.",
+    "apoio_profissional": "Instrumentos de apoio para quem acompanha: PDSS (gravidade do pânico), ASI-3 (sensibilidade à ansiedade, especialmente a subescala de preocupações físicas) e MAIA-2 (consciência interoceptiva) ajudam a refinar a decisão, mas não são obrigatórios."
+  },
+
+  "nota_desconforto": {
+    "texto": "Ao longo do manual, a \"nota de desconforto\" é a escala SUDS (unidades subjetivas de desconforto), usada como guia prático, não como teste validado. Anote a nota logo antes da prática, o pico durante a prática e a nota logo depois.",
+    "ancoras": [
+      {"valor": 0, "texto": "totalmente tranquilo"},
+      {"valor": 3, "texto": "leve, não atrapalha"},
+      {"valor": 5, "texto": "moderado, dá para continuar"},
+      {"valor": 7, "texto": "forte, difícil manter a atenção"},
+      {"valor": 10, "texto": "o pior desconforto que você consegue imaginar"}
+    ],
+    "regras": [
+      {"id": "parar", "situacao": "Pico igual ou acima de 7, ou nota depois 3 pontos acima da nota antes", "acao": "Encerrar a prática, abrir os olhos, voltar a uma âncora externa (sons, objeto, pés no chão) até a nota baixar", "pico_min": 7, "subida_depois_min": 3},
+      {"id": "duas_na_semana", "situacao": "Isso acontece em 2 sessões da mesma semana", "acao": "Passar para o ramo trauma-informado ou, se já estiver nele, voltar ao roteiro da semana anterior; se houver acompanhamento, avisar o profissional", "sessoes": 2},
+      {"id": "despersonalizacao", "situacao": "Despersonalização ou desrealização (sensação de estranheza de si ou do ambiente), lembranças traumáticas invasivas", "acao": "Encerrar imediatamente e voltar à âncora externa; ver as regras de parada na seção de segurança"}
+    ]
+  },
+
+  "dose": {
+    "texto": "Valores de prática formal por dia. A dose mínima é o piso para que a semana conte; o recomendado é o alvo; o teto é o limite superior. Pratique 6 dias por semana: 1 dia livre por semana é previsto para reduzir o risco de cansaço com a prática.",
+    "dias_por_semana": 6,
+    "teto_diario_geral_min": 25,
+    "por_semana": {
+      "1": {"minimo": 8, "recomendado": 12, "teto": 15},
+      "2": {"minimo": 10, "recomendado": 15, "teto": 20},
+      "3": {"minimo": 12, "recomendado": 18, "teto": 22},
+      "4": {"minimo": 12, "recomendado": 18, "teto": 22},
+      "5": {"minimo": 15, "recomendado": 22, "teto": 25},
+      "6": {"minimo": 15, "recomendado": 22, "teto": 25},
+      "7": {"minimo": 15, "recomendado": 22, "teto": 25},
+      "8": {"minimo": 12, "recomendado": 20, "teto": 25}
+    },
+    "trauma": {"semanas_12_min": [1, 2, 3, 4], "sessao_min": 12, "texto": "No ramo trauma-informado, com sessões de 12 min nas Semanas 1 a 4, o recomendado fica em torno de 13 horas."},
+    "total": "Total de prática formal em 8 semanas, a 6 dias por semana: cerca de 15 horas no recomendado (149 minutos por dia somados nas 8 semanas × 6 dias = 894 min) e cerca de 10 horas no mínimo (99 × 6 = 594 min).",
+    "blocos": {"texto": "Blocos curtos: se você não conseguir um bloco contínuo, divida a prática do dia em 2 ou 3 blocos de 5 a 8 min.", "min": 5, "max": 8, "quantidade": [2, 3]}
+  },
+
+  "semanas": [
+    {
+      "numero": 1,
+      "titulo": "Estabilização com âncoras externas e psicoeducação",
+      "habilidade": "Estabilização com âncoras externas",
+      "objetivo": "Aprender o movimento básico de toda prática de mindfulness: notar onde está a atenção, perceber que ela se desviou e trazê-la de volta. Nesta semana a âncora é sempre algo externo e neutro (som, objeto, contato com a cadeira), e não sensações internas. Isso cria uma base segura antes de qualquer prática voltada para o corpo. Esta semana é igual para todos os ramos.",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão (12 min)",
+          "minutos": 12,
+          "passos": [
+            {"id": "postura", "nome": "Postura", "duracao_s": 60, "texto": "sentado, com apoio, pés no chão, mãos descansadas. Olhos abertos, com olhar suave num ponto a 1,5 ou 2 metros, ou fechados se você se sentir seguro."},
+            {"id": "ancora", "nome": "Escolha da âncora", "duracao_s": 120, "texto": "uma só, entre (a) som: os sons do ambiente, sem nomear nem julgar; (b) visão: um objeto neutro, como uma pedra, um ponto na parede ou uma vela apagada; (c) tato externo: pés tocando o chão, mãos sobre as coxas, contato com a cadeira. Nesta semana, não use sensações internas, como o ar nas narinas."},
+            {"id": "sustentacao", "nome": "Sustentação", "duracao_s": 360, "texto": "mantenha a atenção na âncora. Quando perceber que se distraiu, diga mentalmente \"distraí\" e volte com gentileza."},
+            {"id": "psicoeducacao", "nome": "Psicoeducação", "duracao_s": 120, "texto": "observe como a mente tende a divagar. Isso é normal e não é falha: o treino é justamente voltar."},
+            {"id": "fechamento", "nome": "Fechamento", "duracao_s": 60, "texto": "três respirações naturais, sem controlar o ritmo. Compare como está agora com o início."}
+          ]
+        },
+        "TRAUMA": {"igual_a": "PADRAO"}
+      },
+      "ancoras_por_dia": {
+        "titulo": "Rodízio de âncoras na semana",
+        "itens": [
+          {"dias": [1, 2], "ancora": "som", "texto": "Dias 1 e 2: som."},
+          {"dias": [3, 4], "ancora": "visão", "texto": "Dias 3 e 4: visão."},
+          {"dias": [5, 6], "ancora": "tato externo", "texto": "Dias 5 e 6: tato externo."},
+          {"dias": [7], "ancora": "a que trouxe mais estabilidade", "texto": "Dia 7 (opcional): a âncora que trouxe mais estabilidade."}
+        ]
+      },
+      "registro": {
+        "nome": "Diário de Estabilização",
+        "instrucao": "Preencha logo após a sessão. O objetivo não é avaliar se a prática \"foi boa\", mas mapear padrões.",
+        "campos": [
+          {"id": "ancora", "rotulo": "Âncora", "tipo": "escolha", "opcoes": ["som", "visão", "tato externo"]},
+          {"id": "tempo", "rotulo": "Tempo (min)", "tipo": "numero", "da_sessao": "minutos"},
+          {"id": "desconforto", "rotulo": "Desconforto antes / pico / depois (0 a 10)", "tipo": "notas3", "da_sessao": "notas3"},
+          {"id": "distracoes", "rotulo": "Nº aproximado de distrações", "tipo": "numero"},
+          {"id": "observacao", "rotulo": "Observação breve", "tipo": "texto"}
+        ]
+      },
+      "pratica_informal": [
+        "Pausa de 1 minuto, 2 vezes ao dia: pare o que está fazendo e note 3 sons diferentes do ambiente.",
+        "Ritual de transição: ao chegar em casa, fique 30 segundos parado ouvindo os sons antes da próxima atividade.",
+        "Ainda não faça práticas informais voltadas para o corpo ou para a respiração."
+      ],
+      "dificuldades": [
+        {"situacao": "A ansiedade aumenta durante a prática", "orientacao": "encurte para 5 min, mantenha os olhos abertos e prefira a âncora sonora."},
+        {"situacao": "Sonolência", "orientacao": "pratique sentado, não deitado, com os olhos abertos e mais cedo no dia."},
+        {"situacao": "\"Não consigo parar de pensar\"", "orientacao": "esse é o ponto. O treino é notar e voltar, não esvaziar a mente."},
+        {"situacao": "Ramo atenção estendida", "orientacao": "faça esta semana duas vezes. Divida a prática em blocos de 5 min, 3 vezes ao dia."}
+      ],
+      "versao_curta": {"duracao_s": 300, "texto": "encurte para 5 min, mantenha os olhos abertos e prefira a âncora sonora."},
+      "resumo": {"ancora_padrao": "Som, visão, tato externo", "adaptacao_trauma": "Igual, 12 min", "acompanhar": "Regularidade; desconforto antes e depois"}
+    },
+
+    {
+      "numero": 2,
+      "titulo": "Respiração lenta ritmada e regulação autonômica",
+      "habilidade": "Respiração lenta ritmada",
+      "objetivo": "Aprender uma ferramenta de regulação: respirar devagar, a cerca de 6 ciclos por minuto (um ciclo a cada 10 segundos, cerca de 0,1 Hz), sem prender o ar. Nessa frequência, as oscilações da respiração, da frequência cardíaca e da pressão arterial tendem a entrar em ressonância, o que aumenta a variabilidade da frequência cardíaca (VFC), um marcador de atividade vagal (Sevoz-Couche & Laborde, 2022).",
+      "padroes": {
+        "titulo": "Padrões",
+        "texto": "5-5: inspirar 5 segundos, expirar 5 segundos. 4-6: inspirar 4 segundos, expirar 6 segundos. Os dois somam 10 segundos por ciclo. Nunca prender o ar.",
+        "lista": [
+          {"id": "5-5", "inspirar_s": 5, "expirar_s": 5, "quando": "quando predominam cansaço e desânimo"},
+          {"id": "4-6", "inspirar_s": 4, "expirar_s": 6, "quando": "quando predominam ansiedade e tensão"},
+          {"id": "6-6", "inspirar_s": 6, "expirar_s": 6, "quando": "Se a tontura persistir, use 6-6 (5 ciclos por minuto)."}
+        ],
+        "prender_o_ar": false,
+        "devagar_nao_e_fundo": "Devagar não é fundo. Respire com volume pequeno ou normal, sem encher totalmente o peito. Inspirações grandes e rápidas causam tontura e formigamento, porque baixam o gás carbônico do sangue (hiperventilação). Se isso acontecer, diminua o volume e mantenha o ritmo.",
+        "qual_escolher": "Qual escolher: 4-6 quando predominam ansiedade e tensão; 5-5 quando predominam cansaço e desânimo. Quem tem histórico de pânico começa com 4-6, por 8 min, e aumenta aos poucos. Se a tontura persistir, use 6-6 (5 ciclos por minuto).",
+        "panico_manutencao_s": 480
+      },
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão, ramo PADRÃO (15 min)",
+          "minutos": 15,
+          "passos": [
+            {"id": "postura", "nome": "Postura", "duracao_s": 60, "texto": "sentado, com uma mão sobre o abdômen, apenas para sentir o movimento."},
+            {"id": "calibracao", "nome": "Calibração", "duracao_s": 120, "texto": "5 respirações naturais; depois comece a contar 5-5 ou 4-6, internamente ou com um aplicativo ou metrônomo que marque o ritmo.", "guia_respiracao": "opcional"},
+            {"id": "manutencao", "nome": "Manutenção", "duracao_s": 600, "texto": "mantenha o ritmo. Se a mente divagar, volte à contagem. Se houver desconforto no peito, diminua o volume e mantenha o ritmo.", "guia_respiracao": "sim", "duracao_curta_s": 480},
+            {"id": "retorno", "nome": "Retorno", "duracao_s": 120, "texto": "solte o padrão, respire naturalmente e note o estado do corpo."}
+          ],
+          "aviso": "Se o foco na respiração gerar desconforto igual ou acima de 5, mude para o roteiro trauma-informado abaixo.",
+          "sugerir_roteiro_trauma_se_nota_min": 5
+        },
+        "TRAUMA": {
+          "titulo": "Ramo TRAUMA-INFORMADO: roteiro próprio (12 min)",
+          "minutos": 12,
+          "introducao": "Aqui a respiração é guiada por um sinal externo. A atenção fica no guia (um som ou uma imagem), não nas sensações internas. A respiração ritmada é opcional neste ramo: se ela gerar desconforto, fique só com a âncora externa da Semana 1.",
+          "padrao_respiracao": "4-6",
+          "passos": [
+            {"id": "ancora_externa", "nome": "Âncora externa", "duracao_s": 120, "texto": "olhos abertos, atenção nos sons do ambiente, como na Semana 1. Anote a nota de desconforto."},
+            {"id": "natural", "nome": "Respiração natural, olhos abertos", "duracao_s": 60, "texto": "sem mudar nada, apenas olhe para o guia visual (por exemplo, um círculo que cresce e diminui num aplicativo) ou ouça o metrônomo.", "guia_respiracao": "sim"},
+            {"id": "ritmo_guiado", "nome": "Ritmo guiado", "duracao_s": 360, "texto": "acompanhe o guia em 4-6, com volume pequeno. A atenção fica no guia que você vê ou ouve. Mãos sobre as coxas ou nos braços da cadeira, não sobre o abdômen. Nos dias 1 e 2, faça só 3 min e complete com a âncora sonora.", "guia_respiracao": "sim",
+              "variantes": [{"dias": [1, 2], "passos": [
+                {"id": "ritmo_guiado_curto", "nome": "Ritmo guiado", "duracao_s": 180, "texto": "acompanhe o guia em 4-6, com volume pequeno. A atenção fica no guia que você vê ou ouve. Mãos sobre as coxas ou nos braços da cadeira, não sobre o abdômen. Nos dias 1 e 2, faça só 3 min e complete com a âncora sonora.", "guia_respiracao": "sim"},
+                {"id": "ancora_sonora", "nome": "Âncora sonora", "duracao_s": 180, "texto": "Nos dias 1 e 2, faça só 3 min e complete com a âncora sonora."}
+              ]}]
+            },
+            {"id": "volta_ancora", "nome": "Volta à âncora externa", "duracao_s": 180, "texto": "solte o ritmo, volte aos sons ou ao contato dos pés com o chão. Anote a nota de desconforto."}
+          ],
+          "regra": {"texto": "Se a nota subir 2 pontos ou mais em duas sessões, pare o ritmo guiado e mantenha a semana só com âncoras externas. Isso não atrasa o programa.", "subida_min": 2, "sessoes": 2, "acao": "so_ancoras_externas"}
+        }
+      },
+      "regular_ou_fugir": {
+        "titulo": "Respirar devagar para regular ou para fugir?",
+        "texto": "A respiração lenta é uma ferramenta útil, mas pode virar um comportamento de segurança: algo feito para evitar sentir qualquer desconforto, que acaba mantendo o medo das sensações. Pessoas com mais medo de sufocar mostram respostas respiratórias defensivas mais intensas diante de ameaças sentidas no corpo (Benke et al., 2017), e por isso vale observar a função que a técnica está cumprindo.",
+        "ferramenta": "Uso como ferramenta: fazer alguns ciclos para baixar a ativação e depois seguir com a atividade que você valoriza, mesmo com algum desconforto presente.",
+        "fuga": "Sinais de que virou fuga: usar a técnica toda vez que surge qualquer sensação; acreditar que \"se eu não respirar assim, vou passar mal\"; ficar checando a respiração o tempo todo; deixar de fazer coisas quando não dá para usar a técnica.",
+        "depois": "Por isso, a partir da Semana 3, as práticas usam a respiração natural. O ritmo 4-6 continua disponível como recurso pontual, não como condição para seguir em frente."
+      },
+      "registro": {
+        "nome": "Diário Respiratório",
+        "instrucao": "",
+        "campos": [
+          {"id": "padrao", "rotulo": "Padrão (5-5, 4-6 ou 6-6)", "tipo": "escolha", "opcoes": ["5-5", "4-6", "6-6"], "da_sessao": "padrao"},
+          {"id": "tempo", "rotulo": "Tempo (min)", "tipo": "numero", "da_sessao": "minutos"},
+          {"id": "fc", "rotulo": "Frequência cardíaca antes / depois (opcional)", "tipo": "par_numeros"},
+          {"id": "desconforto", "rotulo": "Desconforto antes / depois (0 a 10)", "tipo": "notas2", "da_sessao": "notas2"},
+          {"id": "estado_corpo", "rotulo": "Estado do corpo depois", "tipo": "texto"},
+          {"id": "observacao", "rotulo": "Observação", "tipo": "texto"}
+        ]
+      },
+      "pratica_informal": [
+        "Minipausa de 60 segundos, 3 vezes ao dia: 6 ciclos no ritmo escolhido (no ramo trauma-informado, acompanhando um guia externo).",
+        "Ao notar ansiedade ou irritação: 3 ciclos de 4-6 (cerca de 30 segundos) e depois siga com o que estava fazendo. Nunca prenda o ar."
+      ],
+      "dificuldades": [
+        {"situacao": "Tontura ou formigamento", "orientacao": "leves nos primeiros dias são esperados. Diminua o volume e mantenha o ritmo; se persistirem, use 6-6; se forem intensos, pare e reavalie."},
+        {"situacao": "Sensação de falta de ar", "orientacao": "use 4-6, encurte para 8 min e evite imaginar o peito \"cheio\". Se continuar, passe para o roteiro trauma-informado."},
+        {"situacao": "Esquece de contar", "orientacao": "use um aplicativo de respiração ritmada ou um metrônomo silencioso."},
+        {"situacao": "Doença pulmonar crônica ou gravidez avançada", "orientacao": "converse com seu médico antes."},
+        {"situacao": "Ramo atenção estendida", "orientacao": "use sempre um guia visual de respiração e faça blocos de 5 min."}
+      ],
+      "resumo": {"ancora_padrao": "Respiração 5-5 ou 4-6", "adaptacao_trauma": "Ritmo guiado por sinal externo, olhos abertos, opcional", "acompanhar": "Desconforto; frequência cardíaca (opcional)"}
+    },
+
+    {
+      "numero": 3,
+      "titulo": "Atenção focada: sustentar, perceber a distração e voltar",
+      "habilidade": "Atenção focada",
+      "objetivo": "Treinar a atenção focada: sustentar a atenção em um único objeto, perceber quando ela se desviou e voltar de propósito. Essa é a base para as semanas seguintes. Nesta semana o objeto é a respiração natural, sem controlar o ritmo. Os pensamentos não são o foco: quando aparecem, você só percebe a distração e volta.",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão, ramo PADRÃO (18 min)",
+          "minutos": 18,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "sente-se, note os pontos de apoio do corpo e os sons do ambiente."},
+            {"id": "nucleo", "nome": "Núcleo de atenção focada", "duracao_s": 720, "texto": "atenção na respiração como ela é, sem mudar o ritmo. Escolha um único ponto e mantenha-o até o fim: (a) o ar passando pelas narinas ou (b) o movimento do abdômen subindo e descendo.", "detalhe": "O ciclo da prática: (1) sustentar a atenção no ponto; (2) perceber que a atenção saiu e dizer mentalmente \"distraí\"; (3) voltar ao ponto com gentileza, sem se criticar. Esse ciclo é a prática: cada retorno é uma repetição do treino."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 240, "texto": "preencha o Registro de Atenção abaixo.", "registro": true}
+          ],
+          "notas": ["Pontos importantes: não tente esvaziar a mente; mente vazia sem retornos costuma ser sonolência ou desligamento. Não analise para onde a mente foi; basta perceber e voltar. Com os dias, você tende a perceber as distrações mais rápido."],
+          "sugerir_roteiro_trauma_se_nota_acima": 5
+        },
+        "TRAUMA": {
+          "titulo": "Ramo TRAUMA-INFORMADO: roteiro próprio (12 min)",
+          "minutos": 12,
+          "introducao": "A atenção focada é treinada com uma âncora externa, e a respiração entra aos poucos, pela periferia do corpo.",
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 60, "texto": "olhos abertos, pés no chão. Anote a nota de desconforto."},
+            {"id": "ancora_externa", "nome": "Atenção focada em âncora externa", "duracao_s": 480, "texto": "escolha uma âncora única e estável: um som contínuo (ventilador, metrônomo baixo) ou o contato das mãos com um objeto de textura (uma pedra, um tecido). Mesmo ciclo do ramo padrão: sustentar, perceber \"distraí\", voltar."},
+            {"id": "aproximacao", "nome": "Aproximação gradual da respiração", "duracao_s": 60, "texto": "mantenha os olhos abertos e note o movimento da respiração pelas mãos apoiadas na barriga, como se fosse um movimento de fora. Se a nota subir, volte à âncora externa.", "condicao": {"dia_min": 4, "nota_max": 3, "texto": "1 min, a partir do dia 4 e só se a nota estiver em 3 ou menos", "senao": "Se a nota subir, volte à âncora externa."}},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "anote a nota de desconforto e preencha o Registro de Atenção.", "registro": true}
+          ]
+        }
+      },
+      "registro": {
+        "nome": "Registro de Atenção",
+        "instrucao": "Anote só o que é fácil de lembrar, sem reconstruir o conteúdo dos pensamentos.",
+        "campos": [
+          {"id": "tempo", "rotulo": "Tempo total (min)", "tipo": "numero", "da_sessao": "minutos"},
+          {"id": "distracoes", "rotulo": "Nº estimado de distrações", "tipo": "numero"},
+          {"id": "rapidez", "rotulo": "Rapidez para perceber (rápida, média, lenta)", "tipo": "escolha", "opcoes": ["rápida", "média", "lenta"]},
+          {"id": "esforco", "rotulo": "Esforço (0 a 10)", "tipo": "nota"},
+          {"id": "anotacao", "rotulo": "Anotação breve", "tipo": "texto"}
+        ]
+      },
+      "aviso_lembrancas": "Se a prática trouxer lembranças angustiantes e invasivas, que se repetem e elevam a nota de desconforto, passe para o ramo trauma-informado (ou, se já estiver nele, volte às âncoras externas) e procure orientação profissional. Lembranças comuns durante a prática são normais e não indicam problema.",
+      "pratica_informal": [
+        "Três respirações com atenção: ao perceber dispersão durante o dia, acompanhe três respirações naturais e volte à tarefa. Até 5 vezes ao dia.",
+        "Checagem de atenção: a cada 2 horas, pergunte-se \"onde está minha atenção agora?\". Só note, sem corrigir."
+      ],
+      "dificuldades": [
+        {"situacao": "\"Me distraio demais\"", "orientacao": "ótimo sinal. Você está percebendo as distrações, que antes passavam despercebidas."},
+        {"situacao": "Entra no conteúdo dos pensamentos", "orientacao": "diga apenas \"distraí\", sem frases, e volte."},
+        {"situacao": "Sonolência", "orientacao": "olhos abertos, postura mais ereta, prática mais cedo no dia, em ambiente iluminado. Se a sonolência for persistente durante o dia, vale avaliar o sono com um profissional."},
+        {"situacao": "Desconforto ao focar na respiração (ramo padrão)", "orientacao": "use o movimento do abdômen sentido pelas mãos, com olhos abertos; se a nota passar de 5, use o roteiro trauma-informado."},
+        {"situacao": "Ramo atenção estendida", "orientacao": "faça esta semana duas vezes, em blocos de 5 min, 3 vezes ao dia."}
+      ],
+      "resumo": {"ancora_padrao": "Respiração natural, um ponto", "adaptacao_trauma": "Âncora externa; respiração pelas mãos a partir do dia 4", "acompanhar": "Rapidez para perceber distrações"}
+    },
+
+    {
+      "numero": 4,
+      "titulo": "Descentramento e desfusão: observar pensamentos como eventos mentais",
+      "habilidade": "Descentramento e desfusão",
+      "objetivo": "Mudar a relação com os pensamentos, não a quantidade deles. Você passa de \"eu sou este pensamento\" ou \"isto é verdade\" para \"estou tendo um pensamento\". Esse distanciamento se chama descentramento.",
+      "diferenca": "Diferença em relação à Semana 3: lá, o pensamento era uma distração a deixar de lado; aqui, o pensamento é o próprio objeto da prática, observado de fora.",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão, ramo PADRÃO (18 min)",
+          "minutos": 18,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "respiração natural, atenção focada como na Semana 3."},
+            {"id": "tela", "nome": "Tela de cinema", "duracao_s": 840, "texto": "imagine uma tela neutra à sua frente. Quando surgir um pensamento, coloque-o na tela com a frase \"estou tendo o pensamento de que...\". O pensamento aparece na tela; você é quem assiste. Ele passa, outro virá, e você continua aí. Se ficar muito tempo sem pensamentos, volte à respiração até o próximo aparecer."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ]
+        },
+        "TRAUMA": {
+          "titulo": "Ramo TRAUMA-INFORMADO: roteiro próprio (12 min)",
+          "minutos": 12,
+          "introducao": "Em vez de imaginar uma tela, a desfusão é feita com papel, de olhos abertos. Isso mantém a atenção ancorada fora do corpo e evita imagens mentais intensas.",
+          "material": "Material: pequenos papéis ou cartões e uma caneta.",
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "olhos abertos, atenção nos sons. Anote a nota de desconforto."},
+            {"id": "papel", "nome": "Pensamentos no papel", "duracao_s": 420, "texto": "volte aos sons. Quando surgir um pensamento, escreva no papel, em poucas palavras, \"estou tendo o pensamento de que...\" e coloque o papel sobre a mesa, um pouco afastado. Volte aos sons. Se surgir uma lembrança traumática, não escreva detalhes: escreva só \"lembrança difícil\", afaste o papel e volte à âncora."},
+            {"id": "olhar", "nome": "Olhar os papéis", "duracao_s": 60, "texto": "olhe para os papéis sobre a mesa. Note que são pensamentos escritos, ali fora, e que você está aqui, olhando para eles."},
+            {"id": "fechamento", "nome": "Fechamento", "duracao_s": 120, "texto": "pés no chão, sons do ambiente. Anote a nota de desconforto. Os papéis podem ir para o lixo ou ser guardados, como preferir."}
+          ]
+        }
+      },
+      "frases_desfusao": {
+        "titulo": "Frases de desfusão (varie ao longo da semana)",
+        "itens": [
+          "\"Estou tendo o pensamento de que [X]\", em vez de \"X é verdade\".",
+          "\"Lá vem o pensamento [ansioso, autocrítico, catastrófico]\".",
+          "\"Obrigado, mente\": agradecer ao pensamento sem obedecer a ele.",
+          "\"Essa é uma história conhecida\": reconhecer o padrão que se repete."
+        ],
+        "opcoes": ["Estou tendo o pensamento de que...", "Lá vem o pensamento...", "Obrigado, mente", "Essa é uma história conhecida"]
+      },
+      "registro": {
+        "nome": "Registro de Desfusão",
+        "instrucao": "Anote os pensamentos que mais se repetiram, a frase usada e o quanto você acreditou neles antes e depois.",
+        "campos": [
+          {"id": "pensamento", "rotulo": "Pensamento recorrente (1 linha)", "tipo": "texto"},
+          {"id": "frase", "rotulo": "Frase de desfusão usada", "tipo": "escolha", "opcoes_de": "frases_desfusao"},
+          {"id": "acreditei_antes", "rotulo": "Quanto acreditei antes (0 a 10)", "tipo": "nota"},
+          {"id": "acreditei_depois", "rotulo": "Depois (0 a 10)", "tipo": "nota"},
+          {"id": "comentario", "rotulo": "Comentário", "tipo": "texto"}
+        ]
+      },
+      "medida": "Para acompanhar a mudança, o CFQ-7 (questionário de fusão cognitiva) pode ser respondido no início e no fim da semana. Considere que houve mudança quando a diferença for maior que a variação esperada pelo erro de medida (ver \"Como avaliar os resultados\").",
+      "pratica_informal": [
+        "Ao surgir um pensamento perturbador durante o dia, diga mentalmente \"estou tendo o pensamento de que...\" e continue a atividade.",
+        "Diante de um impulso de checar ou conferir: use a frase de desfusão, espere 10 minutos notando a urgência como sensação no corpo, com respiração natural, e só então decida. Se esses impulsos fazem parte de um quadro de TOC, trabalhe-os com um profissional (exposição com prevenção de resposta), porque o manual não substitui esse tratamento."
+      ],
+      "dificuldades": [
+        {"situacao": "\"A frase parece artificial\"", "orientacao": "é esperado. A frase interrompe o automatismo de tomar o pensamento como fato e tende a ficar natural com a prática."},
+        {"situacao": "Os pensamentos não diminuem", "orientacao": "esperado. O objetivo é reduzir o impacto dos pensamentos, não a frequência."},
+        {"situacao": "A imagem da tela fica intensa ou perturbadora", "orientacao": "use o roteiro com papel, de olhos abertos."}
+      ],
+      "resumo": {"ancora_padrao": "Pensamentos na \"tela de cinema\"", "adaptacao_trauma": "Pensamentos escritos no papel, olhos abertos", "acompanhar": "Quanto acredito no pensamento; CFQ-7"}
+    },
+
+    {
+      "numero": 5,
+      "titulo": "Escaneamento corporal e monitoramento aberto",
+      "habilidade": "Escaneamento corporal e monitoramento aberto",
+      "objetivo": "Duas habilidades que se completam. O escaneamento corporal leva a atenção, região por região, às sensações do corpo. O monitoramento aberto amplia a atenção para o campo inteiro da experiência: sons, sensações, emoções e pensamentos são notados enquanto surgem e passam, sem que nenhum seja escolhido como objeto. O escaneamento serve de ponte: primeiro o corpo, depois o campo todo.",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão, ramo PADRÃO (22 min)",
+          "minutos": 22,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "respiração natural, atenção focada breve."},
+            {"id": "escaneamento", "nome": "Escaneamento corporal", "duracao_s": 480, "texto": "dos pés ao topo da cabeça, cerca de 30 segundos por região. Note as sensações como informação neutra (\"pressão na panturrilha direita\"), sem rotular como dor ou tensão. Se uma região trouxer desconforto igual ou acima de 6, abra os olhos, volte à respiração por alguns ciclos e siga para a região seguinte, sem insistir.", "sinal_intervalo_s": 30},
+            {"id": "camada1", "nome": "Abertura do campo, camada 1", "duracao_s": 60, "texto": "respiração e sons"},
+            {"id": "camada2", "nome": "Abertura do campo, camada 2", "duracao_s": 120, "texto": "acrescente as sensações do corpo, sem escolher"},
+            {"id": "camada3", "nome": "Abertura do campo, camada 3", "duracao_s": 120, "texto": "acrescente os pensamentos, como eventos que passam"},
+            {"id": "camada4", "nome": "Abertura do campo, camada 4", "duracao_s": 240, "texto": "atenção sem escolha, em que tudo o que surgir é o objeto."},
+            {"id": "fechamento", "nome": "Fechamento", "duracao_s": 60, "texto": "estreite a atenção de volta a algumas respirações naturais."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ],
+          "notas": ["Imagine a consciência como um céu e os fenômenos como nuvens ou pássaros que o atravessam. O céu não se confunde com nada do que passa. Quando perceber que se prendeu a um fenômeno, amplie de novo para o campo todo. Não nomeie cada evento; apenas note que surge, dura um pouco e vai embora."]
+        },
+        "TRAUMA": {
+          "titulo": "Ramo TRAUMA-INFORMADO: roteiro próprio (18 min)",
+          "minutos": 18,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "olhos abertos, sons do ambiente. Anote a nota de desconforto."},
+            {"id": "escaneamento", "nome": "Escaneamento gradual", "duracao_s": 300, "texto": "sempre de olhos abertos: dias 1 a 3, só as regiões de contato com o exterior: pés no chão, mãos, costas na cadeira; dias 4 a 6, acrescente pernas e braços. Tronco e rosto entram apenas se a nota estiver em 3 ou menos durante toda a prática. Se uma região incomodar, volte aos pés no chão.",
+              "por_dia": [
+                {"dias": [1, 2, 3], "texto": "sempre de olhos abertos: dias 1 a 3, só as regiões de contato com o exterior: pés no chão, mãos, costas na cadeira. Se uma região incomodar, volte aos pés no chão."},
+                {"dias": [4, 5, 6, 7], "texto": "sempre de olhos abertos: dias 4 a 6, acrescente pernas e braços. Se uma região incomodar, volte aos pés no chão."}
+              ],
+              "condicao_extra": {"nota_max_toda_pratica": 3, "texto": "Tronco e rosto entram apenas se a nota estiver em 3 ou menos durante toda a prática."}
+            },
+            {"id": "camada1", "nome": "Abertura em camadas, camada 1", "duracao_s": 120, "texto": "sons"},
+            {"id": "camada2", "nome": "Abertura em camadas, camada 2", "duracao_s": 120, "texto": "sons e contato do corpo com a cadeira e o chão"},
+            {"id": "camada3", "nome": "Abertura em camadas, camada 3", "duracao_s": 180, "texto": "acrescente pensamentos como eventos que passam. A atenção totalmente sem escolha é opcional e só deve ser feita se não houver sinais de desligamento ou estranheza."},
+            {"id": "fechamento", "nome": "Fechamento", "duracao_s": 120, "texto": "volte à âncora externa. Anote a nota de desconforto."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ]
+        }
+      },
+      "postura_mental": {"titulo": "Postura mental para o monitoramento aberto", "texto": "Imagine a consciência como um céu e os fenômenos como nuvens ou pássaros que o atravessam. O céu não se confunde com nada do que passa. Quando perceber que se prendeu a um fenômeno, amplie de novo para o campo todo. Não nomeie cada evento; apenas note que surge, dura um pouco e vai embora."},
+      "registro": {
+        "nome": "Registro de Monitoramento Aberto",
+        "instrucao": "",
+        "campos": [
+          {"id": "tempo", "rotulo": "Tempo (min)", "tipo": "numero", "da_sessao": "minutos"},
+          {"id": "regioes", "rotulo": "Regiões do corpo que incomodaram", "tipo": "texto"},
+          {"id": "amplitude", "rotulo": "Amplitude do campo (estreito, médio, amplo)", "tipo": "escolha", "opcoes": ["estreito", "médio", "amplo"]},
+          {"id": "prender", "rotulo": "Tendência a se prender (alta, média, baixa)", "tipo": "escolha", "opcoes": ["alta", "média", "baixa"]},
+          {"id": "desconforto", "rotulo": "Desconforto antes / pico / depois (0 a 10)", "tipo": "notas3", "da_sessao": "notas3"},
+          {"id": "observacao", "rotulo": "Observação", "tipo": "texto"}
+        ]
+      },
+      "pratica_informal": [
+        "Janela de presença ampla: uma vez por dia, escolha uma atividade de rotina (caminhar, comer) e faça-a por 10 minutos com atenção aberta: sons, visão periférica, sensações e pensamentos, todos no mesmo plano.",
+        "Antes de responder numa conversa: uma respiração natural e uma checagem rápida do campo (\"onde estou? o que sinto? o que ouço?\")."
+      ],
+      "dificuldades": [
+        {"situacao": "\"Estou perdendo o foco\"", "orientacao": "no monitoramento aberto, não há um foco. A diferença entre estar disperso e estar em monitoramento aberto é perceber o que está acontecendo."},
+        {"situacao": "A ansiedade aumenta quando \"tudo entra\"", "orientacao": "volte à atenção focada da Semana 3 por uma semana antes de retomar."},
+        {"situacao": "O escaneamento traz desconforto igual ou acima de 7", "orientacao": "interrompa o escaneamento e mantenha só a abertura do campo com sons e pensamentos; passe para o roteiro trauma-informado."},
+        {"situacao": "Sensação de estranheza ou desligamento", "orientacao": "interrompa na hora, volte a uma âncora externa (som, ponto visual) e use o ramo trauma-informado."}
+      ],
+      "resumo": {"ancora_padrao": "Corpo, depois o campo todo", "adaptacao_trauma": "Escaneamento gradual pela periferia; campo sem atenção totalmente aberta", "acompanhar": "Regiões que incomodam; amplitude do campo"}
+    },
+
+    {
+      "numero": 6,
+      "titulo": "Aceitação: surfar a emoção",
+      "habilidade": "Aceitação: surfar a emoção",
+      "objetivo": "Permanecer, de forma intencional, com uma emoção difícil, sem tentar expulsá-la e sem alimentá-la. Na Semana 5, a observação era ampla e sem objeto; aqui há um objeto único e difícil no centro.",
+      "pre_requisito": {"texto": "Pré-requisito: conseguir praticar as Semanas 4 e 5 sem desconforto igual ou acima de 7. Se ainda não for o caso, estenda essas semanas por 1 ou 2 semanas.", "semanas": [4, 5], "nota_min_bloqueio": 7, "extensoes_max": 2},
+      "limite": "Limite: esta semana trabalha a emoção do momento, não lembranças traumáticas. Se uma lembrança traumática surgir, interrompa, volte à âncora externa e procure terapia focada no trauma (por exemplo, TCC focada no trauma ou EMDR).",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão, ramo PADRÃO (22 min)",
+          "minutos": 22,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "respiração natural."},
+            {"id": "escolha", "nome": "Escolha da emoção", "duracao_s": 120, "texto": "pergunte-se \"que emoção difícil está mais presente hoje?\" e escolha uma. Se nenhuma estiver presente, lembre uma situação levemente desconfortável, nunca traumática."},
+            {"id": "fase1", "nome": "Surfar a emoção, fase 1", "duracao_s": 180, "texto": "localize a emoção como sensação no corpo e descreva onde e como é (pressão, calor, vazio)"},
+            {"id": "fase2", "nome": "Surfar a emoção, fase 2", "duracao_s": 240, "texto": "fique com a sensação, respirando naturalmente, sem expulsar nem alimentar"},
+            {"id": "fase3", "nome": "Surfar a emoção, fase 3", "duracao_s": 240, "texto": "note o movimento: a sensação muda de intensidade, de lugar e de qualidade"},
+            {"id": "fase4", "nome": "Surfar a emoção, fase 4", "duracao_s": 180, "texto": "note como ela sobe e desce, como ondas, sem precisar contar."},
+            {"id": "autocompaixao", "nome": "Autocompaixão", "duracao_s": 120, "texto": "um gesto de cuidado (mão no peito, mão no braço ou as mãos juntas, o que for mais confortável) e frases como \"isto é difícil\", \"dificuldade faz parte da vida\", \"posso ser gentil comigo agora\"."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ]
+        },
+        "TRAUMA": {
+          "titulo": "Ramo TRAUMA-INFORMADO: roteiro próprio (18 min)",
+          "minutos": 18,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "olhos abertos, âncora externa. Anote a nota de desconforto."},
+            {"id": "escolha", "nome": "Escolha da emoção", "duracao_s": 120, "texto": "só emoções de intensidade 4 ou menos. Nunca evoque lembranças."},
+            {"id": "fase1", "nome": "Surfar a emoção, fase 1", "duracao_s": 120, "texto": "localize a emoção no corpo; se localizar no corpo for desconfortável, descreva a emoção por uma imagem externa (uma cor, um clima)"},
+            {"id": "fase2", "nome": "Surfar a emoção, fase 2", "duracao_s": 180, "texto": "fique com ela, mantendo os pés no chão como âncora de segurança"},
+            {"id": "fase3", "nome": "Surfar a emoção, fase 3", "duracao_s": 180, "texto": "note as mudanças"},
+            {"id": "fase4", "nome": "Surfar a emoção, fase 4", "duracao_s": 120, "texto": "volte gradualmente aos sons do ambiente."},
+            {"id": "autocompaixao", "nome": "Autocompaixão", "duracao_s": 120, "texto": "escolha o gesto que for seguro para você; usar só as frases, sem gesto, também vale."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "anote a nota de desconforto.", "registro": true}
+          ],
+          "nota": "Surfar a emoção (10 min), olhos abertos"
+        }
+      },
+      "pausa_90s": {"titulo": "Pausa de 90 segundos", "texto": "Uma regra prática para o dia a dia: diante de uma emoção forte, espere cerca de 90 segundos antes de agir ou de entrar em discussão mental, e note o que muda. Os 90 segundos são uma janela de treino, popularizada em livro de divulgação, e não um tempo biológico fixo: a duração das emoções varia muito. O que interessa é perceber que a urgência costuma vir em ondas.", "duracao_s": 90},
+      "registro": {
+        "nome": "Registro de Surfar a Emoção",
+        "instrucao": "",
+        "campos": [
+          {"id": "emocao", "rotulo": "Emoção trabalhada", "tipo": "texto"},
+          {"id": "onde", "rotulo": "Onde no corpo (ou imagem)", "tipo": "texto"},
+          {"id": "pico", "rotulo": "Intensidade no pico (0 a 10)", "tipo": "nota"},
+          {"id": "fim", "rotulo": "Intensidade no fim (0 a 10)", "tipo": "nota"},
+          {"id": "evitar", "rotulo": "Vontade de evitar? (sim, não)", "tipo": "escolha", "opcoes": ["sim", "não"]},
+          {"id": "comentario", "rotulo": "Comentário", "tipo": "texto"}
+        ]
+      },
+      "medida": "Para acompanhar a mudança, o AAQ-II (questionário de aceitação e ação) pode ser respondido no início e no fim da semana.",
+      "pratica_informal": [
+        "Pausa de 90 segundos diante de emoções fortes, como descrita acima.",
+        "Gesto de gentileza: ao notar autocrítica, faça seu gesto de cuidado por alguns segundos antes de responder a si mesmo."
+      ],
+      "dificuldades": [
+        {"situacao": "A emoção aumenta e não passa", "orientacao": "veja se há pensamentos alimentando a emoção (\"isso nunca vai passar\", \"não aguento\"). Use a frase da Semana 4 (\"estou tendo o pensamento de que isso nunca vai passar\") e volte à sensação."},
+        {"situacao": "Vira ruminação", "orientacao": "leve a atenção do conteúdo da emoção para a sensação física dela."},
+        {"situacao": "A gentileza consigo traz tristeza ou lembranças", "orientacao": "pode acontecer. Volte à âncora externa e retome as frases outro dia, mais curtas."},
+        {"situacao": "Surge lembrança traumática", "orientacao": "interrompa, volte à âncora externa e procure terapia focada no trauma. Mindfulness não substitui o tratamento de TEPT."}
+      ],
+      "resumo": {"ancora_padrao": "Uma emoção difícil", "adaptacao_trauma": "Emoções até 4/10, olhos abertos, sem evocar lembranças", "acompanhar": "Curso da emoção; AAQ-II"}
+    },
+
+    {
+      "numero": 7,
+      "titulo": "Valores e ação comprometida",
+      "habilidade": "Valores e ação comprometida",
+      "objetivo": "Passar da aceitação para a direção: esclarecer o que importa para você e dar passos concretos nessa direção, mesmo com desconforto. Aceitação sem direção pode virar resignação; ação sem aceitação tende a ser movida por ansiedade (Hayes et al., 2006).",
+      "escolha_livre": "Os valores são escolhidos por você. Nenhum questionário ou programa define o que deve importar na sua vida.",
+      "mapa_dominios": {
+        "titulo": "Preparação: Mapa de Domínios (antes da semana, 15 min)",
+        "texto": "Para cada domínio, dê duas notas de 0 a 10: o quanto ele é importante para você e o quanto suas ações das últimas duas semanas estiveram de acordo com essa importância. O formato é inspirado no Questionário de Vida Valorizada (Wilson et al., 2010).",
+        "dominios": ["Família", "Casamento ou parceria", "Filhos e cuidado", "Amizades", "Trabalho e carreira", "Estudo e crescimento", "Lazer", "Espiritualidade", "Comunidade e cidadania", "Saúde e cuidado do corpo"],
+        "colunas": ["Importância (0 a 10)", "Coerência das minhas ações (0 a 10)"],
+        "escolha": "Escolha 1 ou 2 domínios com importância alta e coerência baixa: é onde a semana vai trabalhar. Para aprofundar, você pode usar o Inventário de Valores Pessoais, gratuito e com dados salvos só no seu dispositivo.",
+        "escolher_min": 1,
+        "escolher_max": 2,
+        "link_valores": "/instrumentos/valores.html"
+      },
+      "personalidade": {
+        "titulo": "Opcional: ajustar o tipo de ação ao seu perfil de personalidade",
+        "texto": "Se quiser, responda um inventário dos cinco grandes fatores (Big Five), como o Inventário de Personalidade deste site ou o BFI-2. O perfil não muda os domínios escolhidos; serve só para ajustar o jeito de agir. As sugestões abaixo são orientações práticas, não regras validadas.",
+        "link": "/instrumentos/personalidade.html",
+        "fatores": [
+          {"fator": "Abertura", "alto": "Ações com novidade e variação", "baixo": "Ações concretas, em rotinas já conhecidas"},
+          {"fator": "Conscienciosidade", "alto": "Plano estruturado; cuidado com o perfeccionismo: aceite a ação \"boa o suficiente\"", "baixo": "Passos bem pequenos, com lembretes e gatilhos no ambiente"},
+          {"fator": "Extroversão", "alto": "Ações com outras pessoas", "baixo": "Ações individuais ou com uma só pessoa, com tempo de recuperação"},
+          {"fator": "Amabilidade", "alto": "Inclua ações de cuidado consigo, não só com os outros", "baixo": "Ações com objetivo claro e combinados diretos"},
+          {"fator": "Neuroticismo", "alto": "Passos menores; preveja a barreira emocional e a frase de desfusão que vai usar; confira se a ação vai em direção a algo, e não para longe de um medo", "baixo": "Atenção para não subestimar barreiras práticas"}
+        ]
+      },
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão (22 min)",
+          "minutos": 22,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 120, "texto": "respiração natural.", "texto_trauma": "âncora externa."},
+            {"id": "releitura", "nome": "Releitura do Mapa de Domínios", "duracao_s": 180, "texto": "leia em silêncio suas notas e o domínio escolhido.", "mostra": "mapa_dominios"},
+            {"id": "meditacao", "nome": "Meditação de conexão com valores", "duracao_s": 600, "texto": "com base no domínio escolhido, imagine: \"daqui a 10 anos, olhando para trás, como eu gostaria de ter vivido esta área?\". Não é fantasia de resultado; é a qualidade de vida que você quer cultivar. Se surgir ansiedade ou autocrítica, use a desfusão (Semana 4) ou surfe a emoção (Semana 6)."},
+            {"id": "acao", "nome": "Ação comprometida da semana", "duracao_s": 300, "texto": "escolha UMA ação concreta, observável e possível em até 7 dias. Critérios: específica, mensurável, possível, ligada ao valor e com prazo.", "mostra": "acao_semana"},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ]
+        },
+        "TRAUMA": {"igual_a": "PADRAO", "usa_texto_trauma": true, "nota": "Igual, com chegada pela âncora externa"}
+      },
+      "criterios_acao": ["específica", "mensurável", "possível", "ligada ao valor", "com prazo"],
+      "registro": {
+        "nome": "Registro de Valores e Ação",
+        "instrucao": "S = sim, por inteiro; N = não; P = em parte. Muitos \"P\" e \"N\" com a barreira bem identificada são um bom sinal: mostram que você percebe o que atrapalha sem se fundir a isso.",
+        "campos": [
+          {"id": "dominio", "rotulo": "Domínio", "tipo": "escolha", "opcoes_de": "dominios_escolhidos"},
+          {"id": "acao", "rotulo": "Ação do dia", "tipo": "texto"},
+          {"id": "barreira", "rotulo": "Barreira interna (pensamento ou emoção)", "tipo": "texto"},
+          {"id": "realizada", "rotulo": "Realizada (S, N, P)", "tipo": "escolha", "opcoes": ["S", "N", "P"]},
+          {"id": "comentario", "rotulo": "Comentário", "tipo": "texto"}
+        ]
+      },
+      "pratica_informal": [
+        "Diante de uma decisão: \"esta escolha me leva em direção ao que valorizo ou me afasta de algo que temo?\".",
+        "Antes de dormir: identifique uma ação do dia ligada a um valor, mesmo pequena."
+      ],
+      "dificuldades": [
+        {"situacao": "\"Não sei o que valorizo\"", "orientacao": "comum em depressão prolongada e em muita evitação. Escolha um domínio como hipótese e teste por uma semana (\"vou testar este valor\")."},
+        {"situacao": "A ação fica grande demais", "orientacao": "regra do menor passo. \"Qual a menor ação observável nesta direção?\". Exemplo: valor saúde; a ação não é \"correr 5 km\", é \"calçar o tênis e ficar 2 minutos na rua\"."},
+        {"situacao": "Confunde valor com meta", "orientacao": "metas se cumprem e acabam; valores são direções que não acabam. \"Casar\" é meta; \"ser um parceiro presente\" é valor."}
+      ],
+      "resumo": {"ancora_padrao": "Mapa de Domínios", "adaptacao_trauma": "Igual, com chegada pela âncora externa", "acompanhar": "Ações realizadas; barreiras identificadas"}
+    },
+
+    {
+      "numero": 8,
+      "titulo": "Consolidação e plano de manutenção",
+      "habilidade": "Consolidação e manutenção",
+      "objetivo": "Transformar o que foi treinado numa prática própria e sustentável, com um plano para os próximos meses baseado nos seus registros e nas práticas que mais funcionaram para você. Manter alguma prática regular é a forma mais simples de sustentar o que foi aprendido.",
+      "roteiros": {
+        "PADRAO": {
+          "titulo": "Roteiro da sessão (20 min)",
+          "minutos": 20,
+          "passos": [
+            {"id": "chegada", "nome": "Chegada", "duracao_s": 180, "texto": "respiração natural.", "texto_trauma": "âncora externa."},
+            {"id": "bloco", "nome": "Bloco à escolha", "duracao_s": 720, "texto": "você escolhe, conforme o dia, qual habilidade praticar: atenção focada, desfusão, escaneamento corporal, monitoramento aberto, surfar a emoção ou valores. Agora você é quem conduz a própria prática.", "escolha": ["atenção focada", "desfusão", "escaneamento corporal", "monitoramento aberto", "surfar a emoção", "valores"]},
+            {"id": "integracao", "nome": "Integração", "duracao_s": 180, "texto": "note o que mudou desde a Semana 1."},
+            {"id": "registro", "nome": "Registro", "duracao_s": 120, "texto": "", "registro": true}
+          ]
+        },
+        "TRAUMA": {"igual_a": "PADRAO", "usa_texto_trauma": true, "nota": "Igual, com chegada pela âncora externa"}
+      },
+      "registro": {
+        "nome": "Registro da Semana 8",
+        "instrucao": "",
+        "campos": [
+          {"id": "habilidade", "rotulo": "Bloco à escolha", "tipo": "escolha", "opcoes": ["atenção focada", "desfusão", "escaneamento corporal", "monitoramento aberto", "surfar a emoção", "valores"], "da_sessao": "escolha"},
+          {"id": "tempo", "rotulo": "Tempo (min)", "tipo": "numero", "da_sessao": "minutos"},
+          {"id": "desconforto", "rotulo": "Desconforto antes / pico / depois (0 a 10)", "tipo": "notas3", "da_sessao": "notas3"},
+          {"id": "integracao", "rotulo": "O que mudou desde a Semana 1", "tipo": "texto"}
+        ]
+      },
+      "mapa_manutencao": {
+        "titulo": "Mapa de Manutenção (30 min, uma vez na semana, com o profissional se houver acompanhamento)",
+        "passos": [
+          "Releia os registros das Semanas 1 a 7. Qual semana trouxe mais mudança? Qual prática você manteve com mais facilidade? Qual trouxe desconforto?",
+          "Defina uma prática diária de 5 a 10 min, para manter por tempo indeterminado. Exemplos: 5 min de atenção focada, a respiração 4-6 ou uma âncora externa.",
+          "Defina uma prática semanal de 20 min, alternando desfusão, monitoramento aberto e surfar a emoção conforme a necessidade.",
+          "Defina 3 momentos fixos do dia para lembrar da prática (ao acordar, antes do almoço, ao chegar em casa).",
+          "Acompanhamento: GAD-7 e PHQ-9 uma vez por mês nos primeiros 6 meses e a cada 3 meses depois; FFMQ-15, AAQ-II e CFQ-7 ao fim da Semana 8, aos 3 e aos 6 meses.",
+          "Defina a sua regra de retomada (abaixo)."
+        ],
+        "campos": [
+          {"id": "pratica_diaria", "rotulo": "Prática diária (5 a 10 min)", "tipo": "texto"},
+          {"id": "pratica_semanal", "rotulo": "Prática semanal (20 min)", "tipo": "texto"},
+          {"id": "momento1", "rotulo": "Momento 1 do dia", "tipo": "texto", "sugestao": "ao acordar"},
+          {"id": "momento2", "rotulo": "Momento 2 do dia", "tipo": "texto", "sugestao": "antes do almoço"},
+          {"id": "momento3", "rotulo": "Momento 3 do dia", "tipo": "texto", "sugestao": "ao chegar em casa"},
+          {"id": "dominio", "rotulo": "Domínio de valor prioritário", "tipo": "texto"},
+          {"id": "sinal_precoce", "rotulo": "Sinal precoce de que estou deixando a prática", "tipo": "texto"},
+          {"id": "plano_retomada", "rotulo": "Plano de retomada", "tipo": "texto"},
+          {"id": "reavaliacao", "rotulo": "Data da próxima reavaliação", "tipo": "data"}
+        ],
+        "pratica_diaria_min": 5,
+        "pratica_diaria_max": 10,
+        "pratica_semanal_min": 20,
+        "exemplos_diaria": ["5 min de atenção focada", "a respiração 4-6", "uma âncora externa"],
+        "acompanhamento": {"mensal_meses": 6, "depois_a_cada_meses": 3}
+      },
+      "regra_retomada": {
+        "texto": "Se a prática diária parar por mais de 7 dias, retome com a dose mínima (5 min) da prática que você mais usava, por 3 dias, e depois volte ao nível habitual. Se a pausa veio junto com piora importante (crise, evento difícil, efeitos indesejados), recomece pela âncora externa da Semana 1 e, se houver acompanhamento, avise o profissional.",
+        "dias_parada": 7,
+        "dose_min": 5,
+        "dias_retomada": 3
+      },
+      "pratica_informal": ["Revisão mensal de 30 min: releia e atualize o Mapa de Manutenção."],
+      "dificuldades": [
+        {"situacao": "A regularidade cai depois de algumas semanas", "orientacao": "é comum. Use a regra de retomada; não é fracasso."},
+        {"situacao": "\"Não está mais funcionando\"", "orientacao": "veja se mudou algo no contexto (sono, estresse, saúde). Mindfulness é uma parte do cuidado, não a única. Se a piora persistir, procure reavaliação."},
+        {"situacao": "Efeitos indesejados tardios (estranheza de si, ansiedade aumentada)", "orientacao": "interrompa e procure um profissional. Ao retomar, use o ramo trauma-informado."}
+      ],
+      "resumo": {"ancora_padrao": "Prática escolhida", "adaptacao_trauma": "Igual, com chegada pela âncora externa", "acompanhar": "Mapa de Manutenção; reavaliação"}
+    }
+  ],
+
+  "seguranca": {
+    "texto": "Meditação não é isenta de riscos. Numa amostra representativa da população dos Estados Unidos, cerca de um terço das pessoas que meditavam relatou algum efeito indesejado, e cerca de uma em cada dez relatou efeitos que prejudicaram o funcionamento do dia a dia (Goldberg et al., 2022). Por isso o acompanhamento é parte do manual, e não um extra.",
+    "checagem": {
+      "titulo": "Checagem semanal (ao fim de cada semana)",
+      "instrucao": "Marque se aconteceu nesta semana, se durou mais de um dia e se atrapalhou sua rotina, trabalho ou relações.",
+      "colunas": ["Aconteceu?", "Durou mais de 1 dia?", "Atrapalhou a rotina?"],
+      "efeitos": [
+        {"id": "ansiedade", "texto": "Ansiedade ou agitação maior depois da prática"},
+        {"id": "lembrancas", "texto": "Lembranças traumáticas invasivas"},
+        {"id": "estranheza", "texto": "Sensação de estranheza de si ou do ambiente"},
+        {"id": "emocoes", "texto": "Emoções mais intensas ou instáveis que o habitual"},
+        {"id": "fisicos", "texto": "Sintomas físicos novos (dor, náusea, tensão, tontura)"},
+        {"id": "sono", "texto": "Piora do sono ou pesadelos"},
+        {"id": "desanimo", "texto": "Desânimo ou sensação de vazio"},
+        {"id": "morte", "texto": "Pensamentos de morte ou de se machucar", "urgente": true}
+      ],
+      "como_usar": "Como usar: qualquer efeito que atrapalhou a rotina significa pausar a prática e conversar com um profissional antes de retomar. Pensamentos de morte ou de se machucar significam parar e buscar ajuda no mesmo dia (CVV 188, SAMU 192).",
+      "regras": [
+        {"se": "atrapalhou", "acao": "pausar", "texto": "qualquer efeito que atrapalhou a rotina significa pausar a prática e conversar com um profissional antes de retomar."},
+        {"se": "morte_aconteceu", "acao": "ajuda_imediata", "texto": "Pensamentos de morte ou de se machucar significam parar e buscar ajuda no mesmo dia (CVV 188, SAMU 192)."}
+      ],
+      "profissionais": "Para profissionais que querem uma avaliação estruturada, a MedEx-I (Meditation Experiences Interview), entrevista de 44 itens aplicada por um avaliador independente, foi usada para medir efeitos indesejados em programas de 8 semanas baseados em mindfulness (Britton et al., 2021)."
+    },
+    "regras_parada": [
+      {"id": "pico7", "sinal": "Desconforto com pico igual ou acima de 7 numa sessão", "acao": "Encerrar a sessão, voltar à âncora externa"},
+      {"id": "duas_sessoes", "sinal": "O mesmo em 2 sessões da semana", "acao": "Mudar para o ramo trauma-informado ou voltar ao roteiro da semana anterior"},
+      {"id": "estranheza", "sinal": "Estranheza de si ou do ambiente em mais de 2 sessões", "acao": "Suspender escaneamento corporal e práticas voltadas ao corpo; manter só âncoras externas; procurar avaliação", "sessoes_acima_de": 2},
+      {"id": "panico_respiracao", "sinal": "Ataques de pânico ligados à prática de respiração", "acao": "Parar a respiração ritmada; usar só âncoras externas; reavaliar o ramo"},
+      {"id": "lembrancas", "sinal": "Lembranças traumáticas invasivas", "acao": "Interromper; procurar terapia focada no trauma antes de retomar"},
+      {"id": "piora", "sinal": "Piora confiável no GAD-7 ou no PHQ-9 (ver abaixo)", "acao": "Pausar e reavaliar com um profissional"},
+      {"id": "ideacao", "sinal": "Qualquer pensamento de morte ou de se machucar (PHQ-9, item 9, diferente de zero)", "acao": "Parar e buscar ajuda no mesmo dia"}
+    ]
+  },
+
+  "avaliacao": {
+    "quando": "Quando medir: GAD-7 e PHQ-9 antes da Semana 1 e ao fim das Semanas 2, 4, 6 e 8. FFMQ-15 (facetas de mindfulness), AAQ-II (flexibilidade psicológica) e CFQ-7 (fusão cognitiva) antes da Semana 1 e ao fim da Semana 8.",
+    "semanas_medida": [2, 4, 6, 8],
+    "desfecho": "Desfecho principal: escolha um antes de começar, conforme a queixa principal: GAD-7 para ansiedade ou PHQ-9 para depressão. Os demais questionários ajudam a entender o processo, mas não definem se o programa funcionou.",
+    "mudanca_confiavel": {
+      "texto": "Mudança confiável: uma diferença entre duas aplicações só deve ser considerada real quando for maior que o erro de medida do questionário (Jacobson & Truax, 1991). Na prática, os serviços públicos ingleses de terapia (NHS Talking Therapies) usam como mudança confiável uma variação de pelo menos 4 pontos no GAD-7 e de pelo menos 6 pontos no PHQ-9. Isso vale nos dois sentidos: melhora confiável e piora confiável.",
+      "GAD7": 4,
+      "PHQ9": 6
+    },
+    "faixas": {
+      "texto": "Faixas de referência: GAD-7 e PHQ-9: 5, 10 e 15 marcam o início das faixas leve, moderada e grave; no PHQ-9, 20 ou mais indica gravidade alta. Sair da faixa clínica (abaixo de 10 no PHQ-9 e abaixo de 8 no GAD-7) com mudança confiável é o critério de recuperação usado pelo NHS Talking Therapies.",
+      "limites": [{"min": 5, "nome": "leve"}, {"min": 10, "nome": "moderada"}, {"min": 15, "nome": "grave"}],
+      "PHQ9_alta": 20,
+      "recuperacao_abaixo": {"PHQ9": 10, "GAD7": 8}
+    },
+    "profissionais": "Para profissionais, o cálculo do índice de mudança confiável é: IMC = (pontuação final − pontuação inicial) ÷ (√2 × EPM), em que EPM = desvio-padrão × √(1 − fidedignidade). Valores com módulo acima de 1,96 indicam mudança confiável."
+  },
+
+  "termo": {
+    "titulo": "Termo de ciência (modelo)",
+    "instrucao": "Para quem pratica por conta própria, leia e guarde. Para profissionais, use como base do termo de consentimento, assinado antes da Semana 1.",
+    "abertura": "Declaro que fui informado(a) de que:",
+    "itens": [
+      "práticas de mindfulness podem trazer efeitos indesejados, como ansiedade, lembranças difíceis, estranheza de si e alterações do sono;",
+      "devo registrar e relatar desconfortos importantes e seguir as regras de parada deste manual;",
+      "posso interromper a prática a qualquer momento, sem prejuízo;",
+      "meus registros são confidenciais e só serão compartilhados com minha autorização;",
+      "este programa não substitui tratamento psicológico ou psiquiátrico, e em caso de pensamentos de morte devo buscar ajuda imediata (CVV 188, SAMU 192)."
+    ]
+  },
+
+  "quadro_resumo_colunas": ["Sem.", "Habilidade", "Âncora (PADRÃO)", "Adaptação TRAUMA-INFORMADO", "O que acompanhar"]
+}
