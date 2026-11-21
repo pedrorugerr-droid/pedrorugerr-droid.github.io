@@ -322,6 +322,7 @@
     R.bloqueios(E).forEach(function (a) { out += htmlAlerta(a); });
     var rest = R.alertasAtivos(E).filter(function (a) { return R.TIPOS_ALERTA[a.codigo] === 'restricao'; });
     rest.forEach(function (a) { out += htmlAlerta(a); });
+    if (E.config.instalarDepois !== hoje()) out += cartaoInstalar(true);
     if (DB.memoria) out += '<div class="aviso">Este navegador não permitiu guardar dados (talvez esteja em janela anônima). O que você registrar se perde ao fechar. Exporte uma cópia antes de sair.</div>';
 
     if (!E.triagem) {
@@ -513,6 +514,59 @@
       '<button class="btn alt" data-acao="fechar-ajuda">' + (origem === 'triagem' ? 'Voltar ao questionário' : 'Fechar') + '</button></div></div></div>';
   }
   function fecharCamada() { $camada.innerHTML = ''; }
+
+  /* ================= instalação no celular ================= */
+  var Aparelho = (function () {
+    var ua = navigator.userAgent || '';
+    var ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var android = /Android/i.test(ua);
+    var embutido = /Instagram|FBAN|FBAV|FB_IAB|Line\/|WhatsApp|TikTok|musical_ly|Twitter|LinkedInApp|GSA\//i.test(ua);
+    var outroIOS = ios && /CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua);
+    return { ios: ios, android: android, celular: ios || android, embutido: embutido, outroIOS: outroIOS };
+  })();
+  function instalado() {
+    try { if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches) return true; } catch (e) { }
+    return navigator.standalone === true;
+  }
+  var instalouAgora = false;
+  function mostrarInstalar() { return !instalado() && !instalouAgora && (Aparelho.celular || !!instalar); }
+  var ICONE_COMPARTILHAR = '<svg class="ic-inst" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+  var ICONE_ADICIONAR = '<svg class="ic-inst" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
+  var ICONE_MENU = '<svg class="ic-inst" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>';
+  function cartaoInstalar(compacto) {
+    if (!mostrarInstalar()) return compacto ? '' : '<div class="cartao"><h2>Instalar no celular</h2><div class="ok">' + (instalado() || instalouAgora ? 'O aplicativo já está instalado neste aparelho.' : 'Abra este endereço no navegador do celular para instalar.') + '</div></div>';
+    return '<div class="cartao instalar"><div class="instalar-linha"><img src="icones/icone-192.png" alt="" width="48" height="48"><div><b>Instale no seu celular</b><small>Ícone na tela inicial, abre em tela cheia e funciona sem internet.</small></div></div>' +
+      '<button class="btn largo" data-acao="instalar">Instalar no meu celular</button>' +
+      (compacto ? '<button class="link-discreto" data-acao="instalar-depois">Agora não</button>' : '') + '</div>';
+  }
+  function passo(n, html) { return '<li><span class="num">' + n + '</span><div>' + html + '</div></li>'; }
+  function abrirInstrucoes() {
+    var corpo;
+    if (Aparelho.embutido) {
+      corpo = '<p>Você abriu o link dentro de outro aplicativo (Instagram, WhatsApp, Facebook ou parecido). Daqui não dá para instalar.</p><ol class="passos-inst">' +
+        passo(1, 'Toque no menu ' + ICONE_MENU + ' ou nos três pontinhos, no canto da tela.') +
+        passo(2, 'Escolha <b>' + (Aparelho.ios ? 'Abrir no Safari' : 'Abrir no navegador') + '</b> (ou "Abrir no Chrome").') +
+        passo(3, 'Na página que abrir, toque de novo em <b>Instalar no meu celular</b>.') + '</ol>' +
+        '<button class="btn alt largo" data-acao="copiar-link">Copiar o endereço</button>';
+    } else if (Aparelho.ios) {
+      corpo = (Aparelho.outroIOS ? '<div class="aviso">No iPhone, a instalação é mais garantida pelo <b>Safari</b>. Se os passos abaixo não aparecerem aqui, copie o endereço e abra no Safari.</div>' : '') +
+        '<p>A Apple não permite instalar por um botão: são três toques no próprio navegador.</p><ol class="passos-inst">' +
+        passo(1, 'Toque em <b>Compartilhar</b> ' + ICONE_COMPARTILHAR + ' (na barra de baixo ou ao lado do endereço).') +
+        passo(2, 'Role a lista e toque em <b>Adicionar à Tela de Início</b> ' + ICONE_ADICIONAR + '.') +
+        passo(3, 'Toque em <b>Adicionar</b>, no canto de cima. O ícone aparece na tela inicial.') + '</ol>' +
+        (Aparelho.outroIOS ? '<button class="btn alt largo" data-acao="copiar-link">Copiar o endereço</button>' : '');
+    } else {
+      corpo = '<p>Este navegador não mostrou a instalação automática. Faça pelo menu:</p><ol class="passos-inst">' +
+        passo(1, 'Toque no menu ' + ICONE_MENU + ', no canto de cima da tela.') +
+        passo(2, 'Escolha <b>Instalar aplicativo</b> ou <b>Adicionar à tela inicial</b>.') +
+        passo(3, 'Confirme. O ícone aparece na tela inicial.') + '</ol>' +
+        '<p class="mudo">Se a opção não aparecer, abra este endereço no Chrome.</p>';
+    }
+    $camada.innerHTML = '<div class="tela" role="dialog" aria-modal="true" aria-labelledby="inst-t"><div class="in">' +
+      '<span class="selo">Instalar</span><h1 id="inst-t">Instalar no ' + (Aparelho.ios ? 'iPhone' : 'celular') + '</h1>' + corpo +
+      '<p class="mudo">Depois de instalado, o aplicativo abre pelo ícone e funciona sem internet. Seus registros continuam só neste aparelho.</p>' +
+      '<button class="btn largo" data-acao="fechar-ajuda">Entendi</button></div></div>';
+  }
 
   /* ================= sessão guiada ================= */
   function teto() {
@@ -1218,7 +1272,7 @@
       '<button class="btn largo" data-acao="pdf">Gerar o relatório em PDF</button></div>' +
       '<div class="cartao"><h2>Cópia de segurança (arquivo JSON)</h2><button class="btn alt largo" data-acao="exportar">Exportar a cópia</button>' +
       '<label class="campo" for="importar">Importar uma cópia (substitui os dados atuais)</label><input type="file" id="importar" accept="application/json,.json" data-acao-mudar="importar"></div>' +
-      '<div class="cartao"><h2>Instalar no celular</h2>' + (instalar ? '<button class="btn alt largo" data-acao="instalar">Instalar o aplicativo</button>' : '<p class="mudo">No Android, use o menu do navegador e escolha "Instalar aplicativo" ou "Adicionar à tela inicial". No iPhone, toque em Compartilhar e depois em "Adicionar à Tela de Início". Depois de aberto uma vez, o aplicativo funciona sem internet.</p>') + '</div>' +
+      cartaoInstalar(false) +
       '<div class="cartao"><h2>Apagar tudo</h2><p class="mudo">Remove todos os registros deste aparelho. Não pode ser desfeito.</p><button class="btn alt largo" data-acao="apagar-tudo">Apagar todos os dados</button></div>';
   };
   function exportar() {
@@ -1695,7 +1749,22 @@
   };
   ACOES.exportar = exportar;
   ACOES.importar = function (el) { if (el.files && el.files[0]) importar(el.files[0]); };
-  ACOES.instalar = function () { if (instalar) { instalar.prompt(); instalar = null; } };
+  ACOES.instalar = function () {
+    if (instalar && !Aparelho.embutido) {
+      var ev = instalar; instalar = null;
+      ev.prompt();
+      (ev.userChoice || Promise.resolve({})).then(function (r) { if (r.outcome !== 'accepted') { instalar = ev; } render(); });
+      return;
+    }
+    abrirInstrucoes();
+  };
+  ACOES['instalar-depois'] = function () { E.config.instalarDepois = hoje(); salvar(); render(); };
+  ACOES['copiar-link'] = function () {
+    var url = location.origin + '/mindfulness-app/';
+    var ok = function () { aviso('Endereço copiado: ' + url); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(ok, function () { prompt('Copie o endereço:', url); });
+    else prompt('Copie o endereço:', url);
+  };
   ACOES['apagar-tudo'] = function () {
     if (!confirm('Apagar todos os dados deste aparelho? Isso não pode ser desfeito.')) return;
     if (!confirm('Tem certeza? Se quiser guardar, exporte uma cópia antes.')) return;
@@ -1715,7 +1784,8 @@
     var el = ev.target;
     if (el.dataset && el.dataset.acaoMudar) { var fn = ACOES[el.dataset.acaoMudar]; if (fn) fn(el); }
   });
-  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); instalar = e; });
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); instalar = e; if (E && E.termo && !S) render(); });
+  window.addEventListener('appinstalled', function () { instalar = null; instalouAgora = true; fecharCamada(); if (E && !S) { render(); aviso('Aplicativo instalado. Abra pelo ícone na tela inicial.'); } });
 
   /* ================= início ================= */
   function carregarJSON(url) {

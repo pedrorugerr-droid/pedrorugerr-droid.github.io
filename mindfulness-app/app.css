@@ -136,3 +136,15 @@ nav.baixo svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:
 .oculto{display:none!important}
 @media(min-width:760px){main{padding-top:1.5rem}.escala{grid-template-columns:repeat(11,1fr)}}
 @media print{nav.baixo,header.topo,.botoes{display:none}}
+
+/* instalação */
+.cartao.instalar{border-color:var(--vermelho);border-width:1.5px}
+.instalar-linha{display:flex;gap:.8rem;align-items:center;margin-bottom:.8rem}
+.instalar-linha img{border-radius:12px;flex:0 0 48px}
+.instalar-linha small{display:block;color:var(--sub);font-size:.85rem;margin-top:.15rem}
+.link-discreto{display:block;margin:.6rem auto 0;background:none;border:0;color:var(--muted);font-size:.85rem;text-decoration:underline;cursor:pointer;padding:.3rem}
+.passos-inst{list-style:none;padding:0;margin:1rem 0}
+.passos-inst li{display:flex;gap:.8rem;align-items:flex-start;background:var(--papel);border:1px solid var(--borda);border-radius:12px;padding:.8rem;margin-bottom:.6rem}
+.passos-inst .num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700}
+.ic-inst{width:22px;height:22px;vertical-align:-5px;fill:none;stroke:#0A84FF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.passos-inst svg circle{fill:var(--texto);stroke:none}
