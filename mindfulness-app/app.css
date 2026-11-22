@@ -157,3 +157,24 @@ nav.baixo svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:
 .barra-safari .bs-menu{font-weight:800;letter-spacing:1px;border:2px solid var(--vermelho);border-radius:999px;padding:.05rem .55rem;background:#fff;animation:pulso 1.6s ease-in-out infinite}
 @keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(224,44,20,.45)}50%{box-shadow:0 0 0 7px rgba(224,44,20,0)}}
 @media (prefers-reduced-motion:reduce){.barra-safari .bs-menu{animation:none}}
+
+/* modo imersivo: tela escura e calma durante a prática */
+body.imersivo{background:#140004;transition:background .6s}
+body.imersivo header.topo{opacity:.35}
+body.imersivo .cartao.sessao{background:#1F0309;border-color:#3A0A14;color:#F3E6DC}
+body.imersivo .sessao .passo-nome,body.imersivo .sessao .tempo{color:#FFF8E7}
+body.imersivo .sessao .passo-texto{color:#F3E6DC}
+body.imersivo .sessao .mudo{color:#C9A9A0}
+body.imersivo .sessao .detalhe{background:rgba(255,248,231,.06);color:#E6D3CB}
+body.imersivo .trilha i{background:#4A1A22}
+body.imersivo .trilha i.feito{background:#C9A9A0}
+body.imersivo .btn.alt{background:transparent;color:#F3E6DC;border-color:#5A2A32}
+body.imersivo .btn.escuro{background:#FFF8E7;color:#1A0005}
+body.imersivo .controles .btn[data-acao="parar"]{background:transparent;color:#FF9A8A;border:1.5px solid #7A2A22}
+body.imersivo .escala button{background:transparent;color:#F3E6DC;border-color:#5A2A32}
+body.imersivo .escala button.sel{background:#FFF8E7;color:#1A0005}
+.dica-tela{margin:.4rem 0 .2rem;font-size:.8rem}
+@media (prefers-reduced-motion: reduce){body.imersivo{transition:none}html{scroll-behavior:auto}}
+details.opcional{border:1.5px solid var(--borda);border-radius:10px;padding:.7rem .9rem;margin:.8rem 0}
+details.opcional summary{cursor:pointer;font-weight:600;color:var(--bordo)}
+.questao.foco{outline:2px solid rgba(224,44,20,.35);outline-offset:4px;border-radius:8px}

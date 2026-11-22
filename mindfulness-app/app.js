@@ -88,7 +88,7 @@
       semana7: { dominios: {}, escolhidos: [], acao: '', criterios: [] },
       manutencao: { campos: {}, lembretes: ['07:00', '12:00', '18:30'] },
       blocoPendente: null, fase: 'inicio', fimPrograma: null,
-      config: { voz: false, som: true, somRitmo: false }
+      config: { voz: true, som: true, somRitmo: false, vozRevisada: true }
     };
   }
 
@@ -183,7 +183,9 @@
   };
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'visible' && S && S.rodando) Tela.manter();
+    if (document.visibilityState === 'hidden' && S && S.fase && S.fase !== 'antes') { guardarSessao(); salvar(); }
   });
+  window.addEventListener('pagehide', function () { if (S && S.fase && S.fase !== 'antes') { guardarSessao(); salvar(); } });
 
   /* ================= guia visual de respiração ================= */
   function padraoDe(id) { return P.semanas[1].padroes.lista.filter(function (x) { return x.id === id; })[0] || P.semanas[1].padroes.lista[1]; }
@@ -300,11 +302,61 @@
       if (Aparelho.ios && !instalado()) setTimeout(abrirInstrucoes, 0);
     }
     if (!E.termo) nome = 'termo';
-    if (S && S.fase && nome !== 'sessao') { pararTimer(); S = null; Tela.soltar(); Voz.calar(); }
+    if (S && S.fase && nome !== 'sessao') {
+      if (S.fase !== 'antes') {
+        /* saída acidental (botão voltar, menu): pausa e pergunta em vez de descartar a prática */
+        pausar(); guardarSessao(); salvar();
+        location.hash = 'sessao';
+        setTimeout(perguntarSaida, 0);
+        return;
+      }
+      pararTimer(); S = null; E.sessaoAtiva = null; Tela.soltar(); Voz.calar();
+    }
     var fn = ROTAS[nome] || ROTAS.inicio;
     $app.innerHTML = fn(arg) || '';
     desenharNav(nome);
+    document.body.classList.toggle('imersivo', !!(S && S.fase === 'rodando' && nome === 'sessao'));
     if (ROTAS[nome + '_depois']) ROTAS[nome + '_depois'](arg);
+    if (nome === 'sessao' && S && S.fase) { guardarSessao(); salvar(); }
+  }
+
+  /* ================= sessão em andamento: guardar, retomar, sair ================= */
+  function guardarSessao() {
+    if (!S || !S.fase || S.fase === 'antes' || S.salva) { E.sessaoAtiva = null; return; }
+    var c = {};
+    Object.keys(S).forEach(function (k) { if (k !== 'guia') c[k] = S[k]; });
+    c.rodando = false;
+    c.guardadaEm = agora();
+    E.sessaoAtiva = JSON.parse(JSON.stringify(c));
+  }
+  function restaurarSessao(paraFechamento) {
+    var c = E.sessaoAtiva;
+    if (!c) return;
+    S = JSON.parse(JSON.stringify(c));
+    S.rodando = false; S.guia = null;
+    if (paraFechamento) { S.encerramento = S.encerramento || 'manual'; S.fase = 'fechamento'; }
+    ir('sessao');
+  }
+  function cartaoSessaoInterrompida() {
+    var c = E.sessaoAtiva;
+    if (!c || S) return '';
+    var min = Math.max(0, Math.round((c.real || 0) / 60));
+    var hojeMesmo = (c.inicio || '').slice(0, 10) === hoje();
+    return '<div class="aviso"><b>Prática interrompida.</b> ' + h(c.ro && c.ro.titulo || 'Sessão') + ', ' + (hojeMesmo ? 'hoje' : 'em ' + h(R.dataBR(c.inicio))) + ', com cerca de ' + min + ' min feitos.' +
+      '<div class="botoes">' + (hojeMesmo ? '<button class="btn pequeno" data-acao="retomar-sessao">Continuar de onde parei</button>' : '') +
+      '<button class="btn pequeno alt" data-acao="registrar-interrompida">Registrar o que foi feito</button>' +
+      '<button class="btn pequeno alt" data-acao="descartar-interrompida">Descartar</button></div></div>';
+  }
+  function perguntarSaida() {
+    if (!S || !S.fase || S.fase === 'antes') return;
+    var emCurso = S.fase === 'rodando' || S.fase === 'condicao';
+    $camada.innerHTML = '<div class="tela" role="dialog" aria-modal="true" aria-labelledby="saida-t"><div class="in">' +
+      '<span class="selo">Prática em pausa</span><h1 id="saida-t">Quer sair da prática?</h1>' +
+      '<p>' + (emCurso ? 'A prática foi pausada. Nada foi perdido.' : 'O registro desta prática ainda não foi concluído.') + '</p>' +
+      '<div class="botoes" style="flex-direction:column;align-items:stretch">' +
+      '<button class="btn largo" data-acao="saida-continuar">' + (emCurso ? 'Continuar a prática' : 'Voltar ao registro') + '</button>' +
+      (emCurso ? '<button class="btn alt largo" data-acao="saida-registrar">Encerrar e registrar o tempo feito</button>' : '') +
+      (S.fase === 'ancora' ? '<button class="btn alt largo" data-acao="ancora-sair">Sair para o início</button>' : '<button class="link-discreto" data-acao="saida-descartar">Sair sem registrar</button>') + '</div></div></div>';
   }
   window.addEventListener('hashchange', function () { render(); topo(); });
 
@@ -319,7 +371,9 @@
       '<div class="aviso">Seus dados ficam só neste aparelho. O aplicativo não tem servidor, não pede cadastro e não envia nada pela internet. Para guardar uma cópia ou levar ao profissional, use a exportação e o relatório em PDF.</div>' +
       '<label class="marcar"><input type="checkbox" id="aceite"> <span>Li e estou ciente.</span></label>' +
       '<button class="btn largo" data-acao="aceitar-termo">Aceitar e continuar</button>' +
-      '<p class="mudo" style="margin-top:.8rem">' + h(t.instrucao) + ' <a href="/mindfulness-protocolo.html#termo">Ler o termo no manual</a>.</p></div>';
+      '<p class="mudo" style="margin-top:.8rem">' + h(t.instrucao) + ' <a href="/mindfulness-protocolo.html#termo">Ler o termo no manual</a>.</p></div>' +
+      '<div class="cartao"><h3>Já usava o aplicativo?</h3><p class="mudo">Se você trocou de celular, instalou o app agora ou começou pelo navegador, importe a cópia que você salvou.</p>' +
+      '<label class="campo" for="importar">Importar uma cópia</label><input type="file" id="importar" accept="application/json,.json" data-acao-mudar="importar"></div>';
   };
 
   /* ================= início ================= */
@@ -328,6 +382,8 @@
     R.bloqueios(E).forEach(function (a) { out += htmlAlerta(a); });
     var rest = R.alertasAtivos(E).filter(function (a) { return R.TIPOS_ALERTA[a.codigo] === 'restricao'; });
     rest.forEach(function (a) { out += htmlAlerta(a); });
+    out += cartaoSessaoInterrompida();
+    out += cartaoCopia();
     if (E.config.instalarDepois !== hoje()) out += cartaoInstalar(true);
     if (DB.memoria) out += '<div class="aviso">Este navegador não permitiu guardar dados (talvez esteja em janela anônima). O que você registrar se perde ao fechar. Exporte uma cópia antes de sair.</div>';
 
@@ -371,9 +427,18 @@
     return out;
   };
 
+  function cartaoCopia() {
+    if (!E.sessoes.length || E.config.copiaAdiada === hoje()) return '';
+    var ult = E.config.ultimaCopia;
+    if (ult && R.diasEntre(ult, hoje()) < 7) return '';
+    return '<div class="aviso"><b>Guarde uma cópia dos seus registros.</b> Eles ficam só neste aparelho e podem sumir se o navegador limpar os dados ou se você trocar de celular. ' +
+      (ult ? 'A última cópia foi em ' + h(R.dataBR(ult)) + '.' : 'Você ainda não fez nenhuma cópia.') +
+      ' Salve o arquivo no Google Drive, no iCloud ou mande para você mesmo por e-mail.' +
+      '<div class="botoes"><button class="btn pequeno" data-acao="exportar">Fazer a cópia agora</button><button class="btn pequeno alt" data-acao="copia-depois">Depois</button></div></div>';
+  }
   function inicioManutencao() {
     var m = E.manutencao.campos || {};
-    var out = '<div class="cartao escuro"><span class="selo">Programa concluído em ' + h(R.dataBR(E.fimPrograma)) + '</span><h1>Manutenção</h1><p class="mudo">Ramo ' + h(R.ramoNome(P, E.ramo)) + '.</p></div>';
+    var out = cartaoSessaoInterrompida() + cartaoCopia() + '<div class="cartao escuro"><span class="selo">Programa concluído em ' + h(R.dataBR(E.fimPrograma)) + '</span><h1>Manutenção</h1><p class="mudo">Ramo ' + h(R.ramoNome(P, E.ramo)) + '.</p></div>';
     var dias = R.diasSemPratica(E), rr = P.semanas[7].regra_retomada;
     if (dias !== null && dias > rr.dias_parada) {
       out += '<div class="aviso"><b>Regra de retomada.</b> ' + h(rr.texto) + '<div class="botoes"><button class="btn pequeno" data-acao="livre" data-min="' + rr.dose_min + '" data-rotulo="' + h(m.pratica_diaria || 'A prática que você mais usava') + '">Retomar com ' + rr.dose_min + ' min</button><button class="btn pequeno alt" data-acao="roteiro-semana" data-s="1">Recomeçar pela âncora externa</button></div></div>';
@@ -422,7 +487,7 @@
     var out = '<div class="cartao"><span class="selo">Autotriagem · passo ' + (rs.passo + 1) + ' de ' + PASSOS_TRIAGEM.length + '</span>' + prog;
     if (passo === 'intro') {
       out += '<h1>Autotriagem e escolha do ramo</h1><p>' + h(P.triagem.instrucao) + '</p>' +
-        '<p>São seis questionários e algumas perguntas. Leva cerca de 15 minutos. As respostas ficam só neste aparelho.</p>' +
+        '<p>São quatro questionários, um passo opcional e algumas perguntas sobre agora. Leva cerca de 15 minutos. Você pode parar e continuar depois: as respostas ficam salvas só neste aparelho.</p>' +
         '<div class="aviso">' + h(P.ajuda.texto) + '</div>' + nav(true, 'Começar');
     } else if (I.instrumentos[passo] && I.instrumentos[passo].livre) {
       var q = I.instrumentos[passo];
@@ -433,7 +498,10 @@
       if (!(passo === 'PCL5' && resp.pularPCL5)) out += questionario(passo, resp[passo]);
       out += '<p class="mudo" id="faltam"></p>' + nav(true);
     } else if (passo === 'licenciados') {
-      out += '<h1>Questionários com direitos autorais e ACE</h1>';
+      var temValor = ['DES2', 'ASRS_A', 'ACE'].some(function (k) { return resp[k] !== null && resp[k] !== undefined; });
+      out += '<h1>Questionários feitos com um profissional</h1>' +
+        '<div class="ok">Este passo é opcional. Se você não fez a DES-II, a ASRS ou o ACE com um profissional, toque em <b>Continuar</b>.</div>' +
+        '<details class="opcional"' + (temValor ? ' open' : '') + '><summary>Tenho essas pontuações e quero informar</summary>';
       ['DES2', 'ASRS_A'].forEach(function (k) {
         var q = I.instrumentos[k];
         out += '<h3>' + h(q.nome) + '</h3><p class="mudo">' + h(q.descricao) + '</p><p>' + h(q.orientacao) + '</p>' +
@@ -442,7 +510,7 @@
       var ace = I.instrumentos.ACE;
       out += '<h3>' + h(ace.nome) + ' (opcional)</h3><p>' + h(P.triagem.ace) + '</p><p class="mudo">' + h(ace.orientacao) + '</p>' +
         '<label class="campo" for="in-ACE">' + h(ace.entrada.rotulo) + '</label><input type="number" inputmode="numeric" min="0" max="10" id="in-ACE" value="' + (resp.ACE === null ? '' : resp.ACE) + '">' +
-        '<p class="mudo">' + h(P.triagem.apoio_profissional) + '</p>' + nav(true);
+        '<p class="mudo">' + h(P.triagem.apoio_profissional) + '</p></details>' + nav(true);
     } else if (passo === 'perguntas') {
       out += '<h1>Algumas perguntas sobre agora</h1><p class="mudo">Responda pelo que acontece atualmente.</p>';
       var ids = ['psicose_mania', 'trauma_recente', 'substancias', 'panico_diario', 'dissociacao_intensa', 'tept_complexo', 'sintomas_fisicos', 'panico_mes', 'desconforto_corpo', 'atencao_3min'];
@@ -480,11 +548,17 @@
       out += '<p class="mudo">' + h(P.triagem.passo2.combinacao) + ' Você pode acrescentar um ramo especial, mas não retirar um ramo indicado pela triagem.</p>' +
         '<label class="marcar"><input type="checkbox" id="r-trauma"' + (r.trauma ? ' checked' : '') + (res.ramo.trauma ? ' disabled' : '') + '> <span>TRAUMA-INFORMADO: ' + h(P.ramos.TRAUMA.adaptacoes) + '</span></label>' +
         '<label class="marcar"><input type="checkbox" id="r-estendida"' + (r.estendida ? ' checked' : '') + (res.ramo.estendida ? ' disabled' : '') + '> <span>ATENÇÃO ESTENDIDA: ' + h(P.ramos.ESTENDIDA.adaptacoes) + '</span></label>' +
-        '<h2>Desfecho principal</h2><p>' + h(P.avaliacao.desfecho) + '</p>' +
-        '<select id="desfecho"><option value="GAD7"' + (E.desfecho === 'GAD7' ? ' selected' : '') + '>GAD-7 (ansiedade)</option><option value="PHQ9"' + (E.desfecho === 'PHQ9' ? ' selected' : '') + '>PHQ-9 (depressão)</option></select>' +
+        '<h2>O que você quer acompanhar</h2><p>' + h(P.avaliacao.desfecho) + '</p>' +
+        '<p class="mudo">Sugestão pelas suas respostas: <b>' + (desfechoSugerido(t) === 'PHQ9' ? 'PHQ-9 (depressão)' : 'GAD-7 (ansiedade)') + '</b>. Troque se a sua queixa principal for a outra.</p>' +
+        '<select id="desfecho"><option value="GAD7"' + ((E.desfecho || desfechoSugerido(t)) === 'GAD7' ? ' selected' : '') + '>GAD-7 (ansiedade)</option><option value="PHQ9"' + ((E.desfecho || desfechoSugerido(t)) === 'PHQ9' ? ' selected' : '') + '>PHQ-9 (depressão)</option></select>' +
         '<div class="botoes"><button class="btn alt" data-acao="triagem-voltar">Voltar</button><button class="btn" data-acao="salvar-triagem">Salvar a triagem</button></div>';
     }
     return out;
+  }
+  /* sugere o desfecho pela gravidade relativa: proporção do escore máximo de cada escala */
+  function desfechoSugerido(t) {
+    var g = typeof t.GAD7 === 'number' ? t.GAD7 / 21 : 0, d = typeof t.PHQ9 === 'number' ? t.PHQ9 / 27 : 0;
+    return d > g ? 'PHQ9' : 'GAD7';
   }
   function resumoTriagem() {
     var tr = E.triagem;
@@ -543,6 +617,7 @@
   function cartaoInstalar(compacto) {
     if (!mostrarInstalar()) return compacto ? '' : '<div class="cartao"><h2>Instalar no celular</h2><div class="ok">' + (instalado() || instalouAgora ? 'O aplicativo já está instalado neste aparelho.' : 'Abra este endereço no navegador do celular para instalar.') + '</div></div>';
     return '<div class="cartao instalar"><div class="instalar-linha"><img src="icones/icone-192.png" alt="" width="48" height="48"><div><b>Instale no seu celular</b><small>Ícone na tela inicial, abre em tela cheia e funciona sem internet.</small></div></div>' +
+      (Aparelho.ios && !instalado() ? '<p class="mudo" style="margin:.2rem 0 .6rem">No iPhone, o app instalado não enxerga o que foi feito no Safari. Instale antes de começar. Se já começou, faça uma cópia em Mais › Dados e importe no app instalado.</p>' : '') +
       '<button class="btn largo" data-acao="instalar">Instalar no meu celular</button>' +
       (compacto ? '<button class="link-discreto" data-acao="instalar-depois">Agora não</button>' : '') + '</div>';
   }
@@ -606,7 +681,7 @@
     var op = { semana: p.semana, dia: dia, padrao: o.padrao || (E.ramo && E.ramo.trauma ? '4-6' : '4-6'), curta: !!o.curta, ancora: o.ancora, escolha: o.escolha };
     var ro = R.montarRoteiro(P, E, op);
     var sem = semana(p.semana), mh = R.minutosHoje(E), t = teto();
-    var out = '<div class="cartao escuro"><span class="selo">' + h(nomeSemanaPrograma(idx)) + ' · dia ' + dia + '</span><h1>' + h(ro.titulo) + '</h1>' +
+    var out = cartaoSessaoInterrompida() + '<div class="cartao escuro"><span class="selo">' + h(nomeSemanaPrograma(idx)) + ' · dia ' + dia + '</span><h1>' + h(ro.titulo) + '</h1>' +
       '<p class="mudo">' + h(sem.titulo) + ' · ' + Math.round(ro.total_s / 60) + ' min · ramo ' + h(R.ramoNome(P, E.ramo)) + '</p></div>';
     ro.avisos.forEach(function (a) { out += '<div class="aviso">' + h(a) + '</div>'; });
     if (mh >= t) out += '<div class="alerta"><h3>Teto de hoje atingido</h3><p>Hoje você já praticou ' + Math.round(mh) + ' min. O teto desta semana é ' + t + ' min por dia: ' + h(P.dose.texto.split('. ')[1]) + '.</p></div>';
@@ -640,7 +715,7 @@
     out += '<h3>Como fazer</h3><label class="marcar"><input type="checkbox" id="op-blocos"' + (est || o.blocos ? ' checked' : '') + '> <span>' + (est ? 'Ramo ATENÇÃO ESTENDIDA: prática em blocos de 5 min, 3 vezes ao dia.' : h(P.dose.blocos.texto)) + '</span></label>' +
       (est ? '' : '<select id="op-bloco-min">' + [5, 6, 7, 8].map(function (n) { return '<option' + ((o.blocoMin || 5) === n ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select><p class="mudo">Minutos por bloco.</p>') +
       '<label class="marcar"><input type="checkbox" id="op-som"' + (E.config.som ? ' checked' : '') + '> <span>Aviso sonoro suave na troca de passo</span></label>' +
-      (Voz.disponivel ? '<label class="marcar"><input type="checkbox" id="op-voz"' + (E.config.voz ? ' checked' : '') + '> <span>Ler cada passo em voz alta</span></label>' : '') +
+      (Voz.disponivel ? '<label class="marcar"><input type="checkbox" id="op-voz"' + (E.config.voz ? ' checked' : '') + '> <span>Ler cada passo em voz alta (recomendado para praticar de olhos fechados)</span></label>' : '') +
       '<h3>Passos</h3><ol class="lista">' + ro.passos.map(function (x) { return '<li><b>' + h(x.nome) + '</b> (' + R.mmss(x.duracao_s) + ')</li>'; }).join('') + '</ol>' +
       (ro.aviso ? '<p class="mudo">' + h(ro.aviso) + '</p>' : '') +
       '<button class="btn largo" data-acao="comecar-sessao"' + (mh >= t ? ' disabled' : '') + '>Começar</button></div>';
@@ -701,8 +776,10 @@
     timer = setInterval(tique, 250);
   }
   function pausar() { S.rodando = false; if (timer) clearInterval(timer); timer = null; Voz.calar(); }
+  var ultimaGuarda = 0;
   function tique() {
     if (!S || !S.rodando) return;
+    if (Date.now() - ultimaGuarda > 10000) { ultimaGuarda = Date.now(); guardarSessao(); salvar(); }
     var t = Date.now(), dt = (t - S.ultimo) / 1000 * VEL; S.ultimo = t;
     var p = S.ro.passos[S.passo];
     var antes = S.decorrido;
@@ -792,6 +869,7 @@
         '<p class="passo-texto">' + h(textoPasso(p)) + '</p>' +
         (p.detalhe ? '<div class="detalhe">' + h(p.detalhe) + '</div>' : '') + painel +
         (ro.notas.length && S.passo === 0 ? '<div class="detalhe">' + ro.notas.map(h).join('<br>') + '</div>' : '') +
+        (S.passo === 0 ? '<p class="mudo dica-tela">Deixe o aplicativo aberto: se o celular bloquear a tela, o guia, a voz e o sino param. ' + (E.config.voz ? 'A voz lê cada passo, então você pode fechar os olhos.' : 'Ligue a leitura em voz alta para praticar de olhos fechados.') + '</p>' : '') +
         '<div class="controles"><button class="btn escuro" data-acao="pausar">' + (S.rodando ? 'Pausar' : 'Continuar') + '</button>' +
         '<button class="btn alt" data-acao="proximo-passo">Próximo passo</button>' +
         '<button class="btn alt" data-acao="nota-agora">Nota agora' + (S.notas.length ? ' (' + S.notas[S.notas.length - 1].v + ')' : '') + '</button>' +
@@ -801,13 +879,15 @@
         '<button class="opcao" data-acao="parar-motivo" data-m="estranheza">Estranheza de si ou do ambiente</button>' +
         '<button class="opcao" data-acao="parar-motivo" data-m="lembrancas">Lembranças traumáticas invasivas</button>' +
         '<button class="opcao" data-acao="parar-motivo" data-m="panico">Ataque de pânico ligado à respiração</button>' +
-        '<button class="opcao" data-acao="parar-motivo" data-m="manual">Outro motivo: só quero parar agora</button></div></div></div>';
+        '<button class="opcao" data-acao="parar-motivo" data-m="manual">Outro motivo: só quero parar agora</button></div>' +
+        '<button class="btn alt largo" style="margin-top:.6rem" data-acao="parar">Voltar à prática</button></div></div>';
     }
     if (S.fase === 'fimbloco') {
       return '<div class="cartao"><span class="selo">Bloco ' + (S.blocoN + 1) + ' concluído</span><h1>Pausa entre blocos</h1>' +
         '<p>' + h(E.ramo && E.ramo.estendida ? P.ramos.ESTENDIDA.adaptacoes.split('; ')[1] : P.dose.blocos.texto) + '. A próxima parte continua de onde você parou.</p>' +
         escala('depois', S.depois, 'Nota de desconforto agora (depois)') + escala('pico', S.picoInformado !== null ? S.picoInformado : picoSugerido(), 'Pico durante a prática') + ancorasEscala() +
-        '<button class="btn largo" data-acao="salvar-bloco"' + (S.depois === null ? ' disabled' : '') + '>Salvar este bloco</button></div>';
+        '<button class="btn largo" data-acao="salvar-bloco"' + (S.depois === null ? ' disabled' : '') + '>Salvar este bloco</button>' +
+        '<button class="link-discreto" style="display:block;margin:.8rem auto 0" data-acao="saida-descartar">Sair sem salvar</button></div>';
     }
     if (S.fase === 'fechamento') {
       var sem = ro.semanaRoteiro ? semana(ro.semanaRoteiro) : null, reg = sem ? sem.registro : null;
@@ -820,7 +900,9 @@
         out += '<h2>' + h(reg.nome) + '</h2>' + (reg.instrucao ? '<p class="mudo">' + h(reg.instrucao) + '</p>' : '') + '<p class="mudo">Tempo e notas de desconforto entram no registro automaticamente.</p>' + formRegistro(reg, prefillRegistro(reg), 'f', true);
       }
       if (ro.semanaRoteiro === 7 && !S.livre) out += '<label class="campo" for="acao-semana">Ação comprometida da semana</label><input type="text" id="acao-semana" value="' + h(E.semana7.acao) + '">';
-      out += '<button class="btn largo" data-acao="concluir-sessao"' + (S.depois === null ? ' disabled' : '') + '>Concluir a sessão</button></div>';
+      out += '<button class="btn largo" data-acao="concluir-sessao"' + (S.depois === null ? ' disabled' : '') + '>Concluir a sessão</button>' +
+        (S.encerramento === 'manual' && posicao() < ro.total_s - 1 ? '<button class="btn alt largo" style="margin-top:.6rem" data-acao="voltar-pratica">Voltar à prática</button>' : '') +
+        '<button class="link-discreto" style="display:block;margin:.8rem auto 0" data-acao="saida-descartar">Sair sem registrar</button></div>';
       return out;
     }
     if (S.fase === 'ancora') return telaAncora();
@@ -856,6 +938,7 @@
       '<p>Olhe ao redor e nomeie, em silêncio, alguns objetos que você vê. Sinta os pés no chão. Ouça os sons do ambiente.</p>' +
       escala('ancora', S.notaAncora === undefined ? null : S.notaAncora, 'Nota de desconforto agora') + ancorasEscala() +
       '<button class="btn largo" data-acao="encerrar-ancora"' + (S.notaAncora === undefined || S.notaAncora === null ? ' disabled' : '') + '>A nota baixou: encerrar</button>' +
+      '<button class="btn alt largo" style="margin-top:.6rem" data-acao="ancora-sair">Sair para o início</button>' +
       '<p class="mudo" style="margin-top:.8rem">Se o desconforto não baixar ou se surgirem pensamentos de morte: <a href="#" data-acao="ajuda">contatos de ajuda</a>.</p></div>';
   }
 
@@ -898,7 +981,7 @@
     E.registros.push({ id: uid(), data: agora(), semana: S.ro.semanaRoteiro, passagem: S.passagem, dia: S.dia, sessao: reg.id, campos: campos });
   }
   function depoisDeSalvar(reg) {
-    S = null; pararTimer(); Tela.soltar(); Voz.calar();
+    S = null; E.sessaoAtiva = null; pararTimer(); Tela.soltar(); Voz.calar();
     var idx = reg.passagem, p = idx >= 0 ? E.passagens[idx] : null;
     if (p && (reg.encerramento === 'pico' || reg.encerramento === 'subida') && R.paradasPorNota(E, idx) >= R.limiteDuasParadas(P) && !p.sugeridoDuas) {
       p.sugeridoDuas = true;
@@ -1299,7 +1382,11 @@
   };
   function exportar() {
     var nome = 'mindfulness-ibe-copia-' + hoje() + '.json';
+    E.config.ultimaCopia = hoje();
+    salvar();
     baixar(nome, JSON.stringify(E, null, 2), 'application/json');
+    if (location.hash === '' || location.hash === '#inicio') render();
+    aviso('Cópia gerada. Guarde o arquivo fora do celular (Drive, iCloud ou e-mail).');
   }
   function importar(arquivo) {
     var fr = new FileReader();
@@ -1428,6 +1515,7 @@
   ACOES['aceitar-termo'] = function () {
     if (!document.getElementById('aceite').checked) { alert('Marque "Li e estou ciente" para continuar.'); return; }
     E.termo = { aceito: true, data: agora(), versao: P.versao_protocolo };
+    pedirPersistencia();
     salvar(); ir('inicio');
   };
   ACOES['triagem-avancar'] = function () {
@@ -1458,7 +1546,25 @@
     }
     salvar();
     faltam(); faltamMed();
+    if (!$camada.innerHTML) proximaQuestao(el);
   };
+  /* depois de responder, rola até a próxima pergunta sem resposta */
+  function proximaQuestao(el) {
+    var atual = el.closest('.questao');
+    if (!atual) return;
+    var todas = Array.prototype.slice.call(document.querySelectorAll('.questao'));
+    var i = todas.indexOf(atual), prox = null;
+    for (var j = i + 1; j < todas.length; j++) if (!todas[j].querySelector('.opcao.sel')) { prox = todas[j]; break; }
+    todas.forEach(function (q) { q.classList.remove('foco'); });
+    var reduzir = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function () {
+      if (prox) { prox.classList.add('foco'); prox.scrollIntoView({ behavior: reduzir ? 'auto' : 'smooth', block: 'center' }); }
+      else {
+        var b = document.querySelector('[data-acao="triagem-avancar"],[data-acao="salvar-medida"],[data-acao="concluir-medidas"]');
+        if (b) b.scrollIntoView({ behavior: reduzir ? 'auto' : 'smooth', block: 'center' });
+      }
+    }, 180);
+  }
   function faltamMed() {
     var el = document.getElementById('faltam-med');
     if (!el) return;
@@ -1471,6 +1577,7 @@
     if (S && id === 'sustentou') { S.sustentou = v; }
     else { rascunho().respostas.perguntas[id] = v; salvar(); }
     document.querySelectorAll('[data-acao="simnao"][data-id="' + id + '"]').forEach(function (b) { b.classList.toggle('sel', b === el); });
+    if (!S) proximaQuestao(el);
     var bt = document.querySelector('[data-acao="triagem-avancar"]');
     if (bt && !S) {
       var all = Array.prototype.every.call(document.querySelectorAll('.questao'), function (qq) { return qq.querySelector('.opcao.sel'); });
@@ -1546,7 +1653,22 @@
     var ro = R.montarRoteiro(P, E, { semana: s, dia: 7, padrao: '4-6', passagemIdx: E.fase === 'manutencao' ? -1 : idxPassagem(), escolha: s === 8 ? P.semanas[7].roteiros.PADRAO.passos[1].escolha[0] : undefined });
     iniciarSessao(ro, { semana: s, dia: 7, padrao: '4-6', ancora: s === 1 ? 'som' : undefined }, { passagem: E.fase === 'manutencao' ? -1 : idxPassagem(), semBlocos: true });
   };
-  ACOES['cancelar-sessao'] = function () { S = null; pararTimer(); ir('sessao'); };
+  ACOES['cancelar-sessao'] = function () { S = null; E.sessaoAtiva = null; salvar(); pararTimer(); ir('sessao'); };
+  ACOES['saida-continuar'] = function () { fecharCamada(); render(); };
+  ACOES['saida-registrar'] = function () { fecharCamada(); pausar(); S.encerramento = S.encerramento || 'manual'; if (S.fase === 'rodando' || S.fase === 'condicao' || S.fase === 'fimbloco') S.fase = 'fechamento'; render(); topo(); };
+  ACOES['saida-descartar'] = function () { fecharCamada(); pararTimer(); S = null; E.sessaoAtiva = null; Tela.soltar(); Voz.calar(); salvar(); ir('inicio'); };
+  ACOES['retomar-sessao'] = function () { restaurarSessao(false); };
+  ACOES['voltar-pratica'] = function () { S.encerramento = null; S.depois = null; S.fase = 'rodando'; render(); topo(); };
+  /* sai da tela da regra de parada sem nota: a sessão é registrada com o motivo, para não perder o alerta de segurança */
+  ACOES['ancora-sair'] = function () {
+    fecharCamada();
+    if (S.salva) { depoisDeSalvar(S.salva); return; }
+    var reg = gravarSessao(false);
+    E.blocoPendente = null;
+    depoisDeSalvar(reg);
+  };
+  ACOES['registrar-interrompida'] = function () { restaurarSessao(true); };
+  ACOES['descartar-interrompida'] = function () { E.sessaoAtiva = null; salvar(); render(); };
   ACOES.nota = function (el) {
     var nome = el.dataset.nome, v = +el.dataset.v;
     var marcar = function () { document.querySelectorAll('[data-escala="' + nome + '"] button').forEach(function (b) { b.classList.toggle('sel', b === el); }); };
@@ -1582,7 +1704,7 @@
     Voz.falar(p.nome + '. ' + textoPasso(p));
   };
   ACOES.pausar = function () {
-    if (S.rodando) pausar(); else rodar();
+    if (S.rodando) pausar(); else { Audio.garantir(); rodar(); }
     render();
   };
   ACOES['proximo-passo'] = function () {
@@ -1770,6 +1892,7 @@
     catch (e) { alert('Não foi possível gerar o PDF: ' + e.message); }
   };
   ACOES.exportar = exportar;
+  ACOES['copia-depois'] = function () { E.config.copiaAdiada = hoje(); salvar(); render(); };
   ACOES.importar = function (el) { if (el.files && el.files[0]) importar(el.files[0]); };
   ACOES.instalar = function () {
     if (instalar && !Aparelho.embutido) {
@@ -1809,6 +1932,15 @@
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); instalar = e; if (E && E.termo && !S) render(); });
   window.addEventListener('appinstalled', function () { instalar = null; instalouAgora = true; fecharCamada(); if (E && !S) { render(); aviso('Aplicativo instalado. Abra pelo ícone na tela inicial.'); } });
 
+  /* pede ao navegador que não apague os dados por falta de espaço ou desuso */
+  function pedirPersistencia() {
+    try {
+      if (navigator.storage && navigator.storage.persist) {
+        navigator.storage.persisted().then(function (ja) { if (!ja) return navigator.storage.persist(); }).catch(function () { });
+      }
+    } catch (e) { }
+  }
+
   /* ================= início ================= */
   function carregarJSON(url) {
     return fetch(url, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(url); return r.json(); });
@@ -1820,6 +1952,8 @@
     E = salvo || estadoNovo();
     var base = estadoNovo();
     Object.keys(base).forEach(function (k) { if (E[k] === undefined) E[k] = base[k]; });
+    if (!E.config.vozRevisada) { E.config.voz = true; E.config.vozRevisada = true; salvar(); }
+    if (E.termo) pedirPersistencia();
     render();
   }).catch(function (e) {
     $app.innerHTML = '<div class="cartao"><h1>Não foi possível abrir o aplicativo</h1><p>Abra esta página uma vez com internet para que ela funcione depois sem conexão.</p><p class="mudo">' + h(e.message) + '</p></div>';
