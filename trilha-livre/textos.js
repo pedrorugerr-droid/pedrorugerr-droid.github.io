@@ -32,6 +32,13 @@ export const POLITICA = {
       ],
     },
     {
+      titulo: "Sugestões de melhoria",
+      paragrafos: [
+        "A tela Sugestões de melhoria monta uma mensagem que você mesmo envia, pelo WhatsApp, e-mail ou outro app seu, para quem desenvolve o app. Nada é enviado sem você tocar em enviar. A mensagem leva só o que você escreveu, o que marcou e a versão do app.",
+        "Se você usar o botão Falar, a fala vira texto pelo serviço de voz do seu navegador (Google ou Apple), pelas regras desse serviço. O microfone do teclado do celular é outra opção.",
+      ],
+    },
+    {
       titulo: "Pagamento",
       paragrafos: ["[A definir com o modelo de cobrança.] Se houver assinatura, ela é feita pela loja de aplicativos (Apple ou Google), que trata os dados de pagamento pelas regras dela. O app só recebe da loja se a assinatura está ativa."],
     },
