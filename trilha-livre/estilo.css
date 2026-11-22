@@ -44,3 +44,9 @@ details.registro dl { margin: 8px 0; }
 details.registro dt { font-weight: 600; margin-top: 6px; }
 details.registro dd { margin: 0 0 4px; white-space: pre-line; }
 details.modulo > summary { color: var(--texto); }
+
+/* Sugestões de melhoria */
+.pilha { display: grid; gap: 8px; }
+.pilha > .botao { text-align: center; }
+button.voz[aria-pressed="true"] { background: var(--ajuda); border-color: var(--ajuda); color: #fff; }
+#sug-texto { width: 100%; }

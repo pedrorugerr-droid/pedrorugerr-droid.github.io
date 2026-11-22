@@ -6,9 +6,10 @@
 //   registros/<id>     { id, tipo, id_estavel, data, em, campos }
 //   hierarquias/<id_estavel>  { itens: [{ id, texto, nota, feito }] }
 //   plano/principal    plano de segurança preenchido pela própria pessoa
+//   sugestoes/rascunho e sugestoes/s-<id>  sugestões de melhoria (a pessoa envia por conta própria)
 
 import { abrirArmazem } from "./comum/armazem.js";
-import { avaliarTriagem, dataLocal, limparPlano, ordenarHierarquia, VERSAO_TERMO } from "./logica.js";
+import { avaliarTriagem, dataLocal, limparPlano, limparSugestao, ordenarHierarquia, VERSAO_TERMO } from "./logica.js";
 
 let contador = 0;
 const novoId = () =>
@@ -81,6 +82,23 @@ export async function abrirEstado(backend) {
       const p = { ...limparPlano(entrada), atualizado_em: agora.toISOString() };
       await a.gravar("plano", "principal", p);
       return p;
+    },
+    async rascunhoSugestao() {
+      return (await a.ler("sugestoes", "rascunho")) ?? limparSugestao({});
+    },
+    async salvarRascunhoSugestao(s) {
+      await a.gravar("sugestoes", "rascunho", limparSugestao(s));
+    },
+    /** A pessoa mandou pelo app dela: guarda a cópia e limpa o rascunho. */
+    async guardarSugestao(s, agora = new Date()) {
+      const id = `s-${novoId()}`;
+      const v = { id, em: agora.toISOString(), ...limparSugestao(s) };
+      await a.gravar("sugestoes", id, v);
+      await a.remover("sugestoes", "rascunho");
+      return v;
+    },
+    async sugestoes() {
+      return (await valores("sugestoes")).filter((v) => v.id?.startsWith("s-"));
     },
     /** Apagar tudo dentro do app: valores, chave mestra e licença. */
     async apagarTudo() {

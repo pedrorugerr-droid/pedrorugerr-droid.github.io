@@ -9,6 +9,7 @@ import { aviso, campo, chips, cronometro, escala, h, textoRico } from "./comum/t
 import { FORMULARIOS, formularioDaPratica, limparRegistro, medidaDaPratica } from "./paciente/web/logica.js";
 import { abrirEstado } from "./estado.js";
 import { cartaoInstalar } from "./instalar.js";
+import { telaSugestoes } from "./sugestoes.js";
 import { estadoLicenca, lerLicenca, MODELO, pode } from "./licenca.js";
 import {
   AVISO_FIXO,
@@ -80,9 +81,15 @@ const ROTAS = {
   plano: telaPlano,
   ajustes: telaAjustes,
   texto: telaTexto,
+  sugestoes: () => telaSugestoes({ E, versao: `app ${VERSAO_TERMO}, conteúdo ${C.versao_conteudo}`, limpezas }),
 };
-/** Abrem sem entrada concluída: Ajuda agora e os textos legais estão sempre a um toque. */
-const PUBLICAS = new Set(["entrada", "ajuda", "texto", "plano"]);
+/** Abrem sem entrada concluída: Ajuda agora, os textos legais e as sugestões estão sempre a um toque. */
+const PUBLICAS = new Set(["entrada", "ajuda", "texto", "plano", "sugestoes"]);
+const linkSugestoes = () =>
+  h("div", { class: "cartao" },
+    h("h2", {}, "Sugestões de melhoria"),
+    h("p", {}, "Versão de teste: conte o que achou, escrevendo ou falando."),
+    h("a", { href: "#sugestoes", class: "botao sec largo" }, "Dar uma sugestão"));
 
 function etapaPendente() {
   if (!cfg?.consentimento || cfg.consentimento.versao_termo !== VERSAO_TERMO) return "entrada";
@@ -156,6 +163,7 @@ async function telaEntrada() {
             },
           }, "Continuar"))
       : null,
+    h("p", { class: "nota" }, h("a", { href: "#sugestoes" }, "Sugestões de melhoria")),
   );
 }
 
@@ -223,6 +231,7 @@ async function telaInicio() {
       h("p", {}, res.naSemana ? `Você fez ${res.naSemana} prática${res.naSemana > 1 ? "s" : ""} nos últimos sete dias.` : "Nenhuma prática nos últimos sete dias. Uma curta já conta."),
       h("div", { class: "fila" }, h("a", { href: "#plano", class: "botao sec" }, planoVazio(await E.plano()) ? "Montar meu plano de segurança" : "Meu plano de segurança"))),
     avisosDaTriagem(),
+    linkSugestoes(),
     cartaoInstalar(),
     h("p", { class: "nota" }, AVISO_FIXO),
   );
@@ -573,6 +582,7 @@ async function telaAjustes() {
         h("a", { href: "#texto/privacidade", class: "botao sec" }, "Política de privacidade"),
         h("a", { href: "#texto/termo", class: "botao sec" }, "Termo de uso")),
       h("p", { class: "nota" }, `Conteúdo ${C.versao_conteudo}, ${C.praticas.length} práticas. Termo aceito em ${formatarData(dataLocal(new Date(cfg.consentimento.em)))}.`)),
+    linkSugestoes(),
     cartaoInstalar(),
     h("div", { class: "cartao" },
       h("h2", {}, "Assinatura"),

@@ -16,7 +16,7 @@ export const DIAS_TESTE = 7;
 const DIA = 86400000;
 
 /** Recursos que nunca dependem de licença. */
-export const SEMPRE_LIVRE = new Set(["ajuda", "plano", "triagem", "texto", "ajustes", "entrada", "registros", "progresso"]);
+export const SEMPRE_LIVRE = new Set(["ajuda", "plano", "triagem", "texto", "ajustes", "entrada", "registros", "progresso", "sugestoes"]);
 
 export const provedorAvaliacao = {
   nome: "avaliacao",

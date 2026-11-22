@@ -339,3 +339,39 @@ export function resumoProgresso(feitas, hoje = dataLocal()) {
 }
 
 export { dataLocal };
+
+// ---------- Sugestões de melhoria ----------
+// Ficam no aparelho até a própria pessoa enviar pelo WhatsApp, e-mail ou outro
+// app dela (compartilhar). O app não envia nada sozinho.
+
+export const SUGESTAO_TIPOS = ["Ideia de melhoria", "Algo não funcionou", "Texto difícil de entender", "Gostei disto", "Outro"];
+export const SUGESTAO_LUGARES = ["Entrada e triagem", "Início e busca", "Prática guiada", "Registros", "Progresso", "Ajuda agora e plano", "Instalar no celular", "O app todo"];
+export const SUGESTAO_MAX = 3000;
+export const AVISO_SUGESTAO = "Escreva sobre o app, não sobre a sua saúde: o que você mandar vai para quem desenvolve o app, não para um profissional. Não coloque nome, telefone ou detalhes pessoais.";
+
+/** Sugestão limpa: só os campos conhecidos, texto cortado no limite. */
+export function limparSugestao(s = {}) {
+  const tipo = SUGESTAO_TIPOS.includes(s.tipo) ? s.tipo : null;
+  const onde = Array.isArray(s.onde) ? s.onde.filter((x) => SUGESTAO_LUGARES.includes(x)) : [];
+  const nota = typeof s.nota === "number" && s.nota >= 0 && s.nota <= 10 ? Math.round(s.nota) : null;
+  const texto = String(s.texto ?? "").replace(/\r\n?/g, "\n").trim().slice(0, SUGESTAO_MAX);
+  return { tipo, onde, nota, texto };
+}
+
+export const sugestaoVazia = (s) => {
+  const l = limparSugestao(s);
+  return !l.texto && !l.tipo && !l.onde.length && l.nota == null;
+};
+
+/** Mensagem pronta para a pessoa mandar. Sem dado do aparelho além da versão do app. */
+export function textoSugestao(s, { versao = "", data = "" } = {}) {
+  const l = limparSugestao(s);
+  return [
+    "Sugestão para o Trilha Psicológica Livre",
+    l.tipo ? `Tipo: ${l.tipo}` : null,
+    l.onde.length ? `Onde: ${l.onde.join(", ")}` : null,
+    l.nota != null ? `Nota para o app (0 a 10): ${l.nota}` : null,
+    l.texto ? `\n${l.texto}` : null,
+    `\n(versão ${versao || "?"}${data ? `, ${data}` : ""})`,
+  ].filter((x) => x != null).join("\n");
+}
