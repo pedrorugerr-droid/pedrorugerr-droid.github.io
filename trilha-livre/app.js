@@ -656,6 +656,9 @@ async function iniciar() {
     aviso("Este navegador não deixa guardar dados. Nada ficará salvo ao fechar.", 6000);
   }
   cfg = await E.config();
+  // Pede ao navegador para não apagar os dados sozinho quando faltar espaço
+  // (no app instalado o Chrome concede sem perguntar).
+  navigator.storage?.persist?.().catch(() => {});
   licenca = await lerLicenca(E.armazem);
   window.addEventListener("hashchange", rotear);
   rotear();
