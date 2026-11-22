@@ -7,7 +7,7 @@
 //   hierarquias/<id_estavel>  { itens: [{ id, texto, nota, feito }] }
 //   plano/principal    plano de segurança preenchido pela própria pessoa
 
-import { abrirArmazem } from "../../comum/armazem.js";
+import { abrirArmazem } from "./comum/armazem.js";
 import { avaliarTriagem, dataLocal, limparPlano, ordenarHierarquia, VERSAO_TERMO } from "./logica.js";
 
 let contador = 0;

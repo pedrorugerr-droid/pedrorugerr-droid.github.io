@@ -3,10 +3,10 @@
 // (armazém cifrado de comum/armazem.js), peças de tela em comum/telas.js.
 // Nenhum texto do usuário entra por innerHTML: tudo por textContent.
 
-import { backendIndexedDb, backendMemoria, backendSqlite } from "../../comum/armazem.js";
-import { importarPrivada } from "../../comum/pacote.js";
-import { aviso, campo, chips, cronometro, escala, h, textoRico } from "../../comum/telas.js";
-import { FORMULARIOS, formularioDaPratica, limparRegistro, medidaDaPratica } from "../../paciente/web/logica.js";
+import { backendIndexedDb, backendMemoria, backendSqlite } from "./comum/armazem.js";
+import { importarPrivada } from "./comum/pacote.js";
+import { aviso, campo, chips, cronometro, escala, h, textoRico } from "./comum/telas.js";
+import { FORMULARIOS, formularioDaPratica, limparRegistro, medidaDaPratica } from "./paciente/web/logica.js";
 import { abrirEstado } from "./estado.js";
 import { cartaoInstalar } from "./instalar.js";
 import { estadoLicenca, lerLicenca, MODELO, pode } from "./licenca.js";

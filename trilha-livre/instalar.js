@@ -4,7 +4,7 @@
 // iPhone e no iPad, que não têm esse pedido, mostra o caminho pelo Safari.
 // Dentro do app das lojas (Capacitor) ou já instalado, não aparece.
 
-import { h } from "../../comum/telas.js";
+import { h } from "./comum/telas.js";
 
 let pedido = null;
 let instalado = false;

@@ -9,7 +9,7 @@
 // O que vem do app do paciente (formulários de registro, medida de 0 a 10,
 // datas) é reaproveitado de paciente/web/logica.js, sem cópia.
 
-import { dataLocal, somarDias, ultimosDias, diaDaSemana } from "../../paciente/web/logica.js";
+import { dataLocal, somarDias, ultimosDias, diaDaSemana } from "./paciente/web/logica.js";
 
 export const VERSAO_TERMO = "2026-11-22-livre";
 export const IDADE_MINIMA = 18;
