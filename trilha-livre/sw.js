@@ -1,6 +1,6 @@
 // Service worker: app livre inteiro offline. Lista e versão vêm do build (construir.js).
 // Só guarda os arquivos do próprio app. O app livre não fala com nenhum servidor.
-const VERSAO = "trilha-livre-dc13e2de678f";
+const VERSAO = "trilha-livre-cfada493d422";
 const ARQUIVOS = [
  "./",
  "app.js",
@@ -37,7 +37,14 @@ const ARQUIVOS = [
 ];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(VERSAO).then((c) => c.addAll(ARQUIVOS)).then(() => self.skipWaiting()));
+  // cache "reload": busca no servidor, nunca a cópia do navegador (o site guarda
+  // cópias por alguns minutos e a versão nova misturaria arquivos velhos).
+  e.waitUntil(
+    caches
+      .open(VERSAO)
+      .then((c) => c.addAll(ARQUIVOS.map((u) => new Request(u, { cache: "reload" }))))
+      .then(() => self.skipWaiting()),
+  );
 });
 
 self.addEventListener("activate", (e) => {

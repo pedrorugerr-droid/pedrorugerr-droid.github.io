@@ -50,3 +50,7 @@ details.modulo > summary { color: var(--texto); }
 .pilha > .botao { text-align: center; }
 button.voz[aria-pressed="true"] { background: var(--ajuda); border-color: var(--ajuda); color: #fff; }
 #sug-texto { width: 100%; }
+
+/* Aviso de versão nova (app instalado) */
+.atualizacao { position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: 30; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #2E4A8C; color: #fff; box-shadow: 0 4px 16px rgba(0, 0, 0, .2); }
+.atualizacao button { background: #fff; color: #2E4A8C; border-color: #fff; }

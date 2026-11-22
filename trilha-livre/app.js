@@ -620,8 +620,28 @@ async function escolherBackend() {
   return backendIndexedDb({ nome: "trilha-livre" });
 }
 
+/**
+ * App instalado: quando sai versão nova no site, o service worker baixa em
+ * segundo plano e avisa aqui. A pessoa toca em Atualizar (ou abre de novo) e
+ * passa à versão nova; os dados no aparelho continuam.
+ */
+function vigiarAtualizacao() {
+  const sw = navigator.serviceWorker;
+  const tinha = Boolean(sw.controller);
+  sw.addEventListener("controllerchange", () => {
+    if (!tinha || document.querySelector(".atualizacao")) return;
+    document.body.append(
+      h("div", { class: "atualizacao", role: "status" },
+        h("span", {}, "Versão nova do app pronta."),
+        h("button", { type: "button", onclick: () => location.reload() }, "Atualizar agora")));
+  });
+  sw.register("sw.js")
+    .then((r) => document.addEventListener("visibilitychange", () => document.visibilityState === "visible" && r.update().catch(() => {})))
+    .catch(() => {});
+}
+
 async function iniciar() {
-  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(() => {});
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) vigiarAtualizacao();
   try {
     const publico = await (await fetch("dados/publico.json")).json();
     C = { ...conteudoElegivel(publico), versao_conteudo: publico.versao_conteudo };
