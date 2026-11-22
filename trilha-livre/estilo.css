@@ -1,0 +1,46 @@
+/* Trilha Psicológica Livre. Mesma base da família Trilha (base.css, que é o
+   estilo do app do paciente), com identidade própria: azul no lugar do verde,
+   selo "Livre" e faixa fixa de aviso. O laranja da ajuda é o mesmo nos três apps. */
+:root {
+  --fundo: #F4F5FA;
+  --verde: #2E4A8C;
+  --verde-claro: #E2E8F6;
+  --borda: #D7DCEA;
+}
+.selo-livre {
+  display: inline-block; margin-left: 4px; padding: 2px 8px; border-radius: 999px;
+  background: var(--verde); color: #FFFFFF; font-size: .75rem; font-weight: 700; letter-spacing: .04em; vertical-align: 2px;
+}
+.faixa-aviso {
+  margin: 0; padding: 6px 16px; font-size: .85rem; text-align: center;
+  background: var(--ajuda-claro); color: var(--texto); border-bottom: 1px solid #F1C9B0;
+}
+.faixa-aviso a { color: var(--ajuda); font-weight: 700; }
+.barra { grid-template-columns: repeat(5, 1fr); }
+.barra a { font-size: .74rem; }
+fieldset { margin: 0 0 14px; }
+legend { font-weight: 700; padding: 0 4px; }
+.busca label { margin-top: 0; }
+.busca .fila input { flex: 3 1 12rem; }
+input[type=search] {
+  width: 100%; min-height: var(--toque); padding: 10px 12px;
+  font: 400 1rem/1.4 "Inter", system-ui, sans-serif; color: var(--texto);
+  background: var(--cartao); border: 2px solid var(--borda); border-radius: 10px;
+}
+.objetivos { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+a.chip { display: inline-flex; align-items: center; text-decoration: none; }
+a.chip.objetivo { border-color: var(--verde-claro); background: var(--verde-claro); color: var(--verde); }
+ol.triagem { list-style: none; }
+.pergunta { padding: 8px 0 12px; border-bottom: 1px solid var(--borda); }
+.pergunta:last-child { border-bottom: none; }
+.pergunta p { font-weight: 600; margin-bottom: 8px; }
+.guiado .passo-atual { font: 500 1.25rem/1.45 "Space Grotesk", "Inter", sans-serif; min-height: 4.5em; }
+.contatos-fixos .ligar:last-child { margin-bottom: 0; }
+.cartao.alerta h2 { color: var(--ajuda); }
+.hierarquia .item { flex-wrap: wrap; }
+.hierarquia .fila { flex: 0 0 auto; }
+details.registro { display: block; }
+details.registro dl { margin: 8px 0; }
+details.registro dt { font-weight: 600; margin-top: 6px; }
+details.registro dd { margin: 0 0 4px; white-space: pre-line; }
+details.modulo > summary { color: var(--texto); }

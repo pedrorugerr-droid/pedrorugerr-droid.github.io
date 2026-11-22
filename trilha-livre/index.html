@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2E4A8C">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trilha Livre">
+<link rel="apple-touch-icon" href="icone-180.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Trilha Psicológica Livre</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="estilo.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="pular" href="#tela">Ir para o conteúdo</a>
+<header class="topo">
+  <span class="marca">Trilha Psicológica <span class="selo-livre">Livre</span></span>
+  <span class="topo-acoes" id="topo-acoes"></span>
+</header>
+<p class="faixa-aviso" role="note">Não substitui atendimento e não é serviço de emergência. Em perigo: <a href="tel:188">188 (CVV)</a> ou <a href="tel:192">192 (SAMU)</a>.</p>
+<main id="tela" tabindex="-1"><p class="carregando">Abrindo...</p></main>
+<div id="aviso" class="aviso-rapido" role="status" aria-live="polite" hidden></div>
+<nav class="barra" id="barra" aria-label="Navegação principal" hidden>
+  <a href="#inicio" data-rota="inicio"><span aria-hidden="true" class="ico">◐</span>Início</a>
+  <a href="#praticas" data-rota="praticas"><span aria-hidden="true" class="ico">☰</span>Práticas</a>
+  <a href="#registros" data-rota="registros"><span aria-hidden="true" class="ico">✎</span>Registros</a>
+  <a href="#progresso" data-rota="progresso"><span aria-hidden="true" class="ico">▤</span>Progresso</a>
+  <a href="#ajuda" data-rota="ajuda" class="ajuda"><span aria-hidden="true" class="ico">✚</span>Ajuda agora</a>
+</nav>
+<noscript><p>O app precisa de JavaScript. Em perigo, ligue 188 (CVV) ou 192 (SAMU).</p></noscript>
+</body>
+</html>
