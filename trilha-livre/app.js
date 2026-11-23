@@ -23,6 +23,8 @@ import {
   buscar,
   conteudoElegivel,
   dataLocal,
+  linkWhatsApp,
+  textoProgresso,
   destinoAposTriagem,
   ehExposicao,
   filtrarPorTriagem,
@@ -497,11 +499,27 @@ async function telaProgresso() {
         ? h("p", {}, `${r.pares === 1 ? "Na prática" : `Nas ${r.pares} práticas`} com as duas notas, o mal-estar médio foi de ${r.mediaAntes} antes para ${r.mediaDepois} depois.`)
         : h("p", { class: "secundario" }, "Dê a nota de 0 a 10 antes e depois de uma prática para ver a diferença aqui."),
       r.pares && r.mediaDepois > r.mediaAntes ? h("p", { class: "caixa-ajuda cartao" }, "Na média, o mal-estar subiu depois das práticas. Vale procurar um profissional para escolher outro caminho.") : null),
+    r.total ? cartaoEnviarProgresso(r) : null,
     recentes.length
       ? h("section", { class: "cartao" }, h("h2", {}, "Últimas práticas"),
           h("ul", {}, recentes.map((f) => h("li", {}, `${formatarData(f.data)}: ${porId.get(f.id_estavel)?.titulo ?? "prática"}${typeof f.antes === "number" ? `, ${f.antes}` : ""}${typeof f.depois === "number" ? ` para ${f.depois}` : ""}`))))
       : null,
   );
+}
+
+/** Enviar o resumo (só números) a quem desenvolve o app, pela mão da própria pessoa. */
+function cartaoEnviarProgresso(r) {
+  const texto = textoProgresso(r, { versao: `app ${VERSAO_TERMO}, conteúdo ${C.versao_conteudo}`, data: dataLocal() });
+  const whatsapp = h("a", { class: "botao largo", target: "_blank", rel: "noopener noreferrer", href: linkWhatsApp(texto) }, "Enviar pelo WhatsApp");
+  const outro = navigator.share
+    ? h("button", { type: "button", class: "sec largo", onclick: async () => { try { await navigator.share({ title: "Meu progresso no Trilha Psicológica Livre", text: texto }); } catch {} } }, "Enviar por outro app")
+    : null;
+  return h("section", { class: "cartao" },
+    h("h2", {}, "Enviar meu progresso"),
+    h("p", {}, "Se quiser, mande este resumo para o Pedro Rüger, psicólogo que desenvolve o app. Ajuda a saber se as práticas estão servindo. Vão só os números abaixo; nenhum registro, plano ou resposta sua."),
+    h("pre", { class: "resumo-envio" }, texto),
+    h("div", { class: "pilha" }, whatsapp, outro),
+    h("p", { class: "nota" }, "Não é um canal de atendimento. Em perigo, ligue 188 (CVV) ou 192 (SAMU)."));
 }
 
 // ---------- Ajuda agora ----------

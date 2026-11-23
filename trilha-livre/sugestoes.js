@@ -9,7 +9,7 @@
 // teclado, que funciona em qualquer celular.
 
 import { aviso, chips, escala, h } from "./comum/telas.js";
-import { AVISO_SUGESTAO, SUGESTAO_LUGARES, SUGESTAO_MAX, SUGESTAO_TIPOS, dataLocal, limparSugestao, textoSugestao } from "./logica.js";
+import { AVISO_SUGESTAO, SUGESTAO_LUGARES, SUGESTAO_MAX, SUGESTAO_TIPOS, dataLocal, limparSugestao, linkWhatsApp, resumoProgresso, textoProgresso, textoSugestao } from "./logica.js";
 
 const Reconhecedor = () => globalThis.SpeechRecognition ?? globalThis.webkitSpeechRecognition ?? null;
 
@@ -83,7 +83,11 @@ export async function telaSugestoes({ E, versao, limpezas }) {
 
   const area = h("textarea", { id: "sug-texto", rows: 6, maxlength: SUGESTAO_MAX, oninput: salvar, placeholder: "O que poderia ser melhor? O que atrapalhou? O que você gostou?" }, s.texto ?? "");
   const erro = h("p", { class: "erro", role: "alert" });
-  const mensagem = () => textoSugestao(atual(), { versao, data: dataLocal() });
+  const resumo = resumoProgresso(await E.feitas());
+  const comProgresso = h("input", { type: "checkbox", id: "sug-progresso" });
+  const mensagem = () =>
+    textoSugestao(atual(), { versao, data: dataLocal() }) +
+    (comProgresso.checked && resumo.total ? `\n\n${textoProgresso(resumo, { titulo: false })}` : "");
   const pronto = () => {
     const l = atual();
     if (!l.texto && !l.tipo && l.nota == null) {
@@ -108,7 +112,7 @@ export async function telaSugestoes({ E, versao, limpezas }) {
   const whatsapp = h("a", { class: "botao largo", target: "_blank", rel: "noopener noreferrer", href: "#sugestoes" }, "Enviar pelo WhatsApp");
   whatsapp.addEventListener("click", (e) => {
     if (!pronto()) return e.preventDefault();
-    whatsapp.href = `https://wa.me/?text=${encodeURIComponent(mensagem())}`;
+    whatsapp.href = linkWhatsApp(mensagem());
     setTimeout(depois, 300);
   });
   const compartilhar = navigator.share
@@ -129,7 +133,7 @@ export async function telaSugestoes({ E, versao, limpezas }) {
       if (!pronto()) return;
       try {
         await navigator.clipboard.writeText(mensagem());
-        aviso("Texto copiado. Cole na conversa com quem te mandou o app.");
+        aviso("Texto copiado. Cole na conversa com o Pedro.");
       } catch {
         aviso("Não deu para copiar. Use Enviar pelo WhatsApp.");
       }
@@ -156,7 +160,10 @@ export async function telaSugestoes({ E, versao, limpezas }) {
     h("div", { class: "cartao" }, nota),
     erro,
     h("div", { class: "cartao" },
-      h("p", {}, "Quando terminar, mande para quem te passou o app. Nada sai do aparelho sem você enviar."),
+      resumo.total
+        ? h("label", { class: "marcar", for: "sug-progresso" }, comProgresso, " Incluir o resumo do meu progresso (só números: quantas práticas e a média das notas)")
+        : null,
+      h("p", {}, "Quando terminar, toque em enviar: a mensagem abre na conversa com o Pedro Rüger, psicólogo que desenvolve o app. Nada sai do aparelho sem você enviar."),
       h("div", { class: "pilha" }, whatsapp, compartilhar, copiar)),
     enviadas ? h("p", { class: "nota" }, `Você já mandou ${enviadas === 1 ? "1 sugestão" : `${enviadas} sugestões`} daqui. Obrigado!`) : null,
   );

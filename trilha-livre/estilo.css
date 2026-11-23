@@ -54,3 +54,6 @@ button.voz[aria-pressed="true"] { background: var(--ajuda); border-color: var(--
 /* Aviso de versão nova (app instalado) */
 .atualizacao { position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: 30; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #2E4A8C; color: #fff; box-shadow: 0 4px 16px rgba(0, 0, 0, .2); }
 .atualizacao button { background: #fff; color: #2E4A8C; border-color: #fff; }
+pre.resumo-envio { white-space: pre-wrap; font: inherit; font-size: .92rem; margin: 8px 0 12px; padding: 10px 12px; border-radius: 10px; background: rgba(46, 74, 140, .07); }
+label.marcar { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 10px; }
+label.marcar input { margin-top: 3px; flex: none; }

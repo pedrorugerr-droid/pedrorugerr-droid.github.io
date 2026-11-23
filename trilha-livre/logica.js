@@ -340,6 +340,28 @@ export function resumoProgresso(feitas, hoje = dataLocal()) {
 
 export { dataLocal };
 
+// ---------- Enviar o progresso a quem desenvolve o app ----------
+// Só números (quantas práticas, médias das notas). Nenhum texto de registro,
+// plano de segurança ou resposta da triagem entra na mensagem.
+
+/** Contato de quem desenvolve o app (o mesmo que aparece no site). */
+export const CONTATO_WHATSAPP = "5531999846282";
+
+/** Endereço do WhatsApp com a mensagem pronta para o desenvolvedor. */
+export const linkWhatsApp = (texto) => `https://wa.me/${CONTATO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
+
+/** Mensagem com o resumo do progresso, sem nenhum texto escrito pela pessoa. */
+export function textoProgresso(r, { versao = "", data = "", titulo = true } = {}) {
+  return [
+    titulo ? "Meu progresso no Trilha Psicológica Livre" : "Resumo do meu progresso:",
+    `Práticas nos últimos sete dias: ${r.naSemana}`,
+    `Práticas no total: ${r.total}`,
+    r.diasSeguidos > 1 ? `Dias seguidos: ${r.diasSeguidos}` : null,
+    r.pares ? `Mal-estar médio (0 a 10) em ${r.pares} ${r.pares === 1 ? "prática" : "práticas"} com as duas notas: ${r.mediaAntes} antes, ${r.mediaDepois} depois` : null,
+    titulo ? `\n(versão ${versao || "?"}${data ? `, ${data}` : ""})` : null,
+  ].filter((x) => x != null).join("\n");
+}
+
 // ---------- Sugestões de melhoria ----------
 // Ficam no aparelho até a própria pessoa enviar pelo WhatsApp, e-mail ou outro
 // app dela (compartilhar). O app não envia nada sozinho.
