@@ -90,7 +90,7 @@ const PUBLICAS = new Set(["entrada", "ajuda", "texto", "plano", "sugestoes"]);
 const linkSugestoes = () =>
   h("div", { class: "cartao" },
     h("h2", {}, "Sugestões de melhoria"),
-    h("p", {}, "Versão de teste: conte o que achou, escrevendo ou falando."),
+    h("p", {}, "Conte o que achou, escrevendo ou falando. Sua sugestão ajuda a melhorar o app."),
     h("a", { href: "#sugestoes", class: "botao sec largo" }, "Dar uma sugestão"));
 
 function etapaPendente() {

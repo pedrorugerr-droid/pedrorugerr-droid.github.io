@@ -11,7 +11,7 @@
 
 import { dataLocal, somarDias, ultimosDias, diaDaSemana } from "./paciente/web/logica.js";
 
-export const VERSAO_TERMO = "2026-11-22-livre";
+export const VERSAO_TERMO = "2026-11-23-livre";
 export const IDADE_MINIMA = 18;
 /** Depois de quantos dias o app pede para refazer a triagem. */
 export const DIAS_TRIAGEM = 30;

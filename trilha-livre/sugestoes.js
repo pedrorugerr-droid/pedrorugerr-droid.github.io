@@ -150,7 +150,7 @@ export async function telaSugestoes({ E, versao, limpezas }) {
 
   return h("div", {},
     h("h1", {}, "Sugestões de melhoria"),
-    h("p", {}, "Esta é uma versão de teste. Conte o que achou: o que ajudou, o que atrapalhou, o que faltou. Pode escrever ou falar."),
+    h("p", {}, "Conte o que achou: o que ajudou, o que atrapalhou, o que faltou. Pode escrever ou falar."),
     h("div", { class: "cartao caixa-ajuda", role: "note" }, AVISO_SUGESTAO),
     h("div", { class: "cartao" }, tipo, onde),
     h("div", { class: "cartao" },

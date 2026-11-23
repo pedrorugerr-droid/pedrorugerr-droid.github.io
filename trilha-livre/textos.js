@@ -1,10 +1,10 @@
-// Textos legais do Trilha Psicológica Livre. RASCUNHO para revisão jurídica do
-// Pedro (ver app/livre/LOJA.md). Linguagem simples, de propósito.
-// Campos entre colchetes ficam para o Pedro preencher antes de publicar.
+// Textos legais do Trilha Psicológica Livre, versão publicada em 2026-11-23.
+// Linguagem simples, de propósito. Ao mudar o texto, mudar também VERSAO_TERMO
+// (logica.js) para que o app peça o aceite de novo.
 
 export const POLITICA = {
   titulo: "Política de privacidade",
-  versao: "2026-11-22-livre (rascunho)",
+  versao: "2026-11-23-livre",
   secoes: [
     {
       titulo: "Em poucas palavras",
@@ -15,7 +15,7 @@ export const POLITICA = {
     },
     {
       titulo: "Quem é responsável",
-      paragrafos: ["Controlador do app: [nome ou razão social, CNPJ ou CPF, endereço]. Contato para privacidade: [e-mail do encarregado]."],
+      paragrafos: ["Controlador do app: Pedro Andrade Rüger, psicólogo (CRP 04/63435), Belo Horizonte, Minas Gerais. Contato para privacidade e para exercer os seus direitos: pedro.rugerr@gmail.com.", "Como o app não recebe nem guarda nenhum dado seu fora do seu aparelho, o controlador não tem acesso ao que você registra."],
     },
     {
       titulo: "Que dados o app trata",
@@ -40,7 +40,7 @@ export const POLITICA = {
     },
     {
       titulo: "Pagamento",
-      paragrafos: ["[A definir com o modelo de cobrança.] Se houver assinatura, ela é feita pela loja de aplicativos (Apple ou Google), que trata os dados de pagamento pelas regras dela. O app só recebe da loja se a assinatura está ativa."],
+      paragrafos: ["O app é gratuito e não pede nenhum dado de pagamento.", "Se um dia houver uma versão paga, ela será feita pela loja de aplicativos (Apple ou Google), que trata os dados de pagamento pelas regras dela, e este texto será atualizado antes, com novo pedido de aceite."],
     },
     {
       titulo: "Seus direitos",
@@ -62,7 +62,7 @@ export const POLITICA = {
 
 export const TERMO = {
   titulo: "Termo de uso",
-  versao: "2026-11-22-livre (rascunho)",
+  versao: "2026-11-23-livre",
   secoes: [
     {
       titulo: "O que é o app",
@@ -97,19 +97,19 @@ export const TERMO = {
     },
     {
       titulo: "Conteúdo",
-      paragrafos: ["Os textos das práticas são de [autor e titular dos direitos] e estão protegidos por direito autoral. São para o seu uso pessoal."],
+      paragrafos: ["Os textos das práticas são de Pedro Andrade Rüger, psicólogo (CRP 04/63435), baseados em técnicas da terapia cognitivo-comportamental e da terapia de aceitação e compromisso descritas na literatura científica. Estão protegidos por direito autoral (Lei 9.610/1998) e são para o seu uso pessoal. Para usar em outro contexto, como aulas, grupos ou publicações, peça autorização pelo e-mail abaixo."],
     },
     {
-      titulo: "Assinatura",
-      paragrafos: ["[A definir com o modelo de cobrança: preço, período de teste, renovação e cancelamento pela loja.] A Ajuda agora, o plano de segurança e o apagar dados nunca dependem de pagamento."],
+      titulo: "Gratuidade",
+      paragrafos: ["O app é gratuito. Se um dia houver uma versão paga, preço, período de teste, renovação e cancelamento serão informados antes, e você poderá aceitar ou não. A Ajuda agora, o plano de segurança e o apagar dados nunca vão depender de pagamento."],
     },
     {
       titulo: "Responsabilidade",
-      paragrafos: ["O desenvolvedor mantém o app funcionando com cuidado e revisa o conteúdo, mas o uso é por sua conta e não cria relação de atendimento. [Cláusulas de limitação a revisar pelo jurídico, respeitado o Código de Defesa do Consumidor.]"],
+      paragrafos: ["O conteúdo é revisado com cuidado e o app é mantido funcionando, mas usar o app não cria relação de atendimento psicológico: ninguém acompanha, avalia ou orienta o seu caso por aqui.", "As práticas são de autoajuda. Os resultados variam de pessoa para pessoa e nenhum resultado é prometido. Se os sintomas continuarem, piorarem ou atrapalharem a sua vida, procure um psicólogo ou médico.", "Nada neste termo afasta os direitos que você tem pelo Código de Defesa do Consumidor."],
     },
     {
       titulo: "Foro e contato",
-      paragrafos: ["Vale a lei brasileira. Contato: [e-mail]. Foro: [comarca], sem prejuízo do foro do consumidor."],
+      paragrafos: ["Vale a lei brasileira. Contato: pedro.rugerr@gmail.com. Foro: comarca de Belo Horizonte (MG), sem prejuízo do direito do consumidor de buscar o foro do seu domicílio."],
     },
   ],
 };
