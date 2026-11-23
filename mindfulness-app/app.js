@@ -8,6 +8,7 @@
   var $app = document.getElementById('app');
   var $nav = document.getElementById('nav');
   var $camada = document.getElementById('camada');
+  var ACOES = {};      // ações dos botões (data-acao)
   var TMP = {};        // estado temporário de telas (não persistido)
   var S = null;        // sessão em andamento
   var instalar = null; // evento de instalação
@@ -236,7 +237,7 @@
     for (var i = 0; i <= 10; i++) o += '<option' + (valor === i ? ' selected' : '') + '>' + i + '</option>';
     return '<select id="' + id + '">' + o + '</select>';
   }
-  function questionario(id, resp) {
+  function questionario(id, resp, dif) {
     var q = I.instrumentos[id];
     var out = '<p class="enun">' + h(q.enunciado) + '</p>';
     q.itens.forEach(function (txt, i) {
@@ -247,7 +248,18 @@
       });
       out += '</div></div>';
     });
+    if (q.funcional) {
+      out += '<div class="questao"><p class="enun">' + h(q.funcional.pergunta) + '</p><p class="mudo">Esta pergunta faz parte do ' + h(q.nome) + ', mas não entra na pontuação.</p><div class="opcoes">';
+      q.funcional.opcoes.forEach(function (txt, v) {
+        out += '<button type="button" class="opcao' + (dif === v ? ' sel' : '') + '" data-acao="funcional" data-q="' + id + '" data-v="' + v + '">' + h(txt) + '</button>';
+      });
+      out += '</div></div>';
+    }
     return out;
+  }
+  function difTexto(v) {
+    var f = I.instrumentos.PHQ9.funcional;
+    return typeof v === 'number' && f.opcoes[v] ? f.opcoes[v].toLowerCase() : '';
   }
   function simNao(id, valor) {
     return '<div class="opcoes" style="grid-template-columns:1fr 1fr">' +
@@ -389,7 +401,9 @@
 
     if (!E.triagem) {
       return out + '<div class="cartao escuro"><span class="selo">Antes da Semana 1</span><h1>Bem-vindo(a) ao programa de 8 semanas</h1>' +
-        '<p>' + h(P.visao_geral) + '</p></div>' +
+        '<p>Você treina a atenção um passo por semana: começa pelos sons e objetos à sua volta, passa pela respiração e pelo corpo e chega aos pensamentos e emoções difíceis, sem brigar com eles. O aplicativo guia cada prática com voz e cronômetro e guarda o seu progresso.</p>' +
+        '<ol class="lista"><li>Responda a autotriagem (cerca de 15 minutos, dá para parar e continuar depois).</li><li>Receba a versão do programa mais segura para você.</li><li>Pratique alguns minutos por dia e registre como foi.</li></ol>' +
+        '<details class="opcional"><summary>Ver o que cada semana treina</summary><p>' + h(P.visao_geral) + '</p></details></div>' +
         '<div class="cartao"><h2>Comece pela autotriagem</h2><p>' + h(P.triagem.instrucao) + '</p>' +
         '<a class="btn largo" href="#triagem">Fazer a autotriagem</a></div>' +
         '<div class="cartao"><h3>Situações em que o manual não deve ser iniciado por conta própria</h3>' + listaTextos(P.limites.nao_iniciar_sozinho) + '<p>' + h(P.limites.prioridade) + '</p></div>';
@@ -495,7 +509,7 @@
       if (passo === 'PCL5') {
         out += '<div class="aviso">' + h(q.aviso) + '</div><label class="marcar"><input type="checkbox" data-acao="pular-pcl5"' + (resp.pularPCL5 ? ' checked' : '') + '> <span>Prefiro pular a PCL-5 e responder com o profissional.</span></label>';
       }
-      if (!(passo === 'PCL5' && resp.pularPCL5)) out += questionario(passo, resp[passo]);
+      if (!(passo === 'PCL5' && resp.pularPCL5)) out += questionario(passo, resp[passo], resp[passo + '_dif']);
       out += '<p class="mudo" id="faltam"></p>' + nav(true);
     } else if (passo === 'licenciados') {
       var temValor = ['DES2', 'ASRS_A', 'ACE'].some(function (k) { return resp[k] !== null && resp[k] !== undefined; });
@@ -532,6 +546,7 @@
       out += '<tr><td>' + k[1] + '</td><td>' + (v === null ? '<span class="mudo">não respondido</span>' : v + (k[0] === 'PHQ9' || k[0] === 'GAD7' ? ' (' + h(R.faixa(P, k[0], v)) + ')' : '')) + '</td></tr>';
     });
     out += '</table>';
+    if (difTexto(resp.PHQ9_dif)) out += '<p class="mudo">Dificuldade que esses problemas causam no dia a dia (pergunta final do PHQ-9): ' + h(difTexto(resp.PHQ9_dif)) + '.</p>';
     out += '<h2>' + h(P.triagem.passo1.titulo) + '</h2>';
     if (res.alertas.length) {
       P.triagem.passo1.sinais.forEach(function (s) {
@@ -1144,7 +1159,7 @@
       out += '<h2>' + h(P.seguranca.checagem.titulo) + '</h2>' + formChecagem(c.efeitos) +
         '<div class="botoes"><button class="btn alt" data-acao="concluir-passo" data-p="0">Voltar</button><button class="btn" data-acao="concluir-checagem" data-medir="' + (medir ? 1 : 0) + '">' + (medir ? 'Continuar para GAD-7 e PHQ-9' : 'Concluir a semana') + '</button></div>';
     } else if (c.passo === 2) {
-      out += '<p>' + h(P.avaliacao.quando) + '</p><h2>GAD-7</h2>' + questionario('GAD7', c.resp.GAD7) + '<h2>PHQ-9</h2>' + questionario('PHQ9', c.resp.PHQ9) +
+      out += '<p>' + h(P.avaliacao.quando) + '</p><h2>GAD-7</h2>' + questionario('GAD7', c.resp.GAD7) + '<h2>PHQ-9</h2>' + questionario('PHQ9', c.resp.PHQ9, c.resp.PHQ9_dif) +
         '<p class="mudo" id="faltam-med"></p><div class="botoes"><button class="btn" data-acao="concluir-medidas">Concluir a semana</button></div>';
     }
     return out + '</div>';
@@ -1160,7 +1175,7 @@
     if (av.pausar) { criarAlerta('efeito', 'Efeitos que atrapalharam: ' + av.atrapalhou.join('; ') + '. ' + cap(P.seguranca.checagem.regras[0].texto)); }
     if (c.medir) {
       var med = { id: uid(), data: agora(), momento: 'semana' + p.semana, passagem: idx,
-        GAD7: { itens: c.resp.GAD7, total: R.soma(c.resp.GAD7) }, PHQ9: { itens: c.resp.PHQ9, total: R.soma(c.resp.PHQ9) } };
+        GAD7: { itens: c.resp.GAD7, total: R.soma(c.resp.GAD7) }, PHQ9: { itens: c.resp.PHQ9, total: R.soma(c.resp.PHQ9), dif: c.resp.PHQ9_dif } };
       E.medidas.push(med);
       if (R.item9(c.resp.PHQ9)) { criarAlerta('ideacao', regraParada('ideacao').sinal + ': ' + regraParada('ideacao').acao + '.'); msgs.push('ajuda'); }
       var piora = R.pioraConfiavel(P, E, med);
@@ -1180,7 +1195,7 @@
   /* ================= medidas e resultados ================= */
   ROTAS.medida = function () {
     var c = TMP.medida || (TMP.medida = { GAD7: Array(7).fill(null), PHQ9: Array(9).fill(null) });
-    return '<div class="cartao"><span class="selo">Acompanhamento</span><h1>GAD-7 e PHQ-9</h1><h2>GAD-7</h2>' + questionario('GAD7', c.GAD7) + '<h2>PHQ-9</h2>' + questionario('PHQ9', c.PHQ9) +
+    return '<div class="cartao"><span class="selo">Acompanhamento</span><h1>GAD-7 e PHQ-9</h1><h2>GAD-7</h2>' + questionario('GAD7', c.GAD7) + '<h2>PHQ-9</h2>' + questionario('PHQ9', c.PHQ9, c.PHQ9_dif) +
       '<p class="mudo" id="faltam-med"></p><button class="btn largo" data-acao="salvar-medida">Salvar</button></div>';
   };
   function grafico(instr) {
@@ -1371,10 +1386,11 @@
 
   /* ================= dados, exportação e relatório ================= */
   ROTAS.dados = function () {
-    return '<div class="cartao"><span class="selo">Seus dados</span><h1>Cópia de segurança e relatório</h1><p>Tudo o que você registra fica só neste aparelho, no armazenamento do navegador. Ninguém mais tem acesso, nem o autor do manual. Se você apagar os dados do navegador ou trocar de celular, os registros se perdem: exporte uma cópia de vez em quando.</p></div>' +
+    return '<div class="cartao"><span class="selo">Seus dados</span><h1>Cópia de segurança e relatório</h1><p>Tudo o que você registra fica só neste aparelho, no armazenamento do navegador. Ninguém mais tem acesso, nem o autor do manual, a não ser que você mesmo(a) envie o relatório. Se você apagar os dados do navegador ou trocar de celular, os registros se perdem: exporte uma cópia de vez em quando.</p></div>' +
       '<div class="cartao"><h2>Relatório em PDF para o profissional</h2><label class="campo" for="pdf-nome">Nome no relatório (opcional, não fica guardado)</label><input type="text" id="pdf-nome">' +
       '<label class="marcar"><input type="checkbox" id="pdf-reg" checked> <span>Incluir os textos dos registros e diários</span></label>' +
       '<button class="btn largo" data-acao="pdf">Gerar o relatório em PDF</button></div>' +
+      cartaoEnviar() +
       '<div class="cartao"><h2>Cópia de segurança (arquivo JSON)</h2><button class="btn alt largo" data-acao="exportar">Exportar a cópia</button>' +
       '<label class="campo" for="importar">Importar uma cópia (substitui os dados atuais)</label><input type="file" id="importar" accept="application/json,.json" data-acao-mudar="importar"></div>' +
       cartaoInstalar(false) +
@@ -1403,7 +1419,7 @@
     fr.readAsText(arquivo);
   }
 
-  function relatorio(nome, comRegistros) {
+  function relatorio(nome, comRegistros, devolver) {
     var d = PDF.novo();
     d.paragrafo('Protocolo Mindfulness-IBE v' + P.versao_protocolo + ': relatório da prática domiciliar', { tam: 16, negrito: true, cor: '#1A0005', depois: 2 });
     d.paragrafo((nome ? nome + ' · ' : '') + 'Gerado em ' + R.dataBR(hoje()) + ' pelo aplicativo do protocolo, com dados guardados no aparelho da pessoa.', { tam: 9, cor: '#8B4A4A', depois: 6 });
@@ -1489,14 +1505,74 @@
     d.paragrafo('Os questionários da autotriagem não fazem diagnóstico. A nota de desconforto é a escala SUDS, usada como guia prático, não como teste validado. ' + P.limites.nao_substitui, { tam: 8.5, cor: '#4A1414' });
     d.rodape('Protocolo Mindfulness-IBE v' + P.versao_protocolo + ' · pedroruger.com.br/mindfulness-protocolo.html');
     var b = d.bytes();
-    baixar('mindfulness-ibe-relatorio-' + hoje() + '.pdf', new Blob([b], { type: 'application/pdf' }));
+    var blob = new Blob([b], { type: 'application/pdf' });
+    if (devolver) return blob;
+    baixar('mindfulness-ibe-relatorio-' + hoje() + '.pdf', blob);
   }
+
+  /* ================= enviar o progresso e sugestões (sempre pela mão da pessoa) ================= */
+  var CONTATO = { whatsapp: '5531999846282', email: 'pedro.rugerr@gmail.com', nome: 'Pedro Andrade Rüger' };
+  function linkWhats(texto) { return 'https://wa.me/' + CONTATO.whatsapp + '?text=' + encodeURIComponent(texto); }
+  function linkEmail(assunto, texto) { return 'mailto:' + CONTATO.email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(texto); }
+  function cartaoEnviar() {
+    var ult = E.config.ultimoEnvio ? '<p class="mudo">Último envio: ' + h(R.dataBR(E.config.ultimoEnvio)) + '.</p>' : '';
+    return '<div class="cartao" id="enviar"><h2>Enviar meu progresso ao psicólogo</h2>' +
+      '<p>Se quiser, mande o seu relatório para ' + h(CONTATO.nome) + ', autor do programa. Ajuda a melhorar o aplicativo e, se você é paciente dele, a acompanhar a sua prática. É opcional: nada sai do aparelho se você não tocar em enviar, e é você quem escolhe por onde manda.</p>' +
+      '<p class="mudo">O relatório traz as pontuações do GAD-7 e do PHQ-9, os minutos praticados, as notas de desconforto e os alertas. O nome só entra se você escrever abaixo.</p>' +
+      '<label class="campo" for="env-nome">Nome no relatório (opcional, não fica guardado)</label><input type="text" id="env-nome" autocomplete="off">' +
+      '<label class="marcar"><input type="checkbox" id="env-reg"> <span>Incluir também os textos dos meus registros e diários</span></label>' +
+      '<button class="btn largo" data-acao="enviar-progresso">Enviar meu progresso</button>' + ult +
+      '<div id="env-ajuda" role="status" aria-live="polite"></div>' +
+      '<p class="mudo">O autor não responde por aqui em caso de urgência. Em perigo, ligue 188 (CVV) ou 192 (SAMU).</p></div>';
+  }
+  ACOES['enviar-progresso'] = function () {
+    var blob, nomeArq = 'mindfulness-ibe-relatorio-' + hoje() + '.pdf';
+    try { blob = relatorio(document.getElementById('env-nome').value.trim(), document.getElementById('env-reg').checked, true); }
+    catch (e) { alert('Não foi possível gerar o relatório: ' + e.message); return; }
+    var texto = 'Olá, Pedro. Segue o meu relatório do aplicativo Mindfulness-IBE.';
+    var marcar = function () { E.config.ultimoEnvio = agora(); salvar(); };
+    var manual = function () {
+      baixar(nomeArq, blob);
+      var el = document.getElementById('env-ajuda');
+      if (el) el.innerHTML = '<div class="ok"><b>O relatório foi salvo no seu aparelho</b> (pasta de downloads, arquivo ' + h(nomeArq) + '). Agora abra a conversa, toque no clipe e anexe o arquivo.</div>' +
+        '<div class="botoes"><a class="btn" target="_blank" rel="noopener" href="' + linkWhats(texto) + '">Abrir o WhatsApp</a><a class="btn alt" href="' + linkEmail('Meu progresso no Mindfulness-IBE', texto) + '">Abrir o e-mail</a></div>';
+      marcar();
+    };
+    var arq = null;
+    try { arq = new File([blob], nomeArq, { type: 'application/pdf' }); } catch (e) { arq = null; }
+    if (arq && navigator.canShare && navigator.canShare({ files: [arq] })) {
+      navigator.share({ files: [arq], title: 'Meu progresso no Mindfulness-IBE', text: texto + ' WhatsApp do Pedro: +55 31 99984-6282.' })
+        .then(function () {
+          marcar();
+          var el = document.getElementById('env-ajuda');
+          if (el) el.innerHTML = '<div class="ok">Pronto. Se você escolheu o WhatsApp, o contato é +55 31 99984-6282. Obrigado por ajudar a melhorar o aplicativo.</div>';
+        })
+        .catch(function (e) { if (e && e.name === 'AbortError') return; manual(); });
+    } else manual();
+  };
+  ROTAS.sugestao = function () {
+    return '<div class="cartao"><span class="selo">Sugestões</span><h1>Dar uma sugestão</h1>' +
+      '<p>O que funcionou, o que confundiu, o que faltou? Escreva do seu jeito (ou use o microfone do teclado para ditar). A mensagem vai pelo seu WhatsApp ou e-mail: o aplicativo não envia nada sozinho.</p>' +
+      '<label class="campo" for="sug-texto">Sua sugestão</label><textarea id="sug-texto" rows="6" maxlength="1500" placeholder="Por exemplo: a voz está rápida na Semana 2; não achei onde ver meus registros...">' + h(TMP.sugestao || '') + '</textarea>' +
+      '<p class="mudo">Não escreva aqui dados íntimos nem pedidos de ajuda urgente. Em perigo, ligue 188 (CVV) ou 192 (SAMU).</p>' +
+      '<div class="botoes"><button class="btn" data-acao="sugestao" data-via="whatsapp">Enviar pelo WhatsApp</button><button class="btn alt" data-acao="sugestao" data-via="email">Enviar por e-mail</button></div></div>' +
+      '<div class="cartao"><h3>Quer mandar também o seu progresso?</h3><p class="mudo">O relatório com as suas pontuações e minutos de prática ajuda a entender como o aplicativo está sendo usado.</p><a class="btn alt largo" href="#dados">Enviar meu progresso</a></div>';
+  };
+  ACOES.sugestao = function (el) {
+    var t = (document.getElementById('sug-texto').value || '').trim();
+    TMP.sugestao = t;
+    if (t.length < 3) { alert('Escreva a sua sugestão antes de enviar.'); return; }
+    var sem = E.passagens.length ? (E.fase === 'manutencao' ? 'manutenção' : 'semana ' + passagem().semana) : 'antes da Semana 1';
+    var texto = 'Sugestão para o aplicativo Mindfulness-IBE (' + sem + '):\n\n' + t;
+    var url = el.dataset.via === 'email' ? linkEmail('Sugestão para o aplicativo Mindfulness-IBE', texto) : linkWhats(texto);
+    if (el.dataset.via === 'email') location.href = url; else window.open(url, '_blank', 'noopener');
+  };
 
   /* ================= mais ================= */
   ROTAS.mais = function () {
     var itens = [['ramo', 'Ramo', R.ramoNome(P, E.ramo)], ['resultados', 'Resultados', 'GAD-7 e PHQ-9'], ['checagem', 'Segurança', 'checagem e regras de parada'],
       ['triagem/resultado', 'Autotriagem', E.triagem ? R.dataBR(E.triagem.data) : 'não feita'], ['semana', 'Conteúdo das semanas', ''], ['semana7', 'Semana 7', 'Mapa de Domínios'],
-      ['semana8', 'Semana 8', 'Mapa de Manutenção e lembretes'], ['dados', 'Dados e relatório', 'PDF, cópia, instalar'], ['sobre', 'Sobre e termo', '']];
+      ['semana8', 'Semana 8', 'Mapa de Manutenção e lembretes'], ['dados', 'Dados e relatório', 'PDF, cópia, instalar'], ['dados', 'Enviar meu progresso', 'ao psicólogo, se você quiser'], ['sugestao', 'Dar uma sugestão', 'ajude a melhorar o aplicativo'], ['sobre', 'Sobre e termo', '']];
     return '<div class="cartao"><h1>Mais</h1><div class="menu-lista">' + itens.map(function (i) { return '<a href="#' + i[0] + '">' + h(i[1]) + '<span>' + h(i[2]) + '</span></a>'; }).join('') + '</div></div>' +
       '<div class="cartao"><a class="fone" href="tel:188"><span>CVV, 24 horas</span><b>188</b></a><a class="fone" href="tel:192"><span>SAMU</span><b>192</b></a></div>';
   };
@@ -1504,14 +1580,13 @@
     var t = P.termo;
     return '<div class="cartao"><span class="selo">Sobre</span><h1>' + h(P.titulo) + '</h1><p>' + h(P.autor) + '.</p><p>' + h(P.limites.texto) + '</p><p>' + h(P.limites.nao_substitui) + '</p>' +
       '<p>Este aplicativo segue a versão ' + h(P.versao_protocolo) + ' do manual. <a href="/mindfulness-protocolo.html">Ler o manual completo</a>.</p>' +
-      '<p class="mudo">Sem servidor, sem cadastro, sem rastreamento. Os dados ficam só neste aparelho.</p></div>' +
+      '<p class="mudo">Sem servidor, sem cadastro, sem rastreamento. Os dados ficam só neste aparelho e só saem dele se você mesmo(a) enviar o relatório ou uma sugestão.</p></div>' +
       '<div class="cartao"><h2>' + h(t.titulo) + '</h2><p>' + h(t.abertura) + '</p><ol class="lista" type="a">' + t.itens.map(function (i) { return '<li>' + h(i) + '</li>'; }).join('') + '</ol>' +
       '<p class="mudo">Aceito em ' + h(R.dataBR(E.termo && E.termo.data)) + '.</p></div>' +
       '<div class="cartao"><h3>Questionários</h3><p class="mudo">' + h(I.observacao) + '</p></div>';
   };
 
   /* ================= ações ================= */
-  var ACOES = {};
   ACOES['aceitar-termo'] = function () {
     if (!document.getElementById('aceite').checked) { alert('Marque "Li e estou ciente" para continuar.'); return; }
     E.termo = { aceito: true, data: agora(), versao: P.versao_protocolo };
@@ -1547,6 +1622,16 @@
     salvar();
     faltam(); faltamMed();
     if (!$camada.innerHTML) proximaQuestao(el);
+  };
+  ACOES.funcional = function (el) {
+    var q = el.dataset.q, v = +el.dataset.v, alvo;
+    if (location.hash.indexOf('#concluir') === 0) alvo = TMP.concluir.resp;
+    else if (location.hash.indexOf('#medida') === 0) alvo = TMP.medida;
+    else alvo = rascunho().respostas;
+    alvo[q + '_dif'] = v;
+    document.querySelectorAll('[data-acao="funcional"][data-q="' + q + '"]').forEach(function (b) { b.classList.toggle('sel', b === el); });
+    salvar();
+    proximaQuestao(el);
   };
   /* depois de responder, rola até a próxima pergunta sem resposta */
   function proximaQuestao(el) {
@@ -1595,7 +1680,7 @@
     E.mudancasRamo.push({ data: agora(), de: null, para: ramo, motivo: motivo });
     E.ramo = ramo;
     E.medidas = E.medidas.filter(function (m) { return m.momento !== 'inicial'; });
-    E.medidas.unshift({ id: uid(), data: agora(), momento: 'inicial', passagem: -1, GAD7: { itens: resp.GAD7, total: R.soma(resp.GAD7) }, PHQ9: { itens: resp.PHQ9, total: R.soma(resp.PHQ9) } });
+    E.medidas.unshift({ id: uid(), data: agora(), momento: 'inicial', passagem: -1, GAD7: { itens: resp.GAD7, total: R.soma(resp.GAD7) }, PHQ9: { itens: resp.PHQ9, total: R.soma(resp.PHQ9), dif: resp.PHQ9_dif } });
     var outros = res.alertas.filter(function (a) { return a !== 'ideacao'; });
     if (outros.length) criarAlerta('triagem', P.triagem.passo1.sinais.filter(function (s) { return outros.indexOf(s.id) >= 0; }).map(function (s) { return s.sinal + ': ' + s.acao; }).join('. ') + '.');
     var jaConfirmou = E.acompanhamento && E.acompanhamento.confirmado && E.acompanhamento.data.slice(0, 10) === hoje() && E.alertas.some(function (x) { return x.codigo === 'ideacao' && x.resolvido && x.dataResolvido.slice(0, 10) === hoje(); });
@@ -1815,7 +1900,7 @@
   ACOES['salvar-medida'] = function () {
     var c = TMP.medida;
     if (!R.completo(c.GAD7) || !R.completo(c.PHQ9)) { alert('Responda todos os itens do GAD-7 e do PHQ-9.'); return; }
-    var med = { id: uid(), data: agora(), momento: E.fase === 'manutencao' ? 'manutencao' : 'avulsa', passagem: idxPassagem(), GAD7: { itens: c.GAD7, total: R.soma(c.GAD7) }, PHQ9: { itens: c.PHQ9, total: R.soma(c.PHQ9) } };
+    var med = { id: uid(), data: agora(), momento: E.fase === 'manutencao' ? 'manutencao' : 'avulsa', passagem: idxPassagem(), GAD7: { itens: c.GAD7, total: R.soma(c.GAD7) }, PHQ9: { itens: c.PHQ9, total: R.soma(c.PHQ9), dif: c.PHQ9_dif } };
     E.medidas.push(med);
     var piora = R.pioraConfiavel(P, E, med);
     if (piora.length) criarAlerta('piora', 'Piora confiável em ' + piora.map(function (k) { return k === 'GAD7' ? 'GAD-7' : 'PHQ-9'; }).join(' e ') + '. ' + regraParada('piora').acao + '.');
