@@ -77,4 +77,16 @@
   window.addEventListener('scroll', atualizar, {passive:true});
   window.addEventListener('resize', atualizar);
   atualizar();
+
+  /* vídeo da página inicial: o YouTube só carrega quando a pessoa clica */
+  [].slice.call(document.querySelectorAll('.video-home-q button[data-yt]')).forEach(function(bt){
+    bt.addEventListener('click', function(){
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(bt.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+      f.title = bt.getAttribute('aria-label') || 'Vídeo';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      bt.parentNode.replaceChild(f, bt);
+    });
+  });
 })();

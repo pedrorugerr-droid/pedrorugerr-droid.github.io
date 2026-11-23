@@ -93,3 +93,20 @@ footer.site .legal{margin-top:1.1rem;font-size:.74rem;color:rgba(255,248,231,.42
 @media print{.app-mf-faixa,.app-mf{display:none!important}}
 #gaveta a.gav-app{color:#FF9F8F;font-weight:700}
 .hub-wrap .app-mf-faixa{padding:0}
+/* menu Instrumentos (lista suspensa no computador) */
+.menu-dd{position:relative;margin-left:1.25rem;padding:.6rem 0}
+.menu .menu-dd>a.menu-dd-t{margin-left:0}
+.menu-dd-l{display:none;position:absolute;top:100%;left:-1rem;min-width:270px;background:var(--vinho2);border:1px solid rgba(255,248,231,.16);border-radius:10px;padding:.4rem 0;box-shadow:0 12px 30px rgba(0,0,0,.4);z-index:60}
+.menu-dd:hover .menu-dd-l,.menu-dd:focus-within .menu-dd-l{display:block}
+.menu .menu-dd-l a{display:block;margin:0;padding:.55rem 1rem;font-size:.86rem;white-space:normal;line-height:1.3}
+.menu .menu-dd-l a small{display:block;font-size:.72rem;color:rgba(255,248,231,.5)}
+.menu .menu-dd-l a.menu-dd-todos{border-top:1px solid rgba(255,248,231,.12);margin-top:.3rem;padding-top:.7rem;color:#FF9F8F}
+@media(max-width:1060px){.menu-dd{display:none}}
+/* vídeo de apresentação na página inicial */
+.video-home-q{position:relative;max-width:860px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;margin-top:1.2rem;box-shadow:0 10px 30px rgba(26,0,5,.25)}
+.video-home-q button{all:unset;position:absolute;inset:0;cursor:pointer;display:block}
+.video-home-q img,.video-home-q iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.video-home-q .ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:54px;border-radius:14px;background:#E02C14;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.video-home-q button:hover .ic,.video-home-q button:focus-visible .ic{background:#c0240f}
+.video-home-q button:focus-visible{outline:3px solid #FF9F8F;outline-offset:-3px}
+.video-home-mais{margin-top:.9rem;font-size:.92rem}
