@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /index (
-Disallow: /index%20(
 Disallow: /download
 
 Sitemap: https://pedroruger.com.br/sitemap.xml
