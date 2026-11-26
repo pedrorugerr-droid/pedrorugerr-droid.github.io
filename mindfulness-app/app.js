@@ -299,10 +299,39 @@
   function desenharNav(rota) {
     var itens = [['inicio', 'Início'], ['sessao', 'Praticar'], ['respiracao', 'Respirar'], ['registros', 'Registros'], ['mais', 'Mais']];
     $nav.innerHTML = itens.map(function (it) {
-      return '<a href="#' + it[0] + '" class="' + (rota === it[0] ? 'on' : '') + '">' + ICONES[it[0]] + '<span>' + it[1] + '</span></a>';
+      return '<a href="#' + it[0] + '" data-aba="' + it[0] + '" class="' + (abaDe(rota) === it[0] ? 'on' : '') + '">' + ICONES[it[0]] + '<span>' + it[1] + '</span></a>';
     }).join('');
     $nav.classList.toggle('oculto', !E.termo || (S && S.fase === 'rodando'));
   }
+
+  /* cada tela pertence a uma aba, e a aba define a cor do fundo (app.css, body[data-aba]) */
+  var ABA_DE = { sessao: 'sessao', sessao_depois: 'sessao', checagem: 'sessao', respiracao: 'respiracao', registros: 'registros',
+    mais: 'mais', dados: 'mais', sobre: 'mais', sugestao: 'mais', resultados: 'mais', medida: 'mais' };
+  function abaDe(nome) { return ABA_DE[nome] || 'inicio'; }
+
+  /* texto aos poucos: parágrafo longo abre em três linhas e o resto fica atrás de "Ler mais".
+     Fora disso: termo (precisa ser lido inteiro), sessão guiada, alertas e avisos de segurança. */
+  var LIMITE_RESUMO = 220;
+  function resumirTextos(nome) {
+    if (nome === 'termo' || nome === 'sessao') return;
+    var ps = $app.querySelectorAll('.cartao p');
+    for (var i = 0; i < ps.length; i++) {
+      var p = ps[i];
+      if (p.closest('.alerta, .aviso, details, .sessao, label') || p.textContent.length < LIMITE_RESUMO) continue;
+      p.classList.add('resumido');
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ler-mais'; b.textContent = 'Ler mais'; b.setAttribute('aria-expanded', 'false');
+      p.parentNode.insertBefore(b, p.nextSibling);
+    }
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.ler-mais');
+    if (!b) return;
+    var p = b.previousElementSibling, aberto = b.getAttribute('aria-expanded') === 'true';
+    p.classList.toggle('resumido', aberto);
+    b.setAttribute('aria-expanded', aberto ? 'false' : 'true');
+    b.textContent = aberto ? 'Ler mais' : 'Ler menos';
+  });
 
   var ROTAS = {};
   function render() {
@@ -325,7 +354,9 @@
       pararTimer(); S = null; E.sessaoAtiva = null; Tela.soltar(); Voz.calar();
     }
     var fn = ROTAS[nome] || ROTAS.inicio;
+    document.body.setAttribute('data-aba', abaDe(nome));
     $app.innerHTML = fn(arg) || '';
+    resumirTextos(nome);
     desenharNav(nome);
     document.body.classList.toggle('imersivo', !!(S && S.fase === 'rodando' && nome === 'sessao'));
     if (ROTAS[nome + '_depois']) ROTAS[nome + '_depois'](arg);
@@ -401,12 +432,13 @@
 
     if (!E.triagem) {
       return out + '<div class="cartao escuro"><span class="selo">Antes da Semana 1</span><h1>Bem-vindo(a) ao programa de 8 semanas</h1>' +
-        '<p>Você treina a atenção um passo por semana: começa pelos sons e objetos à sua volta, passa pela respiração e pelo corpo e chega aos pensamentos e emoções difíceis, sem brigar com eles. O aplicativo guia cada prática com voz e cronômetro e guarda o seu progresso.</p>' +
-        '<ol class="lista"><li>Responda a autotriagem (cerca de 15 minutos, dá para parar e continuar depois).</li><li>Receba a versão do programa mais segura para você.</li><li>Pratique alguns minutos por dia e registre como foi.</li></ol>' +
-        '<details class="opcional"><summary>Ver o que cada semana treina</summary><p>' + h(P.visao_geral) + '</p></details></div>' +
+        '<p>Alguns minutos por dia, um passo por semana.</p>' +
+        '<details class="opcional"><summary>Como funciona</summary><p>Você treina a atenção um passo por semana: começa pelos sons e objetos à sua volta, passa pela respiração e pelo corpo e chega aos pensamentos e emoções difíceis, sem brigar com eles. O aplicativo guia cada prática com voz e cronômetro e guarda o seu progresso.</p>' +
+        '<ol class="lista"><li>Responda a autotriagem (cerca de 15 minutos, dá para parar e continuar depois).</li><li>Receba a versão do programa mais segura para você.</li><li>Pratique alguns minutos por dia e registre como foi.</li></ol></details>' +
+        '<details class="opcional"><summary>O que cada semana treina</summary><p>' + h(P.visao_geral) + '</p></details></div>' +
         '<div class="cartao"><h2>Comece pela autotriagem</h2><p>' + h(P.triagem.instrucao) + '</p>' +
         '<a class="btn largo" href="#triagem">Fazer a autotriagem</a></div>' +
-        '<div class="cartao"><h3>Situações em que o manual não deve ser iniciado por conta própria</h3>' + listaTextos(P.limites.nao_iniciar_sozinho) + '<p>' + h(P.limites.prioridade) + '</p></div>';
+        '<div class="cartao"><details class="opcional" open><summary>Quando não começar sozinho(a)</summary>' + listaTextos(P.limites.nao_iniciar_sozinho) + '<p>' + h(P.limites.prioridade) + '</p></details></div>';
     }
     if (!E.passagens.length) {
       return out + '<div class="cartao escuro"><span class="selo">Autotriagem feita</span><h1>Ramo ' + h(R.ramoNome(P, E.ramo)) + '</h1>' +
@@ -434,7 +466,7 @@
       '<div class="botoes"><a class="btn alt" href="#semana/' + p.semana + '">Conteúdo da semana</a><a class="btn alt" href="#registros/' + p.semana + '">Registro da semana</a></div></div>';
     if (p.semana === 7 && !E.semana7.escolhidos.length) out += '<div class="aviso">Antes da Semana 7, preencha o Mapa de Domínios (15 min). <a href="#semana7">Abrir o Mapa de Domínios</a></div>';
     if (p.semana === 8) out += '<div class="aviso">Nesta semana, faça o Mapa de Manutenção (30 min). <a href="#semana8">Abrir o Mapa de Manutenção</a></div>';
-    out += '<div class="cartao"><h3>Prática informal</h3>' + listaTextos(sem.pratica_informal) + '</div>';
+    out += '<div class="cartao"><details class="opcional"><summary>Prática informal da semana</summary>' + listaTextos(sem.pratica_informal) + '</details></div>';
     out += '<div class="cartao"><h3>Fim da semana</h3><p>Ao fim de cada semana: checagem dos efeitos indesejados' + (P.avaliacao.semanas_medida.indexOf(p.semana) >= 0 ? ', GAD-7 e PHQ-9' : '') + ' e passagem para a semana seguinte.</p>' +
       '<a class="btn ' + (pronto ? '' : 'alt ') + 'largo" href="#concluir">Concluir a semana</a>' +
       (pronto ? '' : '<p class="mudo" style="margin-top:.5rem">A semana começou há ' + diasNaSemana + ' dia(s). ' + h(P.dose.texto.split('. ').slice(-1)[0]) + '</p>') + '</div>';
