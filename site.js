@@ -1,4 +1,4 @@
-/* Pedro Andrade Rüger — comportamento de página. Sem roteador: cada página é uma página. */
+/* Pedro Andrade Rüger: comportamento de página. Sem roteador: cada página é uma página. */
 (function(){
   /* links antigos no formato #/slug continuam funcionando: redireciona para a URL real */
   var LEGADO = {"home": "/", "o-que-eu-faco": "/o-que-eu-faco.html", "avaliacao-neuropsicologica": "/avaliacao-neuropsicologica.html", "psicoterapia": "/psicoterapia.html", "psicodiagnostico": "/psicodiagnostico.html", "orientacao-profissional": "/orientacao-profissional.html", "grupo-de-estudos": "/grupo-de-estudos.html", "mindfulness-8-semanas": "/mindfulness-8-semanas.html", "mindfulness-protocolo-integra": "/mindfulness-protocolo.html", "mindfulness-adolescentes-integra": "/mindfulness-adolescentes.html", "mindfulness-pre-adolescentes-integra": "/mindfulness-pre-adolescentes.html", "idnap": "/idnap.html", "modelo-4-camadas": "/modelo-4-camadas.html", "modelo-12-dominios-integra": "/modelo-12-dominios.html", "tratado-hitop-integra": "/tratado-hitop.html", "big-five": "/big-five.html", "big-five-integra": "/big-five-integracao.html", "biotipos-circuitos": "/biotipos-circuitos.html", "demencias": "/demencias.html", "linguagem": "/neurobiologia-da-linguagem.html", "bilinguismo-cerebro": "/bilinguismo-e-cerebro.html", "autismo-alimentacao": "/autismo-e-alimentacao.html", "intervencoes-tea-tdah": "/intervencoes-tea-tdah.html", "farmacologia-neurotransmissores": "/farmacologia-neurotransmissores.html", "neuro-age": "/neuro-age.html", "projeto-terapeutico-integra": "/projeto-terapeutico.html"};
@@ -10,6 +10,23 @@
       return;
     }
   }
+
+  /* origem do contato: ?origem=xxx fica só nesta aba (sessionStorage), para pré-marcar
+     "como me encontrou" na página de contato. Nada de cookie, localStorage ou analytics,
+     e nada é enviado a servidor: só entra no texto que a própria pessoa manda pelo WhatsApp. */
+  var ORIGENS = {"google": "Google", "google-perfil": "Google", "doctoralia": "Doctoralia", "youtube": "YouTube",
+    "instagram": "Instagram", "indicacao-profissional": "Indicação de profissional", "pdf-profissionais": "Indicação de profissional",
+    "indicacao-paciente": "Indicação de paciente"};
+  var origem = '';
+  try {
+    var m = /[?&]origem=([^&#]*)/.exec(location.search);
+    if (m) {
+      origem = decodeURIComponent(m[1].replace(/\+/g, ' ')).toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 40);
+      if (origem) sessionStorage.setItem('origem', origem);
+    }
+    if (!origem) origem = (sessionStorage.getItem('origem') || '').replace(/[^a-z0-9-]/g, '').slice(0, 40);
+  } catch (e) { origem = ''; }
+  window.PR_ORIGEM = origem ? {codigo: origem, rotulo: ORIGENS[origem] || 'Outro'} : null;
 
   var prog = document.getElementById('prog');
   var gaveta = document.getElementById('gaveta');
@@ -41,7 +58,7 @@
   if(!document.querySelector('.wa-flutuante')){
     var wa = document.createElement('a');
     wa.className = 'wa-flutuante';
-    wa.href = 'https://wa.me/5531999846282?text=' + encodeURIComponent('Olá, Pedro. Cheguei pelo seu site e gostaria de conversar.');
+    wa.href = 'https://wa.me/5531999846282?text=' + encodeURIComponent('Olá, Pedro. Cheguei pelo seu site e gostaria de conversar.' + (origem ? ' (Ref.: ' + origem + ')' : ''));
     wa.target = '_blank';
     wa.rel = 'noopener';
     wa.setAttribute('aria-label', 'Conversar pelo WhatsApp');
