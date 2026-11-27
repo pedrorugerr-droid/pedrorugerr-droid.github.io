@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness-IBE: Aplicativo Gratuito de Mindfulness | Pedro Andrade Rüger</title>
+<meta name="description" content="Aplicativo gratuito do programa Mindfulness-IBE de oito semanas: autotriagem, práticas guiadas, guia de respiração e registros. Funciona sem internet e sem cadastro.">
+<link rel="canonical" href="https://pedroruger.com.br/aplicativo-mindfulness-ibe.html">
+<meta name="google-site-verification" content="-uR0pIfC1m84Kndxqk0UMf1bwknHfwbgpxJ0RYOvrho" />
+<meta name="author" content="Pedro Andrade Rüger">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Pedro Andrade Rüger · Psicólogo e Neuropsicólogo">
+<meta property="og:title" content="Mindfulness-IBE: Aplicativo Gratuito de Mindfulness | Pedro Andrade Rüger">
+<meta property="og:description" content="Aplicativo gratuito do programa Mindfulness-IBE de oito semanas: autotriagem, práticas guiadas, guia de respiração e registros. Funciona sem internet e sem cadastro.">
+<meta property="og:url" content="https://pedroruger.com.br/aplicativo-mindfulness-ibe.html">
+<meta property="og:image" content="https://pedroruger.com.br/mindfulness-app/icones/compartilhar.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mindfulness-IBE: Aplicativo Gratuito de Mindfulness | Pedro Andrade Rüger">
+<meta name="twitter:description" content="Aplicativo gratuito do programa Mindfulness-IBE de oito semanas: autotriagem, práticas guiadas, guia de respiração e registros. Funciona sem internet e sem cadastro.">
+<meta name="twitter:image" content="https://pedroruger.com.br/mindfulness-app/icones/compartilhar.jpg">
+<link rel="stylesheet" href="/estilo.css">
+<style>
+#pg-app-mf{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-app-mf a{}
+#pg-app-mf .capa{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-app-mf .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+#pg-app-mf .back{display:inline-block;margin-bottom:1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-app-mf .back:hover{color:var(--primaria)}
+#pg-app-mf .badge{display:inline-block;font-size:var(--fs-1);letter-spacing:0;text-transform:none;font-weight:500;padding:2px 10px;border-radius:999px;margin-bottom:1rem;background:var(--superficie-tint);color:var(--texto-2);border:0}
+#pg-app-mf .capa h1{font-family:var(--fonte-titulo);font-size:var(--fs-6);line-height:1.2;max-width:22ch;margin-bottom:.9rem}
+#pg-app-mf .capa .dek{font-size:var(--fs-2);color:var(--texto-2);max-width:62ch}
+#pg-app-mf .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--borda);font-size:var(--fs-1);color:var(--texto-2);line-height:1.9}
+#pg-app-mf .creditos b{color:var(--texto);font-weight:600}
+@media(max-width:680px){#pg-app-mf .capa h1{font-size:var(--fs-5)}}
+#pg-app-mf .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
+#pg-app-mf .layout>*{min-width:0}
+@media(max-width:980px){#pg-app-mf .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
+#pg-app-mf .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:var(--fs-1);padding-right:.5rem}
+#pg-app-mf .toc h5{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.8rem}
+#pg-app-mf .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--texto-2);line-height:1.4;transition:.15s}
+#pg-app-mf .toc a:hover{border-left-color:var(--primaria);color:var(--texto)}
+@media(max-width:980px){#pg-app-mf .toc{position:static;max-height:none;background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.2rem}
+#pg-app-mf .toc details summary{cursor:pointer;font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--primaria-hover);font-weight:600}
+#pg-app-mf .toc .lista{margin-top:.9rem}}
+@media(min-width:981px){#pg-app-mf .toc details summary{display:none}}
+#pg-app-mf article{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
+@media(max-width:680px){#pg-app-mf article{padding:1.6rem;border-radius:var(--raio-card)}}
+#pg-app-mf article p{font-family:var(--fonte-corpo);font-size:var(--fs-2);line-height:var(--lh-corpo);color:var(--texto);margin-bottom:1.15rem}
+#pg-app-mf article h2{font-family:var(--fonte-titulo);font-size:var(--fs-5);color:var(--texto);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--primaria);letter-spacing:-.01em}
+#pg-app-mf article h2:first-of-type{margin-top:0;padding-top:0;border-top:none}
+#pg-app-mf article h4{font-size:var(--fs-1);color:var(--primaria-hover);margin:1.5rem 0 .5rem}
+#pg-app-mf article ul,#pg-app-mf article ol{margin:0 0 1.2rem}
+#pg-app-mf article ul{list-style:none}
+#pg-app-mf article ol{padding-left:1.4rem}
+#pg-app-mf article li{font-family:var(--fonte-corpo);font-size:var(--fs-2);line-height:var(--lh-corpo);color:var(--texto-2);padding:.32rem 0 .32rem .25rem;position:relative}
+#pg-app-mf article ul li{padding-left:1.25rem}
+#pg-app-mf article ul li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--primaria)}
+#pg-app-mf article strong{color:var(--texto)}
+#pg-app-mf .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:var(--raio-botao)}
+#pg-app-mf article table{border-collapse:collapse;width:100%;font-size:var(--fs-1);min-width:480px}
+#pg-app-mf article th{background:var(--superficie);color:var(--texto);text-align:left;padding:.65rem .8rem;font-weight:600;border:1px solid var(--borda)}
+#pg-app-mf article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--texto-2);vertical-align:top}
+#pg-app-mf article td a{color:var(--primaria-hover);font-weight:600}
+#pg-app-mf .aviso-topo{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1.1rem 1.3rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-bottom:2rem;line-height:1.65;border:0;border-left:3px solid var(--primaria)}
+#pg-app-mf .aviso-topo b{color:var(--texto)}
+#pg-app-mf article p.ref{font-size:var(--fs-1);line-height:1.6;color:var(--texto-2);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:var(--fonte-corpo)}
+#pg-app-mf article p.ref a{color:var(--primaria-hover)}
+#pg-app-mf .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:var(--fs-1);color:var(--texto-2);line-height:var(--lh-corpo)}
+#pg-app-mf .fim a{color:var(--primaria-hover);font-weight:600}
+#pg-app-mf .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);background:var(--primaria);color:#fff!important;margin-top:1rem}
+#pg-app-mf .btn:hover{background:var(--primaria-hover)}
+@media print{#pg-app-mf .toc,#pg-app-mf .btn,header.nav,footer.site{display:none}
+#pg-app-mf .layout{display:block}
+#pg-app-mf article{border:none}}
+#pg-app-mf article .contato-box{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:1.6rem 1.7rem;margin:2.2rem 0}
+#pg-app-mf article .contato-box p{color:var(--texto);font-family:var(--fonte-corpo);font-size:var(--fs-1);margin-bottom:1rem}
+#pg-app-mf article .contato-box p b{color:var(--texto)}
+#pg-app-mf .bts{display:flex;gap:.7rem;flex-wrap:wrap}
+#pg-app-mf .bt1,#pg-app-mf .bt2{display:inline-block;padding:.78rem 1.3rem;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-1);font-family:var(--fonte-corpo)}
+#pg-app-mf .bt1{background:var(--primaria);color:#fff!important}
+#pg-app-mf .bt1:hover{background:var(--primaria-hover)}
+#pg-app-mf .bt2{border:1px solid var(--borda);color:var(--texto) !important}
+#pg-app-mf .bt2:hover{border-color:var(--primaria)}
+@media(max-width:520px){#pg-app-mf .bts{flex-direction:column}
+#pg-app-mf .bt1,#pg-app-mf .bt2{text-align:center}}
+#pg-app-mf article ul.links li a{color:var(--primaria-hover);font-weight:600;border-bottom:1px solid var(--borda)}
+#pg-app-mf article a.inl{color:var(--primaria-hover);border-bottom:1px solid var(--borda)}
+#pg-app-mf .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin:1.4rem 0;line-height:1.65;font-family:var(--fonte-corpo);border:0;border-left:3px solid var(--primaria)}
+#pg-app-mf .nota b{color:var(--texto)}
+#pg-app-mf .faq details{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);margin-bottom:.7rem;overflow:hidden}
+#pg-app-mf .faq summary{cursor:pointer;list-style:none;padding:1rem 2.6rem 1rem 1.2rem;font-weight:600;color:var(--texto);position:relative;font-family:var(--fonte-corpo);font-size:var(--fs-2);line-height:1.4}
+#pg-app-mf .faq summary::-webkit-details-marker{display:none}
+#pg-app-mf .faq summary::after{content:"+";position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);color:var(--primaria);font-size:var(--fs-3);font-family:var(--fonte-corpo)}
+#pg-app-mf .faq details[open] summary::after{content:"\2212"}
+#pg-app-mf .faq .r{padding:0 1.2rem 1.1rem;color:var(--texto-2);font-size:var(--fs-1);line-height:var(--lh-corpo)}
+#pg-app-mf .faq .r p{margin:0 0 .6rem}
+#pg-app-mf .faq .r a{color:var(--primaria-hover);border-bottom:1px solid var(--borda);font-weight:600}
+#pg-app-mf .capturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.4rem 0 1.8rem}
+#pg-app-mf .capturas figure{margin:0}
+#pg-app-mf .capturas img{display:block;width:100%;height:auto;border:1px solid var(--borda);border-radius:var(--raio-card)}
+#pg-app-mf .capturas figcaption{font-size:var(--fs-1);color:var(--texto-2);margin-top:.4rem;text-align:center}
+@media(max-width:600px){#pg-app-mf .capturas{grid-template-columns:repeat(3,72%);overflow-x:auto;scroll-snap-type:x mandatory}#pg-app-mf .capturas figure{scroll-snap-align:start}}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://pedroruger.com.br/aplicativo-mindfulness-ibe.html#app",
+   "name": "Mindfulness-IBE",
+   "url": "https://pedroruger.com.br/mindfulness-app/",
+   "description": "Aplicativo gratuito que guia a prática domiciliar do Protocolo Mindfulness-IBE v2.1 para adultos: autotriagem, sessões guiadas, guia de respiração, registros e relatório para o profissional. Funciona sem internet e guarda os dados só no aparelho.",
+   "applicationCategory": "HealthApplication",
+   "operatingSystem": "Android, iOS, Windows, macOS, Linux (navegador)",
+   "inLanguage": "pt-BR",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+   },
+   "image": "https://pedroruger.com.br/mindfulness-app/icones/icone-512.png",
+   "screenshot": [
+    "https://pedroruger.com.br/img/apps/mindfulness-ibe-termo.webp",
+    "https://pedroruger.com.br/img/apps/mindfulness-ibe-inicio.webp",
+    "https://pedroruger.com.br/img/apps/mindfulness-ibe-respirar.webp"
+   ],
+   "author": {
+    "@id": "https://pedroruger.com.br/#pedro",
+    "@type": "Person",
+    "name": "Pedro Andrade Rüger",
+    "url": "https://pedroruger.com.br/"
+   }
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://pedroruger.com.br/aplicativo-mindfulness-ibe.html",
+   "url": "https://pedroruger.com.br/aplicativo-mindfulness-ibe.html",
+   "name": "Mindfulness-IBE: Aplicativo Gratuito de Mindfulness | Pedro Andrade Rüger",
+   "description": "Aplicativo gratuito do programa Mindfulness-IBE de oito semanas: autotriagem, práticas guiadas, guia de respiração e registros. Funciona sem internet e sem cadastro.",
+   "inLanguage": "pt-BR",
+   "about": {
+    "@id": "https://pedroruger.com.br/aplicativo-mindfulness-ibe.html#app"
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/">Pedro Andrade Rüger<small>Psicólogo · Neuropsicólogo</small></a>
+    <div class="menu">
+      <a href="/#home--sobre">Sobre</a>
+      <a href="/o-que-eu-faco.html">Serviços</a>
+      <div class="menu-dd">
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="menu-dd-l">
+          <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
+          <a href="/avaliacao-neuropsicologica-infantil-adolescente-bh.html">Crianças e adolescentes <small>a partir dos 9 anos</small></a>
+          <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
+          <a href="/avaliacao-autismo-adulto-bh.html">Autismo em adolescentes e adultos <small>perfil, não rótulo</small></a>
+          <a href="/avaliacao-neuropsicologica-idoso-bh.html">Queixa de memória no idoso <small>envelhecimento, depressão ou demência</small></a>
+          <a href="/relatorio-para-escola-e-provas.html">Documento para escola e provas <small>adaptações no ensino, vestibular e concursos</small></a>
+          <a href="/psicologo-online.html">Atendimento online <small>psicoterapia e avaliação por vídeo</small></a>
+          <a href="/quanto-custa-avaliacao-neuropsicologica.html">Quanto custa a avaliação <small>o que compõe o valor</small></a>
+          <a href="/para-profissionais-encaminhar.html">Para profissionais: como encaminhar <small>psiquiatras, médicos, psicólogos e escolas</small></a>
+        </div>
+      </div>
+      <a href="/psicoterapia.html">Psicoterapia</a>
+      <div class="menu-dd">
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="menu-dd-l">
+          <a href="/instrumentos/valores.html">Inventário de Valores</a>
+          <a href="/aplicativo-mindfulness-ibe.html">Mindfulness-IBE <small>app de meditação</small></a>
+          <a href="/instrumentos/denguecare.html">DengueCare <small>dengue na APS</small></a>
+          <a href="/trilha-livre/">Trilha Psicológica Livre <small>TCC e ACT por conta própria</small></a>
+          <a href="/#home--instrumentos" class="menu-dd-todos">Ver todos os instrumentos →</a>
+        </div>
+      </div>
+      <a href="/videos.html">Vídeos</a>
+      <a href="/#home--conteudo" data-op>Conteúdo</a>
+      <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
+      <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
+      <a href="/contato.html" class="nav-cta">Falar comigo</a>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+    </div>
+  </div>
+  <nav id="gaveta">
+    <a href="/">Início</a>
+    <a href="/#home--sobre">Sobre</a>
+    <a href="/area/paciente.html">Área do paciente</a>
+    <div class="grupo">Instrumentos</div>
+    <a href="/instrumentos/valores.html">Inventário de Valores</a>
+    <a href="/aplicativo-mindfulness-ibe.html" class="gav-app">Mindfulness-IBE: app de meditação</a>
+    <a href="/instrumentos/denguecare.html" class="gav-app">DengueCare: dengue na APS</a>
+    <a href="/trilha-livre/" class="gav-app">Trilha Psicológica Livre</a>
+    <a href="/#home--instrumentos">Ver todos os instrumentos</a>
+    <div class="grupo">Serviços</div>
+    <a href="/o-que-eu-faco.html">Seis formas de trabalho</a>
+    <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica</a>
+    <a href="/avaliacao-neuropsicologica-infantil-adolescente-bh.html">Crianças e adolescentes</a>
+    <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos</a>
+    <a href="/avaliacao-autismo-adulto-bh.html">Autismo em adolescentes e adultos</a>
+    <a href="/avaliacao-neuropsicologica-idoso-bh.html">Queixa de memória no idoso</a>
+    <a href="/relatorio-para-escola-e-provas.html">Documento para escola e provas</a>
+    <a href="/para-profissionais-encaminhar.html">Para profissionais: como encaminhar</a>
+    <a href="/psicoterapia.html">Psicoterapia</a>
+    <a href="/psicodiagnostico.html">Psicodiagnóstico</a>
+    <a href="/psicologo-online.html">Psicólogo online</a>
+    <a href="/quanto-custa-avaliacao-neuropsicologica.html">Quanto custa a avaliação</a>
+    <a href="/orientacao-profissional.html">Orientação de carreira</a>
+    <div class="grupo">Conteúdo para todos</div>
+    <a href="/tratamento-da-depressao.html">Tratamento da depressão</a>
+    <a href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>
+    <a href="/mindfulness-vs-escitalopram.html">Mindfulness ou remédio para ansiedade?</a>
+    <a href="/exercicio-e-ansiedade.html">Exercício físico e ansiedade</a>
+    <a href="/exercicio-fisico-tdah.html">Exercício físico e TDAH</a>
+    <a href="/dependencia-quimica.html">Dependência química</a>
+    <a href="/autismo-e-alimentacao.html">Autismo, intestino e alimentação</a>
+    <a href="/biotipos-circuitos.html">Seis cérebros, um diagnóstico</a>
+    <a href="/big-five.html">Os cinco traços</a>
+    <div class="grupo">Conteúdo técnico</div>
+    <a href="/modelo-4-camadas.html">Modelo de 4 camadas</a>
+    <a href="/tratado-hitop.html">Tratado HiTOP</a>
+    <a href="/modelo-12-dominios.html">Modelo de 12 domínios</a>
+    <a href="/projeto-terapeutico.html">Projeto terapêutico</a>
+    <a href="/idnap.html">IDNAP</a>
+    <a href="/demencias.html">Demências</a>
+    <a href="/neurobiologia-da-linguagem.html">Neurobiologia da linguagem</a>
+    <a href="/bilinguismo-e-cerebro.html">O cérebro bilíngue</a>
+    <a href="/intervencoes-tea-tdah.html">Intervenções no TEA e TDAH</a>
+    <a href="/farmacologia-neurotransmissores.html">Neurofarmacologia</a>
+    <div class="grupo">Protocolos integrais</div>
+    <a href="/mindfulness-protocolo.html">Mindfulness: adultos</a>
+    <a href="/mindfulness-adolescentes.html">Mindfulness: 13 a 17 anos</a>
+    <a href="/mindfulness-pre-adolescentes.html">Mindfulness: 9 a 12 anos</a>
+    <a href="/big-five-integracao.html">Big Five, faceta a faceta</a>
+    <div class="grupo">Mais</div>
+    <a href="/neuro-age.html">Neuro-Age Master</a>
+    <a href="/grupo-de-estudos.html">Grupo de estudos</a>
+    <a href="/videos.html">Vídeos</a>
+    <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a> ·
+      <a href="https://www.instagram.com/pedroandraderuger/" target="_blank" rel="noopener">Instagram</a>
+    <a href="/contato.html">Falar comigo</a>
+  </nav>
+</header>
+
+<main class="pagina" id="pg-app-mf">
+
+<section class="capa">
+  <div class="in">
+    <a class="back" href="/mindfulness-8-semanas.html">← Mindfulness em 8 semanas</a>
+    <div class="badge">Aplicativo gratuito · celular e computador</div>
+    <h1>Mindfulness-IBE: o programa de oito semanas no seu celular</h1>
+    <p class="dek">Triagem inicial, práticas guiadas com voz e cronômetro, diários, regras de segurança e acompanhamento semana a semana, tudo seguindo o protocolo. Funciona sem internet, não pede cadastro e os registros ficam só no seu aparelho.</p>
+    <p style="margin-top:1.2rem"><a class="btn-wa" style="background:var(--primaria)" href="/mindfulness-app/#instalar">Abrir e instalar o aplicativo</a></p>
+    <div class="creditos"><b>Pedro Andrade Rüger</b>, psicólogo, CRP 04/63435<br>Autor do protocolo e do aplicativo</div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="toc">
+    <details open>
+      <summary>Sumário</summary>
+      <h5>Nesta página</h5>
+      <div class="lista">
+        <a href="#telas">Como é o aplicativo</a>
+        <a href="#faz">O que ele faz</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="#limites">Limites</a>
+        <a href="#instalar">Como instalar</a>
+      </div>
+    </details>
+  </aside>
+
+  <article>
+    <h2 id="telas">Como é o aplicativo</h2>
+    <div class="capturas">
+      <figure><img src="/img/apps/mindfulness-ibe-termo.webp" alt="Tela de primeira abertura do Mindfulness-IBE com o termo de ciência" width="390" height="780" loading="lazy"><figcaption>Termo de ciência</figcaption></figure>
+      <figure><img src="/img/apps/mindfulness-ibe-inicio.webp" alt="Tela inicial do Mindfulness-IBE antes da semana 1, com a autotriagem" width="390" height="780" loading="lazy"><figcaption>Início e autotriagem</figcaption></figure>
+      <figure><img src="/img/apps/mindfulness-ibe-respirar.webp" alt="Tela do guia de respiração do Mindfulness-IBE" width="390" height="780" loading="lazy"><figcaption>Guia de respiração</figcaption></figure>
+    </div>
+    <h2 id="faz">O que ele faz</h2>
+    <ul>
+      <li>Autotriagem antes da semana 1, com questionários de uso livre</li>
+      <li>Práticas guiadas com voz e cronômetro, uma etapa por semana</li>
+      <li>Guia de respiração</li>
+      <li>Diários e registros de prática</li>
+      <li>Regras de segurança e de parada, como no manual</li>
+      <li>Relatório em PDF para levar ao profissional que acompanha você, se você quiser</li>
+    </ul>
+    <p>O aplicativo segue o <a class="inl" href="/mindfulness-protocolo.html">Protocolo Mindfulness-IBE para adultos</a>. Para entender o programa antes de começar, veja <a class="inl" href="/mindfulness-8-semanas.html">Mindfulness em 8 semanas</a>.</p>
+    <h2 id="privacidade">Privacidade</h2>
+    <p>Sem servidor, sem cadastro, sem rastreamento. Os dados ficam só no aparelho e só saem dele se você mesmo enviar o relatório ou uma sugestão.</p>
+    <h2 id="limites">Limites</h2>
+    <p>Este aplicativo é uma ferramenta de apoio e não substitui avaliação ou acompanhamento profissional. Práticas de mindfulness podem trazer efeitos indesejados; o aplicativo mostra quando parar e procurar ajuda. Em risco imediato, ligue 192 (SAMU) ou 188 (CVV).</p>
+    <h2 id="instalar">Como instalar</h2>
+    <p>Abra <a class="inl" href="/mindfulness-app/#instalar">pedroruger.com.br/mindfulness-app</a> no celular e siga o passo a passo da tela. O ícone vai para a tela inicial e o aplicativo abre em tela cheia, mesmo sem internet.</p>
+  </article>
+</div>
+
+<section class="bloco-servicos" aria-labelledby="bs-titulo">
+  <div class="bs-in">
+    <h2 id="bs-titulo">Atendimento clínico</h2>
+    <div class="bs-cards">
+      <div class="bs-card">
+        <h3>Avaliação neuropsicológica</h3>
+        <p>Mapeamento de atenção, memória, funções executivas, cognição social e personalidade, com laudo e devolutiva.</p>
+        <a href="/avaliacao-neuropsicologica.html">Como funciona →</a>
+      </div>
+      <div class="bs-card">
+        <h3>Psicodiagnóstico</h3>
+        <p>Investigação focada: TDAH, autismo, ansiedade, depressão, burnout.</p>
+        <a href="/psicodiagnostico.html">Como funciona →</a>
+      </div>
+      <div class="bs-card">
+        <h3>Psicoterapia</h3>
+        <p>TCC, ACT e Terapia do Esquema para adolescentes e adultos.</p>
+        <a href="/psicoterapia.html">Como funciona →</a>
+      </div>
+    </div>
+    <p class="bs-final"><span>Belo Horizonte (Santo Agostinho) e online.</span> <a class="btn-wa" href="https://wa.me/5531999846282?text=Ol%C3%A1%2C%20Pedro.%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20psicoterapia" target="_blank" rel="noopener">Agendar pelo WhatsApp</a></p>
+    <p class="bs-cred">Pedro Andrade Rüger, psicólogo, CRP 04/63435</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="nap">
+    <p><b class="nome">Pedro Andrade Rüger</b>, psicólogo, CRP 04/63435 · Neuropsicólogo</p>
+    <address>
+      R. Paracatu, 1163, sala 904, Santo Agostinho<br>
+      Belo Horizonte, MG · CEP 30180-098<br>
+      <a href="tel:+5531999846282">(31) 99984-6282</a> ·
+      <a href="https://wa.me/message/TOXTR5MSFUHSE1" target="_blank" rel="noopener">WhatsApp</a> ·
+      <a href="mailto:pedro.rugerr@gmail.com">pedro.rugerr@gmail.com</a>
+    </address>
+    <p style="margin-top:.6rem">
+      <a href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener">Doctoralia</a> ·
+      <a href="https://www.google.com/search?q=Psic%C3%B3logo+Pedro+Andrade+R%C3%BCger+Neuropsicologia+Belo+Horizonte" target="_blank" rel="noopener">Perfil no Google</a> ·
+      <a href="https://www.youtube.com/@pedroandraderuger" target="_blank" rel="noopener">Canal no YouTube</a>
+    </p>
+    <p style="margin-top:.6rem"><a href="/avaliacao-neuropsicologica-infantil-adolescente-bh.html">Avaliação de crianças e adolescentes</a> · <a href="/psicologo-online.html">Psicólogo online</a> · <a href="/quanto-custa-avaliacao-neuropsicologica.html">Quanto custa a avaliação</a> · <a href="/para-profissionais-encaminhar.html">Para profissionais</a></p>
+    <p style="margin-top:.6rem"><a href="/area/paciente.html">Área do paciente</a></p>
+    <p style="margin-top:.6rem">Atendimento presencial em Belo Horizonte e online · português e inglês</p>
+    <p class="legal">As informações deste site têm caráter informativo e não substituem consulta profissional individualizada.<br>Nenhum resultado é prometido ou garantido. Instrumentos psicológicos protegidos não são reproduzidos nem distribuídos.</p>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>

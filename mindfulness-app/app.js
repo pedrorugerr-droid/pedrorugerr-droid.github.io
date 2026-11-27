@@ -1615,7 +1615,8 @@
       '<p class="mudo">Sem servidor, sem cadastro, sem rastreamento. Os dados ficam só neste aparelho e só saem dele se você mesmo(a) enviar o relatório ou uma sugestão.</p></div>' +
       '<div class="cartao"><h2>' + h(t.titulo) + '</h2><p>' + h(t.abertura) + '</p><ol class="lista" type="a">' + t.itens.map(function (i) { return '<li>' + h(i) + '</li>'; }).join('') + '</ol>' +
       '<p class="mudo">Aceito em ' + h(R.dataBR(E.termo && E.termo.data)) + '.</p></div>' +
-      '<div class="cartao"><h3>Questionários</h3><p class="mudo">' + h(I.observacao) + '</p></div>';
+      '<div class="cartao"><h3>Questionários</h3><p class="mudo">' + h(I.observacao) + '</p></div>' +
+      '<div class="cartao"><h3>Quem criou</h3><p>Criado por Pedro Andrade Rüger, psicólogo, CRP 04/63435.</p><p>Este aplicativo é uma ferramenta de apoio e não substitui avaliação ou acompanhamento profissional.</p><p>Atendimento clínico: avaliação neuropsicológica, psicodiagnóstico e psicoterapia em Belo Horizonte e online.</p><p><a href="https://pedroruger.com.br/">pedroruger.com.br</a></p></div>';
   };
 
   /* ================= ações ================= */

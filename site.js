@@ -112,4 +112,26 @@
       bt.parentNode.replaceChild(f, bt);
     });
   });
+  /* Medição de cliques (GA4, gratuito). Enquanto GA4_ID estiver vazio, nada é carregado nem enviado.
+     Para ligar: colocar o ID de medição do GA4 (formato G-XXXXXXXXXX) em GA4_ID.
+     Eventos: clique_whatsapp, clique_telefone e clique_doctoralia, com o parâmetro pagina (caminho da página). */
+  var GA4_ID = '';
+  if (GA4_ID && !window.gtag) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID, {anonymize_ip: true});
+    var ga = document.createElement('script');
+    ga.async = true; ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_ID);
+    document.head.appendChild(ga);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '', ev = '';
+    if (/^https?:\/\/(wa\.me|api\.whatsapp\.com|chat\.whatsapp\.com)\//i.test(h)) ev = 'clique_whatsapp';
+    else if (/^tel:/i.test(h)) ev = 'clique_telefone';
+    else if (/doctoralia\.com/i.test(h)) ev = 'clique_doctoralia';
+    if (ev && typeof window.gtag === 'function') window.gtag('event', ev, {pagina: location.pathname});
+  }, true);
 })();

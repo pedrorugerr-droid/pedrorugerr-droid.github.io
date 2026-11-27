@@ -1,6 +1,6 @@
 // Service worker: app livre inteiro offline. Lista e versão vêm do build (construir.js).
 // Só guarda os arquivos do próprio app. O app livre não fala com nenhum servidor.
-const VERSAO = "trilha-livre-20261123-termo";
+const VERSAO = "trilha-livre-20261127-rodape";
 const ARQUIVOS = [
  "./",
  "app.js",
