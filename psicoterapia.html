@@ -25,76 +25,76 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-psicoterapia{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-psicoterapia h1,#pg-psicoterapia h2,#pg-psicoterapia h3,#pg-psicoterapia h4,#pg-psicoterapia .serif{font-family:Georgia,"Times New Roman",serif}
-#pg-psicoterapia a{color:inherit;text-decoration:none}
+#pg-psicoterapia{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-psicoterapia h1,#pg-psicoterapia h2,#pg-psicoterapia h3,#pg-psicoterapia h4,#pg-psicoterapia .serif{font-family:var(--fonte-titulo)}
+#pg-psicoterapia a{}
 #pg-psicoterapia .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 #pg-psicoterapia .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
-#pg-psicoterapia section{padding:4rem 0}
-#pg-psicoterapia .alt{background:#fff}
-#pg-psicoterapia .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-psicoterapia h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-psicoterapia .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
-#pg-psicoterapia .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-psicoterapia p.body{color:var(--sub);font-size:.98rem;margin-bottom:1.1rem}
-#pg-psicoterapia p.body strong,#pg-psicoterapia p.body b{color:var(--vinho)}
-#pg-psicoterapia .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-psicoterapia .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-psicoterapia .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
-#pg-psicoterapia .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-psicoterapia .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-psicoterapia .back:hover{color:var(--vermelho)}
-@media(max-width:680px){#pg-psicoterapia .hero h1{font-size:1.85rem}}
-#pg-psicoterapia .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
-#pg-psicoterapia .btn-primary{background:var(--vermelho);color:#fff}
-#pg-psicoterapia .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
-#pg-psicoterapia .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--borda)}
-#pg-psicoterapia .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-psicoterapia section{padding:var(--sec-pad) 0}
+#pg-psicoterapia .alt{background:var(--superficie-tint)}
+#pg-psicoterapia .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-psicoterapia h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-psicoterapia .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2.2rem}
+#pg-psicoterapia .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-psicoterapia p.body{color:var(--texto-2);font-size:var(--fs-2);margin-bottom:1.1rem}
+#pg-psicoterapia p.body strong,#pg-psicoterapia p.body b{color:var(--texto)}
+#pg-psicoterapia .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-psicoterapia .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-psicoterapia .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-psicoterapia .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-psicoterapia .back{display:inline-block;margin-bottom:1.3rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-psicoterapia .back:hover{color:var(--primaria)}
+@media(max-width:680px){#pg-psicoterapia .hero h1{font-size:var(--fs-5)}}
+#pg-psicoterapia .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:none;cursor:pointer}
+#pg-psicoterapia .btn-primary{background:var(--primaria);color:#fff!important;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}
+#pg-psicoterapia .btn-primary:hover{background:var(--primaria-hover)}
+#pg-psicoterapia .btn-ghost{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-psicoterapia .btn-ghost:hover{border-color:var(--primaria);background:var(--superficie-tint);color:var(--primaria)!important}
 #pg-psicoterapia /* etapas numeradas */
   .etapas{display:grid;gap:.9rem}
-#pg-psicoterapia .etapa{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
-#pg-psicoterapia .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;font-family:Georgia,serif}
-#pg-psicoterapia .etapa h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-psicoterapia .etapa p{font-size:.89rem;color:var(--sub)}
+#pg-psicoterapia .etapa{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
+#pg-psicoterapia .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--superficie);color:var(--texto);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-1);font-family:var(--fonte-titulo);border:1px solid var(--borda)}
+#pg-psicoterapia .etapa h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-psicoterapia .etapa p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-psicoterapia /* blocos genéricos */
-  .bloco{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem}
-#pg-psicoterapia .bloco h4{font-size:1.05rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-psicoterapia .bloco p{font-size:.9rem;color:var(--sub)}
+  .bloco{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.6rem;margin-bottom:1.1rem}
+#pg-psicoterapia .bloco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-psicoterapia .bloco p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-psicoterapia ul.plain{list-style:none}
-#pg-psicoterapia ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:.93rem;color:var(--sub)}
-#pg-psicoterapia ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--vermelho)}
-#pg-psicoterapia ul.plain li b{color:var(--vinho)}
-#pg-psicoterapia .dois{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+#pg-psicoterapia ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-psicoterapia ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--primaria)}
+#pg-psicoterapia ul.plain li b{color:var(--texto)}
+#pg-psicoterapia .dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3)}
 @media(max-width:700px){#pg-psicoterapia .dois{grid-template-columns:1fr}}
-#pg-psicoterapia .col{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem}
-#pg-psicoterapia .col.neg{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
-#pg-psicoterapia .col h4{font-size:1.02rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-psicoterapia .col.neg h4{color:var(--creme)}
-#pg-psicoterapia .col p,#pg-psicoterapia .col li{font-size:.89rem;color:var(--sub)}
-#pg-psicoterapia .col.neg p,#pg-psicoterapia .col.neg li{color:rgba(255,248,231,.8)}
-#pg-psicoterapia .col.neg li::before{color:var(--vermelho)}
-#pg-psicoterapia .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.3rem;line-height:1.6}
-#pg-psicoterapia .nota b{color:#4d3b00}
+#pg-psicoterapia .col{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.5rem}
+#pg-psicoterapia .col.neg{background:var(--superficie);color:var(--texto);border-color:var(--texto)}
+#pg-psicoterapia .col h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.6rem}
+#pg-psicoterapia .col.neg h4{color:var(--texto)}
+#pg-psicoterapia .col p,#pg-psicoterapia .col li{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-psicoterapia .col.neg p,#pg-psicoterapia .col.neg li{color:var(--texto-2)}
+#pg-psicoterapia .col.neg li::before{color:var(--primaria)}
+#pg-psicoterapia .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-top:1.3rem;line-height:1.6;border:0;border-left:3px solid var(--primaria)}
+#pg-psicoterapia .nota b{color:var(--texto)}
 #pg-psicoterapia .quem{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
-#pg-psicoterapia .quem div{background:var(--creme);border:1px solid var(--borda);border-left:3px solid var(--vermelho);border-radius:0 10px 10px 0;padding:1rem 1.2rem;font-size:.9rem;color:var(--sub)}
-#pg-psicoterapia .quem div b{display:block;color:var(--vinho);font-family:Georgia,serif;margin-bottom:.2rem}
+#pg-psicoterapia .quem div{background:var(--fundo);border:1px solid var(--borda);border-left:3px solid var(--primaria);border-radius:0 var(--raio-botao) var(--raio-botao) 0;padding:1rem 1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-psicoterapia .quem div b{display:block;color:var(--texto);font-family:var(--fonte-corpo);margin-bottom:.2rem}
 @media(max-width:700px){#pg-psicoterapia .quem{grid-template-columns:1fr}}
-#pg-psicoterapia .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-psicoterapia .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-psicoterapia .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-psicoterapia .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-psicoterapia .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-psicoterapia .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-psicoterapia .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-psicoterapia .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-psicoterapia .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-psicoterapia .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-psicoterapia .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-psicoterapia .cta-wa{background:#1FA855;color:#fff}
-#pg-psicoterapia .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-psicoterapia .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-psicoterapia .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-psicoterapia .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-psicoterapia .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-psicoterapia .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-psicoterapia .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-psicoterapia .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-psicoterapia .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-psicoterapia .cta-wa:hover{background:#20BD5A}
+#pg-psicoterapia .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-psicoterapia .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-psicoterapia .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-psicoterapia .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-psicoterapia .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-psicoterapia .cta-opcoes{flex-direction:column}
-#pg-psicoterapia .cta-op{justify-content:center}}
+#pg-psicoterapia .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
 </style>
 <script type="application/ld+json">
 {
@@ -151,7 +151,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -163,7 +163,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -177,7 +177,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -326,7 +326,7 @@
     </div>
     <div class="bloco">
       <h4>ACT e mindfulness</h4>
-      <p>Aceitação, desfusão cognitiva e ação orientada por valores. Para quem se beneficia de um programa com começo, meio e fim, há um <a href="/mindfulness-8-semanas.html" style="color:var(--bordo);border-bottom:1px solid var(--borda)">protocolo estruturado de oito semanas</a>, com versões para adultos, adolescentes e pré-adolescentes.</p>
+      <p>Aceitação, desfusão cognitiva e ação orientada por valores. Para quem se beneficia de um programa com começo, meio e fim, há um <a href="/mindfulness-8-semanas.html" style="color:var(--primaria-hover);border-bottom:1px solid var(--borda)">protocolo estruturado de oito semanas</a>, com versões para adultos, adolescentes e pré-adolescentes.</p>
     </div>
     <div class="bloco">
       <h4>Escuta clínica de fundo existencial</h4>
@@ -340,7 +340,7 @@
     <p class="sec-label">O diferencial</p>
     <h2 class="sec-title">O que a avaliação muda na terapia</h2>
     <p class="body">Duas pessoas com o mesmo diagnóstico podem precisar de planos opostos. Uma tem a cognição preservada e um esquema precoce muito ativo; a outra tem desorganização executiva e esquemas discretos. O rótulo é o mesmo. O que se faz na sessão não é.</p>
-    <p class="body">Quando o paciente chega de um processo de avaliação (<a href="/avaliacao-neuropsicologica.html" style="color:var(--bordo);border-bottom:1px solid var(--borda)">comigo</a> ou de outro profissional), o plano terapêutico parte de um mapa e não de uma impressão: quais processos estão sustentando o quadro, quanto recurso cognitivo há disponível, o que dá para treinar e o que é mais honesto compensar.</p>
+    <p class="body">Quando o paciente chega de um processo de avaliação (<a href="/avaliacao-neuropsicologica.html" style="color:var(--primaria-hover);border-bottom:1px solid var(--borda)">comigo</a> ou de outro profissional), o plano terapêutico parte de um mapa e não de uma impressão: quais processos estão sustentando o quadro, quanto recurso cognitivo há disponível, o que dá para treinar e o que é mais honesto compensar.</p>
     <p class="body"><strong>Avaliação não é pré-requisito para começar a terapia.</strong> A maior parte dos atendimentos começa sem ela. Ela é oferecida quando a leitura do caso não fecha, quando a resposta ao tratamento não acompanha o esforço, ou quando a própria pergunta do paciente é sobre funcionamento.</p>
     <div class="nota"><b>Sobre o que a psicoterapia não é.</b> Não substitui tratamento médico nem prescrição medicamentosa; quando há indicação, o trabalho é feito em conjunto com psiquiatra ou com o médico que acompanha o caso. Não tem resultado garantido nem prazo fixo: a resposta varia, e parte do trabalho é reconhecer quando ele não está indo e mudar o rumo ou o profissional. E tudo o que é dito em sessão é protegido por sigilo profissional, com as exceções previstas em lei e no Código de Ética do psicólogo, que são explicadas no início.</div>
   </div>
@@ -352,9 +352,9 @@
       <h2>Começar</h2>
       <p>Se você está procurando terapia e não sabe se é comigo, a conversa inicial existe para isso. Sem compromisso e sem custo.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Adolescentes, adultos e idosos · presencial em Belo Horizonte e online · português e inglês</div>

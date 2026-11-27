@@ -25,76 +25,76 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-orientacao-profissional{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-orientacao-profissional h1,#pg-orientacao-profissional h2,#pg-orientacao-profissional h3,#pg-orientacao-profissional h4,#pg-orientacao-profissional .serif{font-family:Georgia,"Times New Roman",serif}
-#pg-orientacao-profissional a{color:inherit;text-decoration:none}
+#pg-orientacao-profissional{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-orientacao-profissional h1,#pg-orientacao-profissional h2,#pg-orientacao-profissional h3,#pg-orientacao-profissional h4,#pg-orientacao-profissional .serif{font-family:var(--fonte-titulo)}
+#pg-orientacao-profissional a{}
 #pg-orientacao-profissional .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 #pg-orientacao-profissional .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
-#pg-orientacao-profissional section{padding:4rem 0}
-#pg-orientacao-profissional .alt{background:#fff}
-#pg-orientacao-profissional .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-orientacao-profissional h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-orientacao-profissional .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
-#pg-orientacao-profissional .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-orientacao-profissional p.body{color:var(--sub);font-size:.98rem;margin-bottom:1.1rem}
-#pg-orientacao-profissional p.body strong,#pg-orientacao-profissional p.body b{color:var(--vinho)}
-#pg-orientacao-profissional .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-orientacao-profissional .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-orientacao-profissional .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
-#pg-orientacao-profissional .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-orientacao-profissional .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-orientacao-profissional .back:hover{color:var(--vermelho)}
-@media(max-width:680px){#pg-orientacao-profissional .hero h1{font-size:1.85rem}}
-#pg-orientacao-profissional .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
-#pg-orientacao-profissional .btn-primary{background:var(--vermelho);color:#fff}
-#pg-orientacao-profissional .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
-#pg-orientacao-profissional .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--borda)}
-#pg-orientacao-profissional .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-orientacao-profissional section{padding:var(--sec-pad) 0}
+#pg-orientacao-profissional .alt{background:var(--superficie-tint)}
+#pg-orientacao-profissional .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-orientacao-profissional h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-orientacao-profissional .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2.2rem}
+#pg-orientacao-profissional .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-orientacao-profissional p.body{color:var(--texto-2);font-size:var(--fs-2);margin-bottom:1.1rem}
+#pg-orientacao-profissional p.body strong,#pg-orientacao-profissional p.body b{color:var(--texto)}
+#pg-orientacao-profissional .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-orientacao-profissional .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-orientacao-profissional .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-orientacao-profissional .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-orientacao-profissional .back{display:inline-block;margin-bottom:1.3rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-orientacao-profissional .back:hover{color:var(--primaria)}
+@media(max-width:680px){#pg-orientacao-profissional .hero h1{font-size:var(--fs-5)}}
+#pg-orientacao-profissional .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:none;cursor:pointer}
+#pg-orientacao-profissional .btn-primary{background:var(--primaria);color:#fff!important;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}
+#pg-orientacao-profissional .btn-primary:hover{background:var(--primaria-hover)}
+#pg-orientacao-profissional .btn-ghost{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-orientacao-profissional .btn-ghost:hover{border-color:var(--primaria);background:var(--superficie-tint);color:var(--primaria)!important}
 #pg-orientacao-profissional /* etapas numeradas */
   .etapas{display:grid;gap:.9rem}
-#pg-orientacao-profissional .etapa{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
-#pg-orientacao-profissional .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;font-family:Georgia,serif}
-#pg-orientacao-profissional .etapa h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-orientacao-profissional .etapa p{font-size:.89rem;color:var(--sub)}
+#pg-orientacao-profissional .etapa{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
+#pg-orientacao-profissional .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--superficie);color:var(--texto);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-1);font-family:var(--fonte-titulo);border:1px solid var(--borda)}
+#pg-orientacao-profissional .etapa h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-orientacao-profissional .etapa p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-orientacao-profissional /* blocos genéricos */
-  .bloco{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem}
-#pg-orientacao-profissional .bloco h4{font-size:1.05rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-orientacao-profissional .bloco p{font-size:.9rem;color:var(--sub)}
+  .bloco{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.6rem;margin-bottom:1.1rem}
+#pg-orientacao-profissional .bloco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-orientacao-profissional .bloco p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-orientacao-profissional ul.plain{list-style:none}
-#pg-orientacao-profissional ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:.93rem;color:var(--sub)}
-#pg-orientacao-profissional ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--vermelho)}
-#pg-orientacao-profissional ul.plain li b{color:var(--vinho)}
-#pg-orientacao-profissional .dois{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+#pg-orientacao-profissional ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-orientacao-profissional ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--primaria)}
+#pg-orientacao-profissional ul.plain li b{color:var(--texto)}
+#pg-orientacao-profissional .dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3)}
 @media(max-width:700px){#pg-orientacao-profissional .dois{grid-template-columns:1fr}}
-#pg-orientacao-profissional .col{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem}
-#pg-orientacao-profissional .col.neg{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
-#pg-orientacao-profissional .col h4{font-size:1.02rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-orientacao-profissional .col.neg h4{color:var(--creme)}
-#pg-orientacao-profissional .col p,#pg-orientacao-profissional .col li{font-size:.89rem;color:var(--sub)}
-#pg-orientacao-profissional .col.neg p,#pg-orientacao-profissional .col.neg li{color:rgba(255,248,231,.8)}
-#pg-orientacao-profissional .col.neg li::before{color:var(--vermelho)}
-#pg-orientacao-profissional .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.3rem;line-height:1.6}
-#pg-orientacao-profissional .nota b{color:#4d3b00}
+#pg-orientacao-profissional .col{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.5rem}
+#pg-orientacao-profissional .col.neg{background:var(--superficie);color:var(--texto);border-color:var(--texto)}
+#pg-orientacao-profissional .col h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.6rem}
+#pg-orientacao-profissional .col.neg h4{color:var(--texto)}
+#pg-orientacao-profissional .col p,#pg-orientacao-profissional .col li{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-orientacao-profissional .col.neg p,#pg-orientacao-profissional .col.neg li{color:var(--texto-2)}
+#pg-orientacao-profissional .col.neg li::before{color:var(--primaria)}
+#pg-orientacao-profissional .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-top:1.3rem;line-height:1.6;border:0;border-left:3px solid var(--primaria)}
+#pg-orientacao-profissional .nota b{color:var(--texto)}
 #pg-orientacao-profissional .quem{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
-#pg-orientacao-profissional .quem div{background:var(--creme);border:1px solid var(--borda);border-left:3px solid var(--vermelho);border-radius:0 10px 10px 0;padding:1rem 1.2rem;font-size:.9rem;color:var(--sub)}
-#pg-orientacao-profissional .quem div b{display:block;color:var(--vinho);font-family:Georgia,serif;margin-bottom:.2rem}
+#pg-orientacao-profissional .quem div{background:var(--fundo);border:1px solid var(--borda);border-left:3px solid var(--primaria);border-radius:0 var(--raio-botao) var(--raio-botao) 0;padding:1rem 1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-orientacao-profissional .quem div b{display:block;color:var(--texto);font-family:var(--fonte-corpo);margin-bottom:.2rem}
 @media(max-width:700px){#pg-orientacao-profissional .quem{grid-template-columns:1fr}}
-#pg-orientacao-profissional .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-orientacao-profissional .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-orientacao-profissional .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-orientacao-profissional .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-orientacao-profissional .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-orientacao-profissional .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-orientacao-profissional .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-orientacao-profissional .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-orientacao-profissional .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-orientacao-profissional .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-orientacao-profissional .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-orientacao-profissional .cta-wa{background:#1FA855;color:#fff}
-#pg-orientacao-profissional .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-orientacao-profissional .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-orientacao-profissional .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-orientacao-profissional .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-orientacao-profissional .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-orientacao-profissional .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-orientacao-profissional .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-orientacao-profissional .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-orientacao-profissional .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-orientacao-profissional .cta-wa:hover{background:#20BD5A}
+#pg-orientacao-profissional .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-orientacao-profissional .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-orientacao-profissional .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-orientacao-profissional .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-orientacao-profissional .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-orientacao-profissional .cta-opcoes{flex-direction:column}
-#pg-orientacao-profissional .cta-op{justify-content:center}}
+#pg-orientacao-profissional .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
 </style>
 <script type="application/ld+json">
 {
@@ -151,7 +151,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -163,7 +163,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -177,7 +177,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -296,7 +296,7 @@
       <div class="etapa"><div class="sn">4</div><div>
         <h4>Hierarquia de valores por confronto par a par</h4>
         <p>Em vez de perguntar o que você valoriza, o método coloca seus valores em disputa direta, dois a dois, em formato de torneio, com pontuação comparativa e verificação de consistência. Cada escolha vem acompanhada de um registro do porquê. Ao final, um mapa dos valores que de fato orientam suas decisões, que costuma não ser o mapa que a pessoa esperava.</p>
-        <p><a href="/instrumentos/valores.html" style="color:var(--vermelho);font-weight:600">Fazer o Inventário de Valores agora →</a></p>
+        <p><a href="/instrumentos/valores.html" style="color:var(--primaria);font-weight:600">Fazer o Inventário de Valores agora →</a></p>
       </div></div>
       <div class="etapa"><div class="sn">5</div><div>
         <h4>Integração e plano</h4>
@@ -352,9 +352,9 @@
       <h2>Vamos conversar sobre o seu caso</h2>
       <p>O primeiro contato serve para entender a sua pergunta e dizer se este é o processo certo para ela, ou qual seria.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Presencial em Belo Horizonte e online · português e inglês</div>

@@ -25,101 +25,101 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-neuro-age{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-neuro-age h1,#pg-neuro-age h2,#pg-neuro-age h3,#pg-neuro-age h4,#pg-neuro-age .serif{font-family:Georgia,"Times New Roman",serif}
-#pg-neuro-age a{color:inherit;text-decoration:none}
+#pg-neuro-age{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-neuro-age h1,#pg-neuro-age h2,#pg-neuro-age h3,#pg-neuro-age h4,#pg-neuro-age .serif{font-family:var(--fonte-titulo)}
+#pg-neuro-age a{}
 #pg-neuro-age .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 #pg-neuro-age .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
-#pg-neuro-age section{padding:4rem 0}
-#pg-neuro-age .alt{background:#fff}
-#pg-neuro-age .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-neuro-age h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-neuro-age .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
-#pg-neuro-age .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-neuro-age p.body{color:var(--sub);font-size:.98rem;margin-bottom:1.1rem}
-#pg-neuro-age p.body strong,#pg-neuro-age p.body b{color:var(--vinho)}
-#pg-neuro-age .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-neuro-age .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-neuro-age .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
-#pg-neuro-age .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-neuro-age .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-neuro-age .back:hover{color:var(--vermelho)}
-@media(max-width:680px){#pg-neuro-age .hero h1{font-size:1.85rem}}
-#pg-neuro-age .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
-#pg-neuro-age .btn-primary{background:var(--vermelho);color:#fff}
-#pg-neuro-age .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
-#pg-neuro-age .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--borda)}
-#pg-neuro-age .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-neuro-age section{padding:var(--sec-pad) 0}
+#pg-neuro-age .alt{background:var(--superficie-tint)}
+#pg-neuro-age .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-neuro-age h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-neuro-age .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2.2rem}
+#pg-neuro-age .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-neuro-age p.body{color:var(--texto-2);font-size:var(--fs-2);margin-bottom:1.1rem}
+#pg-neuro-age p.body strong,#pg-neuro-age p.body b{color:var(--texto)}
+#pg-neuro-age .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-neuro-age .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-neuro-age .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-neuro-age .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-neuro-age .back{display:inline-block;margin-bottom:1.3rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-neuro-age .back:hover{color:var(--primaria)}
+@media(max-width:680px){#pg-neuro-age .hero h1{font-size:var(--fs-5)}}
+#pg-neuro-age .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:none;cursor:pointer}
+#pg-neuro-age .btn-primary{background:var(--primaria);color:#fff!important;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}
+#pg-neuro-age .btn-primary:hover{background:var(--primaria-hover)}
+#pg-neuro-age .btn-ghost{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-neuro-age .btn-ghost:hover{border-color:var(--primaria);background:var(--superficie-tint);color:var(--primaria)!important}
 #pg-neuro-age /* etapas numeradas */
   .etapas{display:grid;gap:.9rem}
-#pg-neuro-age .etapa{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
-#pg-neuro-age .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;font-family:Georgia,serif}
-#pg-neuro-age .etapa h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-neuro-age .etapa p{font-size:.89rem;color:var(--sub)}
+#pg-neuro-age .etapa{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
+#pg-neuro-age .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--superficie);color:var(--texto);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-1);font-family:var(--fonte-titulo);border:1px solid var(--borda)}
+#pg-neuro-age .etapa h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-neuro-age .etapa p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-neuro-age /* blocos genéricos */
-  .bloco{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem}
-#pg-neuro-age .bloco h4{font-size:1.05rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-neuro-age .bloco p{font-size:.9rem;color:var(--sub)}
+  .bloco{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.6rem;margin-bottom:1.1rem}
+#pg-neuro-age .bloco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-neuro-age .bloco p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-neuro-age ul.plain{list-style:none}
-#pg-neuro-age ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:.93rem;color:var(--sub)}
-#pg-neuro-age ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--vermelho)}
-#pg-neuro-age ul.plain li b{color:var(--vinho)}
-#pg-neuro-age .dois{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+#pg-neuro-age ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-neuro-age ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--primaria)}
+#pg-neuro-age ul.plain li b{color:var(--texto)}
+#pg-neuro-age .dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3)}
 @media(max-width:700px){#pg-neuro-age .dois{grid-template-columns:1fr}}
-#pg-neuro-age .col{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem}
-#pg-neuro-age .col.neg{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
-#pg-neuro-age .col h4{font-size:1.02rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-neuro-age .col.neg h4{color:var(--creme)}
-#pg-neuro-age .col p,#pg-neuro-age .col li{font-size:.89rem;color:var(--sub)}
-#pg-neuro-age .col.neg p,#pg-neuro-age .col.neg li{color:rgba(255,248,231,.8)}
-#pg-neuro-age .col.neg li::before{color:var(--vermelho)}
-#pg-neuro-age .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.3rem;line-height:1.6}
-#pg-neuro-age .nota b{color:#4d3b00}
+#pg-neuro-age .col{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.5rem}
+#pg-neuro-age .col.neg{background:var(--superficie);color:var(--texto);border-color:var(--texto)}
+#pg-neuro-age .col h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.6rem}
+#pg-neuro-age .col.neg h4{color:var(--texto)}
+#pg-neuro-age .col p,#pg-neuro-age .col li{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-neuro-age .col.neg p,#pg-neuro-age .col.neg li{color:var(--texto-2)}
+#pg-neuro-age .col.neg li::before{color:var(--primaria)}
+#pg-neuro-age .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-top:1.3rem;line-height:1.6;border:0;border-left:3px solid var(--primaria)}
+#pg-neuro-age .nota b{color:var(--texto)}
 #pg-neuro-age .quem{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
-#pg-neuro-age .quem div{background:var(--creme);border:1px solid var(--borda);border-left:3px solid var(--vermelho);border-radius:0 10px 10px 0;padding:1rem 1.2rem;font-size:.9rem;color:var(--sub)}
-#pg-neuro-age .quem div b{display:block;color:var(--vinho);font-family:Georgia,serif;margin-bottom:.2rem}
+#pg-neuro-age .quem div{background:var(--fundo);border:1px solid var(--borda);border-left:3px solid var(--primaria);border-radius:0 var(--raio-botao) var(--raio-botao) 0;padding:1rem 1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-neuro-age .quem div b{display:block;color:var(--texto);font-family:var(--fonte-corpo);margin-bottom:.2rem}
 @media(max-width:700px){#pg-neuro-age .quem{grid-template-columns:1fr}}
-#pg-neuro-age .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-neuro-age .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-neuro-age .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-neuro-age .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-neuro-age .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-neuro-age .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-neuro-age .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-neuro-age .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-neuro-age .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-neuro-age .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-neuro-age .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-neuro-age .cta-wa{background:#1FA855;color:#fff}
-#pg-neuro-age .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-neuro-age .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-neuro-age .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-neuro-age .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-neuro-age .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-neuro-age .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-neuro-age .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-neuro-age .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-neuro-age .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-neuro-age .cta-wa:hover{background:#20BD5A}
+#pg-neuro-age .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-neuro-age .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-neuro-age .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-neuro-age .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-neuro-age .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-neuro-age .cta-opcoes{flex-direction:column}
-#pg-neuro-age .cta-op{justify-content:center}}
-#pg-neuro-age .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
-#pg-neuro-age .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
-#pg-neuro-age .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-neuro-age .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
+#pg-neuro-age .badge{display:inline-block;font-size:var(--fs-1);letter-spacing:0;text-transform:none;font-weight:500;padding:2px 10px;border-radius:999px;margin-bottom:1rem;color:var(--texto-2);background:var(--superficie-tint);border:0}
+#pg-neuro-age .badge.tec{background:var(--superficie-tint);color:var(--texto-2);border:0}
+#pg-neuro-age .badge.pub{background:var(--superficie-tint);color:var(--texto-2);border:0}
 #pg-neuro-age .semanas{display:grid;gap:.9rem}
-#pg-neuro-age .semana{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.2rem 1.3rem;display:flex;gap:1.1rem}
-#pg-neuro-age .semana .sn{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;font-family:Georgia,serif;flex-direction:column;line-height:1}
-#pg-neuro-age .semana .sn small{font-size:.52rem;letter-spacing:1px;opacity:.6}
-#pg-neuro-age .semana h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-neuro-age .semana p{font-size:.89rem;color:var(--sub)}
-#pg-neuro-age .traco{background:#fff;border:1px solid var(--borda);border-left:4px solid var(--vermelho);border-radius:0 14px 14px 0;padding:1.5rem;margin-bottom:1.1rem}
-#pg-neuro-age .traco h4{font-size:1.1rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-neuro-age .traco .polos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
-#pg-neuro-age .traco .polo{background:var(--creme);border-radius:10px;padding:.9rem 1rem}
-#pg-neuro-age .traco .polo b{display:block;font-size:.7rem;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:.3rem}
+#pg-neuro-age .semana{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.2rem 1.3rem;display:flex;gap:1.1rem}
+#pg-neuro-age .semana .sn{flex:0 0 auto;width:52px;height:52px;border-radius:var(--raio-botao);background:var(--superficie-tint);color:var(--primaria);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-3);font-family:var(--fonte-titulo);flex-direction:column;line-height:1;border:0;gap:2px}
+#pg-neuro-age .semana .sn small{font-size:var(--fs-1);letter-spacing:0;color:var(--texto-2);font-family:var(--fonte-corpo);font-weight:500}
+#pg-neuro-age .semana h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-neuro-age .semana p{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-neuro-age .traco{background:var(--superficie);border:1px solid var(--borda);border-left:4px solid var(--primaria);border-radius:0 var(--raio-card) var(--raio-card) 0;padding:1.5rem;margin-bottom:1.1rem}
+#pg-neuro-age .traco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-neuro-age .traco .polos{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3);margin-top:.9rem}
+#pg-neuro-age .traco .polo{background:var(--fundo);border-radius:var(--raio-botao);padding:.9rem 1rem}
+#pg-neuro-age .traco .polo b{display:block;font-size:var(--fs-1);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:.3rem}
 #pg-neuro-age .traco .polo.bom b{color:#1d7a4a}
-#pg-neuro-age .traco .polo.ruim b{color:var(--bordo)}
-#pg-neuro-age .traco .polo p{font-size:.86rem;color:var(--sub)}
+#pg-neuro-age .traco .polo.ruim b{color:var(--primaria-hover)}
+#pg-neuro-age .traco .polo p{font-size:var(--fs-1);color:var(--texto-2)}
 @media(max-width:640px){#pg-neuro-age .traco .polos{grid-template-columns:1fr}}
 #pg-neuro-age .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin:1.4rem 0}
-#pg-neuro-age .ficha div{background:var(--creme);border:1px solid var(--borda);border-radius:12px;padding:1rem}
-#pg-neuro-age .ficha b{display:block;font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
-#pg-neuro-age .ficha span{font-size:.92rem;color:var(--vinho);font-family:Georgia,serif}
-#pg-neuro-age .destaque{background:var(--vinho);color:var(--creme);border-radius:16px;padding:1.8rem;margin:1.6rem 0}
-#pg-neuro-age .destaque h4{color:var(--creme);font-size:1.1rem;margin-bottom:.6rem}
-#pg-neuro-age .destaque p{color:rgba(255,248,231,.82);font-size:.93rem}
+#pg-neuro-age .ficha div{background:var(--fundo);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1rem}
+#pg-neuro-age .ficha b{display:block;font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.3rem}
+#pg-neuro-age .ficha span{font-size:var(--fs-1);color:var(--texto);font-family:var(--fonte-corpo)}
+#pg-neuro-age .destaque{background:var(--superficie);color:var(--texto);border-radius:var(--raio-card);padding:1.8rem;margin:1.6rem 0;border:1px solid var(--borda)}
+#pg-neuro-age .destaque h4{color:var(--texto);font-size:var(--fs-2);margin-bottom:.6rem}
+#pg-neuro-age .destaque p{color:var(--texto-2);font-size:var(--fs-1)}
 #pg-neuro-age .destaque p+p{margin-top:.7rem}
 </style>
 <script type="application/ld+json">
@@ -158,7 +158,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -170,7 +170,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -184,7 +184,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -263,7 +263,7 @@
   <div class="narrow">
     <p class="sec-label">A origem</p>
     <h2 class="sec-title">De uma revisão sistemática para um instrumento</h2>
-    <p class="body">A conclusão central da <a href="/demencias.html" style="color:var(--bordo);font-weight:700">revisão sistemática sobre progressão nas demências</a> é que nenhum marcador isolado é patognomônico: o que discrimina as síndromes é o padrão relativo entre domínios. Essa conclusão tem uma consequência prática incômoda. Ler padrão à mão, cruzando dez ou doze escores ajustados por idade e escolaridade, é demorado e propenso a erro.</p>
+    <p class="body">A conclusão central da <a href="/demencias.html" style="color:var(--primaria-hover);font-weight:600">revisão sistemática sobre progressão nas demências</a> é que nenhum marcador isolado é patognomônico: o que discrimina as síndromes é o padrão relativo entre domínios. Essa conclusão tem uma consequência prática incômoda. Ler padrão à mão, cruzando dez ou doze escores ajustados por idade e escolaridade, é demorado e propenso a erro.</p>
     <p class="body">O Neuro-Age nasceu dessa consequência. É a arquitetura de bateria proposta naquela revisão, implementada como software: cada domínio com o instrumento sensível ao marcador diferencial, e o cruzamento entre domínios feito por código.</p>
   </div>
 </section>
@@ -312,9 +312,9 @@
       <h2>Colaboração em validação?</h2>
       <p>Serviços e centros de referência em envelhecimento interessados em normatizar e validar o instrumento são muito bem-vindos.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Adolescentes e adultos · presencial em Belo Horizonte e online · português e inglês</div>

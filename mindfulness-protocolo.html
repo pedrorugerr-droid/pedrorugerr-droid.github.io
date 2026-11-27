@@ -25,77 +25,77 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-mindfulness-protocolo-integra{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-mindfulness-protocolo-integra a{color:inherit;text-decoration:none}
+#pg-mindfulness-protocolo-integra{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-mindfulness-protocolo-integra a{}
 #pg-mindfulness-protocolo-integra /* barra de progresso de leitura */
-  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--vermelho);z-index:70;transition:width .08s linear}
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primaria);z-index:70;transition:width .08s linear}
 #pg-mindfulness-protocolo-integra /* capa do artigo */
-  .capa{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:3.5rem 0 3rem}
+  .capa{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
 #pg-mindfulness-protocolo-integra .capa .in{max-width:1180px;margin:0 auto;padding:0 1.5rem}
-#pg-mindfulness-protocolo-integra .back{display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-mindfulness-protocolo-integra .back:hover{color:var(--vermelho)}
-#pg-mindfulness-protocolo-integra .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
-#pg-mindfulness-protocolo-integra .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
-#pg-mindfulness-protocolo-integra .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
-#pg-mindfulness-protocolo-integra .capa h1{font-family:Georgia,serif;font-size:2.3rem;line-height:1.2;max-width:22ch;margin-bottom:.9rem}
-#pg-mindfulness-protocolo-integra .capa .dek{font-size:1.02rem;color:rgba(255,248,231,.8);max-width:62ch}
-#pg-mindfulness-protocolo-integra .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(255,248,231,.15);font-size:.8rem;color:rgba(255,248,231,.6);line-height:1.9}
-#pg-mindfulness-protocolo-integra .creditos b{color:var(--creme);font-weight:600}
-@media(max-width:680px){#pg-mindfulness-protocolo-integra .capa h1{font-size:1.7rem}}
+#pg-mindfulness-protocolo-integra .back{display:inline-block;margin-bottom:1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-mindfulness-protocolo-integra .back:hover{color:var(--primaria)}
+#pg-mindfulness-protocolo-integra .badge{display:inline-block;font-size:var(--fs-1);letter-spacing:0;text-transform:none;font-weight:500;padding:2px 10px;border-radius:999px;margin-bottom:1rem;color:var(--texto-2);background:var(--superficie-tint);border:0}
+#pg-mindfulness-protocolo-integra .badge.tec{background:var(--superficie-tint);color:var(--texto-2);border:0}
+#pg-mindfulness-protocolo-integra .badge.pub{background:var(--superficie-tint);color:var(--texto-2);border:0}
+#pg-mindfulness-protocolo-integra .capa h1{font-family:var(--fonte-titulo);font-size:var(--fs-6);line-height:1.2;max-width:22ch;margin-bottom:.9rem}
+#pg-mindfulness-protocolo-integra .capa .dek{font-size:var(--fs-2);color:var(--texto-2);max-width:62ch}
+#pg-mindfulness-protocolo-integra .creditos{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--borda);font-size:var(--fs-1);color:var(--texto-2);line-height:1.9}
+#pg-mindfulness-protocolo-integra .creditos b{color:var(--texto);font-weight:600}
+@media(max-width:680px){#pg-mindfulness-protocolo-integra .capa h1{font-size:var(--fs-5)}}
 #pg-mindfulness-protocolo-integra /* layout leitura */
   .layout{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;align-items:start}
 #pg-mindfulness-protocolo-integra .layout>*{min-width:0}
 @media(max-width:980px){#pg-mindfulness-protocolo-integra .layout{grid-template-columns:minmax(0,1fr);gap:1.6rem;padding-top:2rem}}
 #pg-mindfulness-protocolo-integra /* sumário */
-  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:.82rem;padding-right:.5rem}
-#pg-mindfulness-protocolo-integra .toc h5{font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-family:"Segoe UI",sans-serif}
-#pg-mindfulness-protocolo-integra .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--sub);line-height:1.4;transition:.15s}
-#pg-mindfulness-protocolo-integra .toc a:hover{border-left-color:var(--vermelho);color:var(--vinho)}
-#pg-mindfulness-protocolo-integra .toc a.lv3{padding-left:1.4rem;font-size:.78rem;color:var(--muted)}
-#pg-mindfulness-protocolo-integra .toc a.on{border-left-color:var(--vermelho);color:var(--vinho);font-weight:600}
-@media(max-width:980px){#pg-mindfulness-protocolo-integra .toc{position:static;max-height:none;background:var(--papel);border:1px solid var(--borda);border-radius:14px;padding:1.2rem}
-#pg-mindfulness-protocolo-integra .toc details summary{cursor:pointer;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);font-weight:700}
+  .toc{position:sticky;top:5rem;max-height:calc(100vh - 7rem);overflow-y:auto;font-size:var(--fs-1);padding-right:.5rem}
+#pg-mindfulness-protocolo-integra .toc h5{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.8rem;font-family:var(--fonte-corpo)}
+#pg-mindfulness-protocolo-integra .toc a{display:block;padding:.3rem 0 .3rem .75rem;border-left:2px solid var(--borda);color:var(--texto-2);line-height:1.4;transition:.15s}
+#pg-mindfulness-protocolo-integra .toc a:hover{border-left-color:var(--primaria);color:var(--texto)}
+#pg-mindfulness-protocolo-integra .toc a.lv3{padding-left:1.4rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-mindfulness-protocolo-integra .toc a.on{border-left-color:var(--primaria);color:var(--texto);font-weight:600}
+@media(max-width:980px){#pg-mindfulness-protocolo-integra .toc{position:static;max-height:none;background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.2rem}
+#pg-mindfulness-protocolo-integra .toc details summary{cursor:pointer;font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--primaria-hover);font-weight:600}
 #pg-mindfulness-protocolo-integra .toc .lista{margin-top:.9rem;max-height:45vh;overflow-y:auto}}
 @media(min-width:981px){#pg-mindfulness-protocolo-integra .toc details summary{display:none}
 #pg-mindfulness-protocolo-integra .toc .lista{display:block!important}}
 #pg-mindfulness-protocolo-integra /* corpo do artigo */
-  article{background:var(--papel);border:1px solid var(--borda);border-radius:18px;padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
-@media(max-width:680px){#pg-mindfulness-protocolo-integra article{padding:1.6rem;border-radius:12px}}
-#pg-mindfulness-protocolo-integra article p{font-family:Georgia,"Times New Roman",serif;font-size:1.045rem;line-height:1.78;color:var(--texto);margin-bottom:1.15rem}
-#pg-mindfulness-protocolo-integra article p.subtitulo{font-family:"Segoe UI",sans-serif;font-size:.95rem;color:var(--bordo);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
-#pg-mindfulness-protocolo-integra article h2{font-family:Georgia,serif;font-size:1.6rem;color:var(--vinho);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--vermelho);letter-spacing:.5px}
+  article{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:3rem;max-width:74ch;min-width:0;overflow-wrap:anywhere}
+@media(max-width:680px){#pg-mindfulness-protocolo-integra article{padding:1.6rem;border-radius:var(--raio-card)}}
+#pg-mindfulness-protocolo-integra article p{font-family:var(--fonte-corpo);font-size:var(--fs-2);line-height:var(--lh-corpo);color:var(--texto);margin-bottom:1.15rem}
+#pg-mindfulness-protocolo-integra article p.subtitulo{font-family:var(--fonte-corpo);font-size:var(--fs-1);color:var(--primaria-hover);font-weight:600;margin-top:-.6rem;margin-bottom:1.4rem}
+#pg-mindfulness-protocolo-integra article h2{font-family:var(--fonte-titulo);font-size:var(--fs-5);color:var(--texto);margin:2.8rem 0 .9rem;padding-top:1.4rem;border-top:2px solid var(--primaria);letter-spacing:-.01em}
 #pg-mindfulness-protocolo-integra article h2:first-child{margin-top:0;padding-top:0;border-top:none}
-#pg-mindfulness-protocolo-integra article h3{font-family:Georgia,serif;font-size:1.18rem;color:var(--vinho);margin:2rem 0 .7rem}
-#pg-mindfulness-protocolo-integra article h4{font-family:"Segoe UI",sans-serif;font-size:.96rem;color:var(--bordo);margin:1.5rem 0 .5rem;letter-spacing:.2px}
+#pg-mindfulness-protocolo-integra article h3{font-family:var(--fonte-titulo);font-size:var(--fs-3);color:var(--texto);margin:2rem 0 .7rem}
+#pg-mindfulness-protocolo-integra article h4{font-family:var(--fonte-corpo);font-size:var(--fs-1);color:var(--primaria-hover);margin:1.5rem 0 .5rem;letter-spacing:-.01em}
 #pg-mindfulness-protocolo-integra article ul{list-style:none;margin:0 0 1.2rem}
-#pg-mindfulness-protocolo-integra article li{font-family:Georgia,serif;font-size:1.005rem;line-height:1.7;color:var(--sub);padding:.32rem 0 .32rem 1.25rem;position:relative}
-#pg-mindfulness-protocolo-integra article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--vermelho)}
-#pg-mindfulness-protocolo-integra article strong{color:var(--vinho)}
+#pg-mindfulness-protocolo-integra article li{font-family:var(--fonte-corpo);font-size:var(--fs-2);line-height:var(--lh-corpo);color:var(--texto-2);padding:.32rem 0 .32rem 1.25rem;position:relative}
+#pg-mindfulness-protocolo-integra article li::before{content:"";position:absolute;left:.25rem;top:1rem;width:5px;height:5px;border-radius:50%;background:var(--primaria)}
+#pg-mindfulness-protocolo-integra article strong{color:var(--texto)}
 #pg-mindfulness-protocolo-integra article em{font-style:italic}
-#pg-mindfulness-protocolo-integra .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:10px}
-#pg-mindfulness-protocolo-integra article table{border-collapse:collapse;width:100%;font-family:"Segoe UI",sans-serif;font-size:.84rem;min-width:560px}
+#pg-mindfulness-protocolo-integra .tabela-wrap{overflow-x:auto;max-width:100%;margin:1.4rem 0 1.6rem;border:1px solid var(--borda);border-radius:var(--raio-botao)}
+#pg-mindfulness-protocolo-integra article table{border-collapse:collapse;width:100%;font-family:var(--fonte-corpo);font-size:var(--fs-1);min-width:560px}
 #pg-mindfulness-protocolo-integra article th,#pg-mindfulness-protocolo-integra article td{min-width:118px;word-break:normal;overflow-wrap:break-word;hyphens:none}
-#pg-mindfulness-protocolo-integra article th{background:var(--vinho);color:var(--creme);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px}
-#pg-mindfulness-protocolo-integra article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--sub);vertical-align:top}
-#pg-mindfulness-protocolo-integra article tbody tr:nth-child(even){background:rgba(232,192,192,.13)}
-#pg-mindfulness-protocolo-integra .aviso-topo{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.88rem;padding:1.1rem 1.3rem;border-radius:10px;margin-bottom:2rem;line-height:1.65}
-#pg-mindfulness-protocolo-integra .aviso-topo b{color:#4d3b00}
-#pg-mindfulness-protocolo-integra .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:.85rem;color:var(--muted);line-height:1.8}
-#pg-mindfulness-protocolo-integra .fim a{color:var(--bordo);font-weight:600}
-#pg-mindfulness-protocolo-integra .btn{display:inline-block;padding:.75rem 1.4rem;border-radius:10px;font-weight:600;font-size:.88rem;background:var(--vermelho);color:#fff;margin-top:1rem}
-#pg-mindfulness-protocolo-integra .btn:hover{background:#c0240f}
-#pg-mindfulness-protocolo-integra .fim .btn-alt{background:transparent;color:var(--bordo);border:1.5px solid var(--borda);margin-left:.5rem}
-#pg-mindfulness-protocolo-integra .fim .btn-alt:hover{border-color:var(--vermelho);background:transparent}
+#pg-mindfulness-protocolo-integra article th{background:var(--superficie);color:var(--texto);text-align:left;padding:.65rem .8rem;font-weight:600;letter-spacing:.3px;border:1px solid var(--borda)}
+#pg-mindfulness-protocolo-integra article td{padding:.6rem .8rem;border-top:1px solid var(--borda);color:var(--texto-2);vertical-align:top}
+#pg-mindfulness-protocolo-integra article tbody tr:nth-child(even){background:var(--superficie-tint)}
+#pg-mindfulness-protocolo-integra .aviso-topo{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1.1rem 1.3rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-bottom:2rem;line-height:1.65;border:0;border-left:3px solid var(--primaria)}
+#pg-mindfulness-protocolo-integra .aviso-topo b{color:var(--texto)}
+#pg-mindfulness-protocolo-integra .fim{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--borda);font-size:var(--fs-1);color:var(--texto-2);line-height:var(--lh-corpo)}
+#pg-mindfulness-protocolo-integra .fim a{color:var(--primaria-hover);font-weight:600}
+#pg-mindfulness-protocolo-integra .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);background:var(--primaria);color:#fff!important;margin-top:1rem}
+#pg-mindfulness-protocolo-integra .btn:hover{background:var(--primaria-hover)}
+#pg-mindfulness-protocolo-integra .fim .btn-alt{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria);margin-left:.5rem}
+#pg-mindfulness-protocolo-integra .fim .btn-alt:hover{border-color:var(--primaria);background:var(--superficie-tint);color:var(--primaria)!important}
 @media print{#pg-mindfulness-protocolo-integra .toc,#pg-mindfulness-protocolo-integra .btn,#pg-mindfulness-protocolo-integra .back{display:none!important}
-#pg-mindfulness-protocolo-integra{background:#fff}
-#pg-mindfulness-protocolo-integra .capa{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+#pg-mindfulness-protocolo-integra{background:var(--superficie)}
+#pg-mindfulness-protocolo-integra .capa{background:var(--superficie);color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
 #pg-mindfulness-protocolo-integra .capa h1,#pg-mindfulness-protocolo-integra .capa .dek,#pg-mindfulness-protocolo-integra .creditos,#pg-mindfulness-protocolo-integra .creditos b{color:#000}
 #pg-mindfulness-protocolo-integra .layout{display:block;padding:0}
-#pg-mindfulness-protocolo-integra article{border:none;padding:0;max-width:none;background:#fff}
+#pg-mindfulness-protocolo-integra article{border:none;padding:0;max-width:none;background:var(--superficie)}
 #pg-mindfulness-protocolo-integra article h2{break-after:avoid}
-#pg-mindfulness-protocolo-integra article table{font-size:.7rem}}
-#pg-mindfulness-protocolo-integra article p.ref{font-size:.88rem;line-height:1.6;color:var(--muted);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:"Segoe UI",sans-serif;overflow-wrap:break-word}
-#pg-mindfulness-protocolo-integra article p.ref a{color:var(--bordo)}
+#pg-mindfulness-protocolo-integra article table{font-size:var(--fs-1)}}
+#pg-mindfulness-protocolo-integra article p.ref{font-size:var(--fs-1);line-height:1.6;color:var(--texto-2);padding-left:1.6rem;text-indent:-1.6rem;margin-bottom:.6rem;font-family:var(--fonte-corpo);overflow-wrap:break-word}
+#pg-mindfulness-protocolo-integra article p.ref a{color:var(--primaria-hover)}
 </style>
 <script type="application/ld+json">
 {
@@ -133,7 +133,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -145,7 +145,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -159,7 +159,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -294,7 +294,7 @@ Manual de prática domiciliar · texto integral, sem cortes</div>
   </aside>
 
   <article id="mindfulness-protocolo-integra--texto">
-<div class="aviso-topo"><b>Manual de prática domiciliar para adultos.</b> Este documento pode ser usado por qualquer pessoa interessada em mindfulness e por profissionais que acompanham pacientes. Ele traz contraindicações, critérios de autotriagem e efeitos indesejados documentados na literatura. Antes de começar, faça a <a href="#mindfulness-protocolo-integra--autotriagem-e-escolha-do-ramo" style="color:#8a6a00;font-weight:700;text-decoration:underline">autotriagem</a>: ela diz se você pode praticar sozinho, se deve usar um roteiro adaptado ou se é melhor procurar um profissional primeiro. O manual não substitui avaliação clínica individual. Se você busca uma apresentação mais curta do programa, <a href="/mindfulness-8-semanas.html" style="color:#8a6a00;font-weight:700;text-decoration:underline">a versão introdutória está aqui</a>.</div>
+<div class="aviso-topo"><b>Manual de prática domiciliar para adultos.</b> Este documento pode ser usado por qualquer pessoa interessada em mindfulness e por profissionais que acompanham pacientes. Ele traz contraindicações, critérios de autotriagem e efeitos indesejados documentados na literatura. Antes de começar, faça a <a href="#mindfulness-protocolo-integra--autotriagem-e-escolha-do-ramo" style="color:var(--texto);font-weight:600;text-decoration:underline">autotriagem</a>: ela diz se você pode praticar sozinho, se deve usar um roteiro adaptado ou se é melhor procurar um profissional primeiro. O manual não substitui avaliação clínica individual. Se você busca uma apresentação mais curta do programa, <a href="/mindfulness-8-semanas.html" style="color:var(--texto);font-weight:600;text-decoration:underline">a versão introdutória está aqui</a>.</div>
 <h3 id="mindfulness-protocolo-integra--aviso-tecnico-e-limites-de-aplicacao">Para quem é e limites de uso</h3>
 <p>Este é um manual de prática domiciliar de 8 semanas que integra elementos da Redução de Estresse Baseada em Mindfulness (MBSR), da Terapia Cognitiva Baseada em Mindfulness (MBCT) e da Terapia de Aceitação e Compromisso (ACT). Ele descreve o que praticar em casa a cada dia: roteiro, duração, registros e o que fazer quando surgem dificuldades. Pode ser seguido por conta própria, depois da autotriagem, ou com acompanhamento de um psicólogo, médico ou instrutor de mindfulness.</p>
 <p>Situações em que o manual <strong>não</strong> deve ser iniciado por conta própria (procure avaliação profissional antes): psicose ativa; episódio maníaco ou hipomaníaco atual; pensamentos de morte ou de suicídio; dissociação intensa; uso de álcool ou outras substâncias em fase aguda; trauma muito recente (menos de 3 meses); TEPT complexo sem estabilização; ataques de pânico diários; sintomas físicos intensos sem explicação médica e com grande sofrimento.</p>

@@ -25,55 +25,55 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-videos{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-videos h1,#pg-videos h2,#pg-videos h3{font-family:Georgia,"Times New Roman",serif}
+#pg-videos{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-videos h1,#pg-videos h2,#pg-videos h3{font-family:var(--fonte-titulo)}
 #pg-videos .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
-#pg-videos section{padding:3.5rem 0}
-#pg-videos .alt{background:#fff}
-#pg-videos .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-videos h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-videos .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2rem}
-#pg-videos .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-videos .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-videos .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-videos .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
-#pg-videos .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-videos .hero .btn{display:inline-block;margin-top:1.4rem;padding:.7rem 1.3rem;border-radius:10px;font-weight:600;font-size:.9rem;background:var(--vermelho);color:#fff}
-#pg-videos .hero .btn:hover{background:#c0240f}
-@media(max-width:680px){#pg-videos .hero h1{font-size:1.85rem}}
+#pg-videos section{padding:var(--sec-pad) 0}
+#pg-videos .alt{background:var(--superficie-tint)}
+#pg-videos .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-videos h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-videos .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2rem}
+#pg-videos .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-videos .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-videos .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-videos .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-videos .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-videos .hero .btn{display:inline-block;margin-top:1.4rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);background:var(--primaria);color:#fff!important}
+#pg-videos .hero .btn:hover{background:var(--primaria-hover)}
+@media(max-width:680px){#pg-videos .hero h1{font-size:var(--fs-5)}}
 /* grade de vídeos */
-#pg-videos .grade{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+#pg-videos .grade{display:grid;gap:var(--e-3);grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 #pg-videos .grade.curtos{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem}
-#pg-videos .card{background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
-#pg-videos .alt .card{background:var(--papel)}
+#pg-videos .card{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);overflow:hidden;display:flex;flex-direction:column}
+#pg-videos .alt .card{background:var(--superficie)}
 #pg-videos .thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#000;border:0;padding:0;cursor:pointer;overflow:hidden}
 #pg-videos .curtos .thumb{aspect-ratio:9/16}
 #pg-videos .thumb img,#pg-videos .thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
-#pg-videos .thumb::after{content:"";position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(224,44,20,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6.5v11l9-5.5z'/%3E%3C/svg%3E") center/60% no-repeat;transition:transform .15s}
+#pg-videos .thumb::after{content:"";position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:var(--primaria) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6.5v11l9-5.5z'/%3E%3C/svg%3E") center/60% no-repeat;transition:transform .15s}
 #pg-videos .thumb:hover::after,#pg-videos .thumb:focus-visible::after{transform:scale(1.12)}
 #pg-videos .thumb.on::after{display:none}
-#pg-videos .card h3{font-size:.95rem;line-height:1.35;color:var(--vinho);padding:.8rem .9rem .9rem;font-weight:700}
-#pg-videos .curtos .card h3{font-size:.84rem;padding:.65rem .75rem .75rem}
-#pg-videos .vazio{color:var(--sub);font-size:.95rem}
+#pg-videos .card h3{font-size:var(--fs-3);line-height:1.2;color:var(--texto);padding:.8rem .9rem .9rem;font-weight:600}
+#pg-videos .curtos .card h3{font-size:var(--fs-3);padding:.65rem .75rem .75rem}
+#pg-videos .vazio{color:var(--texto-2);font-size:var(--fs-1)}
 #pg-videos .mais{margin-top:1.6rem}
-#pg-videos .mais a{color:var(--bordo);border-bottom:1px solid var(--borda);font-size:.92rem}
+#pg-videos .mais a{color:var(--primaria-hover);border-bottom:1px solid var(--borda);font-size:var(--fs-1)}
 #pg-videos .contact{max-width:760px;margin:0 auto}
-#pg-videos .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-videos .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-videos .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-videos .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-videos .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-videos .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-videos .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-videos .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-videos .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-videos .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-videos .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-videos .cta-wa{background:#1FA855;color:#fff}
-#pg-videos .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-videos .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-videos .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-videos .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-videos .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-videos .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-videos .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-videos .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-videos .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-videos .cta-wa:hover{background:#20BD5A}
+#pg-videos .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-videos .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-videos .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-videos .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-videos .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-videos .cta-opcoes{flex-direction:column}
-#pg-videos .cta-op{justify-content:center}}
+#pg-videos .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
 </style>
 </head>
 <body>
@@ -85,7 +85,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -97,7 +97,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -111,7 +111,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -209,9 +209,9 @@
       <h2>Começar</h2>
       <p>Se você está procurando terapia e não sabe se é comigo, a conversa inicial existe para isso. Sem compromisso e sem custo.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Adolescentes, adultos e idosos · presencial em Belo Horizonte e online · português e inglês</div>

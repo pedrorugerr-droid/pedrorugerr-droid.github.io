@@ -25,74 +25,74 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-o-que-eu-faco{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-o-que-eu-faco h1,#pg-o-que-eu-faco h2,#pg-o-que-eu-faco h3,#pg-o-que-eu-faco h4,#pg-o-que-eu-faco .serif{font-family:Georgia,"Times New Roman",serif}
-#pg-o-que-eu-faco a{color:inherit;text-decoration:none}
+#pg-o-que-eu-faco{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-o-que-eu-faco h1,#pg-o-que-eu-faco h2,#pg-o-que-eu-faco h3,#pg-o-que-eu-faco h4,#pg-o-que-eu-faco .serif{font-family:var(--fonte-titulo)}
+#pg-o-que-eu-faco a{}
 #pg-o-que-eu-faco .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 #pg-o-que-eu-faco .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
-#pg-o-que-eu-faco section{padding:4rem 0}
-#pg-o-que-eu-faco .alt{background:#fff}
-#pg-o-que-eu-faco .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-o-que-eu-faco h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-o-que-eu-faco .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
-#pg-o-que-eu-faco .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-o-que-eu-faco nav a{color:rgba(255,248,231,.8);font-size:.85rem;margin-left:1.3rem;transition:color .15s}
-#pg-o-que-eu-faco nav a:hover{color:var(--vermelho)}
-#pg-o-que-eu-faco .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-o-que-eu-faco .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-o-que-eu-faco .hero h1{font-size:2.4rem;line-height:1.2;max-width:20ch;margin-bottom:1rem}
-#pg-o-que-eu-faco .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-o-que-eu-faco .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-o-que-eu-faco .back:hover{color:var(--vermelho)}
-@media(max-width:680px){#pg-o-que-eu-faco .hero h1{font-size:1.85rem}}
-#pg-o-que-eu-faco .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
-#pg-o-que-eu-faco .btn-primary{background:var(--vermelho);color:#fff}
-#pg-o-que-eu-faco .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
+#pg-o-que-eu-faco section{padding:var(--sec-pad) 0}
+#pg-o-que-eu-faco .alt{background:var(--superficie-tint)}
+#pg-o-que-eu-faco .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-o-que-eu-faco h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-o-que-eu-faco .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2.2rem}
+#pg-o-que-eu-faco .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-o-que-eu-faco nav a{color:var(--texto-2);font-size:var(--fs-1);margin-left:1.3rem;transition:color .15s}
+#pg-o-que-eu-faco nav a:hover{color:var(--primaria)}
+#pg-o-que-eu-faco .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-o-que-eu-faco .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-o-que-eu-faco .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:20ch;margin-bottom:1rem}
+#pg-o-que-eu-faco .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-o-que-eu-faco .back{display:inline-block;margin-bottom:1.3rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-o-que-eu-faco .back:hover{color:var(--primaria)}
+@media(max-width:680px){#pg-o-que-eu-faco .hero h1{font-size:var(--fs-5)}}
+#pg-o-que-eu-faco .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:none;cursor:pointer}
+#pg-o-que-eu-faco .btn-primary{background:var(--primaria);color:#fff!important;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}
+#pg-o-que-eu-faco .btn-primary:hover{background:var(--primaria-hover)}
 #pg-o-que-eu-faco /* diagrama do fio condutor */
-  .thread{background:#fff;border:1.5px solid var(--borda);border-radius:18px;padding:2rem;margin:2rem 0}
+  .thread{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:2rem;margin:2rem 0}
 #pg-o-que-eu-faco .thread .top{text-align:center;margin-bottom:1.6rem}
-#pg-o-que-eu-faco .thread .top b{display:block;font-family:Georgia,serif;font-size:1.25rem;color:var(--vinho)}
-#pg-o-que-eu-faco .thread .top span{font-size:.85rem;color:var(--muted)}
-#pg-o-que-eu-faco .three{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-#pg-o-que-eu-faco .mov{border-top:3px solid var(--vermelho);background:var(--creme);border-radius:0 0 12px 12px;padding:1.2rem}
-#pg-o-que-eu-faco .mov h4{font-size:1rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-o-que-eu-faco .mov ul{list-style:none;font-size:.85rem;color:var(--sub)}
+#pg-o-que-eu-faco .thread .top b{display:block;font-family:var(--fonte-corpo);font-size:var(--fs-3);color:var(--texto)}
+#pg-o-que-eu-faco .thread .top span{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-o-que-eu-faco .three{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e-3)}
+#pg-o-que-eu-faco .mov{border-top:3px solid var(--primaria);background:var(--fundo);border-radius:0 0 var(--raio-card) var(--raio-card);padding:1.2rem}
+#pg-o-que-eu-faco .mov h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-o-que-eu-faco .mov ul{list-style:none;font-size:var(--fs-1);color:var(--texto-2)}
 #pg-o-que-eu-faco .mov li{padding:.18rem 0;padding-left:.9rem;position:relative}
-#pg-o-que-eu-faco .mov li::before{content:"·";position:absolute;left:0;color:var(--vermelho);font-weight:700}
+#pg-o-que-eu-faco .mov li::before{content:"·";position:absolute;left:0;color:var(--primaria);font-weight:600}
 @media(max-width:680px){#pg-o-que-eu-faco .three{grid-template-columns:1fr}}
 #pg-o-que-eu-faco /* cards de serviço */
-  .svc{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:2rem;margin-bottom:1.4rem;transition:.2s}
-#pg-o-que-eu-faco .svc:hover{border-color:var(--vermelho)}
-#pg-o-que-eu-faco .svc .num{font-family:Georgia,serif;font-size:.8rem;letter-spacing:2px;color:var(--vermelho);font-weight:700}
-#pg-o-que-eu-faco .svc h3{font-size:1.35rem;color:var(--vinho);margin:.35rem 0 .8rem}
-#pg-o-que-eu-faco .svc p{color:var(--sub);font-size:.94rem;margin-bottom:.9rem}
+  .svc{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:2rem;margin-bottom:1.4rem;transition:.2s}
+#pg-o-que-eu-faco .svc:hover{border-color:var(--primaria)}
+#pg-o-que-eu-faco .svc .num{font-family:var(--fonte-titulo);font-size:var(--fs-1);letter-spacing:-.01em;color:var(--primaria);font-weight:600}
+#pg-o-que-eu-faco .svc h3{font-size:var(--fs-3);color:var(--texto);margin:.35rem 0 .8rem}
+#pg-o-que-eu-faco .svc p{color:var(--texto-2);font-size:var(--fs-1);margin-bottom:.9rem}
 #pg-o-que-eu-faco .svc p:last-child{margin-bottom:0}
-#pg-o-que-eu-faco .svc h5{font-size:.7rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .5rem;font-family:"Segoe UI",sans-serif}
-#pg-o-que-eu-faco .svc ol{margin:0 0 .5rem 1.1rem;font-size:.9rem;color:var(--sub)}
+#pg-o-que-eu-faco .svc h5{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin:1.2rem 0 .5rem;font-family:var(--fonte-corpo)}
+#pg-o-que-eu-faco .svc ol{margin:0 0 .5rem 1.1rem;font-size:var(--fs-1);color:var(--texto-2)}
 #pg-o-que-eu-faco .svc ol li{padding:.22rem 0}
-#pg-o-que-eu-faco .svc ol li b{color:var(--vinho)}
-#pg-o-que-eu-faco .svc ul.plain{list-style:none;font-size:.9rem;color:var(--sub)}
+#pg-o-que-eu-faco .svc ol li b{color:var(--texto)}
+#pg-o-que-eu-faco .svc ul.plain{list-style:none;font-size:var(--fs-1);color:var(--texto-2)}
 #pg-o-que-eu-faco .svc ul.plain li{padding:.28rem 0 .28rem 1rem;position:relative}
-#pg-o-que-eu-faco .svc ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--vermelho)}
-#pg-o-que-eu-faco .meta-line{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--borda);font-size:.78rem;color:var(--muted);letter-spacing:.3px}
-#pg-o-que-eu-faco .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.2rem;line-height:1.6}
-#pg-o-que-eu-faco .nota b{color:#4d3b00}
-#pg-o-que-eu-faco .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-o-que-eu-faco .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-o-que-eu-faco .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-o-que-eu-faco .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-o-que-eu-faco .svc ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--primaria)}
+#pg-o-que-eu-faco .meta-line{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--borda);font-size:var(--fs-1);color:var(--texto-2);letter-spacing:.3px}
+#pg-o-que-eu-faco .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-top:1.2rem;line-height:1.6;border:0;border-left:3px solid var(--primaria)}
+#pg-o-que-eu-faco .nota b{color:var(--texto)}
+#pg-o-que-eu-faco .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-o-que-eu-faco .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-o-que-eu-faco .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-o-que-eu-faco .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-o-que-eu-faco .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-o-que-eu-faco .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-o-que-eu-faco .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-o-que-eu-faco .cta-wa{background:#1FA855;color:#fff}
-#pg-o-que-eu-faco .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-o-que-eu-faco .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-o-que-eu-faco .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-o-que-eu-faco .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-o-que-eu-faco .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-o-que-eu-faco .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-o-que-eu-faco .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-o-que-eu-faco .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-o-que-eu-faco .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-o-que-eu-faco .cta-wa:hover{background:#20BD5A}
+#pg-o-que-eu-faco .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-o-que-eu-faco .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-o-que-eu-faco .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-o-que-eu-faco .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-o-que-eu-faco .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-o-que-eu-faco .cta-opcoes{flex-direction:column}
-#pg-o-que-eu-faco .cta-op{justify-content:center}}
+#pg-o-que-eu-faco .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
 </style>
 <script type="application/ld+json">
 {
@@ -120,7 +120,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -132,7 +132,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -146,7 +146,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -260,7 +260,7 @@
       </div>
     </div>
 
-    <p style="color:var(--sub);font-size:.95rem">Os três movimentos são interdependentes por construção. A intervenção só é específica na medida em que a avaliação que a precede discrimina entre perfis. A avaliação só é viável em escala clínica quando a correção e a integração dos dados estão instrumentadas. O instrumento só permanece confiável enquanto o modelo que o organiza é mantido sob revisão da literatura. E o ciclo se fecha na direção inversa: são os casos que o modelo não acomoda que obrigam à sua revisão.</p>
+    <p style="color:var(--texto-2);font-size:var(--fs-1)">Os três movimentos são interdependentes por construção. A intervenção só é específica na medida em que a avaliação que a precede discrimina entre perfis. A avaliação só é viável em escala clínica quando a correção e a integração dos dados estão instrumentadas. O instrumento só permanece confiável enquanto o modelo que o organiza é mantido sob revisão da literatura. E o ciclo se fecha na direção inversa: são os casos que o modelo não acomoda que obrigam à sua revisão.</p>
   </div>
 </section>
 
@@ -275,7 +275,7 @@
       <h3>Avaliação neuropsicológica</h3>
       <p>Mapeamento completo de cognição, personalidade e história de vida em doze etapas, culminando em laudo integrado e devolutiva presencial e em vídeo. Para quando a pergunta é ampla: como esta pessoa funciona, e por quê.</p>
       <p>As doze etapas não são uma lista de testes, cada uma alimenta uma camada de leitura. A entrevista e a entrevista estruturada estabelecem o contexto; as provas cognitivas separam capacidade de desorganização; a personalidade entra como modulação; os esquemas e traços patológicos, como interferência. O laudo não é a soma dos escores: é o padrão entre eles.</p>
-      <div class="meta-line">10 a 14 horas · distribuídas em 2 a 3 meses · <a href="/modelo-4-camadas.html" style="color:var(--bordo);font-weight:700">ver como os resultados são lidos →</a></div>
+      <div class="meta-line">10 a 14 horas · distribuídas em 2 a 3 meses · <a href="/modelo-4-camadas.html" style="color:var(--primaria-hover);font-weight:600">ver como os resultados são lidos →</a></div>
     </div>
 
     <div class="svc">
@@ -293,7 +293,7 @@
       <h5>Pareceres para terceiros</h5>
       <p>Quando o documento precisa circular (escola, equipe médica, empregador, uso jurídico) ele é redigido para esse fim: com a fundamentação que o destinatário precisa, e apenas as informações que o propósito exige.</p>
       <div class="nota"><b>Sobre o diagnóstico categórico.</b> Ele não é descartado. Um código diagnóstico abre porta para direito, adaptação escolar, licença e tratamento, e isso importa. O que não se faz aqui é <em>parar</em> nele.</div>
-      <div class="meta-line"><a href="/psicodiagnostico.html" style="color:var(--bordo);font-weight:700">Ver a página completa do psicodiagnóstico →</a></div>
+      <div class="meta-line"><a href="/psicodiagnostico.html" style="color:var(--primaria-hover);font-weight:600">Ver a página completa do psicodiagnóstico →</a></div>
     </div>
 
     <div class="svc">
@@ -335,7 +335,7 @@
         <li>Pessoas com TDAH ou no espectro que precisam escolher um ambiente de trabalho compatível, e não apenas uma profissão</li>
       </ul>
       <div class="nota"><b>Nota honesta.</b> Orientação de carreira não prevê futuro nem garante satisfação. O que este processo entrega é informação melhor para uma decisão que continua sendo sua, e uma leitura do seu funcionamento que, essa sim, tende a se manter estável ao longo dos anos.</div>
-      <div class="meta-line"><a href="/orientacao-profissional.html" style="color:var(--bordo);font-weight:700">Ver a página completa da orientação de carreira →</a></div>
+      <div class="meta-line"><a href="/orientacao-profissional.html" style="color:var(--primaria-hover);font-weight:600">Ver a página completa da orientação de carreira →</a></div>
     </div>
 
     <div class="svc">
@@ -362,7 +362,7 @@
         <li><b>Consultoria em avaliação dimensional.</b> Implantação de leitura dimensional (HiTOP, RDoC, Big Five, PID-5) em serviços que hoje trabalham apenas com classificação categórica.</li>
         <li><b>Supervisão de casos de avaliação.</b> Discussão de casos de avaliação neuropsicológica e psicodiagnóstico, com foco na integração dos achados.</li>
       </ul>
-      <div class="meta-line"><a href="/#home--instrumentos" style="color:var(--bordo);font-weight:700">ver os instrumentos desenvolvidos →</a></div>
+      <div class="meta-line"><a href="/#home--instrumentos" style="color:var(--primaria-hover);font-weight:600">ver os instrumentos desenvolvidos →</a></div>
     </div>
   </div>
 </section>
@@ -372,12 +372,12 @@
     <p class="sec-label">Diferencial</p>
     <h2 class="sec-title">O que a tecnologia própria muda na prática</h2>
     <p class="sec-intro">Os instrumentos digitais desenvolvidos aqui não são vitrine. Eles têm cinco funções concretas no atendimento.</p>
-    <ul class="plain" style="list-style:none;font-size:.95rem;color:var(--sub)">
-      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--vinho)">Eliminam erro de tabela.</b> Conversão de escore bruto em padronizado e leitura de percentil feitas por código, não por régua no manual.</li>
-      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--vinho)">Devolvem tempo clínico.</b> A hora que iria para correção vai para integração e devolutiva.</li>
-      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--vinho)">Tornam o raciocínio explícito.</b> Um funil que gera hipótese probabilística mostra <em>por que</em> chegou lá. Coisa que um laudo narrativo raramente faz.</li>
-      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--vinho)">Rodam offline, em arquivo único.</b> Nenhum dado de paciente sai do computador do consultório. Não é detalhe técnico: é a arquitetura de privacidade da prática.</li>
-      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--vinho)">Viram material do paciente.</b> Quadros de registro e automonitoramento construídos para o caso específico, que a pessoa leva para casa.</li>
+    <ul class="plain" style="list-style:none;font-size:var(--fs-1);color:var(--texto-2)">
+      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--texto)">Eliminam erro de tabela.</b> Conversão de escore bruto em padronizado e leitura de percentil feitas por código, não por régua no manual.</li>
+      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--texto)">Devolvem tempo clínico.</b> A hora que iria para correção vai para integração e devolutiva.</li>
+      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--texto)">Tornam o raciocínio explícito.</b> Um funil que gera hipótese probabilística mostra <em>por que</em> chegou lá. Coisa que um laudo narrativo raramente faz.</li>
+      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--texto)">Rodam offline, em arquivo único.</b> Nenhum dado de paciente sai do computador do consultório. Não é detalhe técnico: é a arquitetura de privacidade da prática.</li>
+      <li style="padding:.5rem 0 .5rem 1.1rem;position:relative"><b style="color:var(--texto)">Viram material do paciente.</b> Quadros de registro e automonitoramento construídos para o caso específico, que a pessoa leva para casa.</li>
     </ul>
     <div class="nota" style="margin-top:1.6rem"><b>Sobre instrumentos protegidos.</b> Ferramentas de rastreio de uso livre podem ser disponibilizadas publicamente, com finalidade informativa e de apoio à prática, não substituem avaliação nem estabelecem diagnóstico. Instrumentos protegidos por direito autoral são utilizados apenas em contexto clínico, sob responsabilidade profissional, e não são disponibilizados para download.</div>
   </div>
@@ -389,9 +389,9 @@
       <h2>Qual dessas é a sua pergunta?</h2>
       <p>Se você não tem certeza de qual frente se aplica ao seu caso, o primeiro contato serve exatamente para isso, e não custa nada descobrir.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Atendimento de adolescentes e adultos · presencial em Belo Horizonte e online</div>

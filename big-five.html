@@ -25,101 +25,101 @@
 <meta name="twitter:image" content="https://pedroruger.com.br/og.png">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-#pg-big-five{font-family:"Segoe UI",system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.65}
-#pg-big-five h1,#pg-big-five h2,#pg-big-five h3,#pg-big-five h4,#pg-big-five .serif{font-family:Georgia,"Times New Roman",serif}
-#pg-big-five a{color:inherit;text-decoration:none}
+#pg-big-five{font-family:var(--fonte-corpo);background:var(--fundo);color:var(--texto);line-height:1.65}
+#pg-big-five h1,#pg-big-five h2,#pg-big-five h3,#pg-big-five h4,#pg-big-five .serif{font-family:var(--fonte-titulo)}
+#pg-big-five a{}
 #pg-big-five .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
 #pg-big-five .narrow{max-width:760px;margin:0 auto;padding:0 1.5rem}
-#pg-big-five section{padding:4rem 0}
-#pg-big-five .alt{background:#fff}
-#pg-big-five .sec-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-#pg-big-five h2.sec-title{font-size:1.9rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-big-five .sec-intro{color:var(--sub);max-width:64ch;margin-bottom:2.2rem}
-#pg-big-five .divider{width:46px;height:3px;background:var(--vermelho);border-radius:2px;margin:1.3rem 0}
-#pg-big-five p.body{color:var(--sub);font-size:.98rem;margin-bottom:1.1rem}
-#pg-big-five p.body strong,#pg-big-five p.body b{color:var(--vinho)}
-#pg-big-five .hero{background:linear-gradient(160deg,var(--vinho) 0%,var(--vinho2) 55%,var(--vinho) 100%);color:var(--creme);padding:4rem 0 3.5rem}
-#pg-big-five .hero .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,248,231,.55);margin-bottom:1.1rem}
-#pg-big-five .hero h1{font-size:2.4rem;line-height:1.2;max-width:19ch;margin-bottom:1rem}
-#pg-big-five .hero p.lead{font-size:1.06rem;color:rgba(255,248,231,.82);max-width:64ch}
-#pg-big-five .back{display:inline-block;margin-bottom:1.3rem;font-size:.82rem;color:rgba(255,248,231,.6)}
-#pg-big-five .back:hover{color:var(--vermelho)}
-@media(max-width:680px){#pg-big-five .hero h1{font-size:1.85rem}}
-#pg-big-five .btn{display:inline-block;padding:.8rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;transition:.15s;border:none;cursor:pointer}
-#pg-big-five .btn-primary{background:var(--vermelho);color:#fff}
-#pg-big-five .btn-primary:hover{background:#c0240f;transform:translateY(-2px)}
-#pg-big-five .btn-ghost{background:transparent;color:var(--bordo);border:1.5px solid var(--borda)}
-#pg-big-five .btn-ghost:hover{border-color:var(--vermelho)}
+#pg-big-five section{padding:var(--sec-pad) 0}
+#pg-big-five .alt{background:var(--superficie-tint)}
+#pg-big-five .sec-label{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.6rem}
+#pg-big-five h2.sec-title{font-size:var(--fs-5);color:var(--texto);margin-bottom:.6rem}
+#pg-big-five .sec-intro{color:var(--texto-2);max-width:64ch;margin-bottom:2.2rem}
+#pg-big-five .divider{width:46px;height:3px;background:var(--primaria);border-radius:2px;margin:1.3rem 0}
+#pg-big-five p.body{color:var(--texto-2);font-size:var(--fs-2);margin-bottom:1.1rem}
+#pg-big-five p.body strong,#pg-big-five p.body b{color:var(--texto)}
+#pg-big-five .hero{background:var(--fundo);color:var(--texto);padding:var(--sec-pad) 0}
+#pg-big-five .hero .kicker{font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:1.1rem}
+#pg-big-five .hero h1{font-size:var(--fs-6);line-height:1.2;max-width:19ch;margin-bottom:1rem}
+#pg-big-five .hero p.lead{font-size:var(--fs-2);color:var(--texto-2);max-width:64ch}
+#pg-big-five .back{display:inline-block;margin-bottom:1.3rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-big-five .back:hover{color:var(--primaria)}
+@media(max-width:680px){#pg-big-five .hero h1{font-size:var(--fs-5)}}
+#pg-big-five .btn{display:inline-block;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:none;cursor:pointer}
+#pg-big-five .btn-primary{background:var(--primaria);color:#fff!important;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}
+#pg-big-five .btn-primary:hover{background:var(--primaria-hover)}
+#pg-big-five .btn-ghost{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-big-five .btn-ghost:hover{border-color:var(--primaria);background:var(--superficie-tint);color:var(--primaria)!important}
 #pg-big-five /* etapas numeradas */
   .etapas{display:grid;gap:.9rem}
-#pg-big-five .etapa{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
-#pg-big-five .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;font-family:Georgia,serif}
-#pg-big-five .etapa h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-big-five .etapa p{font-size:.89rem;color:var(--sub)}
+#pg-big-five .etapa{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.3rem 1.4rem;display:flex;gap:1.1rem}
+#pg-big-five .etapa .sn{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--superficie);color:var(--texto);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-1);font-family:var(--fonte-titulo);border:1px solid var(--borda)}
+#pg-big-five .etapa h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-big-five .etapa p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-big-five /* blocos genéricos */
-  .bloco{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.6rem;margin-bottom:1.1rem}
-#pg-big-five .bloco h4{font-size:1.05rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-big-five .bloco p{font-size:.9rem;color:var(--sub)}
+  .bloco{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.6rem;margin-bottom:1.1rem}
+#pg-big-five .bloco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-big-five .bloco p{font-size:var(--fs-1);color:var(--texto-2)}
 #pg-big-five ul.plain{list-style:none}
-#pg-big-five ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:.93rem;color:var(--sub)}
-#pg-big-five ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--vermelho)}
-#pg-big-five ul.plain li b{color:var(--vinho)}
-#pg-big-five .dois{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+#pg-big-five ul.plain li{padding:.42rem 0 .42rem 1.1rem;position:relative;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-big-five ul.plain li::before{content:"\2014";position:absolute;left:0;color:var(--primaria)}
+#pg-big-five ul.plain li b{color:var(--texto)}
+#pg-big-five .dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3)}
 @media(max-width:700px){#pg-big-five .dois{grid-template-columns:1fr}}
-#pg-big-five .col{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:1.5rem}
-#pg-big-five .col.neg{background:var(--vinho);color:var(--creme);border-color:var(--vinho)}
-#pg-big-five .col h4{font-size:1.02rem;color:var(--vinho);margin-bottom:.6rem}
-#pg-big-five .col.neg h4{color:var(--creme)}
-#pg-big-five .col p,#pg-big-five .col li{font-size:.89rem;color:var(--sub)}
-#pg-big-five .col.neg p,#pg-big-five .col.neg li{color:rgba(255,248,231,.8)}
-#pg-big-five .col.neg li::before{color:var(--vermelho)}
-#pg-big-five .nota{background:#FFF4D6;border:1px dashed #D9B400;color:#6B5200;font-size:.86rem;padding:1rem 1.2rem;border-radius:10px;margin-top:1.3rem;line-height:1.6}
-#pg-big-five .nota b{color:#4d3b00}
+#pg-big-five .col{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.5rem}
+#pg-big-five .col.neg{background:var(--superficie);color:var(--texto);border-color:var(--texto)}
+#pg-big-five .col h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.6rem}
+#pg-big-five .col.neg h4{color:var(--texto)}
+#pg-big-five .col p,#pg-big-five .col li{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-big-five .col.neg p,#pg-big-five .col.neg li{color:var(--texto-2)}
+#pg-big-five .col.neg li::before{color:var(--primaria)}
+#pg-big-five .nota{background:var(--superficie-tint);color:var(--texto);font-size:var(--fs-1);padding:1rem 1.2rem;border-radius:0 var(--raio-botao) var(--raio-botao) 0;margin-top:1.3rem;line-height:1.6;border:0;border-left:3px solid var(--primaria)}
+#pg-big-five .nota b{color:var(--texto)}
 #pg-big-five .quem{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
-#pg-big-five .quem div{background:var(--creme);border:1px solid var(--borda);border-left:3px solid var(--vermelho);border-radius:0 10px 10px 0;padding:1rem 1.2rem;font-size:.9rem;color:var(--sub)}
-#pg-big-five .quem div b{display:block;color:var(--vinho);font-family:Georgia,serif;margin-bottom:.2rem}
+#pg-big-five .quem div{background:var(--fundo);border:1px solid var(--borda);border-left:3px solid var(--primaria);border-radius:0 var(--raio-botao) var(--raio-botao) 0;padding:1rem 1.2rem;font-size:var(--fs-1);color:var(--texto-2)}
+#pg-big-five .quem div b{display:block;color:var(--texto);font-family:var(--fonte-corpo);margin-bottom:.2rem}
 @media(max-width:700px){#pg-big-five .quem{grid-template-columns:1fr}}
-#pg-big-five .contact{background:linear-gradient(160deg,var(--vinho),var(--vinho2));color:var(--creme);border-radius:20px;padding:3rem;text-align:center}
-#pg-big-five .contact h2{font-size:1.8rem;margin-bottom:.6rem}
-#pg-big-five .contact p{color:rgba(255,248,231,.8);max-width:54ch;margin:0 auto 1.6rem}
-#pg-big-five .contact .info{font-size:.9rem;color:rgba(255,248,231,.7);margin-top:1.4rem;line-height:1.9}
+#pg-big-five .contact{background:var(--fundo);color:var(--texto);border-radius:var(--raio-card);padding:3rem;text-align:center}
+#pg-big-five .contact h2{font-size:var(--fs-5);margin-bottom:.6rem}
+#pg-big-five .contact p{color:var(--texto-2);max-width:54ch;margin:0 auto 1.6rem}
+#pg-big-five .contact .info{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.4rem;line-height:1.9}
 #pg-big-five .cta-opcoes{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.4rem}
-#pg-big-five .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.92rem;transition:.15s;border:1.5px solid transparent;font-family:"Segoe UI",system-ui,sans-serif}
-#pg-big-five .cta-op .ic{font-size:1.05rem;line-height:1}
-#pg-big-five .cta-wa{background:#1FA855;color:#fff}
-#pg-big-five .cta-wa:hover{background:#178c45;transform:translateY(-2px)}
-#pg-big-five .cta-doc{background:#fff;color:#0d2d5e;border-color:#fff}
-#pg-big-five .cta-doc:hover{transform:translateY(-2px);background:#eef3fb}
-#pg-big-five .cta-mail{background:transparent;color:rgba(255,248,231,.9);border-color:rgba(255,248,231,.38)}
-#pg-big-five .cta-mail:hover{border-color:var(--vermelho);color:#fff}
-#pg-big-five .cta-nota{font-size:.78rem;color:rgba(255,248,231,.55);margin-top:1.1rem}
+#pg-big-five .cta-op{display:inline-flex;align-items:center;gap:.55rem;padding:12px 20px;border-radius:var(--raio-botao);font-weight:600;font-size:var(--fs-2);transition:.15s;border:1px solid transparent;font-family:var(--fonte-corpo)}
+#pg-big-five .cta-op .ic{font-size:var(--fs-2);line-height:1;display:inline-flex}
+#pg-big-five .cta-wa{background:#25D366;color:var(--escuro)!important}
+#pg-big-five .cta-wa:hover{background:#20BD5A}
+#pg-big-five .cta-doc{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-big-five .cta-doc:hover{background:var(--superficie-tint);border-color:var(--primaria);color:var(--primaria)!important}
+#pg-big-five .cta-mail{background:transparent;color:var(--primaria)!important;border:1px solid var(--primaria)}
+#pg-big-five .cta-mail:hover{border-color:var(--primaria);color:var(--primaria)!important;background:var(--superficie-tint)}
+#pg-big-five .cta-nota{font-size:var(--fs-1);color:var(--texto-2);margin-top:1.1rem}
 @media(max-width:520px){#pg-big-five .cta-opcoes{flex-direction:column}
-#pg-big-five .cta-op{justify-content:center}}
-#pg-big-five .badge{display:inline-block;font-size:.64rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:1rem}
-#pg-big-five .badge.tec{background:rgba(224,44,20,.18);color:#ff8f7d;border:1px solid rgba(224,44,20,.45)}
-#pg-big-five .badge.pub{background:rgba(255,248,231,.14);color:rgba(255,248,231,.9);border:1px solid rgba(255,248,231,.3)}
+#pg-big-five .cta-op{justify-content:center;padding:12px 20px;font-size:var(--fs-2);border-radius:var(--raio-botao)}}
+#pg-big-five .badge{display:inline-block;font-size:var(--fs-1);letter-spacing:0;text-transform:none;font-weight:500;padding:2px 10px;border-radius:999px;margin-bottom:1rem;color:var(--texto-2);background:var(--superficie-tint);border:0}
+#pg-big-five .badge.tec{background:var(--superficie-tint);color:var(--texto-2);border:0}
+#pg-big-five .badge.pub{background:var(--superficie-tint);color:var(--texto-2);border:0}
 #pg-big-five .semanas{display:grid;gap:.9rem}
-#pg-big-five .semana{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:1.2rem 1.3rem;display:flex;gap:1.1rem}
-#pg-big-five .semana .sn{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--vinho);color:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;font-family:Georgia,serif;flex-direction:column;line-height:1}
-#pg-big-five .semana .sn small{font-size:.52rem;letter-spacing:1px;opacity:.6}
-#pg-big-five .semana h4{font-size:1rem;color:var(--vinho);margin-bottom:.25rem}
-#pg-big-five .semana p{font-size:.89rem;color:var(--sub)}
-#pg-big-five .traco{background:#fff;border:1px solid var(--borda);border-left:4px solid var(--vermelho);border-radius:0 14px 14px 0;padding:1.5rem;margin-bottom:1.1rem}
-#pg-big-five .traco h4{font-size:1.1rem;color:var(--vinho);margin-bottom:.5rem}
-#pg-big-five .traco .polos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.9rem}
-#pg-big-five .traco .polo{background:var(--creme);border-radius:10px;padding:.9rem 1rem}
-#pg-big-five .traco .polo b{display:block;font-size:.7rem;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:.3rem}
+#pg-big-five .semana{background:var(--superficie);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1.2rem 1.3rem;display:flex;gap:1.1rem}
+#pg-big-five .semana .sn{flex:0 0 auto;width:52px;height:52px;border-radius:var(--raio-botao);background:var(--superficie-tint);color:var(--primaria);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:var(--fs-3);font-family:var(--fonte-titulo);flex-direction:column;line-height:1;border:0;gap:2px}
+#pg-big-five .semana .sn small{font-size:var(--fs-1);letter-spacing:0;color:var(--texto-2);font-family:var(--fonte-corpo);font-weight:500}
+#pg-big-five .semana h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.25rem}
+#pg-big-five .semana p{font-size:var(--fs-1);color:var(--texto-2)}
+#pg-big-five .traco{background:var(--superficie);border:1px solid var(--borda);border-left:4px solid var(--primaria);border-radius:0 var(--raio-card) var(--raio-card) 0;padding:1.5rem;margin-bottom:1.1rem}
+#pg-big-five .traco h4{font-size:var(--fs-2);color:var(--texto);margin-bottom:.5rem}
+#pg-big-five .traco .polos{display:grid;grid-template-columns:1fr 1fr;gap:var(--e-3);margin-top:.9rem}
+#pg-big-five .traco .polo{background:var(--fundo);border-radius:var(--raio-botao);padding:.9rem 1rem}
+#pg-big-five .traco .polo b{display:block;font-size:var(--fs-1);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:.3rem}
 #pg-big-five .traco .polo.bom b{color:#1d7a4a}
-#pg-big-five .traco .polo.ruim b{color:var(--bordo)}
-#pg-big-five .traco .polo p{font-size:.86rem;color:var(--sub)}
+#pg-big-five .traco .polo.ruim b{color:var(--primaria-hover)}
+#pg-big-five .traco .polo p{font-size:var(--fs-1);color:var(--texto-2)}
 @media(max-width:640px){#pg-big-five .traco .polos{grid-template-columns:1fr}}
 #pg-big-five .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin:1.4rem 0}
-#pg-big-five .ficha div{background:var(--creme);border:1px solid var(--borda);border-radius:12px;padding:1rem}
-#pg-big-five .ficha b{display:block;font-size:.66rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
-#pg-big-five .ficha span{font-size:.92rem;color:var(--vinho);font-family:Georgia,serif}
-#pg-big-five .destaque{background:var(--vinho);color:var(--creme);border-radius:16px;padding:1.8rem;margin:1.6rem 0}
-#pg-big-five .destaque h4{color:var(--creme);font-size:1.1rem;margin-bottom:.6rem}
-#pg-big-five .destaque p{color:rgba(255,248,231,.82);font-size:.93rem}
+#pg-big-five .ficha div{background:var(--fundo);border:1px solid var(--borda);border-radius:var(--raio-card);padding:1rem}
+#pg-big-five .ficha b{display:block;font-size:var(--fs-1);letter-spacing:1px;text-transform:uppercase;color:var(--texto-2);margin-bottom:.3rem}
+#pg-big-five .ficha span{font-size:var(--fs-1);color:var(--texto);font-family:var(--fonte-corpo)}
+#pg-big-five .destaque{background:var(--superficie);color:var(--texto);border-radius:var(--raio-card);padding:1.8rem;margin:1.6rem 0;border:1px solid var(--borda)}
+#pg-big-five .destaque h4{color:var(--texto);font-size:var(--fs-2);margin-bottom:.6rem}
+#pg-big-five .destaque p{color:var(--texto-2);font-size:var(--fs-1)}
 #pg-big-five .destaque p+p{margin-top:.7rem}
 </style>
 <script type="application/ld+json">
@@ -158,7 +158,7 @@
       <a href="/#home--sobre">Sobre</a>
       <a href="/o-que-eu-faco.html">Serviços</a>
       <div class="menu-dd">
-        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <span aria-hidden="true">▾</span></a>
+        <a href="/avaliacao-neuropsicologica.html" class="menu-dd-t" aria-haspopup="true">Avaliação <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/avaliacao-neuropsicologica.html">Avaliação neuropsicológica <small>o processo completo</small></a>
           <a href="/avaliacao-tdah-adulto-bh.html">TDAH em adolescentes e adultos <small>avaliação e diagnóstico tardio</small></a>
@@ -170,7 +170,7 @@
       </div>
       <a href="/psicoterapia.html">Psicoterapia</a>
       <div class="menu-dd">
-        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <span aria-hidden="true">▾</span></a>
+        <a href="/#home--instrumentos" class="menu-dd-t" aria-haspopup="true">Instrumentos <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="menu-dd-l">
           <a href="/instrumentos/valores.html">Inventário de Valores</a>
           <a href="/mindfulness-app/">Mindfulness-IBE <small>app de meditação</small></a>
@@ -184,7 +184,7 @@
       <a href="/grupo-de-estudos.html" data-op>Grupo de estudos</a>
       <a href="/area/paciente.html" class="nav-pac">Área do paciente</a>
       <a href="/contato.html" class="nav-cta">Falar comigo</a>
-      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <button class="burger" id="burger" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
     </div>
   </div>
   <nav id="gaveta">
@@ -276,7 +276,7 @@
 
     <div class="traco">
       <h4>Neuroticismo: a regulação de emoções negativas</h4>
-      <p style="color:var(--sub);font-size:.94rem">Governa o quanto e com que facilidade emoções negativas são disparadas e o quanto elas duram. É o traço mais fortemente associado a sofrimento psíquico de todos os cinco.</p>
+      <p style="color:var(--texto-2);font-size:var(--fs-1)">Governa o quanto e com que facilidade emoções negativas são disparadas e o quanto elas duram. É o traço mais fortemente associado a sofrimento psíquico de todos os cinco.</p>
       <div class="polos">
         <div class="polo ruim"><b>Extremo alto</b><p>Apreensão constante, tensão física crônica, hipervigilância, catastrofização, irritabilidade, autocrítica severa. É o terreno dos quadros de ansiedade e depressão.</p></div>
         <div class="polo bom"><b>Extremo baixo</b><p>Ausência de medo diante de risco real, incapacidade de sentir raiva mesmo quando violado, submissão. A calma extrema pode significar não registrar ameaça. O que também é falha de regulação.</p></div>
@@ -285,7 +285,7 @@
 
     <div class="traco">
       <h4>Extroversão: energia, sociabilidade e busca de recompensa</h4>
-      <p style="color:var(--sub);font-size:.94rem">Não é só gostar de gente. É o quanto o sistema de recompensa da pessoa responde ao mundo social e à novidade, e quanta estimulação ela precisa para se sentir bem.</p>
+      <p style="color:var(--texto-2);font-size:var(--fs-1)">Não é só gostar de gente. É o quanto o sistema de recompensa da pessoa responde ao mundo social e à novidade, e quanta estimulação ela precisa para se sentir bem.</p>
       <div class="polos">
         <div class="polo ruim"><b>Extremo alto</b><p>Busca incessante de estímulo, impulsividade social, dificuldade em tolerar silêncio ou solidão, comportamento de risco por tédio, grandiosidade.</p></div>
         <div class="polo bom"><b>Extremo baixo</b><p>Retraimento, anedonia social, empobrecimento da rede de apoio. Quando extremo, aproxima-se do desprendimento, e do embotamento de motivação que aparece na depressão.</p></div>
@@ -294,7 +294,7 @@
 
     <div class="traco">
       <h4>Abertura à experiência: o traço plástico</h4>
-      <p style="color:var(--sub);font-size:.94rem">Curiosidade, imaginação, tolerância à ambiguidade, interesse por ideias e por arte. É o traço com a relação mais interessante e menos linear com a psicopatologia.</p>
+      <p style="color:var(--texto-2);font-size:var(--fs-1)">Curiosidade, imaginação, tolerância à ambiguidade, interesse por ideias e por arte. É o traço com a relação mais interessante e menos linear com a psicopatologia.</p>
       <div class="polos">
         <div class="polo ruim"><b>Extremo alto</b><p>Pensamento excêntrico, crenças incomuns, dificuldade em distinguir o que é ideia própria do que é percepção. É o polo que se conecta ao espectro do pensamento.</p></div>
         <div class="polo bom"><b>Extremo baixo</b><p>Rigidez cognitiva, intolerância ao novo, concretude, dificuldade em imaginar alternativas, o que limita justamente a flexibilidade que a psicoterapia pede.</p></div>
@@ -303,7 +303,7 @@
 
     <div class="traco">
       <h4>Amabilidade: como a pessoa trata o outro</h4>
-      <p style="color:var(--sub);font-size:.94rem">Confiança, empatia, cooperação, disposição a ceder. Do outro lado do contínuo está o antagonismo.</p>
+      <p style="color:var(--texto-2);font-size:var(--fs-1)">Confiança, empatia, cooperação, disposição a ceder. Do outro lado do contínuo está o antagonismo.</p>
       <div class="polos">
         <div class="polo ruim"><b>Extremo alto</b><p>Subjugação, incapacidade de dizer não, auto-sacrifício crônico, permanência em relações prejudiciais. A bondade sem limite é um padrão clínico frequente.</p></div>
         <div class="polo bom"><b>Extremo baixo</b><p>Desconfiança generalizada, hostilidade, manipulação, frieza afetiva, incapacidade de reparar conflitos. É o núcleo do antagonismo.</p></div>
@@ -312,7 +312,7 @@
 
     <div class="traco">
       <h4>Conscienciosidade: organização, esforço e autocontrole</h4>
-      <p style="color:var(--sub);font-size:.94rem">Planejamento, persistência, cumprimento de compromissos, resistência ao impulso. O polo oposto é a desinibição.</p>
+      <p style="color:var(--texto-2);font-size:var(--fs-1)">Planejamento, persistência, cumprimento de compromissos, resistência ao impulso. O polo oposto é a desinibição.</p>
       <div class="polos">
         <div class="polo ruim"><b>Extremo alto</b><p>Perfeccionismo paralisante, rigidez, dificuldade em delegar, incapacidade de parar, exigência moral desproporcional consigo e com os outros.</p></div>
         <div class="polo bom"><b>Extremo baixo</b><p>Desorganização, procrastinação, impulsividade, dificuldade em sustentar esforço e em cumprir o que foi combinado. É o polo que mais se sobrepõe ao TDAH.</p></div>
@@ -341,9 +341,9 @@
       <h2>Quer entender o seu perfil?</h2>
       <p>A leitura de personalidade faz parte da avaliação neuropsicológica completa e da orientação de carreira. Também pode ser feita de forma focada.</p>
       <div class="cta-opcoes">
-        <a class="cta-op cta-wa" href="/contato.html"><span class="ic">💬</span> Mensagem pelo WhatsApp</a>
-        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic">📅</span> Agendar pelo Doctoralia</a>
-        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic">✉️</span> E-mail</a>
+        <a class="cta-op cta-wa" href="/contato.html"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span> Mensagem pelo WhatsApp</a>
+        <a class="cta-op cta-doc" href="https://www.doctoralia.com.br/pedro-andrade-ruger/psicologo/belo-horizonte" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span> Agendar pelo Doctoralia</a>
+        <a class="cta-op cta-mail" href="mailto:pedro.rugerr@gmail.com"><span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> E-mail</a>
       </div>
       <p class="cta-nota">Escolha o canal que preferir. Pelo WhatsApp a resposta costuma ser mais rápida; pelo Doctoralia você já vê os horários disponíveis.</p>
       <div class="info">Adolescentes e adultos · presencial em Belo Horizonte e online · português e inglês</div>

@@ -41,7 +41,13 @@
     alturaNav();
     gaveta.classList.toggle('aberta', abrir);
     document.documentElement.classList.toggle('gaveta-aberta', abrir);
-    if(b){ b.setAttribute('aria-expanded', abrir ? 'true' : 'false'); b.textContent = abrir ? '✕' : '☰'; }
+    if(b){
+      b.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+      // ícones Lucide "x" e "menu"
+      b.innerHTML = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+        (abrir ? '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'
+               : '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>') + '</svg>';
+    }
     if(abrir) gaveta.scrollTop = 0;
   }
   if(b && gaveta){
